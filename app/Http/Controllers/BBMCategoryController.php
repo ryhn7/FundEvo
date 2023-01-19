@@ -26,7 +26,7 @@ class BBMCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('SPBU.categoryBBM.create');
     }
 
     /**
@@ -37,7 +37,15 @@ class BBMCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'jenis_bbm' => 'required|max:25',
+            'harga_beli' => 'required|numeric',
+            'harga_jual' => 'required|numeric',
+        ]);
+
+        BBM::create($validated);
+
+        return redirect('/kategori-bbm')->with('success', 'Data BBM berhasil ditambahkan!');
     }
 
     /**
@@ -57,9 +65,14 @@ class BBMCategoryController extends Controller
      * @param  \App\Models\BBM  $bBM
      * @return \Illuminate\Http\Response
      */
-    public function edit(BBM $bBM)
+    public function edit(BBM $kategori_bbm)
     {
-        //
+        // $bbm = BBM::all();
+        // $x = $bbm->harga_beli;
+        return $kategori_bbm;
+        return view('SPBU.categoryBBM.edit', [
+            'bbm' => $kategori_bbm
+        ]);
     }
 
     /**

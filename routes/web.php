@@ -20,6 +20,6 @@ Route::get('/', fn () => view('index', [
 ]));
 
 
-// Route::resource('/penjualan-bbm', PenjualanBBMController::class);
+Route::resource('/penjualan-bbm', PenjualanBBMController::class)->except('show');
 
 Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');

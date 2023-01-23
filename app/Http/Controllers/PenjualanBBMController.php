@@ -14,11 +14,12 @@ class PenjualanBBMController extends Controller
      */
     public function index()
     {
-
         $penjualanBBM = PenjualanBBM::all();
-        $start = $penjualanBBM->sum('pendapatan');
-        $uang = 'Rp. '. number_format($start,0,',','.');
-        return $uang;
+        return view('SPBU.penjualanBBM.index',[
+            'sells' => $penjualanBBM,
+            'totalAmount' => $penjualanBBM->sum('pendapatan'),
+            'totalSell' => $penjualanBBM->sum('penjualan'),
+        ]);
     }
 
     /**

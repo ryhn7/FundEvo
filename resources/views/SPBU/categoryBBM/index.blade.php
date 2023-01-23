@@ -67,7 +67,7 @@
                                                 </path>
                                             </svg></a>
                                     </button>
-                                    <form action="#" method="POST">
+                                    <form action="/kategori-bbm/{{$bbm->id}}" method="POST">
                                         @method('delete')
                                         @csrf
                                         <button

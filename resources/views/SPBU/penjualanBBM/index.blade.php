@@ -1,6 +1,16 @@
 @extends('layouts.main')
 
 @section('container')
+    <div class="px-3 mb-5">
+        @if (session()->has('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-3" role="alert">
+                <strong class="font-bold">Woaa!</strong>
+                <span class="block sm:inline">{{ session('success') }}</span>
+                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                </span>
+            </div>
+        @endif
+    </div>
     <!-- row 1 -->
     <div class="flex flex-wrap px-3 -mx-3 mb-7">
         <!-- card1 -->
@@ -37,7 +47,7 @@
                             <div>
                                 <p class="mb-0 font-sans font-semibold leading-normal text-sm">Total Penjualan BBM</p>
                                 <h5 class="mb-0 font-bold">
-                                    {{$totalSell}}
+                                    {{ $totalSell }}
                                     <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span>
                                 </h5>
                             </div>
@@ -54,16 +64,7 @@
         </div>
     </div>
 
-    <div class="w-full px-3 overflow-hidden rounded-lg shadow-xs">
-        @if (session()->has('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-3" role="alert">
-                <strong class="font-bold">Woaa!</strong>
-                <span class="block sm:inline">{{ session('success') }}</span>
-                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                </span>
-            </div>
-        @endif
-
+    <div class="w-full px-1.5 overflow-hidden rounded-lg shadow-xs">
         <div class="flex justify-end mb-5 mr-1">
             <div
                 class="flex w-44 px-2 py-1 rounded-md shadow-lg text-center group bg-gradient-to-tl from-sky-500 to-teal-500 hover:bg-gradient-to-tl hover:from-sky-600 hover:to-teal-600">
@@ -93,12 +94,13 @@
                         <th class="px-4 py-3">Jenis BBM</th>
                         <th class="px-4 py-3">Stok Awal</th>
                         <th class="px-4 py-3">Penerimaan</th>
-                        <th class="px-4 py-3">Tera Densiti</th>
+                        <th class="px-4 py-3">Tera & Densiti</th>
                         <th class="px-4 py-3">Penjualan</th>
                         <th class="px-4 py-3">Stok ADM</th>
                         <th class="px-4 py-3">Stok Fakta</th>
                         <th class="px-4 py-3">Penyusutan</th>
                         <th class="px-4 py-3">Pendapatan</th>
+                        <th class="px-4 py-3">Tanggal</th>
                         <th class="pl-9 py-3">Actions</th>
                     </tr>
                 </thead>
@@ -112,10 +114,18 @@
                                 {{ $sell->stock_awal }}
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{ $sell->penerimaan }}
+                                @if ($sell->penerimaan)
+                                    {{ $sell->penerimaan }}
+                                @else
+                                    -
+                                @endif
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{ $sell->tera_densiti }}
+                                @if ($sell->tera_densiti)
+                                    {{ $sell->tera_densiti }}
+                                @else
+                                    -
+                                @endif
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 {{ $sell->penjualan }}
@@ -132,14 +142,16 @@
                             <td class="px-4 py-3 text-sm">
                                 @currency($sell->pendapatan)
                             </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{ $sell->created_at->toDateString() }}
+                            </td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center space-x-4 text-sm">
                                     <button
                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                         aria-label="Edit">
                                         <a href="/penjualan-bbm/{{ $sell->id }}/edit">
-                                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
-                                                viewBox="0 0 20 20">
+                                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                                 <path
                                                     d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
                                                 </path>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PenjualanBBM;
+use App\Models\BBM;
 use Illuminate\Http\Request;
 
 class PenjualanBBMController extends Controller
@@ -15,7 +16,7 @@ class PenjualanBBMController extends Controller
     public function index()
     {
         $penjualanBBM = PenjualanBBM::all();
-        return view('SPBU.penjualanBBM.index',[
+        return view('SPBU.penjualanBBM.index', [
             'sells' => $penjualanBBM,
             'totalAmount' => $penjualanBBM->sum('pendapatan'),
             'totalSell' => $penjualanBBM->sum('penjualan'),
@@ -29,7 +30,9 @@ class PenjualanBBMController extends Controller
      */
     public function create()
     {
-        //
+        return view('SPBU.penjualanBBM.create', [
+            'bbms' => BBM::all(),
+        ]);
     }
 
     /**
@@ -40,7 +43,21 @@ class PenjualanBBMController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'bbm_id' => 'required',
+            'stock_awal' => 'required|numeric',
+            'penerimaan' => 'nullable|numeric',
+            'tera_densiti' => 'nullable|numeric',
+            'penjualan' => 'required|numeric',
+            'stock_adm' => 'required|numeric',
+            'stock_fakta' => 'required|numeric',
+            'penyusutan' => 'required|numeric',
+            'pendapatan' => 'required|numeric',
+        ]);
+
+        PenjualanBBM::create($validated);
+
+        return redirect('/penjualan-bbm')->with('success', 'Data penjualan berhasil ditambahkan!');
     }
 
     /**
@@ -60,9 +77,12 @@ class PenjualanBBMController extends Controller
      * @param  \App\Models\PenjualanBBM  $penjualanBBM
      * @return \Illuminate\Http\Response
      */
-    public function edit(PenjualanBBM $penjualanBBM)
+    public function edit(PenjualanBBM $penjualan_bbm)
     {
-        //
+        return view('SPBU.penjualanBBM.edit', [
+            'bbms' => BBM::all(),
+            'sell' => $penjualan_bbm,
+        ]);
     }
 
     /**
@@ -72,9 +92,26 @@ class PenjualanBBMController extends Controller
      * @param  \App\Models\PenjualanBBM  $penjualanBBM
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PenjualanBBM $penjualanBBM)
+    public function update(Request $request, PenjualanBBM $penjualan_bbm)
     {
-        //
+        $rules = [
+            'bbm_id' => 'required',
+            'stock_awal' => 'required|numeric',
+            'penerimaan' => 'nullable|numeric',
+            'tera_densiti' => 'nullable|numeric',
+            'penjualan' => 'required|numeric',
+            'stock_adm' => 'required|numeric',
+            'stock_fakta' => 'required|numeric',
+            'penyusutan' => 'required|numeric',
+            'pendapatan' => 'required|numeric',
+        ];
+
+        $validated = $request->validate($rules);
+
+        PenjualanBBM::where('id', $penjualan_bbm->id)
+            ->update($validated);
+
+        return redirect('/penjualan-bbm')->with('success', 'Data penjualan berhasil diubah!');
     }
 
     /**
@@ -83,8 +120,10 @@ class PenjualanBBMController extends Controller
      * @param  \App\Models\PenjualanBBM  $penjualanBBM
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PenjualanBBM $penjualanBBM)
+    public function destroy(PenjualanBBM $penjualan_bbm)
     {
-        //
+        PenjualanBBM::destroy($penjualan_bbm->id);
+
+        return redirect('/penjualan-bbm')->with('success', 'Data penjualan berhasil dihapus!');
     }
 }

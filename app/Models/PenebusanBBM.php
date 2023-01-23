@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BBM extends Model
+class PenebusanBBM extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function bbmPenjualans()
+
+    public function bbm()
     {
-        return $this->hasMany(PenjualanBBM::class);
+        return $this->belongsTo(BBM::class);
     }
 
-    public function bbmPenebusans()
+    public function pengeluaranOpsBBMs()
     {
-        return $this->hasMany(PenebusanBBM::class);
+        return $this->hasMany(PengeluaranOpsBBM::class);
     }
 }

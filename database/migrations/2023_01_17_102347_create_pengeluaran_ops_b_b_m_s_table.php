@@ -15,9 +15,7 @@ return new class extends Migration
     {
         Schema::create('pengeluaran_ops_b_b_m_s', function (Blueprint $table) {
             $table->id();
-            $table->decimal('penebusan_bbm', 12, 2)->nullable();
-            $table->decimal('pph', 12, 2)->nullable();
-            $table->decimal('tip_sopir', 12, 2)->nullable();
+            $table->foreignId('penebusan_bbm_id')->nullable();
             $table->decimal('oli', 12, 2)->nullable();
             $table->decimal('gas', 12, 2)->nullable();
             $table->decimal('gaji_supervisor', 12, 2)->nullable();

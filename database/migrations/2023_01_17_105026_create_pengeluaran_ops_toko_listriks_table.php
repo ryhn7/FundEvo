@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('pengeluaran_ops_toko_listriks', function (Blueprint $table) {
             $table->id();
             $table->decimal('biaya_kulakan', 12, 2)->nullable();
-            $table->decimal('pph', 12, 2)->nullable();
-            $table->decimal('tip_sopir', 12, 2)->nullable();
             $table->decimal('gaji_supervisor', 12, 2)->nullable();
             $table->decimal('gaji_karyawan', 12, 2)->nullable();
             $table->decimal('reward_karyawan', 12, 2)->nullable();

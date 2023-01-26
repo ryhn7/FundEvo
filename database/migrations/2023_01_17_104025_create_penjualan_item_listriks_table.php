@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('penerimaan');
             $table->integer('penjualan');
             $table->integer('stock_akhir');
+            $table->integer('stock_kurang');
             $table->decimal('pendapatan', 12, 2);
             $table->timestamps();
         });

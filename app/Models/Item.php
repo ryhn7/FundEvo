@@ -14,4 +14,9 @@ class Item extends Model
     {
         return $this->hasMany(PenjualanItemListrik::class);
     }
+
+    public function itemKulakans()
+    {
+        return $this->hasMany(KulakanItems::class);
+    }
 }

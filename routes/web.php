@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BBMCategoryController;
 use App\Http\Controllers\PenjualanBBMController;
-use App\Http\Controllers\iTEMCategoryController;
-use App\Http\Controllers\PenjualanItemController;
-use App\Http\Controllers\KategoriItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +25,6 @@ Route::get('/penjualan-bbm/filter', [PenjualanBBMController::class, 'filter']);
 
 Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
 
-Route::resource('/penjualan-item', PenjualanItemController::class)->except('show');
+Route::resource('/penjualan-item', PenjualanBBMController::class)->except('show');
 
-Route::resource('/kategori-item', ItemCategoryController::class)->except('show');
-
-Route::resource('/kategori', KategoriItemController::class)->except('show');
+Route::resource('/kategori-item', BBMCategoryController::class)->except('show');

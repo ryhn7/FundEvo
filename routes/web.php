@@ -29,4 +29,4 @@ Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
 
 Route::resource('/penjualan-item', PenjualanItemController::class)->except('show');
 
-Route::resource('/kategori-item',  ItemCategoryController::class)->except('show');
+Route::resource('/kategori-item', ItemCategoryController::class)->except('show');

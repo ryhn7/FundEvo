@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 return new class extends Migration
 {
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->integer('penjualan');
             $table->integer('stock_akhir');
             $table->decimal('pendapatan', 12, 2);
+            $table->timestamp('date')->default(Carbon::today()->toDateString());
             $table->timestamps();
         });
     }

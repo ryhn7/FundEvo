@@ -24,3 +24,7 @@ Route::resource('/penjualan-bbm', PenjualanBBMController::class)->except('show')
 Route::get('/penjualan-bbm/filter', [PenjualanBBMController::class, 'filter']);
 
 Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
+
+Route::resource('/penjualan-item', PenjualanBBMController::class)->except('show');
+
+Route::resource('/kategori-item', BBMCategoryController::class)->except('show');

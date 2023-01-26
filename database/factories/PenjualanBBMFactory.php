@@ -18,7 +18,7 @@ class PenjualanBBMFactory extends Factory
     public function definition()
     {
         return [
-            'bbm_id' => fake()->unique()->numberBetween(1, 4),
+            'bbm_id' => mt_rand(1, 4),
             'stock_awal' => fake()->numberBetween(1000, 10000),
             'penerimaan' => fake()->numberBetween(1000, 16000),
             'penjualan' => fake()->numberBetween(100, 7000),

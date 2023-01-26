@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\PenjualanBBM;
+use App\Models\PengeluaranOpsBBM;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        PengeluaranOpsBBM::factory(5)->create();
         PenjualanBBM::factory(4)->create();
 
         // \App\Models\User::factory()->create([

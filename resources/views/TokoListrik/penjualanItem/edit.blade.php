@@ -1,3 +1,4 @@
+{{-- @dd($items[0]->kategori) --}}
 @extends('layouts.main')
 
 @section('container')
@@ -6,7 +7,7 @@
             @method('PUT')
             @csrf
             <div>
-                <label for="item_kategori" class="block mt-4 text-sm">
+                <label for="kategori_item" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">
                         Kategori Item
                     </span>
@@ -14,7 +15,7 @@
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" class="font-semibold">Pilih Kategori</option>
                         @foreach ($items as $item)
-                            @if (old('item_id', $item->id) == $item->id)
+                            @if (old('kategori_item', $sell->item_id) == $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->kategori}}</option>
                             @else
                                 <option value="{{ $item->id }}">{{ $item->kategori}}</option>
@@ -26,22 +27,22 @@
                     @enderror
                 </label>
 
-                <label for="item_id" class="block mt-4 text-sm">
+                <label for="nama_item" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">
                         Nama Item
                     </span>
-                    <select name="item_id" id="item_id" required
+                    <select name="nama_item" id="nama_item" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
-                        <option value="" class="font-semibold">Pilih item</option>
+                        <option value="" class="font-semibold">Pilih Item</option>
                         @foreach ($items as $item)
-                            @if (old('item_id', $item->id) == $item->id)
+                            @if (old('nama_item', $sell->item_id) == $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->nama_item}}</option>
                             @else
                                 <option value="{{ $item->id }}">{{ $item->nama_item}}</option>
                             @endif
                         @endforeach
                     </select>
-                    @error('item_id')
+                    @error('nama_id')
                         <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
                     @enderror
                 </label>

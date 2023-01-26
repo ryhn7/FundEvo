@@ -34,7 +34,7 @@ class PenjualanItemController extends Controller
     public function create()
     {
         return view('TokoListrik.penjualanItem.create', [
-            'items' => item::all(),
+            'items' => Item::all(),
         ]);
     }
 

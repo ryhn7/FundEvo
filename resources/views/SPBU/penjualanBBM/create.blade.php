@@ -63,7 +63,7 @@
 
                 <label for="penjualan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Penjualan</span>
-                    <input type="number" min="1000" step="any" id="penjualan" name="penjualan" required
+                    <input type="number" min="0" step="any" id="penjualan" name="penjualan" required
                         value="{{ old('penjualan') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penjualan')
                     border-red-600 focus:border-red-600 focus:ring-red-600

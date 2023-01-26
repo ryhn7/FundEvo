@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PenjualanBBM;
 use App\Models\BBM;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PenjualanBBMController extends Controller
@@ -15,7 +16,9 @@ class PenjualanBBMController extends Controller
      */
     public function index()
     {
-        $penjualanBBM = PenjualanBBM::all();
+        // $date = Carbon::today()->toDateString();
+        // return($date);
+        $penjualanBBM = PenjualanBBM::where('date', Carbon::today()->toDateString())->get();
         return view('SPBU.penjualanBBM.index', [
             'sells' => $penjualanBBM,
             'totalAmount' => $penjualanBBM->sum('pendapatan'),
@@ -125,5 +128,19 @@ class PenjualanBBMController extends Controller
         PenjualanBBM::destroy($penjualan_bbm->id);
 
         return redirect('/penjualan-bbm')->with('success', 'Data penjualan berhasil dihapus!');
+    }
+
+    // create filter for date
+    public function filter(Request $request)
+    {
+        // dd($request->date);
+        $date = Carbon::parse($request->date)->toDateString();
+        // return $date;
+        $penjualanBBM = PenjualanBBM::where('date', '=', $date)->get();
+        return view('SPBU.penjualanBBM.index', [
+            'sells' => $penjualanBBM,
+            'totalAmount' => $penjualanBBM->sum('pendapatan'),
+            'totalSell' => $penjualanBBM->sum('penjualan'),
+        ]);
     }
 }

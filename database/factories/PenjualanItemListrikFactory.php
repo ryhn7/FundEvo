@@ -17,7 +17,7 @@ class PenjualanItemListrikFactory extends Factory
     public function definition()
     {
         return [
-            'item_id' => fake()->unique()->numberBetween(1, 5),
+            'item_id' => mt_rand(1, 5),
             'stock_awal' => fake()->numberBetween(0, 1000),
             'penerimaan' => fake()->numberBetween(500, 1000),
             'penjualan' => fake()->numberBetween(1, 500),

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\PenjualanItemListrik;
 use Illuminate\Http\Request;
+use App\Models\Item;
+use Carbon\Carbon;
 
 class PenjualanItemController extends Controller
 {
@@ -14,7 +16,14 @@ class PenjualanItemController extends Controller
      */
     public function index()
     {
-        //
+        // $date = Carbon::today()->toDateString();
+        // return($date);
+        $penjualanItem = PenjualanItemListrik::where('date', Carbon::today()->toDateString())->get();
+        return view('TokoListrik.penjualanItem.index', [
+            'sells' => $penjualanItem,
+            'totalAmount' => $penjualanItem->sum('pendapatan'),
+            'totalSell' => $penjualanItem->sum('penjualan'),
+        ]);
     }
 
     /**
@@ -24,7 +33,9 @@ class PenjualanItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('TokoListrik.penjualanItem.create', [
+            'items' => item::all(),
+        ]);
     }
 
     /**
@@ -35,7 +46,18 @@ class PenjualanItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'item_id' => 'required',
+            'stock_awal' => 'required|numeric',
+            'penerimaan' => 'nullable|numeric',
+            'penjualan' => 'nullable|numeric',
+            'stock_akhir' => 'required|numeric',
+            'pendapatan' => 'required|numeric',
+        ]);
+
+        PenjualanItemListrik::create($validated);
+
+        return redirect('/penjualan-item')->with('success', 'Data penjualan berhasil ditambahkan!');
     }
 
     /**
@@ -55,9 +77,12 @@ class PenjualanItemController extends Controller
      * @param  \App\Models\PenjualanItemListrik  $penjualanItemListrik
      * @return \Illuminate\Http\Response
      */
-    public function edit(PenjualanItemListrik $penjualanItemListrik)
+    public function edit(PenjualanItemListrik $penjualan_item)
     {
-        //
+        return view('TokoListrik.penjualanItem.edit', [
+            'items' => Item::all(),
+            'sell' => $penjualan_item,
+        ]);
     }
 
     /**
@@ -67,9 +92,23 @@ class PenjualanItemController extends Controller
      * @param  \App\Models\PenjualanItemListrik  $penjualanItemListrik
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PenjualanItemListrik $penjualanItemListrik)
+    public function update(Request $request, PenjualanItemListrik $penjualan_item)
     {
-        //
+        $rules = [
+            'item_id' => 'required',
+            'stock_awal' => 'required|numeric',
+            'penerimaan' => 'nullable|numeric',
+            'penjualan' => 'nullable|numeric',
+            'stock_akhir' => 'required|numeric',
+            'pendapatan' => 'required|numeric',
+        ];
+
+        $validated = $request->validate($rules);
+
+        PenjualanItemListrik::where('id', $penjualan_item->id)
+            ->update($validated);
+
+        return redirect('/penjualan-item')->with('success', 'Data penjualan berhasil diubah!');
     }
 
     /**
@@ -78,8 +117,10 @@ class PenjualanItemController extends Controller
      * @param  \App\Models\PenjualanItemListrik  $penjualanItemListrik
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PenjualanItemListrik $penjualanItemListrik)
+    public function destroy(PenjualanItemListrik $penjualan_item)
     {
-        //
+        PenjualanItemListrik::destroy($penjualan_item->id);
+
+        return redirect('/penjualan-item')->with('success', 'Data penjualan berhasil dihapus!');
     }
 }

@@ -86,5 +86,20 @@ class DatabaseSeeder extends Seeder
                 'harga_jual' => 3000,
             ],
         ]);
+
+        DB::table('kategori_items')->insert([
+            [
+                'kategori' => 'Lampu',
+            ],
+            [
+                'kategori' => 'Kabel',
+            ],
+            [
+                'kategori' => 'Stop Kontak',
+            ],
+            [
+                'kategori' => 'Saklar',
+            ],
+        ]);
     }
 }

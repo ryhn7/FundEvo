@@ -19,4 +19,8 @@ class Item extends Model
     {
         return $this->hasMany(KulakanItems::class);
     }
+    public function itemKategoris()
+    {
+        return $this->hasMany(KategoriItem::class);
+    }
 }

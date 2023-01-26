@@ -5,6 +5,7 @@ use App\Http\Controllers\BBMCategoryController;
 use App\Http\Controllers\PenjualanBBMController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\PenjualanItemController;
+use App\Http\Controllers\KategoryItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,5 @@ Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
 Route::resource('/penjualan-item', PenjualanItemController::class)->except('show');
 
 Route::resource('/kategori-item', ItemCategoryController::class)->except('show');
+
+Route::resource('/kategori', KategoryItemController::class)->except('show');

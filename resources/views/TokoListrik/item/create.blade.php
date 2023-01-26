@@ -14,6 +14,7 @@
                     @error('kategori')
                         <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
                     @enderror
+                    <a href="/kategori" class="text-sm text-blue-600 hover:text-blue-800">Tambah Kategori</a>
                 </label>
 
                 <label for="nama_item" class="block text-sm">

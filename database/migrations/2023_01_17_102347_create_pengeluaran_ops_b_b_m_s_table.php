@@ -29,7 +29,7 @@ return new class extends Migration
             $table->decimal('biaya_lain', 12, 2)->nullable();
             $table->text('keterangan')->nullable();
             $table->string('nota')->nullable();
-            $table->timestamp('date')->default(Carbon::today()->toDateString());
+            $table->timestamp('date')->default(Carbon::now()->toDateString());
             $table->timestamps();
         });
     }

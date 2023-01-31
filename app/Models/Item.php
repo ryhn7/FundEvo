@@ -10,6 +10,11 @@ class Item extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
+    public function itemKategoris()
+    {
+        return $this->belongsTo(KategoriItem::class, 'kategori');
+    }
+
     public function itemPenjualans()
     {
         return $this->hasMany(PenjualanItemListrik::class);
@@ -18,9 +23,5 @@ class Item extends Model
     public function itemKulakans()
     {
         return $this->hasMany(KulakanItems::class);
-    }
-    public function itemKategoris()
-    {
-        return $this->hasMany(KategoriItem::class);
     }
 }

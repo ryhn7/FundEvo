@@ -1,3 +1,4 @@
+
 @extends('layouts.main')
 
 @section('container')
@@ -48,7 +49,7 @@
                     @foreach ($items as $item)
                         <tr class="text-gray-700">
                             <td class="px-4 py-3 font-bold">
-                                {{ $item->kategori }}
+                                {{ $item->itemKategoris->kategori}}
                             </td>
                             <td class="px-4 py-3 font-bold">
                                 {{ $item->nama_item }}

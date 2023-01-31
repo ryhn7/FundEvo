@@ -11,8 +11,8 @@ class KategoriItem extends Model
 
     protected $guarded = ['id'];
 
-    public function itemPenjualans()
+    public function kategoriItems()
     {
-        return $this->belongsTo(Item::class);
+        return $this->hasMany(Item::class);
     }
 }

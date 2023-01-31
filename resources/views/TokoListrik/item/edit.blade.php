@@ -7,14 +7,23 @@
             @method('PUT')
             @csrf
             <div>
-                <label for="kategori" class="block text-sm">
-                    <span class="text-gray-700 font-semibold">Kategori</span>
-                    <input type="text" id="kategori" name="kategori" required value="{{ old('kategori', $item->kategori) }}" autofocus
-                        class="block px-2 py-1 w-full mt-1 text-sm border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('kategori')
-                    border-red-600 focus:border-red-600 focus:ring-red-600
-                    @enderror" />
+                <label for="kategori" class="block mt-4 text-sm">
+                    <span class="text-gray-700 font-semibold">
+                        Kategori Item
+                    </span>
+                    <select name="kategori" id="kategori" required
+                        class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
+                        <option value="" class="font-semibold">Pilih Kategori</option>
+                        @foreach ($kategoris as $kategori)
+                            @if (old('kategori_item', $item->kategori) == $kategori->id)
+                                <option value="{{ $kategori->id }}" selected>{{ $kategori->kategori}}</option>
+                            @else
+                                <option value="{{ $kategori->id }}">{{ $kategori->kategori}}</option>
+                            @endif
+                        @endforeach
+                    </select>
                     @error('kategori')
-                        <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
+                        <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
                     @enderror
                 </label>
 

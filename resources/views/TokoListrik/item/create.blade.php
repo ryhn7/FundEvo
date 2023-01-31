@@ -7,16 +7,46 @@
             <div>
                 <label for="kategori" class="block text-sm">
                     <span class="text-gray-700 font-semibold">Kategori</span>
-                    <input type="text" id="kategori" name="kategori" required value="{{ old('kategori') }}" autofocus
-                        class="block px-2 py-1 w-full mt-1 text-sm border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('kategori')
-                    border-red-600 focus:border-red-600 focus:ring-red-600
-                    @enderror" />
+                    <select name="kategori" id="kategori" required
+                        class="block w-full mt-1 mb-2 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
+                        <option value="" class="font-semibold">Pilih Kategori</option>
+                        @foreach ($kategoris as $kategor)
+                            @if (old('kategori') == $kategor->id)
+                                <option value="{{ $kategor->id }}" selected>{{ $kategor->kategori}}</option>
+                            @else
+                                <option value="{{ $kategor->id }}">{{ $kategor->kategori}}</option>
+                            @endif
+                        @endforeach
+                    </select>
                     @error('kategori')
                         <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
                     @enderror
-                    <a href="/kategori" class="text-sm text-blue-600 hover:text-blue-800">Tambah Kategori</a>
+                    <a href="/kategori" class="mt-5 px-2 py-1 rounded text-white bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300">Tambah Kategori</a>
                 </label>
+                <!-- <label for="kategori" class="block mt-4 text-sm">
+                    <span class="text-gray-700 font-semibold">
+                        Kategori
+                    </span>
+                    <select name="kategori" id="kategori" required
+                        class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
+                        <option value="" class="font-semibold">Pilih Kategori</option>
+                        @foreach ($kategoris as $kategor)
+                            @if (old('kategori') == $kategor->id)
+                                <option value="{{ $kategor->id }}" selected>{{ $kategor->kategori}}</option>
+                            @else
+                                <option value="{{ $kategor->id }}">{{ $kategor->kategori}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                    @error('kategori')
+                        <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
+                    @enderror
+                    <a href="/kategori"><button class=" mt-3 px-2 py-1 rounded text-white bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 ...">
+                    Tambah Kategori
+                    </button></a>
+                </label> -->
 
+                
                 <label for="nama_item" class="block text-sm">
                     <span class="text-gray-700 font-semibold">Nama Item</span>
                     <input type="text" id="nama_item" name="nama_item" required value="{{ old('nama_item') }}" autofocus

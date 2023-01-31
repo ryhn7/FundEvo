@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\item;
+use App\Models\KategoriItem;
 use Illuminate\Http\Request;
 
 class ItemCategoryController extends Controller
@@ -14,7 +15,7 @@ class ItemCategoryController extends Controller
      */
     public function index()
     {
-        //
+        //$items = Item::where('kategori', 'like', '%'.$request->search.'%')->get();
         return view('TokoListrik.item.index', [
             'items' => Item::all()
         ]);
@@ -28,7 +29,10 @@ class ItemCategoryController extends Controller
     public function create()
     {
         //
-        return view('TokoListrik.item.create');
+        return view('TokoListrik.item.create', [
+            'kategoris' => KategoriItem::all()
+        ]);
+
     }
 
     /**
@@ -73,6 +77,7 @@ class ItemCategoryController extends Controller
     {
         //
         return view('TokoListrik.item.edit', [
+            'kategoris' => KategoriItem::all(),
             'item' => $kategori_item
         ]);
     }

@@ -56,31 +56,31 @@ class DatabaseSeeder extends Seeder
 
         DB::table('items')->insert([
             [
-                'kategori' => 'Lampu',
+                'kategori' => 1,
                 'nama_item' => 'Philips 9 watt',
                 'harga_beli' => 14000,
                 'harga_jual' => 15000,
             ],
             [
-                'kategori' => 'Lampu',
+                'kategori' => 1,
                 'nama_item' => 'Bardi 12 watt',
                 'harga_beli' => 9700,
                 'harga_jual' => 10000,
             ],
             [
-                'kategori' => 'Kabel',
+                'kategori' => 2,
                 'nama_item' => 'Kabel LAN',
                 'harga_beli' => 2000,
                 'harga_jual' => 3000,
             ],
             [
-                'kategori' => 'Stop Kontak',
+                'kategori' => 3,
                 'nama_item' => 'Stop Kontak 3 Lubang',
                 'harga_beli' => 12000,
                 'harga_jual' => 14000,
             ],
             [
-                'kategori' => 'Saklar',
+                'kategori' => 4,
                 'nama_item' => 'Saklar Lampu',
                 'harga_beli' => 2500,
                 'harga_jual' => 3000,

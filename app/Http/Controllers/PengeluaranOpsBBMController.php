@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PengeluaranOpsBBM;
+use App\Models\PenebusanBBM;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,9 @@ class PengeluaranOpsBBMController extends Controller
      */
     public function create()
     {
-        return view('SPBU.pengeluaranOpsBBM.create');
+        return view('SPBU.pengeluaranOpsBBM.create', [
+            'redeems' => PenebusanBBM::all(),
+        ]);
     }
 
     /**

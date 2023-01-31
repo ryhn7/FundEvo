@@ -16,7 +16,7 @@ class PenjualanBBMController extends Controller
      */
     public function index()
     {
-        // $date = Carbon::today()->toDateString();
+        // $date = Carbon::now()->toDateString();
         // return($date);
         $penjualanBBM = PenjualanBBM::where('date', Carbon::today()->toDateString())->get();
         return view('SPBU.penjualanBBM.index', [
@@ -32,7 +32,7 @@ class PenjualanBBMController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {        
         return view('SPBU.penjualanBBM.create', [
             'bbms' => BBM::all(),
         ]);

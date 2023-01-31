@@ -56,10 +56,10 @@ class PenebusanBBMController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PenebusanBBM  $penebusanBBM
+     * @param  \App\Models\PenebusanBBM  $penebusan_bbm
      * @return \Illuminate\Http\Response
      */
-    public function show(PenebusanBBM $penebusanBBM)
+    public function show(PenebusanBBM $penebusan_bbm)
     {
         //
     }
@@ -67,22 +67,25 @@ class PenebusanBBMController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PenebusanBBM  $penebusanBBM
+     * @param  \App\Models\PenebusanBBM  $penebusan_bbm
      * @return \Illuminate\Http\Response
      */
-    public function edit(PenebusanBBM $penebusanBBM)
+    public function edit(PenebusanBBM $penebusan_bbm)
     {
-        //
+        return view('SPBU.penebusanBBM.edit', [
+            'redeem' => $penebusan_bbm,
+            'bbms' => BBM::all(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PenebusanBBM  $penebusanBBM
+     * @param  \App\Models\PenebusanBBM  $penebusan_bbm
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PenebusanBBM $penebusanBBM)
+    public function update(Request $request, PenebusanBBM $penebusan_bbm)
     {
         //
     }
@@ -90,10 +93,10 @@ class PenebusanBBMController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PenebusanBBM  $penebusanBBM
+     * @param  \App\Models\PenebusanBBM  $penebusan_bbm
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PenebusanBBM $penebusanBBM)
+    public function destroy(PenebusanBBM $penebusan_bbm)
     {
         //
     }

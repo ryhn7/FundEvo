@@ -62,18 +62,6 @@
                     @enderror
                 </label>
 
-                <label for="penjualan" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Penjualan</span>
-                    <input type="number" min="1000" step="any" id="penjualan" name="penjualan" required
-                        value="{{ old('penjualan', $sell->penjualan) }}"
-                        class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penjualan')
-                    border-red-600 focus:border-red-600 focus:ring-red-600
-                    @enderror" />
-                    @error('penjualan')
-                        <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
-                    @enderror
-                </label>
-
                 <label for="stock_adm" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Stock ADM</span>
                     <input type="number" min="1000" step="any" id="stock_adm" name="stock_adm" required
@@ -95,6 +83,38 @@
                     @enderror" />
                     @error('stock_fakta')
                         <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
+                    @enderror
+                </label>
+
+                <label for="penjualan" class="block mt-4 text-sm">
+                    <span class="text-gray-700 font-semibold">Penjualan</span>
+                    <input type="number" min="1000" step="any" id="penjualan" name="penjualan" required
+                        value="{{ old('penjualan', $sell->penjualan) }}"
+                        class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penjualan')
+                    border-red-600 focus:border-red-600 focus:ring-red-600
+                    @enderror" />
+                    @error('penjualan')
+                        <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
+                    @enderror
+                </label>
+
+                <label for="harga_jual" class="block mt-4 text-sm">
+                    <span class="text-gray-700 font-semibold">
+                        Harga BBM
+                    </span>
+                    <select name="harga_jual" id="harga_jual" required
+                        class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
+                        <option value="" class="font-semibold">Pilih Harga BBM</option>
+                        @foreach ($bbms as $bbm)
+                            @if (old('harga_jual', $sell->bbm_id) == $bbm->id)
+                                <option value="{{ $bbm->harga_jual }}" selected>Rp.{{ $bbm->harga_jual }}</option>
+                            @else
+                                <option value="{{ $bbm->harga_jual }}">Rp.{{ $bbm->harga_jual }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                    @error('harga_jual')
+                        <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
                     @enderror
                 </label>
 
@@ -128,4 +148,39 @@
             </div>
         </form>
     </div>
+
+    <script>
+        const stockAwal = document.getElementById('stock_awal');
+        const penerimaan = document.getElementById('penerimaan');
+        const penjualan = document.getElementById('penjualan');
+        const stockAdm = document.getElementById('stock_adm');
+        const stockFakta = document.getElementById('stock_fakta');
+        const penyusutan = document.getElementById('penyusutan');
+        const pendapatan = document.getElementById('pendapatan');
+        const hargaJual = document.getElementById('harga_jual');
+
+
+        stockAdm.addEventListener('change', () => {
+            if (penerimaan.value == '') {
+                penerimaan.value = 0;
+            }
+            const sum = parseInt(stockAwal.value) + parseInt(penerimaan.value);
+            const sell = sum - parseInt(stockAdm.value);
+
+            penjualan.value = sell;
+        });
+
+        stockFakta.addEventListener('change', () => {
+            const result = parseInt(stockAdm.value) - parseInt(stockFakta.value);
+            penyusutan.value = result;
+        });
+
+        hargaJual.addEventListener('change', () => {
+            const result = parseInt(penjualan.value) * parseInt(hargaJual.value);
+
+            console.log(result);
+
+            pendapatan.value = result;
+        });
+    </script>
 @endsection

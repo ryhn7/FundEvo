@@ -7,6 +7,7 @@ use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\PenjualanItemController;
 use App\Http\Controllers\KategoryItemController;
 use App\Http\Controllers\PengeluaranOpsBBMController;
+use App\Http\Controllers\PengeluaranOpsTokoListrikController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,5 @@ Route::resource('/kategori-item', ItemCategoryController::class)->except('show')
 Route::resource('/kategori', KategoryItemController::class)->except('show');
 
 Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->except('show');
+
+Route::resource('/pengeluaran-ops-listrik', PengeluaranOpsTokoListrikController::class)->except('show');

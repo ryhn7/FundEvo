@@ -1,0 +1,140 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\PengeluaranOpsTokoListrik;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+
+class PengeluaranOpsTokoListrikController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $pengeluaranOps = PengeluaranOpsTokoListrik::where('date', Carbon::today()->toDateString())->get();
+        $spend = PengeluaranOpsTokoListrik::where('date', Carbon::today()->toDateString())->get();
+        $totalGajiSupervisor = $spend->sum('gaji_supervisor');
+        $totalGajiKaryawan = $spend->sum('gaji_karyawan');
+        $totalReward = $spend->sum('reward_karyawan');
+        $pln = $spend->sum('pln');
+        $pdam = $spend->sum('pdam');
+        $pbb = $spend->sum('pbb');
+        $etc = $spend->sum('biaya_lain');
+        $result = (int)$totalGajiSupervisor + (int)$totalGajiKaryawan + (int)$totalReward + (int)$pln + (int)$pdam + (int)$pbb + (int)$etc;
+        return view('TokoListrik.PengeluaranOpsTokoListrik.index', [
+            'spends' => $spend,
+            'result' => $result,
+            'ops' => $pengeluaranOps,
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('TokoListrik.pengeluaranOpsTokoListrik.create', [
+            'opss' => PengeluaranOpsTokoListrik::all(),
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'biaya_kulakan' => 'nullable|numeric',
+            'gaji_supervisor' => 'required|numeric',
+            'gaji_karyawan' => 'required|numeric',
+            'reward_karyawan' => 'required|numeric',
+            'pln' => 'required|numeric',
+            'pdam' => 'required|numeric',
+            'pbb' => 'required|numeric',
+            'biaya_lain' => 'required|numeric',
+            'keterangan' => 'nullable',
+            'nota' => 'nullable',
+        ]);
+
+        PengeluaranOpsTokoListrik::create($validated);
+
+        return redirect('/pengeluaran-ops-listrik')->with('success', 'Data pengeluaran operasional berhasil ditambahkan!');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\PengeluaranOpsTokoListrik  $pengeluaran_ops_listrik
+     * @return \Illuminate\Http\Response
+     */
+    public function show(PengeluaranOpsTokoListrik $pengeluaran_ops_listrik)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\PengeluaranOpsTokoListrik  $pengeluaran_ops_listrik
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(PengeluaranOpsTokoListrik $pengeluaran_ops_listrik)
+    {
+        return view('TokoListrik.pengeluaranOpsTokoListrik.edit', [
+            'opss' => PengeluaranOpsTokoListrik::all(),
+            'spend' => $pengeluaran_ops_listrik
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\PengeluaranOpsTokoListrik  $pengeluaran_ops_listrik
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, PengeluaranOpsTokoListrik $pengeluaran_ops_listrik)
+    {
+        $rules = [
+            'biaya_kulakan' => 'nullable|numeric',
+            'gaji_supervisor' => 'required|numeric',
+            'gaji_karyawan' => 'required|numeric',
+            'reward_karyawan' => 'required|numeric',
+            'pln' => 'required|numeric',
+            'pdam' => 'required|numeric',
+            'pbb' => 'required|numeric',
+            'biaya_lain' => 'required|numeric',
+            'keterangan' => 'nullable',
+            'nota' => 'nullable',
+        ];
+
+        $validated = $request->validate($rules);
+
+        PengeluaranOpsTokoListrik::where('id', $pengeluaran_ops_listrik->id)
+            ->update($validated);
+
+        return redirect('/pengeluaran-ops-listrik')->with('success', 'Data pengeluaran operasional berhasil diubah!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\PengeluaranOpsTokoListrik  $pengeluaran_ops_listrik
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(PengeluaranOpsTokoListrik $pengeluaran_ops_listrik)
+    {
+        PengeluaranOpsTokoListrik::destroy($pengeluaran_ops_listrik->id);
+
+        return redirect('/pengeluaran-ops-listrik')->with('success', 'Data pengeluaran operasional berhasil dihapus!');
+    }
+}

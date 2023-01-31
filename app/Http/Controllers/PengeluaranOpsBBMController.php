@@ -40,7 +40,7 @@ class PengeluaranOpsBBMController extends Controller
      */
     public function create()
     {
-        //
+        return view('SPBU.pengeluaranOpsBBM.create');
     }
 
     /**

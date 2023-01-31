@@ -29,11 +29,11 @@
                         </g>
                     </svg>
                 </div>
-                <div class="text-sm text-white font-semibold group-hover:font-bold"><a href="/kategori-bbm/create">Tambah
-                        kategori</a></div>
+                <div class="text-sm text-white font-semibold group-hover:font-bold"><a href="/penebusan-bbm/create">Tambah
+                        penebusan</a></div>
             </div>
         </div>
-        @if ($bbms->count() > 0)
+        @if ($redeems->count() > 0)
             <div class="flex flex-wrap -mx-3">
                 <div class="flex-none w-full max-w-full px-3">
                     <div
@@ -51,10 +51,16 @@
                                                 Jenis BBM</th>
                                             <th
                                                 class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                                Harga Beli</th>
+                                                Jumlah Tebusan</th>
                                             <th
                                                 class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                                Harga Jual</th>
+                                                Harga Tebusan</th>
+                                            <th
+                                                class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                PPH</th>
+                                            <th
+                                                class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                Tips Sopir</th>
                                             <th
                                                 class="px-6 py-3 font-bold text-start uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                                 Action
@@ -68,20 +74,30 @@
                                                 <div class="flex px-2 py-1">
                                                     <div class="flex flex-col justify-center">
                                                         <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                            {{ $bbms[0]->jenis_bbm }}
+                                                            {{ $redeems[0]->bbm->jenis_bbm }}
                                                         </h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                                <p class="mb-0 font-semibold leading-tight text-xs">@currency($bbms[0]->harga_beli)
+                                                <p class="mb-0 font-semibold leading-tight text-xs">{{$redeems[0]->tebusan_per_liter}}
+                                                </p>
+                                            </td>
+                                            <td
+                                                class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                                <p class="mb-0 font-semibold leading-tight text-xs">@currency($redeems[0]->harga_tebusan)
+                                                </p>
+                                            </td>
+                                            <td
+                                                class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                                <p class="mb-0 font-semibold leading-tight text-xs">@currency($redeems[0]->pph)
                                                 </p>
                                             </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                                 <span
-                                                    class="font-semibold leading-tight text-xs text-slate-400">@currency($bbms[0]->harga_jual)</span>
+                                                    class="font-semibold leading-tight text-xs text-slate-400">@currency($redeems[0]->tips_sopir)</span>
                                             </td>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
@@ -89,7 +105,7 @@
                                                     <button
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                         aria-label="Edit">
-                                                        <a href="/kategori-bbm/{{ $bbms[0]->id }}/edit">
+                                                        <a href="/kategori-bbm/{{ $redeems[0]->id }}/edit">
                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                                 viewBox="0 0 20 20">
                                                                 <path
@@ -97,7 +113,7 @@
                                                                 </path>
                                                             </svg></a>
                                                     </button>
-                                                    <form action="/kategori-bbm/{{ $bbms[0]->id }}" method="POST">
+                                                    <form action="/penjualan-bbm/{{ $redeems[0]->id }}" method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button
@@ -114,27 +130,37 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        @foreach ($bbms->skip(1) as $bbm)
+                                        @foreach ($redeems->skip(1) as $redeem)
                                             <tr>
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                                     <div class="flex px-2 py-1">
                                                         <div class="flex flex-col justify-center">
                                                             <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                                {{ $bbm->jenis_bbm }}
+                                                                {{ $redeem->bbm->jenis_bbm }}
                                                             </h6>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td
                                                     class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                                    <p class="mb-0 font-semibold leading-tight text-xs">@currency($bbm->harga_beli)
+                                                    <p class="mb-0 font-semibold leading-tight text-xs">{{$redeem->tebusan_per_liter}}
+                                                    </p>
+                                                </td>
+                                                <td
+                                                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                                    <p class="mb-0 font-semibold leading-tight text-xs">@currency($redeem->harga_tebusan)
+                                                    </p>
+                                                </td>
+                                                <td
+                                                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                                    <p class="mb-0 font-semibold leading-tight text-xs">@currency($redeem->pph)
                                                     </p>
                                                 </td>
                                                 <td
                                                     class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                                     <span
-                                                        class="font-semibold leading-tight text-xs text-slate-400">@currency($bbm->harga_jual)</span>
+                                                        class="font-semibold leading-tight text-xs text-slate-400">@currency($redeem->tips_sopir)</span>
                                                 </td>
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
@@ -142,7 +168,7 @@
                                                         <button
                                                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                             aria-label="Edit">
-                                                            <a href="/kategori-bbm/{{ $bbm->id }}/edit">
+                                                            <a href="/kategori-bbm/{{ $redeem->id }}/edit">
                                                                 <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                                     viewBox="0 0 20 20">
                                                                     <path
@@ -150,7 +176,7 @@
                                                                     </path>
                                                                 </svg></a>
                                                         </button>
-                                                        <form action="/kategori-bbm/{{ $bbm->id }}" method="POST">
+                                                        <form action="/penjualan-bbm/{{ $redeem->id }}" method="POST">
                                                             @method('delete')
                                                             @csrf
                                                             <button

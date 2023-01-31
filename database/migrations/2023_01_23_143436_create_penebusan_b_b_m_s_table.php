@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('harga_tebusan', 12, 2)->nullable();
             $table->decimal('pph', 12, 2)->nullable();
             $table->decimal('tips_sopir', 12, 2)->nullable();
+            $table->decimal('total_tebusan', 12, 2)->nullable();
             $table->timestamps();
         });
     }

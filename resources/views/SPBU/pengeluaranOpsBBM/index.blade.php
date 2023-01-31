@@ -137,7 +137,7 @@
                                             <div class="flex px-2 py-1">
                                                 <div class="flex flex-col justify-center">
                                                     <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                        Rp. 0
+                                                        @currency($spends[0]->penebusanBBM->total_tebusan)
                                                     </h6>
                                                 </div>
                                             </div>

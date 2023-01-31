@@ -15,7 +15,7 @@ class PenebusanBBMController extends Controller
      */
     public function index()
     {
-        return view('SPBU.penebusanBBM.index',[
+        return view('SPBU.penebusanBBM.index', [
             'redeems' => PenebusanBBM::all(),
         ]);
     }
@@ -46,6 +46,7 @@ class PenebusanBBMController extends Controller
             'harga_tebusan' => 'required|numeric',
             'pph' => 'required|numeric',
             'tips_sopir' => 'required|numeric',
+            'total_tebusan' => 'required|numeric',
         ]);
 
         PenebusanBBM::create($validated);
@@ -87,7 +88,21 @@ class PenebusanBBMController extends Controller
      */
     public function update(Request $request, PenebusanBBM $penebusan_bbm)
     {
-        //
+        $rules = [
+            'bbm_id' => 'required',
+            'tebusan_per_liter' => 'required|numeric',
+            'harga_tebusan' => 'required|numeric',
+            'pph' => 'required|numeric',
+            'tips_sopir' => 'required|numeric',
+            'total_tebusan' => 'required|numeric',
+        ];
+
+        $validated = $request->validate($rules);
+
+        PenebusanBBM::where('id', $penebusan_bbm->id)
+            ->update($validated);
+
+        return redirect('/penebusan-bbm')->with('success', 'Data penebusan bbm berhasil diubah!');
     }
 
     /**
@@ -98,6 +113,8 @@ class PenebusanBBMController extends Controller
      */
     public function destroy(PenebusanBBM $penebusan_bbm)
     {
-        //
+        PenebusanBBM::destroy($penebusan_bbm->id);
+
+        return redirect('/penebusan-bbm')->with('success', 'Data penebusan bbm berhasil dihapus!');
     }
 }

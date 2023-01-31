@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
-        <form action="/penjualan-bbm/{{$sell->id}}" method="POST">
+        <form action="/penjualan-bbm/{{ $sell->id }}" method="POST">
             @method('PUT')
             @csrf
             <div>
@@ -15,9 +15,9 @@
                         <option value="" class="font-semibold">Pilih Jenis BBM</option>
                         @foreach ($bbms as $bbm)
                             @if (old('bbm_id', $sell->bbm_id) == $bbm->id)
-                                <option value="{{ $bbm->id }}" selected>{{ $bbm->jenis_bbm}}</option>
+                                <option value="{{ $bbm->id }}" selected>{{ $bbm->jenis_bbm }}</option>
                             @else
-                                <option value="{{ $bbm->id }}">{{ $bbm->jenis_bbm}}</option>
+                                <option value="{{ $bbm->id }}">{{ $bbm->jenis_bbm }}</option>
                             @endif
                         @endforeach
                     </select>
@@ -107,9 +107,12 @@
                         <option value="" class="font-semibold">Pilih Harga BBM</option>
                         @foreach ($bbms as $bbm)
                             @if (old('harga_jual', $sell->bbm_id) == $bbm->id)
-                                <option value="{{ $bbm->harga_jual }}" selected>Rp.{{ $bbm->harga_jual }}</option>
+                                <option value="{{ $bbm->harga_jual }}" selected>Rp.{{ $bbm->harga_jual }}
+                                    ({{ $bbm->jenis_bbm }})
+                                </option>
                             @else
-                                <option value="{{ $bbm->harga_jual }}">Rp.{{ $bbm->harga_jual }}</option>
+                                <option value="{{ $bbm->harga_jual }}">Rp.{{ $bbm->harga_jual }} ({{ $bbm->jenis_bbm }})
+                                </option>
                             @endif
                         @endforeach
                     </select>

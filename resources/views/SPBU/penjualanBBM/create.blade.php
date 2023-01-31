@@ -106,9 +106,12 @@
                         <option value="" class="font-semibold">Pilih Harga BBM</option>
                         @foreach ($bbms as $bbm)
                             @if (old('harga_jual') == $bbm->id)
-                                <option value="{{ $bbm->harga_jual }}" selected>Rp.{{ $bbm->harga_jual }}</option>
+                                <option value="{{ $bbm->harga_jual }}" selected>Rp.{{ $bbm->harga_jual }}
+                                    ({{ $bbm->jenis_bbm }})
+                                </option>
                             @else
-                                <option value="{{ $bbm->harga_jual }}">Rp.{{ $bbm->harga_jual }}</option>
+                                <option value="{{ $bbm->harga_jual }}">Rp.{{ $bbm->harga_jual }} ({{ $bbm->jenis_bbm }})
+                                </option>
                             @endif
                         @endforeach
                     </select>

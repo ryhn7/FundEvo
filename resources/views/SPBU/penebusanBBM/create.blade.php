@@ -34,9 +34,12 @@
                         <option value="" class="font-semibold">Pilih Harga Beli BBM</option>
                         @foreach ($bbms as $bbm)
                             @if (old('harga_beli') == $bbm->id)
-                                <option value="{{ $bbm->harga_beli }}" selected>Rp.{{ $bbm->harga_beli }}</option>
+                                <option value="{{ $bbm->harga_beli }}" selected>Rp.{{ $bbm->harga_beli }}
+                                    ({{ $bbm->jenis_bbm }})
+                                </option>
                             @else
-                                <option value="{{ $bbm->harga_beli }}">Rp.{{ $bbm->harga_beli }}</option>
+                                <option value="{{ $bbm->harga_beli }}">Rp.{{ $bbm->harga_beli }} ({{ $bbm->jenis_bbm }})
+                                </option>
                             @endif
                         @endforeach
                     </select>
@@ -93,6 +96,18 @@
                     @enderror
                 </label>
 
+                <label for="total_tebusan" class="block mt-4 text-sm">
+                    <span class="text-gray-700 font-semibold">Total Biaya</span>
+                    <input type="number" min="1000" step="any" id="total_tebusan" name="total_tebusan" required
+                        value="{{ old('total_tebusan') }}"
+                        class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('total_tebusan')
+                    border-red-600 focus:border-red-600 focus:ring-red-600
+                    @enderror" />
+                    @error('total_tebusan')
+                        <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
+                    @enderror
+                </label>
+
 
                 <button
                     class="mt-10 w-full px-3 py-3 bg-black text-white font-bold rounded shadow-md hover:bg-[#333333]">Tambah
@@ -105,10 +120,19 @@
         const hargaBeli = document.getElementById('harga_beli');
         const tebusan = document.getElementById('tebusan_per_liter');
         const hargaTebusan = document.getElementById('harga_tebusan');
+        const jenis = document.getElementById('jenis_bbm');
+        const biaya = document.getElementById('total_tebusan');
+        const tipSopir = document.getElementById('tips_sopir');
+        const pph = document.getElementById('pph');
 
         tebusan.addEventListener('change', () => {
-            const total = hargaBeli.value * tebusan.value;
+            const total = parseInt(hargaBeli.value) * parseInt(tebusan.value);
             hargaTebusan.value = total;
+        })
+
+        tipSopir.addEventListener('change', () => {
+            const total = parseInt(hargaTebusan.value) + parseInt(pph.value) + parseInt(tipSopir.value);
+            biaya.value = total;
         })
     </script>
 @endsection

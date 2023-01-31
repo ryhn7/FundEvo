@@ -33,10 +33,12 @@
     </main>
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- plugin for scrollbar  -->
+    <script src={{ asset('assets/js/perfect-scrollbar.js') }} async></script>
+    <!-- main script file  -->
+    <script src={{ asset('assets/js/soft-ui-dashboard-tailwind.js') }} async></script>
+    <script src="{{asset('assets/js/jquery-3.6.0.js')}}"></script>
 </body>
-<!-- plugin for scrollbar  -->
-<script src={{ asset('js/perfect-scrollbar.js') }} async></script>
-<!-- main script file  -->
-<script src={{ asset('js/soft-ui-dashboard-tailwind.js') }} async></script>
+
 
 </html>

@@ -16,8 +16,8 @@ class BBM extends Model
         return $this->hasMany(PenjualanBBM::class);
     }
 
-    public function bbmPenebusans()
+    public function bbmPengeluaran()
     {
-        return $this->hasMany(PenebusanBBM::class);
+        return $this->hasMany(PengeluaranOpsBBM::class);
     }
 }

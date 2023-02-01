@@ -17,9 +17,7 @@ use App\Http\Controllers\PengeluaranOpsBBMController;
 |
 */
 
-Route::get('/', fn () => view('index', [
-
-]));
+Route::get('/', fn () => view('index', []));
 
 
 Route::resource('/penjualan-bbm', PenjualanBBMController::class)->except('show');
@@ -28,5 +26,4 @@ Route::get('/penjualan-bbm/filter', [PenjualanBBMController::class, 'filter']);
 Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
 
 Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->except('show');
-
-Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show');
+Route::get('/pengeluaran-ops-bbm/filter', [PengeluaranOpsBBMController::class, 'filter']);

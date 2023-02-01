@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
-        <form action="/penjualan-bbm" method="POST">
+        <form action="/pengeluaran-ops-bbm" method="POST">
             @csrf
             <div>
                 <label for="bbm_id" class="block mt-4 text-sm">

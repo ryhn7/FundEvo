@@ -41,7 +41,7 @@
     </div>
     <div class="flex justify-end mb-5 mr-1">
         <div class="mr-3 w-44">
-            <form action="/penjualan-bbm/filter" method="GET">
+            <form action="/pengeluaran-ops-bbm/filter" method="GET">
                 <input type="date" name="date" value="{{ request('date') }}"
                     class="px-2 py-1 shadow-md border border-black">
                 <button class="mt-1 border shadow">submit</button>

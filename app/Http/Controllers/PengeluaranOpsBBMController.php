@@ -41,7 +41,7 @@ class PengeluaranOpsBBMController extends Controller
      */
     public function create()
     {
-        return view('SPBU.penebusanBBM.create', [
+        return view('SPBU.pengeluaranOpsBBM.create', [
             'bbms' => BBM::all(),
         ]);
     }
@@ -54,28 +54,28 @@ class PengeluaranOpsBBMController extends Controller
      */
     public function store(Request $request)
     {
-        // $validated = $request->validate([
-        //     'bbm_id' => 'nullable|numeric',
-        //     'harga_penebusan_bbm' => 'nullable|numeric',
-        //     'pph' => 'nullable|numeric',
-        //     'tips_sopir' => 'nullable|numeric',
-        //     'oli' => 'nullable|numeric',
-        //     'gas' => 'nullable|numeric',
-        //     'gaji_supervisor' => 'nullable|numeric',
-        //     'gaji_karyawan' => 'nullable|numeric',
-        //     'reward_karyawan' => 'nullable|numeric',
-        //     'pln' => 'nullable|numeric',
-        //     'pdam' => 'nullable|numeric',
-        //     'iuran_rt' => 'nullable|numeric',
-        //     'pbb' => 'nullable|numeric',
-        //     'biaya_lain' => 'nullable|numeric',
-        //     'keterangan' => 'nullable|text',
-        //     'nota' => 'nullable|text',
-        // ]);
+        $validated = $request->validate([
+            'bbm_id' => 'nullable',
+            'harga_penebusan_bbm' => 'nullable|numeric',
+            'pph' => 'nullable|numeric',
+            'tips_sopir' => 'nullable|numeric',
+            'oli' => 'nullable|numeric',
+            'gas' => 'nullable|numeric',
+            'gaji_supervisor' => 'nullable|numeric',
+            'gaji_karyawan' => 'nullable|numeric',
+            'reward_karyawan' => 'nullable|numeric',
+            'pln' => 'nullable|numeric',
+            'pdam' => 'nullable|numeric',
+            'iuran_rt' => 'nullable|numeric',
+            'pbb' => 'nullable|numeric',
+            'biaya_lain' => 'nullable|numeric',
+            'keterangan' => 'nullable|text',
+            'nota' => 'nullable|text',
+        ]);
 
-        // PengeluaranOpsBBM::create($validated);
+        PengeluaranOpsBBM::create($validated);
 
-        // return redirect('/pengeluaran-ops-bbm')->with('success', 'Data pengeluaran berhasil ditambahkan!');
+        return redirect('/pengeluaran-ops-bbm')->with('success', 'Data pengeluaran berhasil ditambahkan!');
 
     }
 

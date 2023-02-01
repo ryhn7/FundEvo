@@ -20,8 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        PengeluaranOpsBBM::factory(5)->create();
-        PenjualanBBM::factory(4)->create();
+        // PengeluaranOpsBBM::factory(5)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
@@ -50,5 +49,8 @@ class DatabaseSeeder extends Seeder
                 'harga_jual' => 9000,
             ],
         ]);
+
+        PenjualanBBM::factory(4)->create();
+
     }
 }

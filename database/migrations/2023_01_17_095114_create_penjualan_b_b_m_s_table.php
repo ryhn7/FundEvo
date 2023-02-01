@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('penjualan_b_b_m_s', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bbm_id');
+            $table->foreignId('bbm_id')->constrained('b_b_m_s')->onDelete('cascade');
             $table->double('stock_awal');
             $table->double('penerimaan');
             $table->double('tera_densiti')->nullable();

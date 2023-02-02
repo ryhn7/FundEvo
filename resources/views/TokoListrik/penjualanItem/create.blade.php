@@ -83,7 +83,7 @@
 
                 <label for="stock_akhir" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Stock Akhir</span>
-                    <input type="number" min="0" step="any" id="stock_adm" name="stock_akhir" required
+                    <input type="number" min="0" step="any" id="stock_akhir" name="stock_akhir" required
                         value="{{ old('stock_akhir', $item->stock_akhir) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('stock_akhir')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -111,4 +111,30 @@
             </div>
         </form>
     </div>
+
+    <script>
+        const stockAwal = document.getElementById('stock_awal');
+        const penerimaan = document.getElementById('penerimaan');
+        const penjualan = document.getElementById('penjualan');
+        const stockAkhir = document.getElementById('stock_akhir');
+        const pendapatan = document.getElementById('pendapatan');
+        const hargaJual = document.getElementById('harga_jual');
+
+        stockAwal.addEventListener('change', ()=> {
+            console.log(stockAwal.value)
+        })
+
+        penerimaan.addEventListener('change', ()=> {
+            console.log(penerimaan.value)
+        })
+
+        penjualan.addEventListener('change', () => {
+            const jual = parseInt(stockAwal.value) + parseInt(penerimaan.value) - parseInt(penjualan.value);
+            const hasil = parseInt(penjualan.value) * 10000;
+
+            stockAkhir.value = jual;
+            pendapatan.value =  hasil;
+        });
+
+    </script>
 @endsection

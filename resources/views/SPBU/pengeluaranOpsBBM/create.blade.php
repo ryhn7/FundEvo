@@ -2,8 +2,7 @@
 
 @section('container')
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
-        <form action="/penjualan-bbm/{{ $sell->id }}" method="POST">
-            @method('PUT')
+        <form action="/penjualan-bbm" method="POST">
             @csrf
             <div>
                 <label for="bbm_id" class="block mt-4 text-sm">
@@ -14,7 +13,7 @@
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" class="font-semibold">Pilih Jenis BBM</option>
                         @foreach ($bbms as $bbm)
-                            @if (old('bbm_id', $sell->bbm_id) == $bbm->id)
+                            @if (old('bbm_id') == $bbm->id)
                                 <option value="{{ $bbm->id }}" selected>{{ $bbm->jenis_bbm }}</option>
                             @else
                                 <option value="{{ $bbm->id }}">{{ $bbm->jenis_bbm }}</option>
@@ -28,8 +27,8 @@
 
                 <label for="stock_awal" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Stock Awal</span>
-                    <input type="number" min="1000" step="any" id="stock_awal" name="stock_awal" required
-                        value="{{ old('stock_awal', $sell->stock_awal) }}"
+                    <input type="number" min="0" step="any" id="stock_awal" name="stock_awal" required
+                        value="{{ old('stock_awal') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('stock_awal')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />
@@ -40,8 +39,8 @@
 
                 <label for="penerimaan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Penerimaan</span>
-                    <input type="number" min="1000" step="any" id="penerimaan" name="penerimaan"
-                        value="{{ old('penerimaan', $sell->penerimaan) }}"
+                    <input type="number" min="0" step="any" id="penerimaan" name="penerimaan"
+                        value="{{ old('penerimaan') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penerimaan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />
@@ -53,7 +52,7 @@
                 <label for="tera_densiti" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Tera & Densiti</span>
                     <input type="number" min="0" step="any" id="tera_densiti" name="tera_densiti"
-                        value="{{ old('tera_densiti', $sell->tera_densiti) }}"
+                        value="{{ old('tera_densiti') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('tera_densiti')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />
@@ -64,8 +63,8 @@
 
                 <label for="stock_adm" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Stock ADM</span>
-                    <input type="number" min="1000" step="any" id="stock_adm" name="stock_adm" required
-                        value="{{ old('stock_adm', $sell->stock_adm) }}"
+                    <input type="number" min="0" step="any" id="stock_adm" name="stock_adm" required
+                        value="{{ old('stock_adm') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('stock_adm')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />
@@ -76,8 +75,8 @@
 
                 <label for="stock_fakta" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Stock Fakta</span>
-                    <input type="number" min="1000" step="any" id="stock_fakta" name="stock_fakta" required
-                        value="{{ old('stock_fakta', $sell->stock_fakta) }}"
+                    <input type="number" min="0" step="any" id="stock_fakta" name="stock_fakta" required
+                        value="{{ old('stock_fakta') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('stock_fakta')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />
@@ -88,8 +87,8 @@
 
                 <label for="penjualan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Penjualan</span>
-                    <input type="number" min="1000" step="any" id="penjualan" name="penjualan" required
-                        value="{{ old('penjualan', $sell->penjualan) }}"
+                    <input type="number" min="0" step="any" id="penjualan" name="penjualan" required
+                        value="{{ old('penjualan') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penjualan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />
@@ -106,7 +105,7 @@
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" class="font-semibold">Pilih Harga BBM</option>
                         @foreach ($bbms as $bbm)
-                            @if (old('harga_jual', $sell->bbm_id) == $bbm->id)
+                            @if (old('harga_jual') == $bbm->id)
                                 <option value="{{ $bbm->harga_jual }}" selected>Rp.{{ $bbm->harga_jual }}
                                     ({{ $bbm->jenis_bbm }})
                                 </option>
@@ -124,7 +123,7 @@
                 <label for="penyusutan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Penyusutan</span>
                     <input type="number" min="0" step="any" id="penyusutan" name="penyusutan" required
-                        value="{{ old('penyusutan', $sell->penyusutan) }}"
+                        value="{{ old('penyusutan') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penyusutan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />
@@ -135,8 +134,8 @@
 
                 <label for="pendapatan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Pendapatan</span>
-                    <input type="number" min="1000" step="any" id="pendapatan" name="pendapatan" required
-                        value="{{ old('pendapatan', $sell->pendapatan) }}"
+                    <input type="number" min="0" step="any" id="pendapatan" name="pendapatan" required
+                        value="{{ old('pendapatan') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('pendapatan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />
@@ -161,29 +160,5 @@
         const penyusutan = document.getElementById('penyusutan');
         const pendapatan = document.getElementById('pendapatan');
         const hargaJual = document.getElementById('harga_jual');
-
-
-        stockAdm.addEventListener('change', () => {
-            if (penerimaan.value == '') {
-                penerimaan.value = 0;
-            }
-            const sum = parseInt(stockAwal.value) + parseInt(penerimaan.value);
-            const sell = sum - parseInt(stockAdm.value);
-
-            penjualan.value = sell;
-        });
-
-        stockFakta.addEventListener('change', () => {
-            const result = parseInt(stockAdm.value) - parseInt(stockFakta.value);
-            penyusutan.value = result;
-        });
-
-        hargaJual.addEventListener('change', () => {
-            const result = parseInt(penjualan.value) * parseInt(hargaJual.value);
-
-            console.log(result);
-
-            pendapatan.value = result;
-        });
     </script>
 @endsection

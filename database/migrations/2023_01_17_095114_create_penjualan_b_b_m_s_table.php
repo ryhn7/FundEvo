@@ -25,7 +25,7 @@ return new class extends Migration
             $table->double('stock_fakta');
             $table->double('penyusutan');
             $table->decimal('pendapatan', 12, 2);
-            $table->timestamp('date')->default(Carbon::today()->toDateString());
+            $table->timestamp('date')->default(Carbon::now()->toDateString());
             $table->timestamps();
         });
     }

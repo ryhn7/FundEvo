@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BBMCategoryController;
+use App\Http\Controllers\PenebusanBBMController;
 use App\Http\Controllers\PenjualanBBMController;
+use App\Http\Controllers\PengeluaranOpsBBMController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\PenjualanItemController;
 use App\Http\Controllers\KategoryItemController;
@@ -27,6 +29,10 @@ Route::resource('/penjualan-bbm', PenjualanBBMController::class)->except('show')
 Route::get('/penjualan-bbm/filter', [PenjualanBBMController::class, 'filter']);
 
 Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
+
+Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->except('show');
+
+Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show');
 
 Route::resource('/penjualan-item', PenjualanItemController::class)->except('show');
 

@@ -5,29 +5,10 @@
         <form action="/pengeluaran-ops-bbm" method="POST">
             @csrf
             <div>
-                <label for="bbm_id" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">
-                        Jenis Tebusan BBM <span class="text-xxs text-green-500">√ Opsional</span>
-                    </span>
-                    <select name="bbm_id" id="bbm_id"
-                        class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
-                        <option value="" class="font-semibold">Pilih Jenis Tebusan BBM</option>
-                        @foreach ($bbms as $bbm)
-                            @if (old('bbm_id') == $bbm->id)
-                                <option value="{{ $bbm->id }}" selected>{{ $bbm->jenis_bbm }}</option>
-                            @else
-                                <option value="{{ $bbm->id }}">{{ $bbm->jenis_bbm }}</option>
-                            @endif
-                        @endforeach 
-                    </select>
-                    @error('bbm_id')
-                        <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
-                    @enderror
-                </label>
-
                 <label for="harga_penebusan_bbm" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Harga Penebusan <span class="text-xxs text-green-500">√
-                            Opsional</span></span>
+                    <span class="text-gray-700 font-semibold">Harga Penebusan <span
+                            class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)
+                        </span></span>
                     <input type="number" min="0" step="any" id="harga_penebusan_bbm" name="harga_penebusan_bbm"
                         value="{{ old('harga_penebusan_bbm') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('harga_penebusan_bbm')
@@ -39,8 +20,7 @@
                 </label>
 
                 <label for="pph" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">PPH <span class="text-xxs text-green-500">√
-                            Opsional</span></span>
+                    <span class="text-gray-700 font-semibold">PPH <span class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
                     <input type="number" min="0" step="any" id="pph" name="pph"
                         value="{{ old('pph') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('pph')
@@ -52,8 +32,7 @@
                 </label>
 
                 <label for="tips_sopir" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Tips Sopir <span class="text-xxs text-green-500">√
-                            Opsional</span></span>
+                    <span class="text-gray-700 font-semibold">Tips Sopir <span class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
                     <input type="number" min="0" step="any" id="tips_sopir" name="tips_sopir"
                         value="{{ old('tips_sopir') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('tips_sopir')
@@ -65,8 +44,7 @@
                 </label>
 
                 <label for="oli" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Oli <span class="text-xxs text-green-500">√
-                            Opsional</span></span>
+                    <span class="text-gray-700 font-semibold">Oli <span class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
                     <input type="number" min="0" step="any" id="oli" name="oli"
                         value="{{ old('oli') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('oli')
@@ -78,8 +56,7 @@
                 </label>
 
                 <label for="gas" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Gas <span class="text-xxs text-green-500">√
-                            Opsional</span></span>
+                    <span class="text-gray-700 font-semibold">Gas <span class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
                     <input type="number" min="0" step="any" id="gas" name="gas"
                         value="{{ old('gas') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('gas')
@@ -161,7 +138,7 @@
                     </label>
                 @endif
 
-                @if (now()->format('d') == 3)
+                @if (now()->format('d') == 2)
                     <label for="iuran_rt" class="block mt-4 text-sm">
                         <span class="text-gray-700 font-semibold">Iuran RT</span>
                         <input type="number" min="0" step="any" id="iuran_rt" name="iuran_rt"
@@ -190,8 +167,7 @@
                 @endif
 
                 <label for="biaya_lain" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Biaya lain-lain <span class="text-xxs text-green-500">√
-                            Opsional</span></span>
+                    <span class="text-gray-700 font-semibold">Biaya lain-lain <span class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
                     <input type="number" min="0" step="any" id="biaya_lain" name="biaya_lain"
                         value="{{ old('biaya_lain') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('biaya_lain')
@@ -202,16 +178,16 @@
                     @enderror
                 </label>
 
-                <label for="keterangan" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Keterangan</span>
-                    <input type="text" id="keterangan" name="keterangan" value="{{ old('keterangan') }}"
-                        class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('keterangan')
-                    border-red-600 focus:border-red-600 focus:ring-red-600
-                    @enderror" />
-                    @error('keterangan')
-                        <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
-                    @enderror
-                </label>
+                <div class="mt-4">
+                    <label for="keterangan" class="block text-sm">
+                        <span class="text-gray-700 font-semibold">Keterangan</span>
+                        <input id="keterangan" type="hidden" name="keterangan" value="{{ old('keterangan') }}">
+                        <trix-editor input="keterangan"></trix-editor>
+                        @error('keterangan')
+                            <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
+                        @enderror
+                    </label>
+                </div>
 
                 <label for="nota" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Nota</span>
@@ -231,4 +207,3 @@
         </form>
     </div>
 @endsection
-

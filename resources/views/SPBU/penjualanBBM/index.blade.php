@@ -206,7 +206,7 @@
                                         </td>
                                         <td
                                             class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <div class="flex items-center space-x-4 text-sm">
+                                            <div class="flex items-center space-x-1.25 text-sm">
                                                 <button
                                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                     aria-label="Edit">
@@ -299,7 +299,7 @@
                                             </td>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
-                                                <div class="flex items-center space-x-4 text-sm">
+                                                <div class="mr-1.5 flex items-center space-x-1.25 text-sm">
                                                     <button
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                         aria-label="Edit">

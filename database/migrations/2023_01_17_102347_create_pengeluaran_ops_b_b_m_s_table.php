@@ -16,7 +16,6 @@ return new class extends Migration
     {
         Schema::create('pengeluaran_ops_b_b_m_s', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bbm_id')->nullable()->constrained('b_b_m_s');
             $table->decimal('harga_penebusan_bbm', 12, 2)->nullable();
             $table->decimal('pph', 12, 2)->nullable();
             $table->decimal('tips_sopir', 12, 2)->nullable();

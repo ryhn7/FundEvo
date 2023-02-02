@@ -16,7 +16,7 @@ class PengeluaranOpsBBMController extends Controller
      */
     public function index()
     {
-        $spend = PengeluaranOpsBBM::where('date', Carbon::today()->toDateString())->get();
+        $spend = PengeluaranOpsBBM::where('date', Carbon::now()->toDateString())->get();
         $totalTebusan = $spend->sum('harga_penebusan_bbm');
         $totalGas = $spend->sum('gas');
         $totalOli = $spend->sum('oli');
@@ -56,7 +56,6 @@ class PengeluaranOpsBBMController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'bbm_id' => 'nullable',
             'harga_penebusan_bbm' => 'nullable|numeric',
             'pph' => 'nullable|numeric',
             'tips_sopir' => 'nullable|numeric',
@@ -114,7 +113,6 @@ class PengeluaranOpsBBMController extends Controller
     public function update(Request $request, PengeluaranOpsBBM $pengeluaran_ops_bbm)
     {
         $rules = [
-            'bbm_id' => 'nullable',
             'harga_penebusan_bbm' => 'nullable|numeric',
             'pph' => 'nullable|numeric',
             'tips_sopir' => 'nullable|numeric',

@@ -83,9 +83,6 @@
                                 <thead class="align-bottom">
                                     <tr>
                                         <th
-                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Jenis BBM</th>
-                                        <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Harga Penebusan</th>
                                         <th
@@ -141,20 +138,6 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td
-                                            class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <div class="flex px-2 py-1">
-                                                <div class="flex flex-col justify-center">
-                                                    <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                        @if ($spends[0]->bbm == null)
-                                                            -
-                                                        @else
-                                                            {{ $spends[0]->bbm->jenis_bbm }}
-                                                        @endif
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                             <p class="mb-0 font-semibold leading-tight text-xs">
@@ -289,7 +272,7 @@
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                             <span class="font-semibold leading-tight text-xs text-slate-400">
                                                 @if ($spends[0]->keterangan)
-                                                    {{ $spends[0]->keterangan }}
+                                                    {!! $spends[0]->keterangan !!}
                                                 @else
                                                     -
                                                 @endif
@@ -312,7 +295,7 @@
                                         </td>
                                         <td
                                             class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <div class="flex items-center space-x-4 text-sm">
+                                            <div class="flex items-center space-x-1.25 text-sm">
                                                 <button
                                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                     aria-label="Edit">
@@ -348,10 +331,10 @@
                                                 <div class="flex px-2 py-1">
                                                     <div class="flex flex-col justify-center">
                                                         <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                            @if ($spend->bbm == null)
-                                                                -
+                                                            @if ($spend->harga_penebusan_bbm)
+                                                                @currency($spend->harga_penebusan_bbm)
                                                             @else
-                                                                {{ $spend->bbm->jenis_bbm }}
+                                                                -
                                                             @endif
                                                         </h6>
                                                     </div>
@@ -491,7 +474,7 @@
                                                 class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                                 <span class="font-semibold leading-tight text-xs text-slate-400">
                                                     @if ($spend->keterangan)
-                                                        {{ $spend->keterangan }}
+                                                        {!! $spend->keterangan !!}
                                                     @else
                                                         -
                                                     @endif
@@ -514,7 +497,7 @@
                                             </td>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                                <div class="flex items-center space-x-4 text-sm">
+                                                <div class="flex items-center space-x-1.25 text-sm">
                                                     <button
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                         aria-label="Edit">

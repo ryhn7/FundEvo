@@ -11,8 +11,4 @@ class PengeluaranOpsBBM extends Model
 
     protected $guarded = ['id'];
 
-    public function bbm()
-    {
-        return $this->belongsTo(BBM::class);
-    }
 }

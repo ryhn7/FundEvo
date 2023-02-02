@@ -17,6 +17,15 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <!-- Main Styling -->
     <link href={{ asset('css/style.css') }} rel="stylesheet" />
+    {{-- Trix Editor --}}
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
 
 </head>
 
@@ -37,7 +46,7 @@
     <script src={{ asset('assets/js/perfect-scrollbar.js') }} async></script>
     <!-- main script file  -->
     <script src={{ asset('assets/js/soft-ui-dashboard-tailwind.js') }} async></script>
-    <script src="{{asset('assets/js/jquery-3.6.0.js')}}"></script>
+    <script src="{{ asset('assets/js/jquery-3.6.0.js') }}"></script>
 </body>
 
 

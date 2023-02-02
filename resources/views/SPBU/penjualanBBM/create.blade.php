@@ -25,6 +25,18 @@
                     @enderror
                 </label>
 
+                <label for="harga_jual" class="block mt-4 text-sm">
+                    <span class="text-gray-700 font-semibold">Harga BBM</span>
+                    <input type="number" min="0" step="any" id="harga_jual" name="harga_jual" required
+                        value="{{ old('harga_jual') }}"
+                        class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('harga_jual')
+                    border-red-600 focus:border-red-600 focus:ring-red-600
+                    @enderror" />
+                    @error('harga_jual')
+                        <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
+                    @enderror
+                </label>
+
                 <label for="stock_awal" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Stock Awal</span>
                     <input type="number" min="0" step="any" id="stock_awal" name="stock_awal" required
@@ -97,29 +109,6 @@
                     @enderror
                 </label>
 
-                <label for="harga_jual" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">
-                        Harga BBM
-                    </span>
-                    <select name="harga_jual" id="harga_jual" required
-                        class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
-                        <option value="" class="font-semibold">Pilih Harga BBM</option>
-                        @foreach ($bbms as $bbm)
-                            @if (old('harga_jual') == $bbm->id)
-                                <option value="{{ $bbm->harga_jual }}" selected>Rp.{{ $bbm->harga_jual }}
-                                    ({{ $bbm->jenis_bbm }})
-                                </option>
-                            @else
-                                <option value="{{ $bbm->harga_jual }}">Rp.{{ $bbm->harga_jual }} ({{ $bbm->jenis_bbm }})
-                                </option>
-                            @endif
-                        @endforeach
-                    </select>
-                    @error('harga_jual')
-                        <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
-                    @enderror
-                </label>
-
                 <label for="penyusutan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Penyusutan</span>
                     <input type="number" min="0" step="any" id="penyusutan" name="penyusutan" required
@@ -151,6 +140,7 @@
         </form>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         const stockAwal = document.getElementById('stock_awal');
         const penerimaan = document.getElementById('penerimaan');
@@ -160,7 +150,25 @@
         const penyusutan = document.getElementById('penyusutan');
         const pendapatan = document.getElementById('pendapatan');
         const hargaJual = document.getElementById('harga_jual');
+        const bbm = document.getElementById('bbm_id');
 
+        bbm.addEventListener('change', () => {
+            const bbm_id = bbm.value;
+            console.log(bbm_id);
+            $.ajax({
+                url: '/penjualan-bbm/getData/' + bbm_id,
+                type: 'GET',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function(result) {
+                    //show harga_jual based on id 
+                    console.log(result);
+                    hargaJual.value = result.harga_jual;
+                }
+            })
+        });
 
         stockAdm.addEventListener('change', () => {
             if (penerimaan.value == '') {
@@ -174,15 +182,9 @@
 
         stockFakta.addEventListener('change', () => {
             const result = parseInt(stockAdm.value) - parseInt(stockFakta.value);
+            const hasil = parseInt(penjualan.value) * parseInt(hargaJual.value);
             penyusutan.value = result;
-        });
-
-        hargaJual.addEventListener('change', () => {
-            const result = parseInt(penjualan.value) * parseInt(hargaJual.value);
-
-            console.log(result);
-
-            pendapatan.value = result;
+            pendapatan.value = hasil;
         });
     </script>
 @endsection

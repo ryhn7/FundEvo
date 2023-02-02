@@ -143,4 +143,10 @@ class PenjualanBBMController extends Controller
             'totalSell' => $penjualanBBM->sum('penjualan'),
         ]);
     }
+
+    public function getHarga($id)
+    {
+        $bbm = BBM::find($id);
+        return response()->json($bbm);
+    }
 }

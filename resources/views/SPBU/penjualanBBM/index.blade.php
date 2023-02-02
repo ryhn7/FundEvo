@@ -29,7 +29,7 @@
                         </div>
                         <div class="px-3 text-right basis-1/3">
                             <div
-                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
+                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                 <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="px-3 text-right basis-1/3">
                             <div
-                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
+                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                 <i class="ni leading-none ni-world text-lg relative top-3.5 text-white"></i>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
             </div>
         </div>
     </div>
-    <div class="flex justify-end mb-5 mr-1">
+    {{-- <div class="flex justify-end mb-5 mr-1">
         <div class="mr-3 w-44">
             <form action="/penjualan-bbm/filter" method="GET">
                 <input type="date" name="date" value="{{ request('date') }}"
@@ -92,15 +92,23 @@
                     href="/penjualan-bbm/create">Tambah
                     penjualan</a></div>
         </div>
-    </div>
-    @if ($sells->count() > 0)
-        <div class="flex flex-wrap -mx-3">
-            <div class="flex-none w-full max-w-full px-3">
-                <div
-                    class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
-                    <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                        <h6>Penjualan Harian</h6>
+    </div> --}}
+    <div class="flex flex-wrap -mx-3">
+        <div class="flex-none w-full max-w-full px-3">
+            <div
+                class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
+                <div class="p-6 pb-0 mb-5 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+                    <div class="flex flex-wrap -mx-3">
+                        <div class="flex items-center flex-none w-1/2 max-w-full px-3">
+                            <h6 class="mb-0">Payment Method</h6>
+                        </div>
+                        <div class="flex-none w-1/2 max-w-full px-3 text-right">
+                            <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-gray-900 to-slate-800 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                                href="/penjualan-bbm/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah Penjualan</a>
+                        </div>
                     </div>
+                </div>
+                @if ($sells->count() > 0)
                     <div class="flex-auto px-0 pt-0 pb-2">
                         <div class="p-0 overflow-x-auto">
                             <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
@@ -333,10 +341,11 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                @else
+                    <div class="mx-auto font-bold">Masih kosong gann</div>
+                @endif
             </div>
         </div>
-    @else
-        <div class="mx-auto font-bold">Masih kosong gann</div>
-    @endif
+    </div>
+
 @endsection

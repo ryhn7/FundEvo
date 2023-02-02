@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BBMCategoryController;
-use App\Http\Controllers\PenebusanBBMController;
 use App\Http\Controllers\PenjualanBBMController;
 use App\Http\Controllers\PengeluaranOpsBBMController;
+use App\Models\BBM;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +22,8 @@ Route::get('/', fn () => view('index', []));
 
 Route::resource('/penjualan-bbm', PenjualanBBMController::class)->except('show');
 Route::get('/penjualan-bbm/filter', [PenjualanBBMController::class, 'filter']);
+Route::get('/penjualan-bbm/getData/{id}', [PenjualanBBMController::class, 'getHarga']);
+
 
 Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
 

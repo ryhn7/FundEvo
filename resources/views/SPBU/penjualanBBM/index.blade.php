@@ -23,7 +23,6 @@
                                 <p class="mb-0 font-sans font-semibold leading-normal text-sm">Total Pendapatan/hari</p>
                                 <h5 class="mb-0 font-bold">
                                     @currency($totalAmount)
-                                    <span class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span>
                                 </h5>
                             </div>
                         </div>
@@ -48,7 +47,6 @@
                                 <p class="mb-0 font-sans font-semibold leading-normal text-sm">Total Penjualan BBM</p>
                                 <h5 class="mb-0 font-bold">
                                     {{ $totalSell }}
-                                    <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span>
                                 </h5>
                             </div>
                         </div>
@@ -63,36 +61,7 @@
             </div>
         </div>
     </div>
-    {{-- <div class="flex justify-end mb-5 mr-1">
-        <div class="mr-3 w-44">
-            <form action="/penjualan-bbm/filter" method="GET">
-                <input type="date" name="date" value="{{ request('date') }}"
-                    class="px-2 py-1 shadow-md border border-black">
-                <button class="mt-1 border shadow">submit</button>
-            </form>
-        </div>
-        <div
-            class="flex w-44 px-2 py-1 rounded-md shadow-lg text-center group bg-gradient-to-tl from-sky-500 to-teal-500 hover:bg-gradient-to-tl hover:from-sky-600 hover:to-teal-600">
-            <div class="mr-3 pb-1">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256"
-                    width="20px" height="20px" fill-rule="nonzero">
-                    <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                        stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                        font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                        style="mix-blend-mode: normal">
-                        <g transform="scale(9.84615,9.84615)">
-                            <path
-                                d="M19,3h-12c-2.19922,0 -4,1.80078 -4,4v12c0,2.19922 1.80078,4 4,4h12c2.19922,0 4,-1.80078 4,-4v-12c0,-2.19922 -1.80078,-4 -4,-4zM19,14h-5v5h-2v-5h-5v-2h5v-5h2v5h5z">
-                            </path>
-                        </g>
-                    </g>
-                </svg>
-            </div>
-            <div class="text-sm pt-0.5 text-white font-semibold group-hover:font-bold"><a
-                    href="/penjualan-bbm/create">Tambah
-                    penjualan</a></div>
-        </div>
-    </div> --}}
+
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             <div
@@ -100,11 +69,22 @@
                 <div class="p-6 pb-0 mb-5 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <div class="flex flex-wrap -mx-3">
                         <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                            <h6 class="mb-0">Payment Method</h6>
+                            <h6 class="mb-0">Penjualan BBM Harian</h6>
                         </div>
                         <div class="flex-none w-1/2 max-w-full px-3 text-right">
-                            <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-gray-900 to-slate-800 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
-                                href="/penjualan-bbm/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah Penjualan</a>
+                            <div class="flex justify-end">
+                                <div class="mr-5">
+                                    <form id="dateFilter" action="/penjualan-bbm/filter" class="py-0.5" method="GET">
+                                        <input id="date1" type="date" name="date" value="{{ request('date') }}"
+                                            class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
+                                    </form>
+                                </div>
+                                <div class="">
+                                    <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-[#CC5500] to-[#FF5349] hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                                        href="/penjualan-bbm/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah
+                                        Penjualan</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -342,10 +322,19 @@
                         </div>
                     </div>
                 @else
-                    <div class="mx-auto font-bold">Masih kosong gann</div>
+                    {{-- <div class="mx-auto font-bold">Masih kosong gann</div> --}}
                 @endif
             </div>
         </div>
     </div>
+
+    <script>
+        const date = document.getElementById('date1');
+        const formFilter = document.getElementById('dateFilter');
+
+        date.addEventListener('change', () => {
+            formFilter.submit();
+        })
+    </script>
 
 @endsection

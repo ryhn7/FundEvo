@@ -523,7 +523,28 @@
                         </div>
                     </div>
                 @else
-                    {{-- <div class="mx-auto font-bold">Masih kosong gann</div> --}}
+                    <div>
+                        <hr class="border-b-[1px] border-solid">
+                        <div class="w-full">
+                            <div class="flex justify-center">
+                                <div class="text-center">
+                                    <h1 class="text-2xl font-bold">Data masih kosong</h1>
+                                    <p class="text-gray-500">Silahkan tambahkan data terlebih dahulu</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container w-full h-[400px]" id="animation">
+                            <script>
+                                var animation = bodymovin.loadAnimation({
+                                    container: document.getElementById('animation'),
+                                    renderer: 'svg',
+                                    loop: true,
+                                    autoplay: true,
+                                    path: 'https://assets2.lottiefiles.com/packages/lf20_ysrn2iwp.json'
+                                })
+                            </script>
+                        </div>
+                    </div>
                 @endif
             </div>
         </div>

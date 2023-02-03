@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\PenjualanBBM;
 use App\Models\PenjualanItemListrik;
 use App\Models\PengeluaranOpsBBM;
+use App\Models\PengeluaranOpsTokoListrik;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         PengeluaranOpsBBM::factory(5)->create();
+        PengeluaranOpsTokoListrik::factory(5)->create();
         PenjualanBBM::factory(4)->create();
         PenjualanItemListrik::factory(5)->create();
 

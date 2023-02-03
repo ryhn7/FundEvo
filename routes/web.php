@@ -35,6 +35,10 @@ Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->exc
 Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show');
 
 Route::resource('/penjualan-item', PenjualanItemController::class)->except('show');
+Route::get('/penjualan-item/{id}', function ($id) {
+    $item = App\Models\Item::where('kategori',$id)->get();
+    return response()->json($item);
+});
 
 Route::resource('/kategori-item', ItemCategoryController::class)->except('show');
 

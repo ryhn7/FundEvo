@@ -14,4 +14,8 @@ class PenjualanItemListrik extends Model
     {
         return $this->belongsTo(Item::class);
     }
+    public function penjualanKategoris()
+    {
+        return $this->belongsTo(KategoriItem::class, 'kategori');
+    }
 }

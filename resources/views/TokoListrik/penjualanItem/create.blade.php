@@ -11,12 +11,20 @@
                     </span>
                     <select name="kategori_item" id="kategori_item" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
-                        <option value="" class="font-semibold">Pilih Kategori Item</option>
+                        <!-- <option value="" class="font-semibold">Pilih Kategori Item</option>
                         @foreach ($items as $item)
                             @if (old('kategori_item') == $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->kategori}}</option>
                             @else
                                 <option value="{{ $item->id }}">{{ $item->kategori}}</option>
+                            @endif
+                        @endforeach -->
+                        <option value="" class="font-semibold">Pilih Kategori</option>
+                        @foreach ($kategoris as $kategor)
+                            @if (old('kategori') == $kategor->id)
+                                <option value="{{ $kategor->id }}" selected>{{ $kategor->kategori}}</option>
+                            @else
+                                <option value="{{ $kategor->id }}">{{ $kategor->kategori}}</option>
                             @endif
                         @endforeach
                     </select>
@@ -32,13 +40,13 @@
                     <select name="item_id" id="item_id" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" class="font-semibold">Pilih Item</option>
-                        @foreach ($items as $item)
+                        <!-- @foreach ($items as $item)
                             @if (old('item_id') == $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->nama_item}}</option>
                             @else
                                 <option value="{{ $item->id }}">{{ $item->nama_item}}</option>
                             @endif
-                        @endforeach
+                        @endforeach -->
                     </select>
                     @error('item_id')
                         <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
@@ -111,4 +119,36 @@
             </div>
         </form>
     </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            /*------------------------------------------
+            --------------------------------------------
+            Kategori Dropdown Change Event
+            --------------------------------------------
+            --------------------------------------------*/
+            $('#kategori_item').on('change', function () {
+                var kategori_id = this.value;
+                console.log(kategori_id);
+                $("#nama_item").html('');
+                $.ajax({
+                    url: '/penjualan-item/'+kategori_id,
+                    type: "GET",
+                    data: {
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        $('select[name="item_id"]').empty();
+                        $('#item_id').html('<option value="" class="font-semibold">Pilih Item </option>');
+                        console.log(result);
+                        $.each(result, function (key, value) {
+                            $('select[name="item_id"]').append('<option value="' + value.id + '">' + value.nama_item + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

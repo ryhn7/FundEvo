@@ -15,4 +15,9 @@ class KategoriItem extends Model
     {
         return $this->hasMany(Item::class);
     }
+
+    public function kategoriPenjualans()
+    {
+        return $this->hasMany(PenjualanItemListrik::class);
+    }
 }

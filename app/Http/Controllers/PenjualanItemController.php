@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PenjualanItemListrik;
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\KategoriItem;
 use Carbon\Carbon;
 
 class PenjualanItemController extends Controller
@@ -35,6 +36,7 @@ class PenjualanItemController extends Controller
     {
         return view('TokoListrik.penjualanItem.create', [
             'items' => Item::all(),
+            'kategoris' => KategoriItem::all()
         ]);
     }
 

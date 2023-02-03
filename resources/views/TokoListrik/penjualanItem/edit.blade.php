@@ -27,15 +27,15 @@
                     @enderror
                 </label>
 
-                <label for="nama_item" class="block mt-4 text-sm">
+                <label for="item_id" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">
                         Nama Item
                     </span>
-                    <select name="nama_item" id="nama_item" required
+                    <select name="item_id" id="item_id" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" class="font-semibold">Pilih Item</option>
                         @foreach ($items as $item)
-                            @if (old('nama_item', $sell->item_id) == $item->id)
+                            @if (old('item_id', $sell->item_id) == $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->nama_item}}</option>
                             @else
                                 <option value="{{ $item->id }}">{{ $item->nama_item}}</option>
@@ -108,7 +108,7 @@
                 </label>
 
                 <button
-                    class="mt-10 w-full px-3 py-3 bg-black text-white font-bold rounded shadow-md hover:bg-[#333333]">Tambah
+                    class="mt-10 w-full px-3 py-3 bg-black text-white font-bold rounded shadow-md hover:bg-[#333333]">Edit
                     Penjualan</button>
             </div>
         </form>

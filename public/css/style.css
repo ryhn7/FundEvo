@@ -772,6 +772,16 @@ h6 {
   margin-bottom: 5rem;
 }
 
+.mx-3 {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+}
+
+.mx-3\.5 {
+  margin-left: 0.875rem;
+  margin-right: 0.875rem;
+}
+
 .mb-6 {
   margin-bottom: 1.5rem;
 }
@@ -1986,6 +1996,11 @@ h6 {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.py-2\.5 {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
 }
 
 .pt-2 {

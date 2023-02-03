@@ -356,5 +356,4 @@
                 formFilter.submit();
             })
         </script>
-
     @endsection

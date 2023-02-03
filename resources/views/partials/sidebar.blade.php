@@ -16,8 +16,7 @@
         <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
             <ul class="flex flex-col pl-0 mb-0">
                 <li class="mt-0.5 w-full">
-                    {{-- <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('dashboard') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" --}}
-                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('/') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
                         href="/">
                         <div {{-- class="{{ request()->is('dashboard') ? 'bg-gradient-to-tl from-gray-900 to-slate-800 opacity-80 ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5"> --}}
                             class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
@@ -45,8 +44,7 @@
                 </li>
 
                 <li class="mt-3 w-full">
-                    {{-- <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('dashboard/posts*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" --}}
-                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('penjualan-bbm*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
                         href="/penjualan-bbm">
                         <div
                             {{-- class="{{ request()->is('dashboard/posts*') ? 'bg-gradient-to-tl from-gray-900 to-slate-800 opacity-80 ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5"> --}}
@@ -71,8 +69,7 @@
                 </li>
 
                 <li class="mt-0.5 w-full">
-                    {{-- <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('dashboard/categories*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" --}}
-                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('pengeluaran-ops-bbm*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
                         href="/pengeluaran-ops-bbm">
                         <div
                             {{-- class="{{ request()->is('dashboard/categories*') ? 'bg-gradient-to-tl from-gray-900 to-slate-800 opacity-80 ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5"> --}}
@@ -96,8 +93,7 @@
                     </a>
                 </li>
                 <li class="mt-0.5 w-full">
-                    {{-- <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('dashboard/categories*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" --}}
-                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('kategori-bbm*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
                         href="/kategori-bbm">
                         <div
                             {{-- class="{{ request()->is('dashboard/categories*') ? 'bg-gradient-to-tl from-gray-900 to-slate-800 opacity-80 ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5"> --}}

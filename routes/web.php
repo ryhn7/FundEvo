@@ -23,6 +23,7 @@ Route::get('/', fn () => view('index', []));
 Route::resource('/penjualan-bbm', PenjualanBBMController::class)->except('show');
 Route::get('/penjualan-bbm/filter', [PenjualanBBMController::class, 'filter']);
 Route::get('/penjualan-bbm/getData/{id}', [PenjualanBBMController::class, 'getHarga']); //ajax for getting harga bbm
+Route::get('/penjualan-bbm/getPreviousStock/{id}', [PenjualanBBMController::class, 'getPreviousStock']); //ajax for getting previous stock
 
 
 Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');

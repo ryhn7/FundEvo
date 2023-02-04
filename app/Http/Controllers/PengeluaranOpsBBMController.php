@@ -16,7 +16,7 @@ class PengeluaranOpsBBMController extends Controller
      */
     public function index()
     {
-        $spend = PengeluaranOpsBBM::where('date', Carbon::now()->toDateString())->get();
+        $spend = PengeluaranOpsBBM::whereDate('created_at', Carbon::now()->toDateString())->get();
         $totalTebusan = $spend->sum('harga_penebusan_bbm');
         $totalGas = $spend->sum('gas');
         $totalOli = $spend->sum('oli');
@@ -156,7 +156,7 @@ class PengeluaranOpsBBMController extends Controller
         // dd($request->date);
         $date = Carbon::parse($request->date)->toDateString();
         // return $date;
-        $spend = PengeluaranOpsBBM::where('date', '=', $date)->get();
+        $spend = PengeluaranOpsBBM::whereDate('created_at', '=', $date)->get();
         $totalTebusan = $spend->sum('harga_penebusan_bbm');
         $totalGas = $spend->sum('gas');
         $totalOli = $spend->sum('oli');

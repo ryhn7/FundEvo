@@ -153,7 +153,6 @@
 
         bbm.addEventListener('change', () => {
             const bbm_id = bbm.value;
-            console.log(bbm_id);
             $.ajax({
                 url: '/penjualan-bbm/getData/' + bbm_id,
                 type: 'GET',
@@ -162,12 +161,32 @@
                 },
                 dataType: 'json',
                 success: function(result) {
-                    //show harga_jual based on id 
-                    console.log(result);
                     hargaJual.value = result.harga_jual;
                 }
             })
         });
+
+        bbm.addEventListener('change', () => {
+            const bbm_id = bbm.value;
+            $.ajax({
+                url: '/penjualan-bbm/getPreviousStock/' + bbm_id,
+                type: 'GET',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function(result) {
+                    //show harga_jual based on id 
+                    console.log(result);
+                    if (result.stock_awal > 0) {
+                        stockAwal.value = result.stock_awal;
+                    } else {
+                        stockAwal.value = null;
+                    }
+                }
+            })
+        });
+
 
         stockAdm.addEventListener('change', () => {
             if (penerimaan.value == '') {

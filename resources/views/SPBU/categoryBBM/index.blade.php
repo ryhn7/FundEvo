@@ -1,11 +1,12 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="w-full px-3 overflow-hidden rounded-lg shadow-xs">
+    <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)"
+        class="w-full px-3 overflow-hidden rounded-lg shadow-xs">
         @if (session()->has('success'))
             <div alert
                 class="relative p-4 pr-12 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-green-600 to-lime-400 border-lime-300"
-                role="alert">
+                role="alert" id="sukses">
                 <strong class="font-bold">Woaa!</strong>
                 {{ session('success') }}
                 <button type="button" alert-close
@@ -15,7 +16,8 @@
             </div>
         @elseif (session()->has('error'))
             <div alert
-                class="relative p-4 pr-12 mb-4 text-white border border-red-300 border-solid rounded-lg bg-gradient-to-tl from-red-600 to-rose-400">
+                class="relative p-4 pr-12 mb-4 text-white border border-red-300 border-solid rounded-lg bg-gradient-to-tl from-red-600 to-rose-400"
+                role="alert" id="eror">
                 <strong class="font-bold">Oops!</strong>
                 {{ session('error') }}
                 <button type="button" alert-close

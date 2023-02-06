@@ -1381,14 +1381,14 @@ h6 {
   border-color: rgb(74 222 128 / var(--tw-border-opacity));
 }
 
-.border-\[\#CC5500\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(204 85 0 / var(--tw-border-opacity));
-}
-
 .border-lime-300 {
   --tw-border-opacity: 1;
   border-color: rgb(190 242 100 / var(--tw-border-opacity));
+}
+
+.border-\[\#CC5500\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(204 85 0 / var(--tw-border-opacity));
 }
 
 .border-red-300 {

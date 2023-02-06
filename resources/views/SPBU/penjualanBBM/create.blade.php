@@ -179,7 +179,7 @@
                     //show harga_jual based on id 
                     console.log(result);
                     if (result.stock_awal > 0) {
-                        stockAwal.value = result.stock_awal;
+                        stockAwal.value = result.stock_fakta;
                     } else {
                         stockAwal.value = null;
                     }

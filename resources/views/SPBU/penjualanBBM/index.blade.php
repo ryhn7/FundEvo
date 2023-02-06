@@ -3,12 +3,6 @@
 @section('container')
     <div class="px-3 mb-5">
         @if (session()->has('success'))
-            {{-- <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-3" role="alert">
-                <strong class="font-bold">Woaa!</strong>
-                <span class="block sm:inline">{{ session('success') }}</span>
-                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                </span>
-            </div> --}}
             <div alert
                 class="relative p-4 pr-12 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-green-600 to-lime-400 border-lime-300"
                 role="alert">

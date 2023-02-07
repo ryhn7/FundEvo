@@ -40,6 +40,7 @@ Route::get('/penjualan-item/{id}', function ($id) {
     $item = App\Models\Item::where('kategori',$id)->get();
     return response()->json($item);
 });
+Route::get('/penjualan-item/getData/{id}', [PenjualanItemController::class, 'getHarga']);
 
 Route::resource('/kategori-item', ItemCategoryController::class)->except('show');
 

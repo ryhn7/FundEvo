@@ -125,4 +125,11 @@ class PenjualanItemController extends Controller
 
         return redirect('/penjualan-item')->with('success', 'Data penjualan berhasil dihapus!');
     }
+
+    public function getHarga($id)
+    {
+        // $harga = Item::find($id);
+        $harga = Item::where('id', $id)->get('harga_jual');
+        return response()->json($harga);
+    }
 }

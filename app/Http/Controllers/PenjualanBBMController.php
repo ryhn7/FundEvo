@@ -127,10 +127,14 @@ class PenjualanBBMController extends Controller
             'stock_fakta' => 'required|numeric',
             'penyusutan' => 'required|numeric',
             'pendapatan' => 'required|numeric',
-            'created_at' => 'date',
+            'created_at' => 'nullable|date',
         ];
 
         $validated = $request->validate($rules);
+
+        if ($validated['created_at'] == null) {
+            $validated['created_at'] = Carbon::now();
+        }
 
         PenjualanBBM::where('id', $penjualan_bbm->id)
             ->update($validated);

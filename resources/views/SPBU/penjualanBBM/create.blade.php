@@ -12,8 +12,8 @@
                             </span></span>
                         <input type="date" name="created_at" value="{{ old('created_at') }}"
                             class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('created_at')
-            border-red-600 focus:border-red-600 focus:ring-red-600
-            @enderror" />
+                        border-red-600 focus:border-red-600 focus:ring-red-600
+                        @enderror" />
                         @error('created_at')
                             <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
                         @enderror

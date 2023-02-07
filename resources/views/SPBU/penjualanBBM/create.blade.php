@@ -192,8 +192,6 @@
                 },
                 dataType: 'json',
                 success: function(result) {
-                    //show harga_jual based on id 
-                    // console.log(result);
                     if (result.stock_awal > 0) {
                         stockAwal.value = result.stock_fakta;
                     } else {
@@ -213,7 +211,6 @@
                 },
                 dataType: 'json',
                 success: function(result) {
-                    // console.log(result);
                     if (result.created_at == date.value) {
                         date.classList.remove('hidden');
                         alert(

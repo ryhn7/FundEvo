@@ -56,15 +56,27 @@ class PenjualanBBMController extends Controller
             'stock_fakta' => 'required|numeric',
             'penyusutan' => 'required|numeric',
             'pendapatan' => 'required|numeric',
-            'created_at' => 'date',
+            'created_at' => 'nullable|date',
         ]);
+
+        if ($validated['created_at'] == null) {
+            $validated['created_at'] = Carbon::now();
+        }
 
         //limit jenis_bbm from bbm_id to 1 each
         $bbm_id = $request->bbm_id;
+        $yesterday = Carbon::yesterday()->toDateString();
+        $penjualanBBMYesterday = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', $yesterday)->first();
         $penjualanBBM = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
         if ($penjualanBBM) {
             return redirect('/penjualan-bbm')->with('error', 'Hanya boleh input 1 jenis BBM per hari!');
         }
+
+        // dd($penjualanBBMYesterday);
+        if (!$penjualanBBMYesterday) {
+            return redirect('/penjualan-bbm')->with('error', 'Harap input penjualan BBM hari kemarin terlebih dahulu!');
+        }
+
 
         PenjualanBBM::create($validated);
 
@@ -170,12 +182,10 @@ class PenjualanBBMController extends Controller
         $yesterday = Carbon::yesterday()->toDateString();
         $penjualanBBM = PenjualanBBM::where('bbm_id', $id)->whereDate('created_at', $yesterday)->first();
 
-        // if $penjualanBBM is null, return false
         if ($penjualanBBM == null) {
             return response()->json(false);
         } else {
             return response()->json($penjualanBBM);
         }
-
     }
 }

@@ -26,6 +26,21 @@
                     @enderror
                 </label>
 
+                <label for="harga_jual" class="block mt-4 text-sm">
+                    <span class="text-gray-700 font-semibold">Harga BBM</span>
+                    <input type="number" min="0" step="any" id="harga_jual" name="harga_jual" required
+                        @foreach ($bbms as $bbm)
+                        @if (old('harga_jual', $sell->bbm_id) == $bbm->id)
+                        value="{{ old('harga_jual', $bbm->harga_jual) }}"
+                        @endif @endforeach
+                        class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('harga_jual')
+                        border-red-600 focus:border-red-600 focus:ring-red-600
+                        @enderror" />
+                    @error('harga_jual')
+                        <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
+                    @enderror
+                </label>
+
                 <label for="stock_awal" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Stock Awal</span>
                     <input type="number" min="1000" step="any" id="stock_awal" name="stock_awal" required
@@ -95,29 +110,6 @@
                     @enderror" />
                     @error('penjualan')
                         <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
-                    @enderror
-                </label>
-
-                <label for="harga_jual" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">
-                        Harga BBM
-                    </span>
-                    <select name="harga_jual" id="harga_jual" required
-                        class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
-                        <option value="" class="font-semibold">Pilih Harga BBM</option>
-                        @foreach ($bbms as $bbm)
-                            @if (old('harga_jual', $sell->bbm_id) == $bbm->id)
-                                <option value="{{ $bbm->harga_jual }}" selected>Rp.{{ $bbm->harga_jual }}
-                                    ({{ $bbm->jenis_bbm }})
-                                </option>
-                            @else
-                                <option value="{{ $bbm->harga_jual }}">Rp.{{ $bbm->harga_jual }} ({{ $bbm->jenis_bbm }})
-                                </option>
-                            @endif
-                        @endforeach
-                    </select>
-                    @error('harga_jual')
-                        <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
                     @enderror
                 </label>
 

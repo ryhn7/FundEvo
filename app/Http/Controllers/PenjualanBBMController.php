@@ -18,7 +18,7 @@ class PenjualanBBMController extends Controller
     {
         // $date = Carbon::now()->toDateString();
         // return($date);
-        $penjualanBBM = PenjualanBBM::where('date', Carbon::now()->toDateString())->get();
+        $penjualanBBM = PenjualanBBM::whereDate('created_at', Carbon::now()->toDateString())->get();
         return view('SPBU.penjualanBBM.index', [
             'sells' => $penjualanBBM,
             'totalAmount' => $penjualanBBM->sum('pendapatan'),
@@ -57,6 +57,13 @@ class PenjualanBBMController extends Controller
             'penyusutan' => 'required|numeric',
             'pendapatan' => 'required|numeric',
         ]);
+
+        //limit jenis_bbm from bbm_id to 1 each
+        $bbm_id = $request->bbm_id;
+        $penjualanBBM = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
+        if ($penjualanBBM) {
+            return redirect('/penjualan-bbm')->with('error', 'Hanya boleh input 1 jenis BBM per hari!');
+        }
 
         PenjualanBBM::create($validated);
 
@@ -136,11 +143,23 @@ class PenjualanBBMController extends Controller
         // dd($request->date);
         $date = Carbon::parse($request->date)->toDateString();
         // return $date;
-        $penjualanBBM = PenjualanBBM::where('date', '=', $date)->get();
+        $penjualanBBM = PenjualanBBM::whereDate('created_at', '=', $date)->get();
         return view('SPBU.penjualanBBM.index', [
             'sells' => $penjualanBBM,
             'totalAmount' => $penjualanBBM->sum('pendapatan'),
             'totalSell' => $penjualanBBM->sum('penjualan'),
         ]);
+    }
+
+    public function getHarga($id)
+    {
+        $bbm = BBM::find($id);
+        return response()->json($bbm);
+    }
+
+    public function getPreviousStock($id)
+    {
+        $penjualanBBM = PenjualanBBM::where('bbm_id', $id)->latest()->first();
+        return response()->json($penjualanBBM);
     }
 }

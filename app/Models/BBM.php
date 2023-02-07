@@ -15,9 +15,4 @@ class BBM extends Model
     {
         return $this->hasMany(PenjualanBBM::class);
     }
-
-    public function bbmPenebusans()
-    {
-        return $this->hasMany(PenebusanBBM::class);
-    }
 }

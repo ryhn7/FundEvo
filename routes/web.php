@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BBMCategoryController;
-use App\Http\Controllers\PenebusanBBMController;
 use App\Http\Controllers\PenjualanBBMController;
 use App\Http\Controllers\PengeluaranOpsBBMController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\PenjualanItemController;
 use App\Http\Controllers\KategoryItemController;
 use App\Http\Controllers\PengeluaranOpsTokoListrikController;
+use App\Models\BBM;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,13 +21,14 @@ use App\Http\Controllers\PengeluaranOpsTokoListrikController;
 |
 */
 
-Route::get('/', fn () => view('index', [
-
-]));
+Route::get('/', fn () => view('index', []));
 
 
 Route::resource('/penjualan-bbm', PenjualanBBMController::class)->except('show');
 Route::get('/penjualan-bbm/filter', [PenjualanBBMController::class, 'filter']);
+Route::get('/penjualan-bbm/getData/{id}', [PenjualanBBMController::class, 'getHarga']); //ajax for getting harga bbm
+Route::get('/penjualan-bbm/getPreviousStock/{id}', [PenjualanBBMController::class, 'getPreviousStock']); //ajax for getting previous stock
+
 
 Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
 
@@ -51,3 +52,4 @@ Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->exc
 Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show');
 
 Route::resource('/pengeluaran-ops-listrik', PengeluaranOpsTokoListrikController::class)->except('show');
+Route::get('/pengeluaran-ops-bbm/filter', [PengeluaranOpsBBMController::class, 'filter']);

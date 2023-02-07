@@ -1,13 +1,26 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="px-3 mb-5">
+    <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)" class="px-3 mb-5">
         @if (session()->has('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-3" role="alert">
+            <div alert
+                class="relative p-4 pr-12 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-green-600 to-lime-400 border-lime-300"
+                role="alert">
                 <strong class="font-bold">Woaa!</strong>
-                <span class="block sm:inline">{{ session('success') }}</span>
-                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                </span>
+                {{ session('success') }}
+                <button type="button" alert-close
+                    class="box-content absolute top-0 right-0 p-4 text-sm text-white bg-transparent border-0 rounded w-4 h-4 z-2">
+                </button>
+            </div>
+        @elseif (session()->has('error'))
+            <div alert
+                class="relative p-4 pr-12 mb-4 text-white border border-red-300 border-solid rounded-lg bg-gradient-to-tl from-red-600 to-rose-400"
+                role="alert">
+                <strong class="font-bold">Oops!</strong>
+                {{ session('error') }}
+                <button type="button" alert-close
+                    class="box-content absolute top-0 right-0 p-4 text-sm text-white bg-transparent border-0 rounded w-4 h-4 z-2">
+                </button>
             </div>
         @endif
     </div>
@@ -23,13 +36,12 @@
                                 <p class="mb-0 font-sans font-semibold leading-normal text-sm">Total Pendapatan/hari</p>
                                 <h5 class="mb-0 font-bold">
                                     @currency($totalAmount)
-                                    <span class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span>
                                 </h5>
                             </div>
                         </div>
                         <div class="px-3 text-right basis-1/3">
                             <div
-                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
+                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                 <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
                             </div>
                         </div>
@@ -48,13 +60,12 @@
                                 <p class="mb-0 font-sans font-semibold leading-normal text-sm">Total Penjualan BBM</p>
                                 <h5 class="mb-0 font-bold">
                                     {{ $totalSell }}
-                                    <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span>
                                 </h5>
                             </div>
                         </div>
                         <div class="px-3 text-right basis-1/3">
                             <div
-                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
+                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                 <i class="ni leading-none ni-world text-lg relative top-3.5 text-white"></i>
                             </div>
                         </div>
@@ -63,44 +74,34 @@
             </div>
         </div>
     </div>
-    <div class="flex justify-end mb-5 mr-1">
-        <div class="mr-3 w-44">
-            <form action="/penjualan-bbm/filter" method="GET">
-                <input type="date" name="date" value="{{ request('date') }}"
-                    class="px-2 py-1 shadow-md border border-black">
-                <button class="mt-1 border shadow">submit</button>
-            </form>
-        </div>
-        <div
-            class="flex w-44 px-2 py-1 rounded-md shadow-lg text-center group bg-gradient-to-tl from-sky-500 to-teal-500 hover:bg-gradient-to-tl hover:from-sky-600 hover:to-teal-600">
-            <div class="mr-3 pb-1">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256"
-                    width="20px" height="20px" fill-rule="nonzero">
-                    <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                        stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                        font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                        style="mix-blend-mode: normal">
-                        <g transform="scale(9.84615,9.84615)">
-                            <path
-                                d="M19,3h-12c-2.19922,0 -4,1.80078 -4,4v12c0,2.19922 1.80078,4 4,4h12c2.19922,0 4,-1.80078 4,-4v-12c0,-2.19922 -1.80078,-4 -4,-4zM19,14h-5v5h-2v-5h-5v-2h5v-5h2v5h5z">
-                            </path>
-                        </g>
-                    </g>
-                </svg>
-            </div>
-            <div class="text-sm pt-0.5 text-white font-semibold group-hover:font-bold"><a
-                    href="/penjualan-bbm/create">Tambah
-                    penjualan</a></div>
-        </div>
-    </div>
-    @if ($sells->count() > 0)
-        <div class="flex flex-wrap -mx-3">
-            <div class="flex-none w-full max-w-full px-3">
-                <div
-                    class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
-                    <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                        <h6>Penjualan Harian</h6>
+
+    <div class="flex flex-wrap -mx-3">
+        <div class="flex-none w-full max-w-full px-3">
+            <div
+                class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
+                <div class="p-6 pb-0 mb-5 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+                    <div class="flex flex-wrap -mx-3">
+                        <div class="flex items-center flex-none w-1/2 max-w-full px-3">
+                            <h6 class="mb-0">Penjualan BBM Harian</h6>
+                        </div>
+                        <div class="flex-none w-1/2 max-w-full px-3 text-right">
+                            <div class="flex justify-end">
+                                <div class="mr-5">
+                                    <form id="dateFilter" action="/penjualan-bbm/filter" class="py-0.5" method="GET">
+                                        <input id="date1" type="date" name="date" value="{{ request('date') }}"
+                                            class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
+                                    </form>
+                                </div>
+                                <div class="">
+                                    <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-red-500 to-yellow-400 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                                        href="/penjualan-bbm/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah
+                                        Penjualan</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                @if ($sells->count() > 0)
                     <div class="flex-auto px-0 pt-0 pb-2">
                         <div class="p-0 overflow-x-auto">
                             <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
@@ -206,7 +207,7 @@
                                         </td>
                                         <td
                                             class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <div class="flex items-center space-x-4 text-sm">
+                                            <div class="flex items-center space-x-1.25 text-sm">
                                                 <button
                                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                     aria-label="Edit">
@@ -299,7 +300,7 @@
                                             </td>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
-                                                <div class="flex items-center space-x-4 text-sm">
+                                                <div class="mr-1.5 flex items-center space-x-1.25 text-sm">
                                                     <button
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                         aria-label="Edit">
@@ -333,10 +334,39 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                @else
+                    <div>
+                        <hr class="border-b-[1px] border-solid">
+                        <div class="w-full">
+                            <div class="flex justify-center">
+                                <div class="text-center">
+                                    <h1 class="text-2xl font-bold">Data masih kosong</h1>
+                                    <p class="text-gray-500">Silahkan tambahkan data terlebih dahulu</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container w-full h-[400px]" id="animation">
+                            <script>
+                                var animation = bodymovin.loadAnimation({
+                                    container: document.getElementById('animation'),
+                                    renderer: 'svg',
+                                    loop: true,
+                                    autoplay: true,
+                                    path: 'https://assets2.lottiefiles.com/packages/lf20_ysrn2iwp.json'
+                                })
+                            </script>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
-    @else
-        <div class="mx-auto font-bold">Masih kosong gann</div>
-    @endif
-@endsection
+
+        <script>
+            const date = document.getElementById('date1');
+            const formFilter = document.getElementById('dateFilter');
+
+            date.addEventListener('change', () => {
+                formFilter.submit();
+            })
+        </script>
+    @endsection

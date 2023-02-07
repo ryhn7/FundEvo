@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         PengeluaranOpsTokoListrik::factory(5)->create();
         PenjualanBBM::factory(4)->create();
         PenjualanItemListrik::factory(5)->create();
+        // PengeluaranOpsBBM::factory(5)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
@@ -105,5 +106,7 @@ class DatabaseSeeder extends Seeder
                 'kategori' => 'Saklar',
             ],
         ]);
+        PenjualanBBM::factory(4)->create();
+
     }
 }

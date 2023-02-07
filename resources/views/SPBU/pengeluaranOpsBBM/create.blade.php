@@ -20,7 +20,8 @@
                 </label>
 
                 <label for="pph" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">PPH <span class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
+                    <span class="text-gray-700 font-semibold">PPH <span
+                            class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
                     <input type="number" min="0" step="any" id="pph" name="pph"
                         value="{{ old('pph') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('pph')
@@ -32,7 +33,8 @@
                 </label>
 
                 <label for="tips_sopir" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Tips Sopir <span class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
+                    <span class="text-gray-700 font-semibold">Tips Sopir <span
+                            class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
                     <input type="number" min="0" step="any" id="tips_sopir" name="tips_sopir"
                         value="{{ old('tips_sopir') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('tips_sopir')
@@ -44,7 +46,8 @@
                 </label>
 
                 <label for="oli" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Oli <span class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
+                    <span class="text-gray-700 font-semibold">Oli <span
+                            class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
                     <input type="number" min="0" step="any" id="oli" name="oli"
                         value="{{ old('oli') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('oli')
@@ -56,7 +59,8 @@
                 </label>
 
                 <label for="gas" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Gas <span class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
+                    <span class="text-gray-700 font-semibold">Gas <span
+                            class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
                     <input type="number" min="0" step="any" id="gas" name="gas"
                         value="{{ old('gas') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('gas')
@@ -81,8 +85,8 @@
                     </label>
                 @endif
 
-                {{-- show label if today is 1st day of month --}}
-                @if (now()->format('d') == 1)
+                {{-- show label if today is 1st - 5th day of the month --}}
+                @if (now()->format('d') >= 1 && now()->format('d') <= 5)
                     <label for="gaji_karyawan" class="block mt-4 text-sm">
                         <span class="text-gray-700 font-semibold">Gaji Karyawan</span>
                         <input type="number" min="0" step="any" id="gaji_karyawan" name="gaji_karyawan"
@@ -96,21 +100,20 @@
                     </label>
                 @endif
 
-                @if (now()->format('d') == 1)
-                    <label for="reward_karyawan" class="block mt-4 text-sm">
-                        <span class="text-gray-700 font-semibold">Reward Karyawan</span>
-                        <input type="number" min="0" step="any" id="reward_karyawan" name="reward_karyawan"
-                            value="{{ old('reward_karyawan') }}"
-                            class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('reward_karyawan')
+                <label for="reward_karyawan" class="block mt-4 text-sm">
+                    <span class="text-gray-700 font-semibold">Reward Karyawan <span
+                            class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
+                    <input type="number" min="0" step="any" id="reward_karyawan" name="reward_karyawan"
+                        value="{{ old('reward_karyawan') }}"
+                        class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('reward_karyawan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />
-                        @error('reward_karyawan')
-                            <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
-                        @enderror
-                    </label>
-                @endif
+                    @error('reward_karyawan')
+                        <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
+                    @enderror
+                </label>
 
-                @if (now()->format('d') == 15)
+                @if (now()->format('d') >= 15 && now()->format('d') <= 20)
                     <label for="pln" class="block mt-4 text-sm">
                         <span class="text-gray-700 font-semibold">PLN</span>
                         <input type="number" min="0" step="any" id="pln" name="pln"
@@ -124,7 +127,7 @@
                     </label>
                 @endif
 
-                @if (now()->format('d') == 15)
+                @if (now()->format('d') >= 15 && now()->format('d') <= 20)
                     <label for="pdam" class="block mt-4 text-sm">
                         <span class="text-gray-700 font-semibold">PDAM</span>
                         <input type="number" min="0" step="any" id="pdam" name="pdam"
@@ -152,7 +155,8 @@
                     </label>
                 @endif
 
-                @if (now()->format('d') == 15)
+                {{-- show label only 1 month per year --}}
+                @if (now()->format('m') == 12)
                     <label for="pbb" class="block mt-4 text-sm">
                         <span class="text-gray-700 font-semibold">PBB</span>
                         <input type="number" min="0" step="any" id="pbb" name="pbb"
@@ -166,8 +170,10 @@
                     </label>
                 @endif
 
+
                 <label for="biaya_lain" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Biaya lain-lain <span class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
+                    <span class="text-gray-700 font-semibold">Biaya lain-lain <span
+                            class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)</span></span>
                     <input type="number" min="0" step="any" id="biaya_lain" name="biaya_lain"
                         value="{{ old('biaya_lain') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('biaya_lain')

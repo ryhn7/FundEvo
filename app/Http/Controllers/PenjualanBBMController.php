@@ -32,7 +32,7 @@ class PenjualanBBMController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
+    {
         return view('SPBU.penjualanBBM.create', [
             'bbms' => BBM::all(),
         ]);
@@ -56,6 +56,7 @@ class PenjualanBBMController extends Controller
             'stock_fakta' => 'required|numeric',
             'penyusutan' => 'required|numeric',
             'pendapatan' => 'required|numeric',
+            'created_at' => 'date',
         ]);
 
         //limit jenis_bbm from bbm_id to 1 each
@@ -114,6 +115,7 @@ class PenjualanBBMController extends Controller
             'stock_fakta' => 'required|numeric',
             'penyusutan' => 'required|numeric',
             'pendapatan' => 'required|numeric',
+            'created_at' => 'date',
         ];
 
         $validated = $request->validate($rules);
@@ -161,5 +163,19 @@ class PenjualanBBMController extends Controller
     {
         $penjualanBBM = PenjualanBBM::where('bbm_id', $id)->latest()->first();
         return response()->json($penjualanBBM);
+    }
+
+    public function checkYesterday($id)
+    {
+        $yesterday = Carbon::yesterday()->toDateString();
+        $penjualanBBM = PenjualanBBM::where('bbm_id', $id)->whereDate('created_at', $yesterday)->first();
+
+        // if $penjualanBBM is null, return false
+        if ($penjualanBBM == null) {
+            return response()->json(false);
+        } else {
+            return response()->json($penjualanBBM);
+        }
+
     }
 }

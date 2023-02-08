@@ -18,6 +18,7 @@ use App\Models\BBM;
 */
 
 Route::get('/', fn () => view('index', []));
+Route::get('/oke', fn () => view('tes', []));
 
 
 Route::resource('/penjualan-bbm', PenjualanBBMController::class)->except('show');

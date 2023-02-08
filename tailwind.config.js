@@ -2,7 +2,7 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
     mode: "jit",
-    content: ["./resources/**/*.{blade.php,js}"],
+    content: ["./resources/**/*.{blade.php,js}", "./node_modules/tw-elements/dist/js/**/*.js"],
     presets: [],
     darkMode: "class",
     theme: {
@@ -719,7 +719,7 @@ module.exports = {
             DEFAULT: "1",
         },
         fontFamily: {
-            sans: ["Open Sans"],
+            open: ["Open Sans"],
             serif: ['SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace', "serif"],
             body: ["Roboto", "sans-serif"],
             awesome: ["FontAwesome"],
@@ -1447,5 +1447,7 @@ module.exports = {
                 }),
             });
         }),
+        require('tw-elements/dist/plugin'),
+
     ],
 };

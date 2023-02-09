@@ -17,14 +17,11 @@ class PengeluaranOpsTokoListrikController extends Controller
     {
         $pengeluaranOps = PengeluaranOpsTokoListrik::where('date', Carbon::today()->toDateString())->get();
         $spend = PengeluaranOpsTokoListrik::where('date', Carbon::today()->toDateString())->get();
-        $totalGajiSupervisor = $spend->sum('gaji_supervisor');
         $totalGajiKaryawan = $spend->sum('gaji_karyawan');
         $totalReward = $spend->sum('reward_karyawan');
-        $pln = $spend->sum('pln');
-        $pdam = $spend->sum('pdam');
         $pbb = $spend->sum('pbb');
         $etc = $spend->sum('biaya_lain');
-        $result = (int)$totalGajiSupervisor + (int)$totalGajiKaryawan + (int)$totalReward + (int)$pln + (int)$pdam + (int)$pbb + (int)$etc;
+        $result =  + (int)$totalGajiKaryawan + (int)$totalReward  + (int)$pbb + (int)$etc;
         return view('TokoListrik.PengeluaranOpsTokoListrik.index', [
             'spends' => $spend,
             'result' => $result,
@@ -54,11 +51,8 @@ class PengeluaranOpsTokoListrikController extends Controller
     {
         $validated = $request->validate([
             'biaya_kulakan' => 'nullable|numeric',
-            'gaji_supervisor' => 'required|numeric',
             'gaji_karyawan' => 'required|numeric',
             'reward_karyawan' => 'required|numeric',
-            'pln' => 'required|numeric',
-            'pdam' => 'required|numeric',
             'pbb' => 'required|numeric',
             'biaya_lain' => 'required|numeric',
             'keterangan' => 'nullable',
@@ -106,11 +100,8 @@ class PengeluaranOpsTokoListrikController extends Controller
     {
         $rules = [
             'biaya_kulakan' => 'nullable|numeric',
-            'gaji_supervisor' => 'required|numeric',
             'gaji_karyawan' => 'required|numeric',
             'reward_karyawan' => 'required|numeric',
-            'pln' => 'required|numeric',
-            'pdam' => 'required|numeric',
             'pbb' => 'required|numeric',
             'biaya_lain' => 'required|numeric',
             'keterangan' => 'nullable',

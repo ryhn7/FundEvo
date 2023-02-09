@@ -22,6 +22,7 @@ class PenjualanItemListrikFactory extends Factory
             'penerimaan' => fake()->numberBetween(500, 1000),
             'penjualan' => fake()->numberBetween(1, 500),
             'stock_akhir' => fake()->numberBetween(1, 500),
+            'penyusutan' => fake()->numberBetween(1, 500),
             'pendapatan' => fake()->numberBetween(10000000, 1000000000),
         ];
     }

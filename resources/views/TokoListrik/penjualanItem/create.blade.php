@@ -28,7 +28,7 @@
                             @endif
                         @endforeach
                     </select>
-                    @error('item_id')
+                    @error('kategori_item')
                         <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
                     @enderror
                 </label>
@@ -89,6 +89,18 @@
                     @enderror
                 </label>
 
+                <label for="penyusutan" class="block mt-4 text-sm">
+                    <span class="text-gray-700 font-semibold">Penyusutan</span>
+                    <input type="number" min="0" step="any" id="penyusutan" name="penyusutan" required
+                        value="{{ old('penyusutan', $item->penyusutan) }}"
+                        class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penyusutan')
+                    border-red-600 focus:border-red-600 focus:ring-red-600
+                    @enderror" />
+                    @error('penyusutan')
+                        <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
+                    @enderror
+                </label>
+
                 <label for="penjualan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Penjualan</span>
                     <input type="number" min="0" step="any" id="penjualan" name="penjualan"
@@ -112,6 +124,7 @@
                         <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
                     @enderror
                 </label>
+
 
                 <label for="pendapatan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Pendapatan</span>
@@ -138,6 +151,7 @@
         const penerimaan = document.getElementById('penerimaan');
         const penjualan = document.getElementById('penjualan');
         const stockAkhir = document.getElementById('stock_akhir');
+        const penyusutan = document.getElementById('penyusutan');
         const pendapatan = document.getElementById('pendapatan');
         const hargaJual = document.getElementById('harga_jual');
         const item = document.getElementById('item_id');
@@ -150,13 +164,40 @@
             console.log(penerimaan.value)
         })
 
-        penjualan.addEventListener('keyup', () => {
-            const jual = parseInt(stockAwal.value) + parseInt(penerimaan.value) - parseInt(penjualan.value);
-            const hasil = parseInt(penjualan.value) * parseInt(hargaJual.value);
+        item.addEventListener('change', () => {
+            const item_id = item.value;
+            $.ajax({
+                url: '/penjualan-item/getPreviousStock/' + item_id,
+                type: 'GET',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function(result) {
+                    //show harga_jual based on id 
+                    console.log(result);
+                    if (result.stock_awal > 0) {
+                        stockAwal.value = result[0].stock_akhir;
+                    } else {
+                        stockAwal.value = null;
+                    }
+                }
+            })
+        });
+        penyusutan.value = 0;
+        penyusutan.addEventListener('keyup', ()=> {
+            const jual = parseInt(stockAwal.value) + parseInt(penerimaan.value) - parseInt(penjualan.value)- parseInt(penyusutan.value);
+            stockAkhir.value = jual;
+        })
 
+        penjualan.addEventListener('keyup', () => {
+            const jual = parseInt(stockAwal.value) + parseInt(penerimaan.value) - parseInt(penjualan.value)- parseInt(penyusutan.value);
+            const hasil = parseInt(penjualan.value) * parseInt(hargaJual.value);
             stockAkhir.value = jual;
             pendapatan.value =  hasil;
         });
+
+
 
         $(document).ready(function () {
             /*------------------------------------------

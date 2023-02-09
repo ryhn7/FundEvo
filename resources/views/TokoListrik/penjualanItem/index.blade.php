@@ -3,13 +3,27 @@
 @section('container')
     <div class="px-3 mb-5">
         @if (session()->has('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-3" role="alert">
+            <div alert
+                class="relative p-4 pr-12 mb-4 text-white border border-solid rounded-lg bg-gradient-to-tl from-green-600 to-lime-400 border-lime-300"
+                role="alert">
                 <strong class="font-bold">Woaa!</strong>
-                <span class="block sm:inline">{{ session('success') }}</span>
-                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                </span>
+                {{ session('success') }}
+                <button type="button" alert-close
+                    class="box-content absolute top-0 right-0 p-4 text-sm text-white bg-transparent border-0 rounded w-4 h-4 z-2">
+                </button>
+            </div>
+        @elseif (session()->has('error'))
+            <div alert
+                class="relative p-4 pr-12 mb-4 text-white border border-red-300 border-solid rounded-lg bg-gradient-to-tl from-red-600 to-rose-400"
+                role="alert">
+                <strong class="font-bold">Oops!</strong>
+                {{ session('error') }}
+                <button type="button" alert-close
+                    class="box-content absolute top-0 right-0 p-4 text-sm text-white bg-transparent border-0 rounded w-4 h-4 z-2">
+                </button>
             </div>
         @endif
+        
     </div>
     <!-- row 1 -->
     <div class="flex flex-wrap px-3 -mx-3 mb-7">
@@ -23,7 +37,7 @@
                                 <p class="mb-0 font-sans font-semibold leading-normal text-sm">Total Pendapatan/hari</p>
                                 <h5 class="mb-0 font-bold">
                                     @currency($totalAmount)
-                                    <span class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span>
+                                    <!-- <span class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span> -->
                                 </h5>
                             </div>
                         </div>
@@ -48,7 +62,7 @@
                                 <p class="mb-0 font-sans font-semibold leading-normal text-sm">Total Penjualan item</p>
                                 <h5 class="mb-0 font-bold">
                                     {{ $totalSell }}
-                                    <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span>
+                                    <!-- <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span> -->
                                 </h5>
                             </div>
                         </div>
@@ -93,6 +107,7 @@
                     penjualan</a></div>
         </div>
     </div>
+    @if ($sells->count() > 0)
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             <div
@@ -122,6 +137,9 @@
                                         Penjualan</th>
                                     <th
                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Penyusutan</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Stok Akhir</th>
                                     <th
                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
@@ -146,7 +164,7 @@
                                     </td>
                                     <td
                                         class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                        <p class="mb-0 font-semibold leading-tight text-xs">{{ $sells[0]->item->kategori }}
+                                        <p class="mb-0 font-semibold leading-tight text-xs">{{ $sells[0]->item->itemKategoris->kategori }}
                                         </p>
                                     </td>
                                     <td
@@ -162,6 +180,11 @@
                                         class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                         <span
                                             class="font-semibold leading-tight text-xs text-slate-400">{{ $sells[0]->penjualan }}</span>
+                                    </td>
+                                    <td
+                                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                        <span
+                                            class="font-semibold leading-tight text-xs text-slate-400">{{ $sells[0]->penyusutan }}</span>
                                     </td>
                                     <td
                                         class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
@@ -217,7 +240,7 @@
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
-                                            <p class="mb-0 font-semibold leading-tight text-xs">{{ $sell->item->kategori }}
+                                            <p class="mb-0 font-semibold leading-tight text-xs">{{ $sell->item->itemKategoris->kategori }}
                                             </p>
                                         </td>
                                         <td
@@ -234,6 +257,11 @@
                                             class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                             <span
                                                 class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->penjualan }}</span>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                                            <span
+                                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->penyusutan }}</span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
@@ -284,4 +312,37 @@
             </div>
         </div>
     </div>
+    @else
+        <div>
+            <hr class="border-b-[1px] border-solid">
+            <div class="w-full">
+                <div class="flex justify-center">
+                    <div class="text-center">
+                        <h1 class="text-2xl font-bold">Data masih kosong</h1>
+                        <p class="text-gray-500">Silahkan tambahkan data terlebih dahulu</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container w-full h-[400px]" id="animation">
+                <script>
+                    var animation = bodymovin.loadAnimation({
+                        container: document.getElementById('animation'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: 'https://assets2.lottiefiles.com/packages/lf20_ysrn2iwp.json'
+                    })
+                </script>
+            </div>
+        </div>
+    @endif
+
+    <script>
+            const date = document.getElementById('date1');
+            const formFilter = document.getElementById('dateFilter');
+
+            date.addEventListener('change', () => {
+                formFilter.submit();
+            })
+        </script>
 @endsection

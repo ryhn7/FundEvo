@@ -15,14 +15,39 @@
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" class="font-semibold">Pilih Kategori</option>
                         @foreach ($items as $item)
-                            @if (old('kategori_item', $sell->item_id) == $item->id)
-                                <option value="{{ $item->id }}" selected>{{ $item->kategori}}</option>
-                            @else
-                                <option value="{{ $item->id }}">{{ $item->kategori}}</option>
+                            @if (old('item_id', $sell->item_id) == $item->id)
+                                @foreach ($kategoris as $kategori)
+                                    @if (old('kategori_item', $item->kategori) == $kategori->id)
+                                        <option value="{{ $kategori->id }}" selected>{{ $kategori->kategori}}</option>
+                                    @else
+                                        <option value="{{ $kategori->id }}">{{ $kategori->kategori}}</option>
+                                    @endif
+                                @endforeach 
                             @endif
                         @endforeach
+                        <!-- @foreach ($kategoris as $kategori)
+                            @if (old('kategori', $sell->kategori) == $kategori->id)
+                                <option value="{{ $kategori->id }}" selected>{{ $kategori->kategori }}</option>
+                            @else
+                                <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
+                            @endif
+                        @endforeach -->
+                        <!-- @foreach ($items as $item)
+                            @if (old('kategori_item', $item->kategori) == $kategori->id)
+                                <option value="{{ $kategori->kategori }}" selected>{{ $kategori->kategori }}</option>
+                            @else
+                                <option value="{{ $kategori->kategori }}">{{ $kategori->kategori }}</option>
+                            @endif
+                        @endforeach -->
+                        <!-- @foreach ($kategoris as $kategori)
+                            @if (old('kategori_item', $item->kategori) == $kategori->id)
+                                <option value="{{ $kategori->id }}" selected>{{ $kategori->kategori}}</option>
+                            @else
+                                <option value="{{ $kategori->id }}">{{ $kategori->kategori}}</option>
+                            @endif
+                        @endforeach -->
                     </select>
-                    @error('kategori_id')
+                    @error('kategori_item')
                         <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
                     @enderror
                 </label>
@@ -47,9 +72,24 @@
                     @enderror
                 </label>
 
+                <label for="harga_jual" class="block mt-4 text-sm">
+                    <span class="text-gray-700 font-semibold">Harga Item</span>
+                    <input type="number" min="0" step="any" id="harga_jual" name="harga_jual" required
+                        @foreach ($items as $item)
+                            @if (old('harga_jual', $sell->item_id) == $item->id)
+                            value="{{ old('harga_jual', $item->harga_jual) }}"
+                            @endif @endforeach
+                            class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('harga_jual')
+                            border-red-600 focus:border-red-600 focus:ring-red-600
+                            @enderror" />
+                    @error('harga_jual')
+                        <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
+                    @enderror
+                </label>
+
                 <label for="stock_awal" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Stock Awal</span>
-                    <input type="number" min="1000" step="any" id="stock_awal" name="stock_awal" required
+                    <input type="number" min="0" step="any" id="stock_awal" name="stock_awal" required
                         value="{{ old('stock_awal', $sell->stock_awal) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('stock_awal')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -61,12 +101,24 @@
 
                 <label for="penerimaan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Penerimaan</span>
-                    <input type="number" min="1000" step="any" id="penerimaan" name="penerimaan"
+                    <input type="number" min="0" step="any" id="penerimaan" name="penerimaan"
                         value="{{ old('penerimaan', $sell->penerimaan) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penerimaan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />
                     @error('penerimaan')
+                        <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
+                    @enderror
+                </label>
+
+                <label for="penyusutan" class="block mt-4 text-sm">
+                    <span class="text-gray-700 font-semibold">Penyusutan</span>
+                    <input type="number" min="0" step="any" id="penyusutan" name="penyusutan" required
+                        value="{{ old('penyusutan', $sell->penyusutan) }}"
+                        class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penyusutan')
+                    border-red-600 focus:border-red-600 focus:ring-red-600
+                    @enderror" />
+                    @error('penyusutan')
                         <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
                     @enderror
                 </label>
@@ -85,7 +137,7 @@
 
                 <label for="stock_akhir" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Stock Akhir</span>
-                    <input type="number" min="1000" step="any" id="stock_akhir" name="stock_akhir" required
+                    <input type="number" min="0" step="any" id="stock_akhir" name="stock_akhir" required
                         value="{{ old('stock_akhir', $sell->stock_akhir) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('stock_akhir')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -95,9 +147,10 @@
                     @enderror
                 </label>
 
+
                 <label for="pendapatan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Pendapatan</span>
-                    <input type="number" min="1000" step="any" id="pendapatan" name="pendapatan" required
+                    <input type="number" min="0" step="any" id="pendapatan" name="pendapatan" required
                         value="{{ old('pendapatan', $sell->pendapatan) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('pendapatan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -120,11 +173,17 @@
         const penjualan = document.getElementById('penjualan');
         const stockAkhir = document.getElementById('stock_akhir');
         const pendapatan = document.getElementById('pendapatan');
+        const penyusutan = document.getElementById('penyusutan');
         const hargaJual = document.getElementById('harga_jual');
 
-        penjualan.addEventListener('change', () => {
-            const jual = parseInt(stockAwal.value) + parseInt(penerimaan.value) - parseInt(penjualan.value);
-            const hasil = parseInt(penjualan.value) * 10000;
+        penyusutan.addEventListener('keyup', () => {
+            const jual = parseInt(stockAwal.value) + parseInt(penerimaan.value) - parseInt(penjualan.value)- parseInt(penyusutan.value);
+            stockAkhir.value = jual;
+        });
+
+        penjualan.addEventListener('keyup', () => {
+            const jual = parseInt(stockAwal.value) + parseInt(penerimaan.value) - parseInt(penjualan.value)- parseInt(penyusutan.value);
+            const hasil = parseInt(penjualan.value) * parseInt(hargaJual.value);
 
             stockAkhir.value = jual;
             pendapatan.value =  hasil;

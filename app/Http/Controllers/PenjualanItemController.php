@@ -52,6 +52,7 @@ class PenjualanItemController extends Controller
             'item_id' => 'required',
             'stock_awal' => 'required|numeric',
             'penerimaan' => 'nullable|numeric',
+            'penyusutan' => 'nullable|numeric',
             'penjualan' => 'nullable|numeric',
             'stock_akhir' => 'required|numeric',
             'pendapatan' => 'required|numeric',
@@ -84,6 +85,7 @@ class PenjualanItemController extends Controller
         return view('TokoListrik.penjualanItem.edit', [
             'items' => Item::all(),
             'sell' => $penjualan_item,
+            'kategoris' => KategoriItem::all(),
         ]);
     }
 
@@ -102,6 +104,7 @@ class PenjualanItemController extends Controller
             'penerimaan' => 'nullable|numeric',
             'penjualan' => 'nullable|numeric',
             'stock_akhir' => 'required|numeric',
+            'penyusutan' => 'required|numeric',
             'pendapatan' => 'required|numeric',
         ];
 
@@ -131,5 +134,11 @@ class PenjualanItemController extends Controller
         // $harga = Item::find($id);
         $harga = Item::where('id', $id)->get('harga_jual');
         return response()->json($harga);
+    }
+
+    public function getPreviousStock($id)
+    {
+        $penjualanItem = PenjualanItemListrik::where('item_id', $id)->latest()->first();
+        return response()->json($penjualanItem);
     }
 }

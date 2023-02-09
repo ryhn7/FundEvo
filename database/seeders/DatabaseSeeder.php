@@ -25,9 +25,8 @@ class DatabaseSeeder extends Seeder
 
         // \App\Models\User::factory(10)->create();
 
-        PengeluaranOpsBBM::factory(5)->create();
+        // PengeluaranOpsBBM::factory(5)->create();
         PengeluaranOpsTokoListrik::factory(5)->create();
-        PenjualanBBM::factory(4)->create();
         PenjualanItemListrik::factory(5)->create();
         // PengeluaranOpsBBM::factory(5)->create();
 

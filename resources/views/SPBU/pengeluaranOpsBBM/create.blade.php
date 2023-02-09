@@ -347,12 +347,33 @@
 
                     return blobUrl;
                 },
+
+                // add multiple files from input file
                 addFiles(e) {
-                    const files = createFileList([...this.files], [...e.target.files]);
-                    this.files = files;
-                    // this.form.formData.files = [...files];
-                }
+                    let files = [...this.files];
+                    files.push(...e.target.files);
+
+                    this.files = createFileList(files);
+
+                    console.log('FILES');
+                    console.log(this.files);
+                    console.log("punya add files");
+                },
+
             };
         }
+        // const nota = document.getElementById("nota");
+
+        // nota.addEventListener("drop", function() {
+        //     console.log('NOTA 1');
+        //     console.log(nota.files);
+        //     console.log("punya nota");
+        // });
+
+        // nota.addEventListener("input", function() {
+        //     console.log('NOTA 2');
+        //     console.log(nota.files);
+        //     console.log("punya nota 2");
+        // });
     </script>
 @endsection

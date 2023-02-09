@@ -1,3 +1,5 @@
+{{-- @dd($spends) --}}
+
 @extends('layouts.main')
 
 @section('container')
@@ -300,55 +302,53 @@
                                                                     class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                                                                     <h5 class="text-xl font-medium leading-normal text-gray-800"
                                                                         id="exampleModalLgLabel">
-                                                                        Large modal
+                                                                        Nota 1
                                                                     </h5>
                                                                     <button type="button"
                                                                         class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                                                                         data-bs-dismiss="modal"
                                                                         aria-label="Close"></button>
                                                                 </div>
+
                                                                 <div class="modal-body relative p-4">
-                                                                    <div id="carouselExampleIndicators"
+                                                                    <div id="spendsIndicator"
                                                                         class="carousel slide relative"
                                                                         data-bs-ride="carousel">
-                                                                        <div
-                                                                            class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
-                                                                            <button type="button"
-                                                                                data-bs-target="#carouselExampleIndicators"
-                                                                                data-bs-slide-to="0" class="active"
-                                                                                aria-current="true"
-                                                                                aria-label="Slide 1"></button>
-                                                                            <button type="button"
-                                                                                data-bs-target="#carouselExampleIndicators"
-                                                                                data-bs-slide-to="1"
-                                                                                aria-label="Slide 2"></button>
-                                                                            <button type="button"
-                                                                                data-bs-target="#carouselExampleIndicators"
-                                                                                data-bs-slide-to="2"
-                                                                                aria-label="Slide 3"></button>
-                                                                        </div>
                                                                         <div
                                                                             class="carousel-inner relative w-full overflow-hidden">
                                                                             <div
                                                                                 class="carousel-item active float-left w-full">
-                                                                                <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
+                                                                                <img src="{{ asset('storage/nota/' . $spends[0]->nota[0]) }}"
                                                                                     class="block w-full"
                                                                                     alt="Wild Landscape" />
                                                                             </div>
-                                                                            <div class="carousel-item float-left w-full">
-                                                                                <img src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
-                                                                                    class="block w-full" alt="Camera" />
-                                                                            </div>
-                                                                            <div class="carousel-item float-left w-full">
-                                                                                <img src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
-                                                                                    class="block w-full"
-                                                                                    alt="Exotic Fruits" />
-                                                                            </div>
+                                                                            {{-- @for ($i = 1; $i < count($spends[0]->nota); $i++)
+                                                                                @php($nota = $spends[0]->nota[$i])
+                                                                                <div
+                                                                                    class="carousel-item float-left w-full">
+                                                                                    <img src="{{ asset('storage/nota/' . $nota) }}"
+                                                                                        class="block w-full"
+                                                                                        alt="Camera" />
+                                                                                </div>
+                                                                            @endfor --}}
+
+                                                                            @foreach ($spends[0]->nota as $index => $nota)
+                                                                                @if ($index == 0)
+                                                                                    @continue
+                                                                                @endif
+                                                                                <div
+                                                                                    class="carousel-item float-left w-full">
+                                                                                    <img src="{{ asset('storage/nota/' . $nota) }}"
+                                                                                        class="block w-full"
+                                                                                        alt="Camera" />
+                                                                                </div>
+                                                                            @endforeach
+
                                                                         </div>
                                                                         <button
                                                                             class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
                                                                             type="button"
-                                                                            data-bs-target="#carouselExampleIndicators"
+                                                                            data-bs-target="#spendsIndicator"
                                                                             data-bs-slide="prev">
                                                                             <span
                                                                                 class="carousel-control-prev-icon inline-block bg-no-repeat"
@@ -358,7 +358,7 @@
                                                                         <button
                                                                             class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
                                                                             type="button"
-                                                                            data-bs-target="#carouselExampleIndicators"
+                                                                            data-bs-target="#spendsIndicator"
                                                                             data-bs-slide="next">
                                                                             <span
                                                                                 class="carousel-control-next-icon inline-block bg-no-repeat"
@@ -413,20 +413,6 @@
                                     </tr>
                                     @foreach ($spends->skip(1) as $spend)
                                         <tr>
-                                            <td
-                                                class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                                <div class="flex px-2 py-1">
-                                                    <div class="flex flex-col justify-center">
-                                                        <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                            @if ($spend->harga_penebusan_bbm)
-                                                                @currency($spend->harga_penebusan_bbm)
-                                                            @else
-                                                                -
-                                                            @endif
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                            </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                                 <p class="mb-0 font-semibold leading-tight text-xs">
@@ -569,9 +555,92 @@
                                             </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                                <span class="font-semibold leading-tight text-xs text-slate-400">
+                                                <span class="font-semibold leading-tight text-xs text-green-400">
                                                     @if ($spend->nota)
-                                                        {{ $spend->nota }}
+                                                        <button type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#spend">Lihat Nota</button>
+
+                                                        <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+                                                            id="spend" tabindex="-1"
+                                                            aria-labelledby="exampleModalLgLabel" aria-modal="true"
+                                                            role="dialog">
+                                                            <div
+                                                                class="modal-dialog modal-lg relative w-auto pointer-events-none">
+                                                                <div
+                                                                    class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                                                                    <div
+                                                                        class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                                                                        <h5 class="text-xl font-medium leading-normal text-gray-800"
+                                                                            id="exampleModalLgLabel">
+                                                                            Nota 2
+                                                                        </h5>
+                                                                        <button type="button"
+                                                                            class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+
+                                                                    <div class="modal-body relative p-4">
+                                                                        <div id="spendIndicator"
+                                                                            class="carousel slide relative"
+                                                                            data-bs-ride="carousel">
+                                                                            <div
+                                                                                class="carousel-inner relative w-full overflow-hidden">
+                                                                                <div
+                                                                                    class="carousel-item active float-left w-full">
+                                                                                    <img src="{{ asset('storage/nota/' . $spend->nota[0]) }}"
+                                                                                        class="block w-full"
+                                                                                        alt="Wild Landscape" />
+                                                                                </div>
+                                                                                {{-- @for ($i = 1; $i < count($spends[0]->nota); $i++)
+                                                                            @php($nota = $spends[0]->nota[$i])
+                                                                            <div
+                                                                                class="carousel-item float-left w-full">
+                                                                                <img src="{{ asset('storage/nota/' . $nota) }}"
+                                                                                    class="block w-full"
+                                                                                    alt="Camera" />
+                                                                            </div>
+                                                                        @endfor --}}
+
+                                                                                @foreach ($spend->nota as $index => $nota)
+                                                                                    @if ($index == 0)
+                                                                                        @continue
+                                                                                    @endif
+                                                                                    <div
+                                                                                        class="carousel-item float-left w-full">
+                                                                                        <img src="{{ asset('storage/nota/' . $nota) }}"
+                                                                                            class="block w-full"
+                                                                                            alt="Camera" />
+                                                                                    </div>
+                                                                                @endforeach
+
+                                                                            </div>
+                                                                            <button
+                                                                                class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+                                                                                type="button"
+                                                                                data-bs-target="#spendIndicator"
+                                                                                data-bs-slide="prev">
+                                                                                <span
+                                                                                    class="carousel-control-prev-icon inline-block bg-no-repeat"
+                                                                                    aria-hidden="true"></span>
+                                                                                <span
+                                                                                    class="visually-hidden">Previous</span>
+                                                                            </button>
+                                                                            <button
+                                                                                class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+                                                                                type="button"
+                                                                                data-bs-target="#spendIndicator"
+                                                                                data-bs-slide="next">
+                                                                                <span
+                                                                                    class="carousel-control-next-icon inline-block bg-no-repeat"
+                                                                                    aria-hidden="true"></span>
+                                                                                <span class="visually-hidden">Next</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     @else
                                                         -
                                                     @endif

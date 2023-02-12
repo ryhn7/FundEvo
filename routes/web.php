@@ -22,12 +22,14 @@ use App\Models\BBM;
 */
 
 Route::get('/', fn () => view('index', []));
+Route::get('/oke', fn () => view('tes', []));
 
 
 Route::resource('/penjualan-bbm', PenjualanBBMController::class)->except('show');
 Route::get('/penjualan-bbm/filter', [PenjualanBBMController::class, 'filter']);
 Route::get('/penjualan-bbm/getData/{id}', [PenjualanBBMController::class, 'getHarga']); //ajax for getting harga bbm
 Route::get('/penjualan-bbm/getPreviousStock/{id}', [PenjualanBBMController::class, 'getPreviousStock']); //ajax for getting previous stock
+Route::get('/penjualan-bbm/checkBBM/{id}', [PenjualanBBMController::class, 'checkYesterday']); //ajax for check bbm from yesterday
 
 
 Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');

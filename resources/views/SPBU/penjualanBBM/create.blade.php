@@ -5,6 +5,21 @@
         <form action="/penjualan-bbm" method="POST">
             @csrf
             <div>
+                <div id="date" class="hidden">
+                    <label for="created_at" class="block mt-4 text-sm">
+                        <span class="text-gray-700 font-semibold">Tanggal <span
+                                class="text-[10px] text-red-500 tracking-wider">(Wajib diisi)
+                            </span></span>
+                        <input type="date" name="created_at" value="{{ old('created_at') }}"
+                            class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('created_at')
+                        border-red-600 focus:border-red-600 focus:ring-red-600
+                        @enderror" />
+                        @error('created_at')
+                            <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
+                        @enderror
+                    </label>
+                </div>
+
                 <label for="bbm_id" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">
                         Jenis BBM
@@ -150,6 +165,7 @@
         const pendapatan = document.getElementById('pendapatan');
         const hargaJual = document.getElementById('harga_jual');
         const bbm = document.getElementById('bbm_id');
+        const date = document.getElementById('date');
 
         bbm.addEventListener('change', () => {
             const bbm_id = bbm.value;
@@ -176,12 +192,32 @@
                 },
                 dataType: 'json',
                 success: function(result) {
-                    //show harga_jual based on id 
-                    console.log(result);
                     if (result.stock_awal > 0) {
                         stockAwal.value = result.stock_fakta;
                     } else {
                         stockAwal.value = null;
+                    }
+                }
+            })
+        });
+
+        bbm.addEventListener('change', () => {
+            const bbm_id = bbm.value;
+            $.ajax({
+                url: '/penjualan-bbm/checkBBM/' + bbm_id,
+                type: 'GET',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function(result) {
+                    if (result.created_at == date.value) {
+                        date.classList.remove('hidden');
+                        alert(
+                            'Anda belum memasukan data penjualan BBM sebelumnya, silakan isi tanggal yang sesuai terlebih dahulu'
+                        );
+                    } else {
+                        date.classList.add('hidden');
                     }
                 }
             })

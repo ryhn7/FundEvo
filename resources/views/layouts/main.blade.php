@@ -33,7 +33,7 @@
 
 </head>
 
-<body class="m-0 font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
+<body class="m-0 font-open antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
     @include('partials.sidebar')
 
     <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
@@ -46,11 +46,10 @@
     </main>
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- plugin for scrollbar  -->
-    <script src={{ asset('assets/js/perfect-scrollbar.js') }} async></script>
     <!-- main script file  -->
-    <script src={{ asset('assets/js/soft-ui-dashboard-tailwind.js') }} async></script>
+    {{-- <script src={{ asset('assets/js/soft-ui-dashboard-tailwind.js') }} async></script> --}}
     <script src="{{ asset('assets/js/jquery-3.6.0.js') }}"></script>
+    <script src="{{ asset('assets/js/index.min.js') }}"></script>
 </body>
 
 

@@ -56,7 +56,26 @@ class PenjualanItemController extends Controller
             'penjualan' => 'nullable|numeric',
             'stock_akhir' => 'required|numeric',
             'pendapatan' => 'required|numeric',
+            'created_at' => 'nullable|date',
         ]);
+
+        // if ($validated['created_at'] == null) {
+        //     $validated['created_at'] = Carbon::now();
+        // }
+
+        //limit item from item_id to 1 each
+        $item_id = $request->item_id;
+        $yesterday = Carbon::yesterday()->toDateString();
+        $penjualanItemYesterday = PenjualanItemListrik::where('item_id', $item_id)->whereDate('created_at', $yesterday)->first();
+        $penjualanItemListrik = PenjualanItemListrik::where('item_id', $item_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
+        if ($penjualanItemListrik) {
+            return redirect('/penjualan-item')->with('error', 'Hanya boleh input 1 jenis Item per hari!');
+        }
+
+        // dd($penjualanItemYesterday);
+        if (!$penjualanItemYesterday) {
+            return redirect('/penjualan-item')->with('error', 'Harap input penjualan Item hari kemarin terlebih dahulu!');
+        }
 
         PenjualanItemListrik::create($validated);
 
@@ -127,6 +146,12 @@ class PenjualanItemController extends Controller
         PenjualanItemListrik::destroy($penjualan_item->id);
 
         return redirect('/penjualan-item')->with('success', 'Data penjualan berhasil dihapus!');
+    }
+
+    public function getItem($id)
+    {
+        $item = Item::where('kategori', $id)->get();
+        return response()->json($item);
     }
 
     public function getHarga($id)

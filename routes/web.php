@@ -9,6 +9,7 @@ use App\Http\Controllers\PenjualanItemController;
 use App\Http\Controllers\KategoryItemController;
 use App\Http\Controllers\PengeluaranOpsTokoListrikController;
 use App\Models\BBM;
+use App\Models\Item;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,12 +39,9 @@ Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show')
 
 //Item Listrik
 Route::resource('/penjualan-item', PenjualanItemController::class)->except('show');
-Route::get('/penjualan-item/filter', [PenjualanItemController::class, 'filter']);
-Route::get('/penjualan-item/{id}', function ($id) {
-    $item = App\Models\Item::where('kategori', $id)->get();
-    return response()->json($item);
-});
-Route::get('/penjualan-item/getData/{id}', [PenjualanItemController::class, 'getHarga']);
+Route::get('/penjualan-item/filter', [PenjualanItemController::class, 'filter']); //ajax for filtering data based on date
+Route::get('/penjualan-item/{id}', [PenjualanItemController::class, 'getItem']); //ajax for getting item
+Route::get('/penjualan-item/getData/{id}', [PenjualanItemController::class, 'getHarga']); //ajax for getting harga item
 Route::get('/penjualan-item/getPreviousStock/{id}', [PenjualanItemController::class, 'getPreviousStock']); //ajax for getting previous stock
 Route::resource('/kategori', KategoryItemController::class)->except('show');
 Route::resource('/kategori-item', ItemCategoryController::class)->except('show');

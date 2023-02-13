@@ -9,6 +9,7 @@ use App\Http\Controllers\PenjualanItemController;
 use App\Http\Controllers\KategoryItemController;
 use App\Http\Controllers\PengeluaranOpsTokoListrikController;
 use App\Models\BBM;
+use App\Models\PengeluaranOpsTokoListrik;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show')
 
 Route::resource('/penjualan-item', PenjualanItemController::class)->except('show');
 Route::get('/penjualan-item/filter', [PenjualanItemController::class, 'filter']);
+Route::get('/pengeluaran-ops-listrik/filter', [PengeluaranOpsTokoListrikController::class, 'filter']);
 Route::get('/penjualan-item/{id}', function ($id) {
     $item = App\Models\Item::where('kategori', $id)->get();
     return response()->json($item);

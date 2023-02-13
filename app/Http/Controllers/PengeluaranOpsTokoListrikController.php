@@ -128,4 +128,23 @@ class PengeluaranOpsTokoListrikController extends Controller
 
         return redirect('/pengeluaran-ops-listrik')->with('success', 'Data pengeluaran operasional berhasil dihapus!');
     }
+
+    public function filter(Request $request)
+    {
+        // dd($request->date);
+        $date = Carbon::parse($request->date)->toDateString();
+        // return $date;
+        $pengeluaranOps = PengeluaranOpsTokoListrik::where('date', Carbon::today()->toDateString())->get();
+        $spend = PengeluaranOpsTokoListrik::whereDate('created_at', '=', $date)->get();
+        $totalGajiKaryawan = $spend->sum('gaji_karyawan');
+        $totalReward = $spend->sum('reward_karyawan');
+        $pbb = $spend->sum('pbb');
+        $etc = $spend->sum('biaya_lain');
+        $result =  + (int)$totalGajiKaryawan + (int)$totalReward  + (int)$pbb + (int)$etc;
+        return view('TokoListrik.PengeluaranOpsTokoListrik.index', [
+            'spends' => $spend,
+            'result' => $result,
+            'ops' => $pengeluaranOps,
+        ]);
+    }
 }

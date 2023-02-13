@@ -74,7 +74,6 @@
             </div>
         </div>
     </div>
-
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             <div
@@ -243,7 +242,8 @@
                                                 <div class="flex px-2 py-1">
                                                     <div class="flex flex-col justify-center">
                                                         <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                            {{ $sell->bbm->jenis_bbm }}</h6>
+                                                            {{ $sell->bbm->jenis_bbm }}
+                                                        </h6>
                                                     </div>
                                                 </div>
                                             </td>

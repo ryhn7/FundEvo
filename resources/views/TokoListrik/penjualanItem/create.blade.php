@@ -222,6 +222,7 @@
                         console.log(result);
                         $.each(result, function (key, value) {
                             $('select[name="item_id"]').append('<option value="' + value.id + '">' + value.nama_item + '</option>');
+                            console.log(value);
                         });
                     }
                 });

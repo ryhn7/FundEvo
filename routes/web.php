@@ -10,6 +10,7 @@ use App\Http\Controllers\KategoryItemController;
 use App\Http\Controllers\PengeluaranOpsTokoListrikController;
 use App\Models\BBM;
 use App\Models\Item;
+use App\Models\PengeluaranOpsTokoListrik;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +47,5 @@ Route::get('/penjualan-item/getPreviousStock/{id}', [PenjualanItemController::cl
 Route::resource('/kategori', KategoryItemController::class)->except('show');
 Route::resource('/kategori-item', ItemCategoryController::class)->except('show');
 Route::resource('/pengeluaran-ops-listrik', PengeluaranOpsTokoListrikController::class)->except('show');
+Route::get('/pengeluaran-ops-listrik/filter', [PengeluaranOpsTokoListrikController::class, 'filter']);
 

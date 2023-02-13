@@ -141,6 +141,7 @@ class PenjualanItemController extends Controller
         $penjualanItem = PenjualanItemListrik::where('item_id', $id)->latest()->first();
         return response()->json($penjualanItem);
     }
+    
     public function filter(Request $request)
     {
         // dd($request->date);

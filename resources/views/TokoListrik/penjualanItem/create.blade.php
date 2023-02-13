@@ -176,8 +176,8 @@
                 success: function(result) {
                     //show harga_jual based on id 
                     console.log(result);
-                    if (result.stock_awal > 0) {
-                        stockAwal.value = result[0].stock_akhir;
+                    if (result.stock_akhir > 0) {
+                        stockAwal.value = result.stock_akhir;
                     } else {
                         stockAwal.value = null;
                     }

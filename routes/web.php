@@ -24,20 +24,19 @@ use App\Models\BBM;
 Route::get('/', fn () => view('index', []));
 Route::get('/oke', fn () => view('tes', []));
 
-
+//BBM
 Route::resource('/penjualan-bbm', PenjualanBBMController::class)->except('show');
 Route::get('/penjualan-bbm/filter', [PenjualanBBMController::class, 'filter']);
 Route::get('/penjualan-bbm/getData/{id}', [PenjualanBBMController::class, 'getHarga']); //ajax for getting harga bbm
 Route::get('/penjualan-bbm/getPreviousStock/{id}', [PenjualanBBMController::class, 'getPreviousStock']); //ajax for getting previous stock
 Route::get('/penjualan-bbm/checkBBM/{id}', [PenjualanBBMController::class, 'checkYesterday']); //ajax for check bbm from yesterday
-
-
 Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
-
 Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->except('show');
-
+Route::get('/pengeluaran-ops-bbm/filter', [PengeluaranOpsBBMController::class, 'filter']);
 Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show');
 
+
+//Item Listrik
 Route::resource('/penjualan-item', PenjualanItemController::class)->except('show');
 Route::get('/penjualan-item/filter', [PenjualanItemController::class, 'filter']);
 Route::get('/penjualan-item/{id}', function ($id) {
@@ -45,15 +44,8 @@ Route::get('/penjualan-item/{id}', function ($id) {
     return response()->json($item);
 });
 Route::get('/penjualan-item/getData/{id}', [PenjualanItemController::class, 'getHarga']);
-Route::get('/penjualan-bbm/getPreviousStock/{id}', [PenjualanBBMController::class, 'getPreviousStock']); //ajax for getting previous stock
-
-Route::resource('/kategori-item', ItemCategoryController::class)->except('show');
-
+Route::get('/penjualan-item/getPreviousStock/{id}', [PenjualanItemController::class, 'getPreviousStock']); //ajax for getting previous stock
 Route::resource('/kategori', KategoryItemController::class)->except('show');
-
-Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->except('show');
-
-Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show');
-
+Route::resource('/kategori-item', ItemCategoryController::class)->except('show');
 Route::resource('/pengeluaran-ops-listrik', PengeluaranOpsTokoListrikController::class)->except('show');
-Route::get('/pengeluaran-ops-bbm/filter', [PengeluaranOpsBBMController::class, 'filter']);
+

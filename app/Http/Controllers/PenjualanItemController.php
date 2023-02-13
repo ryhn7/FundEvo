@@ -19,7 +19,7 @@ class PenjualanItemController extends Controller
     {
         // $date = Carbon::today()->toDateString();
         // return($date);
-        $penjualanItem = PenjualanItemListrik::where('date', Carbon::today()->toDateString())->get();
+        $penjualanItem = PenjualanItemListrik::whereDate('created_at', Carbon::today()->toDateString())->get();
         return view('TokoListrik.penjualanItem.index', [
             'sells' => $penjualanItem,
             'totalAmount' => $penjualanItem->sum('pendapatan'),
@@ -140,5 +140,17 @@ class PenjualanItemController extends Controller
     {
         $penjualanItem = PenjualanItemListrik::where('item_id', $id)->latest()->first();
         return response()->json($penjualanItem);
+    }
+    public function filter(Request $request)
+    {
+        // dd($request->date);
+        $date = Carbon::parse($request->date)->toDateString();
+        // return $date;
+        $penjualanItem = PenjualanItemListrik::whereDate('created_at', '=', $date)->get();
+        return view('TokoListrik.penjualanItem.index', [
+            'sells' => $penjualanItem,
+            'totalAmount' => $penjualanItem->sum('pendapatan'),
+            'totalSell' => $penjualanItem->sum('penjualan'),
+        ]);
     }
 }

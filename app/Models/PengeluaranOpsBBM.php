@@ -11,4 +11,7 @@ class PengeluaranOpsBBM extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'nota' => 'array',
+    ];
 }

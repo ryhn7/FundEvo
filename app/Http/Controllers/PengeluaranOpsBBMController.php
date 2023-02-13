@@ -6,6 +6,7 @@ use App\Models\PengeluaranOpsBBM;
 use App\Models\BBM;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PengeluaranOpsBBMController extends Controller
 {
@@ -55,6 +56,9 @@ class PengeluaranOpsBBMController extends Controller
      */
     public function store(Request $request)
     {
+
+        // dd($request->all());
+
         $validated = $request->validate([
             'harga_penebusan_bbm' => 'nullable|numeric',
             'pph' => 'nullable|numeric',
@@ -70,8 +74,21 @@ class PengeluaranOpsBBMController extends Controller
             'pbb' => 'nullable|numeric',
             'biaya_lain' => 'nullable|numeric',
             'keterangan' => 'nullable',
-            'nota' => 'nullable',
+            // nota for multiple file image
+            'nota' => 'nullable|array|max:2048',
         ]);
+
+        if ($request->file('nota')) {
+            $images = $request->file('nota');
+            $imagesName = [];
+            foreach ($images as $image) {
+                $imageName = time() . '-' . strtoupper(Str::random(10)) . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('nota/', $imageName);
+                $imagesName[] = $imageName;
+            }
+            // dd($imagesName);
+            $validated['nota'] = $imagesName;
+        }
 
         PengeluaranOpsBBM::create($validated);
 

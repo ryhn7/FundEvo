@@ -33,7 +33,7 @@
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-sans font-semibold leading-normal text-sm">Total Pendapatan/hari</p>
+                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Pendapatan/hari</p>
                                 <h5 class="mb-0 font-bold">
                                     @currency($totalAmount)
                                 </h5>
@@ -57,7 +57,7 @@
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-sans font-semibold leading-normal text-sm">Total Penjualan BBM</p>
+                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Penjualan BBM</p>
                                 <h5 class="mb-0 font-bold">
                                     {{ $totalSell }}
                                 </h5>

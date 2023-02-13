@@ -26,6 +26,7 @@
                 </button>
             </div>
         @endif
+    </div>
 
         @if ($bbms->count() > 0)
             <div class="flex flex-wrap -mx-3">

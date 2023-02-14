@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PengeluaranOpsTokoListrik;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class PengeluaranOpsTokoListrikController extends Controller
 {
@@ -56,8 +57,20 @@ class PengeluaranOpsTokoListrikController extends Controller
             'pbb' => 'required|numeric',
             'biaya_lain' => 'required|numeric',
             'keterangan' => 'nullable',
-            'nota' => 'nullable',
+            'nota' => 'nullable|array|max:2048',
         ]);
+
+        if ($request->file('nota')) {
+            $images = $request->file('nota');
+            $imagesName = [];
+            foreach ($images as $image) {
+                $imageName = time() . '-' . strtoupper(Str::random(10)) . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('nota/', $imageName);
+                $imagesName[] = $imageName;
+            }
+            // dd($imagesName);
+            $validated['nota'] = $imagesName;
+        }
 
         PengeluaranOpsTokoListrik::create($validated);
 

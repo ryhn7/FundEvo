@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class PengeluaranOpsTokoListrik extends Model
 {
     use HasFactory;
+
     protected $guarded = ['id'];
 
-    public function kulakanListrik()
-    {
-        return $this->belongsTo(kulakanListrik::class);
-    }
+    protected $casts = [
+        'nota' => 'array',
+    ];
 }

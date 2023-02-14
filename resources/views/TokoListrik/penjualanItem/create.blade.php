@@ -11,21 +11,13 @@
                     </span>
                     <select name="kategori_item" id="kategori_item" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
-                        <!-- <option value="" class="font-semibold">Pilih Kategori Item</option>
-                        @foreach ($items as $item)
-                            @if (old('kategori_item') == $item->id)
-                                <option value="{{ $item->id }}" selected>{{ $item->kategori}}</option>
-                            @else
-                                <option value="{{ $item->id }}">{{ $item->kategori}}</option>
-                            @endif
-                        @endforeach -->
                         <option value="" disabled selected class="font-semibold" style="display: none;" >Pilih Kategori</option>
                         @foreach ($kategoris as $kategor)
-                            @if (old('kategori') == $kategor->id)
+                            <!-- @if (old('kategori') == $kategor->id)
                                 <option value="{{ $kategor->id }}" selected>{{ $kategor->kategori}}</option>
-                            @else
+                            @else -->
                                 <option value="{{ $kategor->id }}">{{ $kategor->kategori}}</option>
-                            @endif
+                            <!-- @endif -->
                         @endforeach
                     </select>
                     @error('kategori_item')
@@ -39,7 +31,7 @@
                     </span>
                     <select name="item_id" id="item_id" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
-                        <option value="" class="font-semibold" style="display: none;" disabled selected hidden>Pilih Item</option>
+                        <!-- <option value="" class="font-semibold" style="display: none;" disabled selected hidden>Pilih Item</option> -->
                         <!-- @foreach ($items as $item)
                             @if (old('item_id') == $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->nama_item}}</option>
@@ -205,7 +197,12 @@
             Kategori Dropdown Change Event
             --------------------------------------------
             --------------------------------------------*/
-            $('#kategori_item').select2();
+            $('#kategori_item').select2(
+                {
+                    placeholder: 'Pilih Kategori',
+                    allowClear: true,
+                }
+            );
             $('#kategori_item').on('change', function () {
                 var kategori_id = this.value;
                 console.log(kategori_id);
@@ -268,7 +265,12 @@
             })
         });
 
-        $('#item_id').select2();
+        $('#item_id').select2(
+            {
+                placeholder: 'Pilih Item',
+                allowClear: true
+            }
+        );
         
     </script>
 @endsection

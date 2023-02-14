@@ -40,12 +40,12 @@ Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show')
 
 //Item Listrik
 Route::resource('/penjualan-item', PenjualanItemController::class)->except('show');
-Route::get('/penjualan-item/filter', [PenjualanItemController::class, 'filter']); //ajax for filtering data based on date
+Route::get('/penjualan-item/filter', [PenjualanItemController::class, 'filter']); //ajax for filtering penjualan item based on date
 Route::get('/penjualan-item/{id}', [PenjualanItemController::class, 'getItem']); //ajax for getting item
 Route::get('/penjualan-item/getData/{id}', [PenjualanItemController::class, 'getHarga']); //ajax for getting harga item
 Route::get('/penjualan-item/getPreviousStock/{id}', [PenjualanItemController::class, 'getPreviousStock']); //ajax for getting previous stock
 Route::resource('/kategori', KategoryItemController::class)->except('show');
 Route::resource('/kategori-item', ItemCategoryController::class)->except('show');
 Route::resource('/pengeluaran-ops-listrik', PengeluaranOpsTokoListrikController::class)->except('show');
-Route::get('/pengeluaran-ops-listrik/filter', [PengeluaranOpsTokoListrikController::class, 'filter']);
+Route::get('/pengeluaran-ops-listrik/filter', [PengeluaranOpsTokoListrikController::class, 'filter']);//ajax for filtering pengeluaran item based on date
 

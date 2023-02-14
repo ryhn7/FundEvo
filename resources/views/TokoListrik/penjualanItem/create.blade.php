@@ -146,6 +146,7 @@
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         const stockAwal = document.getElementById('stock_awal');
         const penerimaan = document.getElementById('penerimaan');
@@ -229,6 +230,8 @@
             });
         });
 
+        // $('#kategori_item').select2();
+
         $('#item_id').on('change', function () {
             const item_id = item.value;
             console.log(item_id);
@@ -246,6 +249,8 @@
                 }
             })
         });
+
+        $('#item_id').select2();
         
     </script>
 @endsection

@@ -1033,7 +1033,7 @@ h6 {
 }
 
 .h-sidenav {
-  height: calc(100vh - 370px);
+  height: calc(100vh - 150px);
 }
 
 .h-8 {

@@ -3,7 +3,7 @@
 
 @section('container')
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
-        <form action="/pengeluaran-ops-bbm/{{ $spend->id }}" method="POST">
+        <form action="/pengeluaran-ops-bbm/{{ $spend->id }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div>
@@ -192,7 +192,7 @@
                             @foreach ($spend->nota as $nota)
                                 <div class="relative flex flex-col items-center overflow-hidden text-center bg-gray-100 border rounded cursor-move select-none"
                                     style="padding-top: 100%;">
-                                    <input type="hidden" name="oldImage" value="{{ $nota }}">
+                                    <input type="hidden" name="oldImage[]" multiple value="{{ $nota }}">
                                     @if ($nota)
                                         <img src="{{ asset('storage/nota/' . $nota) }}" alt="preview" id="preview"
                                             class="absolute inset-0 z-0 object-cover w-full h-full border-4 border-white preview" />

@@ -278,6 +278,8 @@
                             </div>
                         </template>
                     </div>
+
+
                     @error('nota')
                         <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
                     @enderror

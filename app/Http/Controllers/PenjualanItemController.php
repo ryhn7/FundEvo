@@ -56,7 +56,6 @@ class PenjualanItemController extends Controller
             'penjualan' => 'nullable|numeric',
             'stock_akhir' => 'required|numeric',
             'pendapatan' => 'required|numeric',
-            'created_at' => 'nullable|date',
         ]);
 
         // if ($validated['created_at'] == null) {

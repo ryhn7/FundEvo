@@ -186,7 +186,6 @@ class PengeluaranOpsBBMController extends Controller
      */
     public function destroy(PengeluaranOpsBBM $pengeluaran_ops_bbm)
     {
-
         if ($pengeluaran_ops_bbm->nota) {
             foreach ($pengeluaran_ops_bbm->nota as $oldImage) {
                 Storage::delete('nota/' . $oldImage);

@@ -6,6 +6,7 @@ use App\Models\PengeluaranOpsTokoListrik;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class PengeluaranOpsTokoListrikController extends Controller
 {
@@ -52,10 +53,10 @@ class PengeluaranOpsTokoListrikController extends Controller
     {
         $validated = $request->validate([
             'biaya_kulakan' => 'nullable|numeric',
-            'gaji_karyawan' => 'required|numeric',
-            'reward_karyawan' => 'required|numeric',
-            'pbb' => 'required|numeric',
-            'biaya_lain' => 'required|numeric',
+            'gaji_karyawan' => 'nullable|numeric',
+            'reward_karyawan' => 'nullable|numeric',
+            'pbb' => 'nullable|numeric',
+            'biaya_lain' => 'nullable|numeric',
             'keterangan' => 'nullable',
             'nota' => 'nullable|array|max:2048',
         ]);
@@ -113,15 +114,32 @@ class PengeluaranOpsTokoListrikController extends Controller
     {
         $rules = [
             'biaya_kulakan' => 'nullable|numeric',
-            'gaji_karyawan' => 'required|numeric',
-            'reward_karyawan' => 'required|numeric',
-            'pbb' => 'required|numeric',
-            'biaya_lain' => 'required|numeric',
+            'gaji_karyawan' => 'nullable|numeric',
+            'reward_karyawan' => 'nullable|numeric',
+            'pbb' => 'nullable|numeric',
+            'biaya_lain' => 'nullable|numeric',
             'keterangan' => 'nullable',
             'nota' => 'nullable',
         ];
 
         $validated = $request->validate($rules);
+        if ($request->file('nota')) {
+
+            if ($request->oldImage) {
+                foreach ($request->oldImage as $oldImage) {
+                    Storage::delete('nota/' . $oldImage);
+                }
+            }
+
+            $images = $request->file('nota');
+            $imagesName = [];
+            foreach ($images as $image) {
+                $imageName = time() . '-' . strtoupper(Str::random(10)) . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('nota/', $imageName);
+                $imagesName[] = $imageName;
+            }
+            $validated['nota'] = $imagesName;
+        }
 
         PengeluaranOpsTokoListrik::where('id', $pengeluaran_ops_listrik->id)
             ->update($validated);
@@ -137,6 +155,12 @@ class PengeluaranOpsTokoListrikController extends Controller
      */
     public function destroy(PengeluaranOpsTokoListrik $pengeluaran_ops_listrik)
     {
+        if ($pengeluaran_ops_listrik->nota) {
+            foreach ($pengeluaran_ops_listrik->nota as $oldImage) {
+                Storage::delete('nota/' . $oldImage);
+            }
+        }
+
         PengeluaranOpsTokoListrik::destroy($pengeluaran_ops_listrik->id);
 
         return redirect('/pengeluaran-ops-listrik')->with('success', 'Data pengeluaran operasional berhasil dihapus!');

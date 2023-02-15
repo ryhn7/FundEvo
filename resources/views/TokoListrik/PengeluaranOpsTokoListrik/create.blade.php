@@ -6,8 +6,10 @@
             @csrf
             <div>
                 <label for="biaya_kulakan" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Biaya Kulakan</span>
-                    <input type="number" min="0" step="any" id="biaya_kulakan" name="biaya_kulakan" required
+                    <span class="text-gray-700 font-semibold">Biaya Kulakan <span
+                        class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)
+                    </span></span>
+                    <input type="number" min="0" step="any" id="biaya_kulakan" name="biaya_kulakan"
                         value="{{ old('biaya_kulakan') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('biaya_kulakan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -18,8 +20,10 @@
                 </label>
 
                 <label for="gaji_karyawan" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Gaji Karyawan</span>
-                    <input type="number" min="0" step="any" id="gaji_karyawan" name="gaji_karyawan" required
+                    <span class="text-gray-700 font-semibold">Gaji Karyawan <span
+                        class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)
+                    </span></span>
+                    <input type="number" min="0" step="any" id="gaji_karyawan" name="gaji_karyawan"
                         value="{{ old('gaji_karyawan') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('gaji_karyawan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -30,7 +34,9 @@
                 </label>
 
                 <label for="reward_karyawan" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Reward Karyawan</span>
+                    <span class="text-gray-700 font-semibold">Reward Karyawan <span
+                        class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)
+                    </span></span>
                     <input type="number" min="0" step="any" id="reward_karyawan" name="reward_karyawan"
                         value="{{ old('reward_karyawan') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('reward_karyawan')
@@ -42,8 +48,10 @@
                 </label>
 
                 <label for="pbb" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">PBB</span>
-                    <input type="number" min="0" step="any" id="pbb" name="pbb" required
+                    <span class="text-gray-700 font-semibold">PBB <span
+                        class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)
+                    </span></span>
+                    <input type="number" min="0" step="any" id="pbb" name="pbb" 
                         value="{{ old('pbb') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('pbb')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -54,8 +62,10 @@
                 </label>
 
                 <label for="biaya_lain" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Biaya Lainya</span>
-                    <input type="number" min="0" step="any" id="biaya_lain" name="biaya_lain" required
+                    <span class="text-gray-700 font-semibold">Biaya Lainnya <span
+                        class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)
+                    </span></span>
+                    <input type="number" min="0" step="any" id="biaya_lain" name="biaya_lain" 
                         value="{{ old('biaya_lain') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('biaya_lain')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -67,7 +77,9 @@
 
                 <div class="mt-4">
                     <label for="keterangan" class="block text-sm">
-                        <span class="text-gray-700 font-semibold">Keterangan</span>
+                        <span class="text-gray-700 font-semibold">Keterangan <span
+                            class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)
+                        </span></span>
                         <input id="keterangan" type="hidden" name="keterangan" value="{{ old('keterangan') }}">
                         <trix-editor input="keterangan"></trix-editor>
                         @error('keterangan')
@@ -77,7 +89,9 @@
                 </div>
 
                 <label for="nota" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Nota</span>
+                    <span class="text-gray-700 font-semibold">Nota <span
+                        class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)
+                    </span></span>
                     {{-- <input type="text" id="nota" name="nota" value="{{ old('nota') }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('nota')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -159,15 +173,13 @@
                             </div>
                         </template>
                     </div>
-
-
                     @error('nota')
                         <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
                     @enderror
                 </label>
 
                 <button
-                    class="mt-10 w-full px-3 py-3 bg-black text-white font-bold rounded shadow-md hover:bg-[#333333]">Tambah
+                class="mt-10 w-full px-3 py-3 bg-orange-500 text-white font-bold uppercase transition-all bg-transparent rounded cursor-pointer leading-pro ease-soft-in shadow-soft-md hover:bg-yellow-500 hover:shadow-soft-xs active:opacity-85 hover:scale-[1.005] tracking-tight-soft bg-x-25">Tambah
                     Pengeluaran Operasional</button>
             </div>
         </form>

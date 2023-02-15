@@ -11,21 +11,13 @@
                     </span>
                     <select name="kategori_item" id="kategori_item" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
-                        <!-- <option value="" class="font-semibold">Pilih Kategori Item</option>
-                        @foreach ($items as $item)
-                            @if (old('kategori_item') == $item->id)
-                                <option value="{{ $item->id }}" selected>{{ $item->kategori}}</option>
-                            @else
-                                <option value="{{ $item->id }}">{{ $item->kategori}}</option>
-                            @endif
-                        @endforeach -->
-                        <option value="" class="font-semibold">Pilih Kategori</option>
+                        <option value="" disabled selected class="font-semibold" style="display: none;" >Pilih Kategori</option>
                         @foreach ($kategoris as $kategor)
-                            @if (old('kategori') == $kategor->id)
+                            <!-- @if (old('kategori') == $kategor->id)
                                 <option value="{{ $kategor->id }}" selected>{{ $kategor->kategori}}</option>
-                            @else
+                            @else -->
                                 <option value="{{ $kategor->id }}">{{ $kategor->kategori}}</option>
-                            @endif
+                            <!-- @endif -->
                         @endforeach
                     </select>
                     @error('kategori_item')
@@ -39,7 +31,7 @@
                     </span>
                     <select name="item_id" id="item_id" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
-                        <option value="" class="font-semibold">Pilih Item</option>
+                        <!-- <option value="" class="font-semibold" style="display: none;" disabled selected hidden>Pilih Item</option> -->
                         <!-- @foreach ($items as $item)
                             @if (old('item_id') == $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->nama_item}}</option>
@@ -146,6 +138,7 @@
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         const stockAwal = document.getElementById('stock_awal');
         const penerimaan = document.getElementById('penerimaan');
@@ -164,26 +157,26 @@
             console.log(penerimaan.value)
         })
 
-        item.addEventListener('change', () => {
-            const item_id = item.value;
-            $.ajax({
-                url: '/penjualan-item/getPreviousStock/' + item_id,
-                type: 'GET',
-                data: {
-                    _token: '{{ csrf_token() }}'
-                },
-                dataType: 'json',
-                success: function(result) {
-                    //show harga_jual based on id 
-                    console.log(result);
-                    if (result.stock_akhir > 0) {
-                        stockAwal.value = result.stock_akhir;
-                    } else {
-                        stockAwal.value = null;
-                    }
-                }
-            })
-        });
+        // item.addEventListener('change', () => {
+        //     const item_id = item.value;
+        //     $.ajax({
+        //         url: '/penjualan-item/getPreviousStock/' + item_id,
+        //         type: 'GET',
+        //         data: {
+        //             _token: '{{ csrf_token() }}'
+        //         },
+        //         dataType: 'json',
+        //         success: function(result) {
+        //             //show harga_jual based on id 
+        //             console.log(result);
+        //             if (result.stock_akhir > 0) {
+        //                 stockAwal.value = result.stock_akhir;
+        //             } else {
+        //                 stockAwal.value = null;
+        //             }
+        //         }
+        //     })
+        // });
         penyusutan.value = 0;
         penyusutan.addEventListener('keyup', ()=> {
             const jual = parseInt(stockAwal.value) + parseInt(penerimaan.value) - parseInt(penjualan.value)- parseInt(penyusutan.value);
@@ -199,12 +192,17 @@
 
 
 
-        $(document).ready(function () {
             /*------------------------------------------
             --------------------------------------------
             Kategori Dropdown Change Event
             --------------------------------------------
             --------------------------------------------*/
+            $('#kategori_item').select2(
+                {
+                    placeholder: 'Pilih Kategori',
+                    allowClear: true,
+                }
+            );
             $('#kategori_item').on('change', function () {
                 var kategori_id = this.value;
                 console.log(kategori_id);
@@ -218,7 +216,7 @@
                     dataType: 'json',
                     success: function (result) {
                         $('select[name="item_id"]').empty();
-                        $('#item_id').html('<option value="" class="font-semibold">Pilih Item </option>');
+                        $('#item_id').html('<option value="" style="display: none;" class="font-semibold" disabled selected hidden>Pilih Item </option>');
                         console.log(result);
                         $.each(result, function (key, value) {
                             $('select[name="item_id"]').append('<option value="' + value.id + '">' + value.nama_item + '</option>');
@@ -227,7 +225,7 @@
                     }
                 });
             });
-        });
+        
 
         $('#item_id').on('change', function () {
             const item_id = item.value;
@@ -246,6 +244,33 @@
                 }
             })
         });
+
+        $('#item_id').on('change', function () {
+            const item_id = item.value;
+            console.log(item_id);
+            $.ajax({
+                url: '/penjualan-item/getPreviousStock/' + item_id,
+                type: 'GET',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function(result) {
+                    if (result.stock_akhir > 0) {
+                        stockAwal.value = result.stock_akhir;
+                    } else {
+                        stockAwal.value = null;
+                    }
+                }
+            })
+        });
+
+        $('#item_id').select2(
+            {
+                placeholder: 'Pilih Item',
+                allowClear: true
+            }
+        );
         
     </script>
 @endsection

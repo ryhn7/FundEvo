@@ -31,7 +31,7 @@
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
                     <div class="flex flex-row -mx-3">
-                        <div class="flex-none w-2/3 max-w-full px-3">
+                        <div class="flex-none w-3/4 max-w-full px-3">
                             <div>
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Pendapatan/hari</p>
                                 <h5 class="mb-0 font-bold">
@@ -42,7 +42,7 @@
                         <div class="px-3 text-right basis-1/3">
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                                <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                <i class="fa-solid fa-money-check-dollar text-white py-4"></i>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
                     <div class="flex flex-row -mx-3">
-                        <div class="flex-none w-2/3 max-w-full px-3">
+                        <div class="flex-none w-3/4 max-w-full px-3">
                             <div>
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Penjualan BBM</p>
                                 <h5 class="mb-0 font-bold">
@@ -66,7 +66,7 @@
                         <div class="px-3 text-right basis-1/3">
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                                <i class="ni leading-none ni-world text-lg relative top-3.5 text-white"></i>
+                                <i class="fa-solid fa-gas-pump text-white py-4 pl-1"></i>
                             </div>
                         </div>
                     </div>
@@ -74,6 +74,7 @@
             </div>
         </div>
     </div>
+
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             <div
@@ -242,8 +243,7 @@
                                                 <div class="flex px-2 py-1">
                                                     <div class="flex flex-col justify-center">
                                                         <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                            {{ $sell->bbm->jenis_bbm }}
-                                                        </h6>
+                                                            {{ $sell->bbm->jenis_bbm }}</h6>
                                                     </div>
                                                 </div>
                                             </td>
@@ -364,7 +364,6 @@
         <script>
             const date = document.getElementById('date1');
             const formFilter = document.getElementById('dateFilter');
-
             date.addEventListener('change', () => {
                 formFilter.submit();
             })

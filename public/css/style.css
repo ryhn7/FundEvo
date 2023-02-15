@@ -4277,7 +4277,7 @@ textarea.form-control.is-invalid {
 }
 
 .h-sidenav {
-  height: calc(100vh - 160px);
+  height: calc(100vh - 150px);
 }
 
 .h-8 {
@@ -4394,6 +4394,10 @@ textarea.form-control.is-invalid {
 
 .w-44 {
   width: 11rem;
+}
+
+.w-3 {
+  width: 0.75rem;
 }
 
 .min-w-0 {
@@ -4857,6 +4861,16 @@ textarea.form-control.is-invalid {
   background-color: rgb(220 252 231 / var(--tw-bg-opacity));
 }
 
+.bg-violet-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(139 92 246 / var(--tw-bg-opacity));
+}
+
+.bg-green-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 252 231 / var(--tw-bg-opacity));
+}
+
 .bg-purple-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(147 51 234 / var(--tw-bg-opacity));
@@ -5201,12 +5215,8 @@ textarea.form-control.is-invalid {
   padding-top: 0px;
 }
 
-.pl-1 {
-  padding-left: 0.25rem;
-}
-
-.pl-9 {
-  padding-left: 2.25rem;
+.pr-12 {
+  padding-right: 3rem;
 }
 
 .text-left {
@@ -5239,6 +5249,10 @@ textarea.form-control.is-invalid {
 
 .font-open {
   font-family: Open Sans;
+}
+
+.font-sans {
+  font-family: Inter, sans-serif;
 }
 
 .text-sm {

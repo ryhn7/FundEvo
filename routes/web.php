@@ -48,4 +48,6 @@ Route::resource('/kategori', KategoryItemController::class)->except('show');
 Route::resource('/kategori-item', ItemCategoryController::class)->except('show');
 Route::resource('/pengeluaran-ops-listrik', PengeluaranOpsTokoListrikController::class)->except('show');
 Route::get('/pengeluaran-ops-listrik/filter', [PengeluaranOpsTokoListrikController::class, 'filter']);//ajax for filtering pengeluaran item based on date
+Route::get('/penjualan-item/checkItem/{id}', [PenjualanItemController::class, 'checkYesterday']); //ajax for check item from yesterday
+
 

@@ -179,4 +179,16 @@ class PenjualanItemController extends Controller
             'totalSell' => $penjualanItem->sum('penjualan'),
         ]);
     }
+
+    public function checkYesterday($id)
+    {
+        $yesterday = Carbon::yesterday()->toDateString();
+        $penjualanItem = PenjualanItemListrik::where('item_id', $id)->whereDate('created_at', $yesterday)->first();
+
+        if ($penjualanItem == null) {
+            return response()->json(false);
+        } else {
+            return response()->json($penjualanItem);
+        }
+    }
 }

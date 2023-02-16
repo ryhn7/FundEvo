@@ -360,13 +360,14 @@
                 @endif
             </div>
         </div>
+    </div>
 
-        <script>
-            const date = document.getElementById('date1');
-            const formFilter = document.getElementById('dateFilter');
+    <script>
+        const date = document.getElementById('date1');
+        const formFilter = document.getElementById('dateFilter');
 
-            date.addEventListener('change', () => {
-                formFilter.submit();
-            })
-        </script>
-    @endsection
+        date.addEventListener('change', () => {
+            formFilter.submit();
+        })
+    </script>
+@endsection

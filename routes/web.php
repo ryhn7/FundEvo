@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BBMCategoryController;
+use App\Http\Controllers\LaporanFinansialBBMController;
 use App\Http\Controllers\PenjualanBBMController;
 use App\Http\Controllers\PengeluaranOpsBBMController;
 use App\Models\BBM;
@@ -32,3 +33,6 @@ Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
 
 Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->except('show');
 Route::get('/pengeluaran-ops-bbm/filter', [PengeluaranOpsBBMController::class, 'filter']);
+
+Route::get('/laporan-finansial-bbm', [LaporanFinansialBBMController::class, 'index']);
+

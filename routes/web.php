@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BBMCategoryController;
+use App\Http\Controllers\LaporanFinansialBBMController;
 use App\Http\Controllers\PenjualanBBMController;
 use App\Http\Controllers\PengeluaranOpsBBMController;
 use App\Http\Controllers\ItemCategoryController;
@@ -36,6 +37,7 @@ Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
 Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->except('show');
 Route::get('/pengeluaran-ops-bbm/filter', [PengeluaranOpsBBMController::class, 'filter']);
 Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show');
+Route::get('/laporan-finansial-bbm', [LaporanFinansialBBMController::class, 'index']);
 
 
 //Item Listrik

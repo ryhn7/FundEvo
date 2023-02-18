@@ -18,14 +18,15 @@ class PenjualanBBMFactory extends Factory
     public function definition()
     {
         return [
-            'bbm_id' => fake()->unique()->numberBetween(1, 4),
+            'bbm_id' => fake()->numberBetween(1, 4),
             'stock_awal' => fake()->numberBetween(1000, 10000),
             'penerimaan' => fake()->numberBetween(1000, 16000),
             'penjualan' => fake()->numberBetween(100, 7000),
             'stock_adm' => fake()->numberBetween(1000, 8000),
             'stock_fakta' => fake()->numberBetween(1000, 8000),
             'penyusutan' => fake()->numberBetween(0, 100),
-            'pendapatan' => fake()->numberBetween(10000000, 1000000000),
+            'pendapatan' => fake()->numberBetween(10000000, 50000000),
+            'created_at' => fake()->unique()->dateTimeBetween('-1 month', '+1 month'),
         ];
     }
 }

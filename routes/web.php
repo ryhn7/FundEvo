@@ -34,5 +34,5 @@ Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
 Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->except('show');
 Route::get('/pengeluaran-ops-bbm/filter', [PengeluaranOpsBBMController::class, 'filter']);
 
-Route::get('/laporan-finansial-bbm', [LaporanFinansialBBMController::class, 'index']);
+Route::get('/LaporanFinansialBBM', [LaporanFinansialBBMController::class, 'index']);
 

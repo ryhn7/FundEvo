@@ -127,34 +127,35 @@
                                                 <tr>
                                                     <th
                                                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                                        Tanggal</th>
+                                                        @sortablelink('created_at', 'Tanggal')
+                                                    </th>
                                                     <th
                                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                                         Jenis BBM</th>
                                                     <th
                                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                                        Stok Awal</th>
+                                                        @sortablelink('stock_awal', 'Stok Awal')</th>
                                                     <th
                                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                                        Penerimaan</th>
+                                                        @sortablelink('penerimaan', 'Penerimaan')</th>
                                                     <th
                                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                                        Tera & Densiti</th>
+                                                        @sortablelink('tera_densiti', 'Tera & Densiti')</th>
                                                     <th
                                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                                        Penjualan</th>
+                                                        @sortablelink('penjualan',' Penjualan')</th>
                                                     <th
                                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                                        Stok ADM</th>
+                                                        @sortablelink('stock_adm', 'Stok ADM')</th>
                                                     <th
                                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                                        Stok Fakta</th>
+                                                        @sortablelink('stock_fakta', 'Stok Fakta')</th>
                                                     <th
                                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                                        Penyusutan</th>
+                                                        @sortablelink('penyusutan', 'Penyusutan')</th>
                                                     <th
                                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                                        Pendapatan</th>
+                                                        @sortablelink('pendapatan', 'Pendapatan')</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

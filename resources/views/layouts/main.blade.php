@@ -31,6 +31,12 @@
         }
     </style>
 
+    <style>
+        .dropdown:hover>.dropdown-content {
+            display: block;
+        }
+    </style>
+
 </head>
 
 <body class="m-0 font-open antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
@@ -50,6 +56,30 @@
     {{-- <script src={{ asset('assets/js/soft-ui-dashboard-tailwind.js') }} async></script> --}}
     <script src="{{ asset('assets/js/jquery-3.6.0.js') }}"></script>
     <script src="{{ asset('assets/js/index.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/yearpicker.css') }}">
+    <script src="{{ asset('assets/js/yearpicker.js') }}"></script>
+    <script>
+        const year1 = document.getElementById('year1');
+        const yearForm = document.getElementById('yearFilter');
+
+        $(document).ready(function() {
+            $(".yearpicker").yearpicker({
+                beforeShow: function(el) {
+                    // set the current value before showing the widget
+                    $(this).data('previous', $(el).val());
+                },
+
+                onChange: function(year) {
+                    // compare the new value to the previous one
+                    if ($(this).data('previous') != year) {
+                        // do whatever has to be done, e.g. log it to console
+                        year1.value = year;
+                        yearForm.submit();
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 

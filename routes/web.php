@@ -35,4 +35,6 @@ Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->exc
 Route::get('/pengeluaran-ops-bbm/filter', [PengeluaranOpsBBMController::class, 'filter']);
 
 Route::get('/LaporanFinansialBBM', [LaporanFinansialBBMController::class, 'index']);
+Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterBulan', [LaporanFinansialBBMController::class, 'monthFilterPenjualanBBM']);
+Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterTahun', [LaporanFinansialBBMController::class, 'yearFilterPenjualanBBM']);
 

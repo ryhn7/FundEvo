@@ -37,4 +37,5 @@ Route::get('/pengeluaran-ops-bbm/filter', [PengeluaranOpsBBMController::class, '
 Route::get('/LaporanFinansialBBM', [LaporanFinansialBBMController::class, 'index']);
 Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterBulan', [LaporanFinansialBBMController::class, 'monthFilterPenjualanBBM']);
 Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterTahun', [LaporanFinansialBBMController::class, 'yearFilterPenjualanBBM']);
+Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterRange', [LaporanFinansialBBMController::class, 'rangeFilterPenjualanBBM']);
 

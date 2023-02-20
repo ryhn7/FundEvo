@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('container')
-    {{-- top --}}
     <div class="flex flex-col mt-6 -mx-3">
         <div class="w-full px-3 mb-6 lg:mb-0 lg:w-full lg:flex-none">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-lg bg-clip-border">
@@ -20,8 +19,6 @@
                                     <h3 class="font-bold">Total Penjualan BBM</h3>
                                 @endif
                                 <p class="mb-12">{{ $count }} Penjualan</p>
-                                {{-- <h3 class="font-bold">Total Penjualan BBM Bulan (Month)</h3>
-                                <p class="mb-12">{{$count}} Penjualan</p> --}}
                             </div>
                         </div>
                         <div class="max-w-full px-4.5 mt-12 ml-auto text-center lg:mt-0">
@@ -378,39 +375,37 @@
                         </div>
                     </div>
                 </div>
-                {{-- </div> --}}
             </div>
-
-            <script>
-                function setup() {
-                    return {
-                        activeTab: 0,
-                        tabs: [
-                            "Penjualan BBM",
-                            "Pengeluaran Operasional SPBU",
-                            "Laporan Keuangan SPBU",
-                        ]
-                    };
-                };
-            </script>
-
-            <script>
-                const month = document.getElementById('month1');
-                const end = document.getElementById('end');
-                const monthForm = document.getElementById('monthFilter');
-                const rangeForm = document.getElementById('rangeFilter');
-
-                month.addEventListener('change', () => {
-                    monthForm.submit();
-                })
-
-                end.addEventListener('change', () => {
-                    rangeForm.submit();
-                })
-            </script>
         </div>
     </div>
-    </div>
+@endsection
 
-    </div>
+@section('scripts')
+    <script>
+        function setup() {
+            return {
+                activeTab: 0,
+                tabs: [
+                    "Penjualan BBM",
+                    "Pengeluaran Operasional SPBU",
+                    "Laporan Keuangan SPBU",
+                ]
+            };
+        };
+    </script>
+
+    <script>
+        const month = document.getElementById('month1');
+        const end = document.getElementById('end');
+        const monthForm = document.getElementById('monthFilter');
+        const rangeForm = document.getElementById('rangeFilter');
+
+        month.addEventListener('change', () => {
+            monthForm.submit();
+        })
+
+        end.addEventListener('change', () => {
+            rangeForm.submit();
+        })
+    </script>
 @endsection

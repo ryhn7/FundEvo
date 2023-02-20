@@ -139,7 +139,8 @@
 
                 <label for="created_at" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Tanggal</span>
-                    <input type="date" name="created_at" value="{{ old('created_at', $sell->created_at->format('Y-m-d')) }}"
+                    <input type="date" name="created_at"
+                        value="{{ old('created_at', $sell->created_at->format('Y-m-d')) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('created_at')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />
@@ -154,7 +155,9 @@
             </div>
         </form>
     </div>
+@endsection
 
+@section('scripts')
     <script>
         const stockAwal = document.getElementById('stock_awal');
         const penerimaan = document.getElementById('penerimaan');

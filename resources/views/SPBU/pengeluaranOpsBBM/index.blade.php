@@ -715,13 +715,8 @@
             </div>
         </div>
     </div>
+@endsection
 
-    <script>
-        const date = document.getElementById('date1');
-        const formFilter = document.getElementById('dateFilter');
-
-        date.addEventListener('change', () => {
-            formFilter.submit();
-        })
-    </script>
+@section('scripts')
+    <script src="{{ asset('assets/js/submitDateFilter.js') }}"></script>
 @endsection

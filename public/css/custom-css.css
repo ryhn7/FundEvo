@@ -1,0 +1,9 @@
+/*  trix-editor */
+trix-toolbar [data-trix-button-group="file-tools"] {
+    display: none;
+}
+
+/* multilevel dropdown */
+.dropdown:hover>.dropdown-content {
+    display: block;
+}

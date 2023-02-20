@@ -197,11 +197,6 @@
 
                 <label for="nota" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Nota</span>
-                    {{-- <input type="text" id="nota" name="nota" value="{{ old('nota') }}"
-                        class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('nota')
-                    border-red-600 focus:border-red-600 focus:ring-red-600
-                    @enderror" /> --}}
-
                     <div x-data="dataFileDnD()"
                         class="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
                         <div x-ref="dnd"
@@ -289,89 +284,9 @@
             </div>
         </form>
     </div>
+@endsection
 
+@section('scripts')
     <script src="https://unpkg.com/create-file-list"></script>
-    <script>
-        function dataFileDnD() {
-            return {
-                files: [],
-                fileDragging: null,
-                fileDropping: null,
-                humanFileSize(size) {
-                    const i = Math.floor(Math.log(size) / Math.log(1024));
-                    return (
-                        (size / Math.pow(1024, i)).toFixed(2) * 1 +
-                        " " + ["B", "kB", "MB", "GB", "TB"][i]
-                    );
-                },
-                remove(index) {
-                    let files = [...this.files];
-                    files.splice(index, 1);
-
-                    this.files = createFileList(files);
-                },
-                drop(e) {
-                    let removed, add;
-                    let files = [...this.files];
-
-                    removed = files.splice(this.fileDragging, 1);
-                    files.splice(this.fileDropping, 0, ...removed);
-
-                    this.files = createFileList(files);
-
-                    this.fileDropping = null;
-                    this.fileDragging = null;
-                },
-                dragenter(e) {
-                    let targetElem = e.target.closest("[draggable]");
-
-                    this.fileDropping = targetElem.getAttribute("data-index");
-                },
-                dragstart(e) {
-                    this.fileDragging = e.target
-                        .closest("[draggable]")
-                        .getAttribute("data-index");
-                    e.dataTransfer.effectAllowed = "move";
-                },
-                loadFile(file) {
-                    const preview = document.querySelectorAll(".preview");
-                    const blobUrl = URL.createObjectURL(file);
-
-                    preview.forEach(elem => {
-                        elem.onload = () => {
-                            URL.revokeObjectURL(elem.src); // free memory
-                        };
-                    });
-
-                    return blobUrl;
-                },
-
-                // add multiple files from input file
-                addFiles(e) {
-                    let files = [...this.files];
-                    files.push(...e.target.files);
-
-                    this.files = createFileList(files);
-
-                    console.log('FILES');
-                    console.log(this.files);
-                    console.log("punya add files");
-                },
-
-            };
-        }
-        // const nota = document.getElementById("nota");
-
-        // nota.addEventListener("drop", function() {
-        //     console.log('NOTA 1');
-        //     console.log(nota.files);
-        //     console.log("punya nota");
-        // });
-
-        // nota.addEventListener("input", function() {
-        //     console.log('NOTA 2');
-        //     console.log(nota.files);
-        //     console.log("punya nota 2");
-        // });
-    </script>
+    <script src="{{asset('assets/js/dropzoneConfig.js')}}"></script>
 @endsection

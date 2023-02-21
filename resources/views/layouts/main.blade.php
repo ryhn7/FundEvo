@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
     <title>Dashboard PT Bhakti Usaha Jaya</title>
+
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Font Awesome Icons -->
@@ -31,13 +32,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <style>
-        trix-toolbar [data-trix-button-group="file-tools"] {
-            display: none;
-        }
-    </style>
-
+    {{-- custom css --}}
+    <link href={{ asset('css/custom-css.css') }} rel="stylesheet" />
 </head>
 
 <body class="m-0 font-open antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
@@ -52,11 +48,20 @@
         <!-- end cards -->
     </main>
 
+    {{-- Alpine js --}}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- main script file  -->
-    {{-- <script src={{ asset('assets/js/soft-ui-dashboard-tailwind.js') }} async></script> --}}
+
+    {{-- Jquery --}}
     <script src="{{ asset('assets/js/jquery-3.6.0.js') }}"></script>
+
+    {{--  --}}
     <script src="{{ asset('assets/js/index.min.js') }}"></script>
+
+    {{-- yearpicker js --}}
+    <link rel="stylesheet" href="{{ asset('css/yearpicker.css') }}">
+    <script src="{{ asset('assets/js/yearpicker.js') }}"></script>
+    <script src="{{ asset('assets/js/yearpicker-init.js') }}"></script>
+    @yield('scripts')
 </body>
 
 

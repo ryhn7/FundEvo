@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BBMCategoryController;
+use App\Http\Controllers\LaporanFinansialBBMController;
 use App\Http\Controllers\PenjualanBBMController;
 use App\Http\Controllers\PengeluaranOpsBBMController;
 use App\Http\Controllers\ItemCategoryController;
@@ -48,4 +49,10 @@ Route::resource('/kategori', KategoryItemController::class)->except('show');
 Route::resource('/kategori-item', ItemCategoryController::class)->except('show');
 Route::resource('/pengeluaran-ops-listrik', PengeluaranOpsTokoListrikController::class)->except('show');
 Route::get('/pengeluaran-ops-listrik/filter', [PengeluaranOpsTokoListrikController::class, 'filter']);//ajax for filtering pengeluaran item based on date
+
+
+Route::get('/LaporanFinansialBBM', [LaporanFinansialBBMController::class, 'index']);
+Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterBulan', [LaporanFinansialBBMController::class, 'monthFilterPenjualanBBM']);
+Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterTahun', [LaporanFinansialBBMController::class, 'yearFilterPenjualanBBM']);
+Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterRange', [LaporanFinansialBBMController::class, 'rangeFilterPenjualanBBM']);
 

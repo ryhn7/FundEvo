@@ -18,6 +18,7 @@ class PenjualanBBMController extends Controller
     {
         // $date = Carbon::now()->toDateString();
         // return($date);
+
         $penjualanBBM = PenjualanBBM::whereDate('created_at', Carbon::now()->toDateString())->get();
         return view('SPBU.penjualanBBM.index', [
             'sells' => $penjualanBBM,

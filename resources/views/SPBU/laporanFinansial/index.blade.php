@@ -8,14 +8,27 @@
                     <div class="flex flex-wrap -mx-3">
                         <div class="max-w-full px-3 lg:w-1/2 lg:flex-none">
                             <div class="flex flex-col h-full">
-                                @if (request()->is('LaporanFinansialBBM/PenjualanBBM/FilterRange*'))
+                                @if (request()->is('LaporanFinansialBBM/PenjualanBBM'))
+                                    <h3 class="font-bold">Total Penjualan BBM</h3>
+                                @elseif (request()->is('LaporanFinansialBBM/PenjualanBBM/FilterRange*'))
                                     <h3 class="font-bold">Penjualan BBM Bulan {{ $start }} - {{ $end }} </h3>
                                 @elseif(request()->is('LaporanFinansialBBM/PenjualanBBM/FilterBulan*'))
                                     <h3 class="font-bold">Penjualan BBM Bulan {{ $month }}</h3>
                                 @elseif(request()->is('LaporanFinansialBBM/PenjualanBBM/FilterTahun*'))
                                     <h3 class="font-bold">Penjualan BBM Tahun {{ $year }}</h3>
+                                @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU'))
+                                    <h3 class="font-bold">Total Pengeluaran Operasional SPBU</h3>
+                                @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU/FilterRange*'))
+                                    <h3 class="font-bold">Pengeluaran Operasional SPBU Bulan {{ $start }} -
+                                        {{ $end }}</h3>
+                                @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU/FilterBulan*'))
+                                    <h3 class="font-bold">Pengeluaran Operasional SPBU Bulan {{ $month }}</h3>
+                                @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU/FilterTahun*'))
+                                    <h3 class="font-bold">Pengeluaran Operasional SPBU Tahun {{ $year }}</h3>
+                                @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU/FilterRange*'))
+                                    <h3 class="font-bold">Pengeluaran Operasional SPBU Bulan {{ $start }} -
+                                        {{ $end }}</h3>
                                 @else
-                                    <h3 class="font-bold">Total Penjualan BBM</h3>
                                 @endif
                                 <p class="mb-12">{{ $count }} Penjualan</p>
                             </div>
@@ -38,39 +51,7 @@
                                                 </path>
                                             </svg>
                                         </button>
-                                        <ul class=" dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none"
-                                            aria-labelledby="dropdownMenuButton1">
-                                            <li class="dropdown">
-                                                <div
-                                                    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
-                                                    Bulan</div>
-                                                <ul
-                                                    class="dropdown-content absolute hidden text-gray-700 -pl-5 -ml-[177px] -mt-10">
-                                                    <form id="monthFilter"
-                                                        action="/LaporanFinansialBBM/PenjualanBBM/FilterBulan"
-                                                        class="py-0.5" method="GET">
-                                                        <input id="month1" type="month" name="month"
-                                                            value="{{ request('month') }}"
-                                                            class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
-                                                    </form>
-                                                </ul>
-                                            </li>
-                                            <li class="dropdown">
-                                                <div
-                                                    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
-                                                    Tahun</div>
-                                                <ul
-                                                    class="dropdown-content absolute hidden text-gray-700 -pl-5 -ml-[211px] -mt-10">
-                                                    <form id="yearFilter"
-                                                        action="/LaporanFinansialBBM/PenjualanBBM/FilterTahun"
-                                                        class="py-0.5" method="GET">
-                                                        <input id="year1" type="text" name="year"
-                                                            placeholder="Pilih Tahun" value="{{ request('year') }}"
-                                                            class="yearpicker px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
-                                                    </form>
-                                                </ul>
-                                            </li>
-                                        </ul>
+                                        @yield('filter')
                                     </div>
                                 </div>
                             </div>
@@ -79,19 +60,16 @@
 
                     <div>
                         <ul class="flex border-b-[1.5px]">
-                            {{-- <li class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent"
-                                    :class="activeTab === index ? 'text-green-500 border-green-500' : ''"
-                                    @click="activeTab = index" x-text="tab"></li> --}}
                             <li class="mb-1.8">
                                 <a href="/LaporanFinansialBBM/PenjualanBBM"
                                     class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
-                                            @if (request()->is('LaporanFinansialBBM/PenjualanBBM')) text-green-500 border-green-500 @endif
+                                            @if (request()->is('LaporanFinansialBBM/PenjualanBBM*')) text-green-500 border-green-500 @endif
                                             ">
                                     Penjualan BBM
                                 </a>
-                                <a href="/LaporanFinansialBBM"
+                                <a href="/LaporanFinansialBBM/PengeluaranSPBU"
                                     class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
-                                            @if (request()->is('LaporanFinansialBBM')) text-green-500 border-green-500 @endif
+                                            @if (request()->is('LaporanFinansialBBM/PengeluaranSPBU*')) text-green-500 border-green-500 @endif
                                             ">
                                     Pengeluaran Operasional SPBU
                                 </a>
@@ -112,19 +90,6 @@
 @endsection
 
 @section('scripts')
-    <script>
-        // function setup() {
-        //     return {
-        //         activeTab: 0,
-        //         tabs: [
-        //             "Penjualan BBM",
-        //             "Pengeluaran Operasional SPBU",
-        //             "Laporan Keuangan SPBU",
-        //         ]
-        //     };
-        // };
-    </script>
-
     <script>
         const month = document.getElementById('month1');
         const end = document.getElementById('end');

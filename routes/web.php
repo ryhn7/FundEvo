@@ -9,6 +9,7 @@ use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\PenjualanItemController;
 use App\Http\Controllers\KategoryItemController;
 use App\Http\Controllers\PengeluaranOpsTokoListrikController;
+use App\Http\Controllers\LaporanFinansialTokoListrikController;
 use App\Models\BBM;
 use App\Models\Item;
 use App\Models\PengeluaranOpsTokoListrik;
@@ -36,7 +37,7 @@ Route::get('/penjualan-bbm/checkBBM/{id}', [PenjualanBBMController::class, 'chec
 Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
 Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->except('show');
 Route::get('/pengeluaran-ops-bbm/filter', [PengeluaranOpsBBMController::class, 'filter']);
-Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show');
+// Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show');
 
 
 //Item Listrik
@@ -56,3 +57,7 @@ Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterBulan', [LaporanFinansialBBM
 Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterTahun', [LaporanFinansialBBMController::class, 'yearFilterPenjualanBBM']);
 Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterRange', [LaporanFinansialBBMController::class, 'rangeFilterPenjualanBBM']);
 
+Route::get('/LaporanFinansialTokoListrik', [LaporanFinansialTokoListrikController::class, 'index']);
+Route::get('/LaporanFinansialTokoListrik/PenjualanItem/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterPenjualanItem']);
+Route::get('/LaporanFinansialTokoListrik/PenjualanItem/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterPenjualanItem']);
+Route::get('/LaporanFinansialTokoListrik/PenjualanItem/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterPenjualanItem']);

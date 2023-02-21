@@ -314,7 +314,7 @@
                 </li>
                 <li class="mt-0.5 w-full">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('pengeluaran-ops-listrik*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
-                        href="pengeluaran-ops-listrik">
+                        href="/pengeluaran-ops-listrik">
                         <div
                             class="{{ request()->is('pengeluaran-ops-listrik*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                             @if (request()->is('pengeluaran-ops-listrik*'))
@@ -355,7 +355,7 @@
                 </li>
                 <li class="mt-0.5 w-full">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
-                        href="#">
+                        href="/LaporanFinansialTokoListrik">
                         <div
                             class="{{ request()->is('') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                             @if (request()->is(''))

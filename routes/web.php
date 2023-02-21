@@ -9,6 +9,7 @@ use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\PenjualanItemController;
 use App\Http\Controllers\KategoryItemController;
 use App\Http\Controllers\PengeluaranOpsTokoListrikController;
+use App\Http\Controllers\LaporanFinansialTokoListrikController;
 use App\Models\BBM;
 use App\Models\Item;
 use App\Models\PengeluaranOpsTokoListrik;
@@ -42,6 +43,7 @@ Route::get('/LaporanFinansialBBM', [LaporanFinansialBBMController::class, 'index
 Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterBulan', [LaporanFinansialBBMController::class, 'monthFilterPenjualanBBM']);
 Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterTahun', [LaporanFinansialBBMController::class, 'yearFilterPenjualanBBM']);
 Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterRange', [LaporanFinansialBBMController::class, 'rangeFilterPenjualanBBM']);
+// Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show');
 
 
 //Item Listrik
@@ -57,3 +59,7 @@ Route::get('/pengeluaran-ops-listrik/filter', [PengeluaranOpsTokoListrikControll
 Route::get('/penjualan-item/checkItem/{id}', [PenjualanItemController::class, 'checkYesterday']); //ajax for check item from yesterday
 
 
+Route::get('/LaporanFinansialTokoListrik', [LaporanFinansialTokoListrikController::class, 'index']);
+Route::get('/LaporanFinansialTokoListrik/PenjualanItem/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterPenjualanItem']);
+Route::get('/LaporanFinansialTokoListrik/PenjualanItem/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterPenjualanItem']);
+Route::get('/LaporanFinansialTokoListrik/PenjualanItem/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterPenjualanItem']);

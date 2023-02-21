@@ -106,6 +106,7 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
         PenjualanBBM::factory(4)->create();
+        PenjualanBBM::factory(30)->create();
 
     }
 }

@@ -154,7 +154,9 @@
             </div>
         </form>
     </div>
+@endsection
 
+@section('scripts')
     <script>
         const stockAwal = document.getElementById('stock_awal');
         const penerimaan = document.getElementById('penerimaan');

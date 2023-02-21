@@ -38,6 +38,10 @@ Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->exc
 Route::get('/pengeluaran-ops-bbm/filter', [PengeluaranOpsBBMController::class, 'filter']);
 Route::resource('/penebusan-bbm', PenebusanBBMController::class)->except('show');
 Route::get('/laporan-finansial-bbm', [LaporanFinansialBBMController::class, 'index']);
+Route::get('/LaporanFinansialBBM', [LaporanFinansialBBMController::class, 'index']);
+Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterBulan', [LaporanFinansialBBMController::class, 'monthFilterPenjualanBBM']);
+Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterTahun', [LaporanFinansialBBMController::class, 'yearFilterPenjualanBBM']);
+Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterRange', [LaporanFinansialBBMController::class, 'rangeFilterPenjualanBBM']);
 
 
 //Item Listrik

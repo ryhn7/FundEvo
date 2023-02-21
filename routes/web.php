@@ -52,7 +52,7 @@ Route::resource('/pengeluaran-ops-listrik', PengeluaranOpsTokoListrikController:
 Route::get('/pengeluaran-ops-listrik/filter', [PengeluaranOpsTokoListrikController::class, 'filter']);//ajax for filtering pengeluaran item based on date
 
 
-Route::get('/LaporanFinansialBBM', [LaporanFinansialBBMController::class, 'index']);
+Route::get('/LaporanFinansialBBM/PenjualanBBM', [LaporanFinansialBBMController::class, 'indexPenjualanBBM']);
 Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterBulan', [LaporanFinansialBBMController::class, 'monthFilterPenjualanBBM']);
 Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterTahun', [LaporanFinansialBBMController::class, 'yearFilterPenjualanBBM']);
 Route::get('/LaporanFinansialBBM/PenjualanBBM/FilterRange', [LaporanFinansialBBMController::class, 'rangeFilterPenjualanBBM']);

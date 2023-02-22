@@ -19,10 +19,9 @@ class LaporanFinansialBBMController extends Controller
 
         $labels = [];
         $values = [];
-        foreach ($bbm as $b) {
-            $labels[] = $b->jenis_bbm;
-            //get penjualan from penjualanBBM based on labels
-            $values[] = $penjualanBBM->where('bbm_id', $b->id)->sum('penjualan');
+        foreach ($bbm as $item) {
+            $labels[] = $item->jenis_bbm;
+            $values[] = $penjualanBBM->where('bbm_id', $item->id)->sum('penjualan');
         }
 
         $totalPendapatan = $penjualanBBM->sum('pendapatan');
@@ -49,7 +48,6 @@ class LaporanFinansialBBMController extends Controller
         ]);
     }
 
-    // filter by month
     public function rangeFilterPenjualanBBM(Request $request)
     {
         $start = Carbon::parse($request->start);
@@ -67,15 +65,33 @@ class LaporanFinansialBBMController extends Controller
 
     public function monthFilterPenjualanBBM(Request $request)
     {
+        $bbm = BBM::all();
         $month = $request->month;
         $penjualanBBM = PenjualanBBM::sortable()->whereYear('created_at', Carbon::parse($month)->year)
             ->whereMonth('created_at', Carbon::parse($month)->month)->get();
+
+        $labels = [];
+        $values = [];
+        foreach ($bbm as $item) {
+            $labels[] = $item->jenis_bbm;
+            $values[] = $penjualanBBM->where('bbm_id', $item->id)->sum('penjualan');
+        }
+
+        $totalPendapatan = $penjualanBBM->sum('pendapatan');
+        $totalLiter = $penjualanBBM->sum('penjualan');
+        $totalPenyusutan = $penjualanBBM->sum('penyusutan');
 
         return view('SPBU.laporanFinansial.indexPenjualanBBM', [
             'sells' => $penjualanBBM,
             'count' => $penjualanBBM->count(),
             'month' => Carbon::parse($month)->locale('id')->isoFormat('MMMM'),
-        ]);
+            'bbms' => $bbm,
+            'totalPendapatan' => $totalPendapatan,
+            'totalLiter' => $totalLiter,
+            'totalPenyusutan' => $totalPenyusutan,
+
+        ])->with('labels', json_encode($labels, JSON_NUMERIC_CHECK))
+            ->with('values', json_encode($values, JSON_NUMERIC_CHECK));
     }
 
     public function yearFilterPenjualanBBM(Request $request)

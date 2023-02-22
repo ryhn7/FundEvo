@@ -56,6 +56,9 @@
                 </div>
             </div>
         </div>
+    @endif
+
+    @if (request()->is('LaporanFinansialBBM/PenjualanBBM') || request()->is('LaporanFinansialBBM/PenjualanBBM/FilterBulan*'))
         <div class="flex flex-wrap -mx-2">
             <div class="w-full max-w-full px-3 mt-4 lg:w-1/2 lg:flex-none">
                 <div
@@ -150,6 +153,7 @@
             </div>
         </div>
     @endif
+
 
     <div class="flex-none w-full max-w-full">
         <div
@@ -353,82 +357,82 @@
             </div>
         @endif
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-
-    <script>
-        var labels = <?php echo $labels; ?>;
-        var values = <?php echo $values; ?>;
-        var barChartData = {
-            labels: labels,
-            datasets: [{
-                label: 'Penjualan',
-                data: values,
-                tension: 0.4,
-                borderWidth: 0,
-                borderRadius: 4,
-                borderSkipped: false,
-                backgroundColor: "#fff",
-                maxBarThickness: 6,
-                label: "Sales",
-            }]
-        };
-
-        window.onload = function() {
-            var ctx = document.getElementById("canvas").getContext("2d");
-            window.myBar = new Chart(ctx, {
-                type: 'bar',
-                data: barChartData,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false,
-                        },
-                    },
-                    interaction: {
-                        intersect: false,
-                        mode: "index",
-                    },
-                    scales: {
-                        y: {
-                            grid: {
-                                drawBorder: false,
-                                display: false,
-                                drawOnChartArea: false,
-                                drawTicks: false,
-                            },
-                            ticks: {
-                                suggestedMin: 0,
-                                suggestedMax: 600,
-                                beginAtZero: true,
-                                padding: 15,
-                                font: {
-                                    size: 14,
-                                    family: "Open Sans",
-                                    style: "normal",
-                                    lineHeight: 2,
-                                },
-                                color: "#fff",
-                            },
-                        },
-                        x: {
-                            grid: {
-                                drawBorder: false,
-                                display: false,
-                                drawOnChartArea: false,
-                                drawTicks: false,
-                            },
-                            ticks: {
-                                display: false,
-                            },
-                        },
-                    },
-                }
-            });
-        };
-    </script>
-
-
 @endsection
+
+@if (request()->is('LaporanFinansialBBM/PenjualanBBM') || request()->is('LaporanFinansialBBM/PenjualanBBM/FilterBulan*'))
+    @section('chartScript')
+        <script>
+            var labels = <?php echo $labels; ?>;
+            var values = <?php echo $values; ?>;
+            var barChartData = {
+                labels: labels,
+                datasets: [{
+                    label: 'Penjualan',
+                    data: values,
+                    tension: 0.4,
+                    borderWidth: 0,
+                    borderRadius: 4,
+                    borderSkipped: false,
+                    backgroundColor: "#fff",
+                    maxBarThickness: 6,
+                    label: "Sales",
+                }]
+            };
+
+            window.onload = function() {
+                var ctx = document.getElementById("canvas").getContext("2d");
+                window.myBar = new Chart(ctx, {
+                    type: 'bar',
+                    data: barChartData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                        },
+                        interaction: {
+                            intersect: false,
+                            mode: "index",
+                        },
+                        scales: {
+                            y: {
+                                grid: {
+                                    drawBorder: false,
+                                    display: false,
+                                    drawOnChartArea: false,
+                                    drawTicks: false,
+                                },
+                                ticks: {
+                                    suggestedMin: 0,
+                                    suggestedMax: 600,
+                                    beginAtZero: true,
+                                    padding: 15,
+                                    font: {
+                                        size: 14,
+                                        family: "Open Sans",
+                                        style: "normal",
+                                        lineHeight: 2,
+                                    },
+                                    color: "#fff",
+                                },
+                            },
+                            x: {
+                                grid: {
+                                    drawBorder: false,
+                                    display: false,
+                                    drawOnChartArea: false,
+                                    drawTicks: false,
+                                },
+                                ticks: {
+                                    display: false,
+                                },
+                            },
+                        },
+                    }
+                });
+            };
+        </script>
+    @endsection
+@endif

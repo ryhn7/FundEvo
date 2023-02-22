@@ -12,7 +12,7 @@ class PenjualanBBM extends Model
 
     protected $guarded = ['id'];
 
-    public $sortable = ['created_at', 'stock_awal', 'penerimaan', 'tera_densiti', 'penjualan', 'stock_adm', 'stock_fakta', 'penyusutan', 'pendapatan'];
+    public $sortable = ['created_at', 'bbm_id', 'stock_awal', 'penerimaan', 'tera_densiti', 'penjualan', 'stock_adm', 'stock_fakta', 'penyusutan', 'pendapatan'];
 
     public function bbm()
     {

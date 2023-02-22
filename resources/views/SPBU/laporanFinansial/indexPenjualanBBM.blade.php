@@ -1,3 +1,4 @@
+
 @extends('SPBU.laporanFinansial.index')
 
 @section('filter')
@@ -75,7 +76,7 @@
                                 </th>
                                 <th
                                     class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Jenis BBM</th>
+                                    @sortablelink('bbm_id', 'Jenis BBM')</th>
                                 <th
                                     class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                     @sortablelink('stock_awal', 'Stok Awal')</th>
@@ -116,7 +117,7 @@
                                 <td
                                     class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                     <span class="font-semibold leading-tight text-xs text-slate-400">
-                                        {{ $sells[0]->bbm->jenis_bbm }} Bensin Solar
+                                        {{ $sells[0]->bbm->jenis_bbm }}
                                     </span>
                                 </td>
                                 <td

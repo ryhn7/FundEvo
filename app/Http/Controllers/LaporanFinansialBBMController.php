@@ -14,9 +14,13 @@ class LaporanFinansialBBMController extends Controller
     public function indexPenjualanBBM()
     {
         $penjualanBBM = PenjualanBBM::sortable()->get();
+
+        // get pendapatan where bbm_id = 1
+        $pendapatanSatu = PenjualanBBM::where('bbm_id', 1)->sum('pendapatan');
         return view('SPBU.laporanFinansial.indexPenjualanBBM', [
             'sells' => $penjualanBBM,
             'count' => $penjualanBBM->count(),
+            'satu' => $pendapatanSatu,
         ]);
     }
 

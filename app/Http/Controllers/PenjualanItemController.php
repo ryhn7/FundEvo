@@ -56,7 +56,6 @@ class PenjualanItemController extends Controller
             'penjualan' => 'nullable|numeric',
             'stock_akhir' => 'required|numeric',
             'pendapatan' => 'required|numeric',
-            'created_at' => 'nullable|date',
         ]);
 
         // if ($validated['created_at'] == null) {
@@ -178,5 +177,17 @@ class PenjualanItemController extends Controller
             'totalAmount' => $penjualanItem->sum('pendapatan'),
             'totalSell' => $penjualanItem->sum('penjualan'),
         ]);
+    }
+
+    public function checkYesterday($id)
+    {
+        $yesterday = Carbon::yesterday()->toDateString();
+        $penjualanItem = PenjualanItemListrik::where('item_id', $id)->whereDate('created_at', $yesterday)->first();
+
+        if ($penjualanItem == null) {
+            return response()->json(false);
+        } else {
+            return response()->json($penjualanItem);
+        }
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PenjualanBBM;
+use App\Models\BBM;
 use App\Models\PengeluaranOpsBBM;
 use Carbon\Carbon;
 
@@ -13,14 +14,20 @@ class LaporanFinansialBBMController extends Controller
 
     public function indexPenjualanBBM()
     {
+        $bbm = BBM::all();
         $penjualanBBM = PenjualanBBM::sortable()->get();
 
-        // get pendapatan where bbm_id = 1
-        $pendapatanSatu = PenjualanBBM::where('bbm_id', 1)->sum('pendapatan');
+        $totalPendapatan = $penjualanBBM->sum('pendapatan');
+        $totalLiter = $penjualanBBM->sum('penjualan');
+        $totalPenyusutan = $penjualanBBM->sum('penyusutan');
+
         return view('SPBU.laporanFinansial.indexPenjualanBBM', [
             'sells' => $penjualanBBM,
             'count' => $penjualanBBM->count(),
-            'satu' => $pendapatanSatu,
+            'bbms' => $bbm,
+            'totalPendapatan' => $totalPendapatan,
+            'totalLiter' => $totalLiter,
+            'totalPenyusutan' => $totalPenyusutan,
         ]);
     }
 

@@ -17,8 +17,8 @@ class PengeluaranOpsTokoListrikController extends Controller
      */
     public function index()
     {
-        $pengeluaranOps = PengeluaranOpsTokoListrik::where('date', Carbon::today()->toDateString())->get();
-        $spend = PengeluaranOpsTokoListrik::where('date', Carbon::today()->toDateString())->get();
+        $pengeluaranOps = PengeluaranOpsTokoListrik::whereDate('created_at', Carbon::today()->toDateString())->get();
+        $spend = PengeluaranOpsTokoListrik::whereDate('created_at', Carbon::today()->toDateString())->get();
         $totalGajiKaryawan = $spend->sum('gaji_karyawan');
         $totalReward = $spend->sum('reward_karyawan');
         $pbb = $spend->sum('pbb');

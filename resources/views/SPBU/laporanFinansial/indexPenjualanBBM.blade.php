@@ -1,4 +1,3 @@
-
 @extends('SPBU.laporanFinansial.index')
 
 @section('filter')
@@ -31,9 +30,9 @@
 @endsection
 
 @section('laporan')
-    <div class="flex flex-wrap -mx-3 mt-0">
-        {{--  make a flex div and place it to right-0  --}}
-        @if (request()->is('LaporanFinansialBBM/PenjualanBBM'))
+    @if (request()->is('LaporanFinansialBBM/PenjualanBBM'))
+        <div class="flex flex-wrap -mx-3 mt-0">
+            {{--  make a flex div and place it to right-0  --}}
             <div class="w-full px-3 mb-2 md:mb-1">
                 <div class="flex justify-between">
                     <div class="px-4 py-5">Filter by time range</div>
@@ -56,8 +55,78 @@
                     </div>
                 </div>
             </div>
-        @endif
-    </div>
+        </div>
+        <div class="flex flex-wrap -mx-3">
+            <!-- card1 -->
+            @foreach ($bbms as $bbm)
+                {{-- get sum of pendapatan from penjualan bbm use blade --}}
+                @php
+                    $revenue = $sells->where('bbm_id', $bbm->id)->sum('pendapatan');
+                    $liter = $sells->where('bbm_id', $bbm->id)->sum('penjualan');
+                    $penyusutan = $sells->where('bbm_id', $bbm->id)->sum('penyusutan');
+                @endphp
+                <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+                    <div
+                        class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
+                        <div class="flex-auto p-4">
+                            <div class="flex flex-row -mx-3">
+                                <div class="flex-none w-2/3 max-w-full px-3">
+                                    <div>
+                                        <p class="mb-0 font-open font-semibold leading-normal text-sm">
+                                            {{ $bbm->jenis_bbm }}
+                                        </p>
+                                        <h5 class="mb-0 font-bold">
+                                            @currency($revenue) </h5>
+                                        <span
+                                            class="leading-normal text-sm font-weight-bolder text-lime-500">{{ $liter }}
+                                            Liter</span>
+                                    </div>
+                                    <span
+                                        class="leading-normal text-sm font-weight-bolder text-lime-500">{{ $penyusutan }}
+                                        Liter</span>
+                                </div>
+                                <div class="px-3 text-right basis-1/3">
+                                    <div
+                                        class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
+                                        <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+                <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
+                    <div class="flex-auto p-4">
+                        <div class="flex flex-row -mx-3">
+                            <div class="flex-none w-2/3 max-w-full px-3">
+                                <div>
+                                    <p class="mb-0 font-open font-semibold leading-normal text-sm">
+                                        Total
+                                    </p>
+                                    <h5 class="mb-0 font-bold">
+                                        @currency($totalPendapatan)</h5>
+                                    <span
+                                        class="leading-normal text-sm font-weight-bolder text-lime-500">{{ $totalLiter }}
+                                        Liter</span>
+                                </div>
+                                <span class="leading-normal text-sm font-weight-bolder text-lime-500">{{ $totalPenyusutan }}
+                                    Liter</span>
+                            </div>
+                            <div class="px-3 text-right basis-1/3">
+                                <div
+                                    class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
+                                    <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="flex-none w-full max-w-full">
         <div
             class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid bg-clip-border">

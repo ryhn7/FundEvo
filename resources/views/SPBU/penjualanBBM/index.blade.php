@@ -21,7 +21,26 @@
                 <button type="button" alert-close
                     class="box-content absolute top-0 right-0 p-4 text-sm text-white bg-transparent border-0 rounded w-4 h-4 z-2">
                 </button>
-            </div>
+            </div>new Chart(document.getElementById("chart-bars"), {
+        type: 'bar',
+        data: {
+            labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+            datasets: [{
+                label: "Population (millions)",
+                backgroundColor: ["#000000", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                data: [2478, 5267, 734, 784, 433]
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: 'Predicted world population (millions) in 2050'
+            }
+        }
+    });
         @endif
     </div>
     <!-- row 1 -->
@@ -43,6 +62,7 @@
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                 <i class="fa-solid fa-money-check-dollar text-white py-4"></i>
+                                
                             </div>
                         </div>
                     </div>

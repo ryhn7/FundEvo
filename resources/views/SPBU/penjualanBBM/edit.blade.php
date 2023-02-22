@@ -43,7 +43,7 @@
 
                 <label for="stock_awal" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Stock Awal</span>
-                    <input type="number" min="1000" step="any" id="stock_awal" name="stock_awal" required
+                    <input type="number" min="0" step="any" id="stock_awal" name="stock_awal" required
                         value="{{ old('stock_awal', $sell->stock_awal) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('stock_awal')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -55,7 +55,7 @@
 
                 <label for="penerimaan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Penerimaan</span>
-                    <input type="number" min="1000" step="any" id="penerimaan" name="penerimaan"
+                    <input type="number" min="0" step="any" id="penerimaan" name="penerimaan"
                         value="{{ old('penerimaan', $sell->penerimaan) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penerimaan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -79,7 +79,7 @@
 
                 <label for="stock_adm" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Stock ADM</span>
-                    <input type="number" min="1000" step="any" id="stock_adm" name="stock_adm" required
+                    <input type="number" min="0" step="any" id="stock_adm" name="stock_adm" required
                         value="{{ old('stock_adm', $sell->stock_adm) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('stock_adm')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -91,7 +91,7 @@
 
                 <label for="stock_fakta" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Stock Fakta</span>
-                    <input type="number" min="1000" step="any" id="stock_fakta" name="stock_fakta" required
+                    <input type="number" min="0" step="any" id="stock_fakta" name="stock_fakta" required
                         value="{{ old('stock_fakta', $sell->stock_fakta) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('stock_fakta')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -103,7 +103,7 @@
 
                 <label for="penjualan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Penjualan</span>
-                    <input type="number" min="1000" step="any" id="penjualan" name="penjualan" required
+                    <input type="number" min="0" step="any" id="penjualan" name="penjualan" required
                         value="{{ old('penjualan', $sell->penjualan) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penjualan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -127,12 +127,24 @@
 
                 <label for="pendapatan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Pendapatan</span>
-                    <input type="number" min="1000" step="any" id="pendapatan" name="pendapatan" required
+                    <input type="number" min="0" step="any" id="pendapatan" name="pendapatan" required
                         value="{{ old('pendapatan', $sell->pendapatan) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('pendapatan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />
                     @error('pendapatan')
+                        <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
+                    @enderror
+                </label>
+
+                <label for="created_at" class="block mt-4 text-sm">
+                    <span class="text-gray-700 font-semibold">Tanggal</span>
+                    <input type="date" name="created_at"
+                        value="{{ old('created_at', $sell->created_at->format('Y-m-d')) }}"
+                        class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('created_at')
+                    border-red-600 focus:border-red-600 focus:ring-red-600
+                    @enderror" />
+                    @error('created_at')
                         <p class="text-xs mt-1 text-red-700">{{ $message }}</p>
                     @enderror
                 </label>
@@ -143,7 +155,9 @@
             </div>
         </form>
     </div>
+@endsection
 
+@section('scripts')
     <script>
         const stockAwal = document.getElementById('stock_awal');
         const penerimaan = document.getElementById('penerimaan');
@@ -167,15 +181,9 @@
 
         stockFakta.addEventListener('change', () => {
             const result = parseInt(stockAdm.value) - parseInt(stockFakta.value);
+            const hasil = parseInt(penjualan.value) * parseInt(hargaJual.value);
             penyusutan.value = result;
-        });
-
-        hargaJual.addEventListener('change', () => {
-            const result = parseInt(penjualan.value) * parseInt(hargaJual.value);
-
-            console.log(result);
-
-            pendapatan.value = result;
+            pendapatan.value = hasil;
         });
     </script>
 @endsection

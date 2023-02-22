@@ -16,7 +16,7 @@
                 <li class="mt-0.5 w-full">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('/') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" href="/">
                         <div class="{{ request()->is('/') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                            @if(request()->is('/'))
+                            @if (request()->is('/'))
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
                                 <g>
                                     <path d="m498.195 222.695-.035-.035L289.305 13.813C280.402 4.905 268.566 0 255.977 0c-12.59 0-24.426 4.902-33.332 13.809L13.898 222.55c-.07.07-.14.144-.21.215-18.282 18.386-18.25 48.218.09 66.558 8.378 8.383 19.445 13.238 31.277 13.746.48.047.965.07 1.453.07h8.324v153.7C54.832 487.254 79.578 512 110 512h81.71c8.282 0 15-6.715 15-15V376.5c0-13.879 11.29-25.168 25.169-25.168h48.195c13.88 0 25.168 11.29 25.168 25.168V497c0 8.285 6.715 15 15 15h81.711c30.422 0 55.168-24.746 55.168-55.16v-153.7h7.719c12.586 0 24.422-4.902 33.332-13.808 18.36-18.371 18.367-48.254.023-66.637zm0 0" fill="#ffffff" data-original="#000000" class=""></path>
@@ -41,7 +41,7 @@
                 <li class="mt-3 w-full">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('penjualan-bbm*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" href="/penjualan-bbm">
                         <div class="{{ request()->is('penjualan-bbm*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                            @if(request()->is('penjualan-bbm*'))
+                            @if (request()->is('penjualan-bbm*'))
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 400 400" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
                                 <g>
                                     <path d="M270 310h90V0H40v400h230v-90zM100 80h200v30H100V80zm0 60h200v30H100v-30zm0 60h200v30H100v-30z" fill="#ffffff" data-original="#000000" class=""></path>
@@ -57,7 +57,8 @@
                             </svg>
                             @endif
                         </div>
-                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Penjualan BBM Harian</span>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Penjualan BBM
+                            Harian</span>
                     </a>
                 </li>
 
@@ -80,13 +81,14 @@
                             </svg>
                             @endif
                         </div>
-                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Pengeluaran Harian</span>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Pengeluaran
+                            Harian</span>
                     </a>
                 </li>
                 <li class="mt-0.5 w-full">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('kategori-bbm*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" href="/kategori-bbm">
-                        <div class="{{ request()->is('kategori-bbm') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                            @if(request()->is('kategori-bbm'))
+                        <div class="{{ request()->is('kategori-bbm*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                            @if (request()->is('kategori-bbm*'))
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
                                 <g>
                                     <path d="M95.274 59.883h89.825v29.942H95.274z" fill="#ffffff" data-original="#000000" class=""></path>
@@ -107,38 +109,71 @@
                     </a>
                 </li>
                 <li class="mt-0.5 w-full">
-                    {{-- <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('dashboard/categories*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" --}}
-                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors" href="#">
-                        <div class="{{ request()->is('') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                            @if(request()->is(''))
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 382.499 382.499" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
-                                <g>
-                                    <path d="M0 261.25h100v60H0zM130 191.25h100v130H130zM360 122.087h22.499L310 1.25l-72.5 120.837H260V321.25h100zM0 351.25h360v30H0z" fill="#ffffff" data-original="#000000" class=""></path>
-                                </g>
-                            </svg>
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
+                        href="/LaporanFinansialBBM/PenjualanBBM">
+                        <div
+                            class="{{ request()->is('') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                            @if (request()->is(''))
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
+                                    width="512" height="512" x="0" y="0"
+                                    viewBox="0 0 382.499 382.499" style="enable-background:new 0 0 512 512"
+                                    xml:space="preserve" class="">
+                                    <g>
+                                        <path
+                                            d="M0 261.25h100v60H0zM130 191.25h100v130H130zM360 122.087h22.499L310 1.25l-72.5 120.837H260V321.25h100zM0 351.25h360v30H0z"
+                                            fill="#ffffff" data-original="#000000" class=""></path>
+                                    </g>
+                                </svg>
                             @else
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
-                                <g>
-                                    <path d="m414.954 1.673-97.046 161.748h30.118V470.17h-40.157V256H174.013v214.17h-40.157V349.699H0v160.627h481.882V163.421H512L414.954 1.673zM93.699 470.17H40.157v-80.314h53.542v80.314zm174.013 0H214.17V296.157h53.542V470.17zm174.014 0h-53.542V124.347l26.771-44.62 26.771 44.62V470.17z" fill="#000000" data-original="#000000" class=""></path>
-                                </g>
-                            </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
+                                    width="512" height="512" x="0" y="0"
+                                    viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+                                    xml:space="preserve" class="">
+                                    <g>
+                                        <path
+                                            d="m414.954 1.673-97.046 161.748h30.118V470.17h-40.157V256H174.013v214.17h-40.157V349.699H0v160.627h481.882V163.421H512L414.954 1.673zM93.699 470.17H40.157v-80.314h53.542v80.314zm174.013 0H214.17V296.157h53.542V470.17zm174.014 0h-53.542V124.347l26.771-44.62 26.771 44.62V470.17z"
+                                            fill="#000000" data-original="#000000" class=""></path>
+                                    </g>
+                                </svg>
                             @endif
                         </div>
-                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Laporan Finansial</span>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Laporan
+                            Finansial</span>
                     </a>
                 </li>
 
                 <!-- TOKO LISTRIK -->
                 <li class="w-full mt-4">
-                    <h6 class="pl-6 ml-2 font-bold leading-tight uppercase text-xs opacity-60">Keuangan Toko Listrik</h6>
+                    <h6 class="pl-6 ml-2 font-bold leading-tight uppercase text-xs opacity-60">Keuangan Toko Listrik
+                    </h6>
                 </li>
-
                 <li class="mt-0.5 w-full">
-                    {{-- <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('dashboard/categories*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" --}}
-                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors" href="/kategori-item">
-                        <div {{-- class="{{ request()->is('dashboard/categories*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] opacity-80 ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5"> --}}
-                            class="{{ request()->is('') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                            @if(request()->is(''))
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('kategori') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" href="/kategori">
+                        <div class="{{ request()->is('kategori') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                            @if (request()->is('kategori'))
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 512.011 512.011" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+                                <g>
+                                    <path d="m9.881 188.672 234.667 149.333a21.396 21.396 0 0 0 11.456 3.328c3.989 0 7.957-1.109 11.456-3.328l234.667-149.333a21.374 21.374 0 0 0 9.877-18.005 21.31 21.31 0 0 0-9.877-17.984L267.459 3.328a21.383 21.383 0 0 0-22.912 0L9.881 152.683a21.31 21.31 0 0 0-9.877 17.984 21.371 21.371 0 0 0 9.877 18.005z" fill="#ffffff" data-original="#000000" class=""></path>
+                                    <path d="m502.13 323.339-66.069-42.048-145.685 92.715c-10.347 6.549-22.208 10.005-34.368 10.005s-24.021-3.456-34.304-9.984l-145.75-92.736-66.069 42.048a21.374 21.374 0 0 0-9.877 18.005 21.31 21.31 0 0 0 9.877 17.984l234.667 149.355a21.344 21.344 0 0 0 11.456 3.328c3.968 0 7.957-1.109 11.456-3.328L502.13 359.328a21.31 21.31 0 0 0 9.877-17.984 21.371 21.371 0 0 0-9.877-18.005z" fill="#ffffff" data-original="#000000" class=""></path>
+                                </g>
+                            </svg>
+                            @else
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
+                                <g>
+                                    <path d="m502.12 323.335-105.815-67.333 105.815-67.337c13.173-8.383 13.173-27.613 0-35.996L267.453 3.335a21.334 21.334 0 0 0-22.907 0L9.88 152.669c-13.173 8.383-13.173 27.613 0 35.996l105.815 67.337L9.88 323.335c-13.174 8.383-13.174 27.613 0 35.997l234.667 149.333a21.334 21.334 0 0 0 22.907 0L502.12 359.331c13.174-8.383 13.173-27.613 0-35.996zM256 46.62l194.931 124.047-105.741 67.289c-.026.016-.053.03-.078.046L256 294.713l-89.112-56.711c-.026-.016-.053-.03-.078-.046L61.069 170.667 256 46.62zm0 418.76L61.07 341.334l94.361-60.045 88.971 56.618.144.091c.323.205.654.391.985.578.117.066.229.14.347.204.873.471 1.771.873 2.687 1.214.031.011.061.026.091.037.257.094.519.171.779.255.221.072.441.152.664.216.755.217 1.521.379 2.291.512 2.39.41 4.831.41 7.221 0 .77-.132 1.536-.294 2.291-.512.223-.064.442-.145.664-.216.26-.084.521-.16.779-.255.031-.011.061-.026.091-.037a21.306 21.306 0 0 0 2.687-1.214c.118-.063.23-.138.347-.204.331-.186.662-.372.985-.578l.145-.092 88.97-56.617 94.361 60.045L256 465.38z" fill="#000000" data-original="#000000" class=""></path>
+                                </g>
+                            </svg>
+                            @endif
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Kategori</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('kategori-item*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" href="/kategori-item">
+                        <div class="{{ request()->is('kategori-item*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                            @if (request()->is('kategori-item*'))
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 436 436.008" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
                                 <g transform="matrix(1,0,0,1,95,0)">
                                     <path d="M259.984 122.832h-84.336l45-109.016A9.998 9.998 0 0 0 211.41 0H31.88a10 10 0 0 0-9.957 9.07L.047 243.566c-.262 2.801.668 5.586 2.562 7.668a10.013 10.013 0 0 0 7.395 3.266h70.863L70.88 425.422a10 10 0 0 0 18.516 5.8L268.52 138.048a10.014 10.014 0 0 0 .187-10.11 10.004 10.004 0 0 0-8.723-5.105zm0 0" fill="#ffffff" data-original="#000000" class=""></path>
@@ -156,10 +191,9 @@
                     </a>
                 </li>
                 <li class="mt-0.5 w-full">
-                    {{-- <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('dashboard/posts*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" --}}
-                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors" href="/penjualan-item">
-                        <div class="{{ request()->is('') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                            @if(request()->is(''))
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('penjualan-item*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" href="/penjualan-item">
+                        <div class="{{ request()->is('penjualan-item*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                            @if (request()->is('penjualan-item*'))
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 400 400" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
                                 <g>
                                     <path d="M270 310h90V0H40v400h230v-90zM100 80h200v30H100V80zm0 60h200v30H100v-30zm0 60h200v30H100v-30z" fill="#ffffff" data-original="#000000" class=""></path>
@@ -175,14 +209,14 @@
                             </svg>
                             @endif
                         </div>
-                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Penjualan Item Harian</span>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Penjualan Item
+                            Harian</span>
                     </a>
                 </li>
                 <li class="mt-0.5 w-full">
-                    {{-- <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('dashboard/categories*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" --}}
-                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors" href="pengeluaran-ops-listrik">
-                        <div class="{{ request()->is('') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                            @if(request()->is(''))
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('pengeluaran-ops-listrik*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" href="/pengeluaran-ops-listrik">
+                        <div class="{{ request()->is('pengeluaran-ops-listrik*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                            @if (request()->is('pengeluaran-ops-listrik*'))
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 472.615 472.615" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
                                 <g>
                                     <path d="M172.471 159.55v222.654c15.957 3.231 28.635 14.144 32.765 28.086h62.149c4.13-13.942 16.807-24.856 32.764-28.086V159.55H172.471z" fill="#ffffff" data-original="#000000" class=""></path>
@@ -198,14 +232,16 @@
                             </svg>
                             @endif
                         </div>
-                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Pengeluaran Harian</span>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Pengeluaran
+                            Harian</span>
                     </a>
                 </li>
                 <li class="mt-0.5 w-full">
-                    {{-- <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('dashboard/categories*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors" --}}
-                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors" href="#">
-                        <div class="{{ request()->is('') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                            @if(request()->is(''))
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
+                        href="/LaporanFinansialTokoListrik">
+                        <div
+                            class="{{ request()->is('') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                            @if (request()->is(''))
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="512" height="512" x="0" y="0" viewBox="0 0 382.499 382.499" style="enable-background:new 0 0 512 512" xml:space="preserve" class="">
                                 <g>
                                     <path d="M0 261.25h100v60H0zM130 191.25h100v130H130zM360 122.087h22.499L310 1.25l-72.5 120.837H260V321.25h100zM0 351.25h360v30H0z" fill="#ffffff" data-original="#000000" class=""></path>
@@ -219,7 +255,8 @@
                             </svg>
                             @endif
                         </div>
-                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Laporan Finansial</span>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Laporan
+                            Finansial</span>
                     </a>
                 </li>
             </ul>

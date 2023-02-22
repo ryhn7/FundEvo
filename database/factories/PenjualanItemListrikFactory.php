@@ -17,7 +17,13 @@ class PenjualanItemListrikFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'item_id' => mt_rand(1, 5),
+            'stock_awal' => fake()->numberBetween(0, 1000),
+            'penerimaan' => fake()->numberBetween(500, 1000),
+            'penjualan' => fake()->numberBetween(1, 500),
+            'stock_akhir' => fake()->numberBetween(1, 500),
+            'penyusutan' => fake()->numberBetween(1, 500),
+            'pendapatan' => fake()->numberBetween(10000000, 1000000000),
         ];
     }
 }

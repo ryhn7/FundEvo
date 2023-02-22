@@ -3,8 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Carbon\Carbon;
-
 return new class extends Migration
 {
     /**
@@ -31,7 +29,6 @@ return new class extends Migration
             $table->decimal('biaya_lain', 12, 2)->nullable();
             $table->text('keterangan')->nullable();
             $table->string('nota')->nullable();
-            $table->timestamp('date')->default(Carbon::now()->toDateString());
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ class PenjualanBBMController extends Controller
     {
         // $date = Carbon::now()->toDateString();
         // return($date);
+
         $penjualanBBM = PenjualanBBM::whereDate('created_at', Carbon::now()->toDateString())->get();
         return view('SPBU.penjualanBBM.index', [
             'sells' => $penjualanBBM,
@@ -32,7 +33,7 @@ class PenjualanBBMController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
+    {
         return view('SPBU.penjualanBBM.create', [
             'bbms' => BBM::all(),
         ]);
@@ -56,14 +57,27 @@ class PenjualanBBMController extends Controller
             'stock_fakta' => 'required|numeric',
             'penyusutan' => 'required|numeric',
             'pendapatan' => 'required|numeric',
+            'created_at' => 'nullable|date',
         ]);
+
+        if ($validated['created_at'] == null) {
+            $validated['created_at'] = Carbon::now();
+        }
 
         //limit jenis_bbm from bbm_id to 1 each
         $bbm_id = $request->bbm_id;
+        $yesterday = Carbon::yesterday()->toDateString();
+        $penjualanBBMYesterday = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', $yesterday)->first();
         $penjualanBBM = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
         if ($penjualanBBM) {
             return redirect('/penjualan-bbm')->with('error', 'Hanya boleh input 1 jenis BBM per hari!');
         }
+
+        // dd($penjualanBBMYesterday);
+        if (!$penjualanBBMYesterday) {
+            return redirect('/penjualan-bbm')->with('error', 'Harap input penjualan BBM hari kemarin terlebih dahulu!');
+        }
+
 
         PenjualanBBM::create($validated);
 
@@ -114,9 +128,14 @@ class PenjualanBBMController extends Controller
             'stock_fakta' => 'required|numeric',
             'penyusutan' => 'required|numeric',
             'pendapatan' => 'required|numeric',
+            'created_at' => 'nullable|date',
         ];
 
         $validated = $request->validate($rules);
+
+        if ($validated['created_at'] == null) {
+            $validated['created_at'] = Carbon::now();
+        }
 
         PenjualanBBM::where('id', $penjualan_bbm->id)
             ->update($validated);
@@ -161,5 +180,17 @@ class PenjualanBBMController extends Controller
     {
         $penjualanBBM = PenjualanBBM::where('bbm_id', $id)->latest()->first();
         return response()->json($penjualanBBM);
+    }
+
+    public function checkYesterday($id)
+    {
+        $yesterday = Carbon::yesterday()->toDateString();
+        $penjualanBBM = PenjualanBBM::where('bbm_id', $id)->whereDate('created_at', $yesterday)->first();
+
+        if ($penjualanBBM == null) {
+            return response()->json(false);
+        } else {
+            return response()->json($penjualanBBM);
+        }
     }
 }

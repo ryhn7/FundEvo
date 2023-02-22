@@ -61,6 +61,8 @@
     <link rel="stylesheet" href="{{ asset('css/yearpicker.css') }}">
     <script src="{{ asset('assets/js/yearpicker.js') }}"></script>
     <script src="{{ asset('assets/js/yearpicker-init.js') }}"></script>
+
+    <script src="{{ asset('assets/js/chartjs.min.js') }}"></script>
     @yield('scripts')
 </body>
 

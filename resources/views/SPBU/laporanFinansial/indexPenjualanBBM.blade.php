@@ -136,22 +136,15 @@
                 </div>
             </div>
             <div class="w-full max-w-full px-3 mt-4 lg:w-1/2 lg:flex-none">
-                {{-- <div class="flex-auto p-4 pt-7 rounded-2xl border-0 border-solid bg-gray-50">
-                    <div class="py-4 pr-1 mb-4 bg-gradient-to-tl from-gray-900 to-slate-800 rounded-xl">
-                        <div>
-                            <canvas id="chart-bars" height="170"></canvas>
-                        </div>
-                    </div>
-                </div> --}}
                 <div
                     class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
                     <div class="flex-auto p-4">
                         <div class="py-4 pr-1 mb-4 bg-gradient-to-tl from-gray-900 to-slate-800 rounded-xl">
                             <div>
-                                <canvas id="chart-bars" height="170"></canvas>
+                                <canvas id="canvas" class="chart-canvas" height="170"></canvas>
                             </div>
                         </div>
-                        <h6 class="mt-6 mb-0 ml-2">Active Users</h6>
+                        <h6 class="mt-6 mb-0 ml-2">Grafik Total Penjualan BBM</h6>
                     </div>
                 </div>
             </div>
@@ -362,36 +355,80 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
     <script>
-    var labels = <?php echo $labels; ?>;
-    var values = <?php echo $values; ?>;
-    var barChartData = {
-        labels: labels,
-        datasets: [{
-            label: 'Penjualan',
-            backgroundColor: "pink",
-            data: values
-        }]
-    };
+        var labels = <?php echo $labels; ?>;
+        var values = <?php echo $values; ?>;
+        var barChartData = {
+            labels: labels,
+            datasets: [{
+                label: 'Penjualan',
+                data: values,
+                tension: 0.4,
+                borderWidth: 0,
+                borderRadius: 4,
+                borderSkipped: false,
+                backgroundColor: "#fff",
+                maxBarThickness: 6,
+                label: "Sales",
+            }]
+        };
 
-    // use window.onload to make sure that the content is loaded
-    window.onload = function() {
-        var ctx = document.getElementById("canvas").getContext("2d");
-        window.myBar = new Chart(ctx, {
-            type: 'bar',
-            data: barChartData,
-            options: {
-                responsive: true,
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: 'Grafik Penjualan BBM'
+        window.onload = function() {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: "index",
+                    },
+                    scales: {
+                        y: {
+                            grid: {
+                                drawBorder: false,
+                                display: false,
+                                drawOnChartArea: false,
+                                drawTicks: false,
+                            },
+                            ticks: {
+                                suggestedMin: 0,
+                                suggestedMax: 600,
+                                beginAtZero: true,
+                                padding: 15,
+                                font: {
+                                    size: 14,
+                                    family: "Open Sans",
+                                    style: "normal",
+                                    lineHeight: 2,
+                                },
+                                color: "#fff",
+                            },
+                        },
+                        x: {
+                            grid: {
+                                drawBorder: false,
+                                display: false,
+                                drawOnChartArea: false,
+                                drawTicks: false,
+                            },
+                            ticks: {
+                                display: false,
+                            },
+                        },
+                    },
                 }
-            }
-        });
-    };
-
+            });
+        };
     </script>
+
+
 @endsection

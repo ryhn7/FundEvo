@@ -17,6 +17,14 @@ class LaporanFinansialBBMController extends Controller
         $bbm = BBM::all();
         $penjualanBBM = PenjualanBBM::sortable()->get();
 
+        $labels = [];
+        $values = [];
+        foreach ($bbm as $b) {
+            $labels[] = $b->jenis_bbm;
+            //get penjualan from penjualanBBM based on labels
+            $values[] = $penjualanBBM->where('bbm_id', $b->id)->sum('penjualan');
+        }
+
         $totalPendapatan = $penjualanBBM->sum('pendapatan');
         $totalLiter = $penjualanBBM->sum('penjualan');
         $totalPenyusutan = $penjualanBBM->sum('penyusutan');
@@ -28,7 +36,8 @@ class LaporanFinansialBBMController extends Controller
             'totalPendapatan' => $totalPendapatan,
             'totalLiter' => $totalLiter,
             'totalPenyusutan' => $totalPenyusutan,
-        ]);
+        ])->with('labels', json_encode($labels, JSON_NUMERIC_CHECK))
+            ->with('values', json_encode($values, JSON_NUMERIC_CHECK));
     }
 
     public function indexPengeluaranSPBU()

@@ -56,71 +56,102 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-wrap -mx-3">
-            <!-- card1 -->
-            @foreach ($bbms as $bbm)
-                {{-- get sum of pendapatan from penjualan bbm use blade --}}
-                @php
-                    $revenue = $sells->where('bbm_id', $bbm->id)->sum('pendapatan');
-                    $liter = $sells->where('bbm_id', $bbm->id)->sum('penjualan');
-                    $penyusutan = $sells->where('bbm_id', $bbm->id)->sum('penyusutan');
-                @endphp
-                <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
-                    <div
-                        class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
-                        <div class="flex-auto p-4">
-                            <div class="flex flex-row -mx-3">
-                                <div class="flex-none w-2/3 max-w-full px-3">
-                                    <div>
-                                        <p class="mb-0 font-open font-semibold leading-normal text-sm">
-                                            {{ $bbm->jenis_bbm }}
-                                        </p>
-                                        <h5 class="mb-0 font-bold">
-                                            @currency($revenue) </h5>
-                                        <span
-                                            class="leading-normal text-sm font-weight-bolder text-lime-500">{{ $liter }}
-                                            Liter</span>
+        <div class="flex flex-wrap -mx-2">
+            <div class="w-full max-w-full px-3 mt-4 lg:w-1/2 lg:flex-none">
+                <div
+                    class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+                    <div class="flex-auto p-4">
+                        <div class="mt-2 mb-2 p-1 font-inter grid grid-cols-2 gap-2">
+                            <!-- Card -->
+                            @foreach ($bbms as $bbm)
+                                {{-- get sum of pendapatan from penjualan bbm use blade --}}
+                                @php
+                                    $revenue = $sells->where('bbm_id', $bbm->id)->sum('pendapatan');
+                                    $liter = $sells->where('bbm_id', $bbm->id)->sum('penjualan');
+                                    $penyusutan = $sells->where('bbm_id', $bbm->id)->sum('penyusutan');
+                                @endphp
+                                <div
+                                    class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-3xl rounded-2xl bg-clip-border">
+                                    <div class="flex-auto p-4">
+                                        <div class="flex flex-row -mx-3">
+                                            <div class="flex-none w-2/3 max-w-full px-3">
+                                                <div>
+                                                    <p class="mb-0 font-open font-semibold leading-normal text-sm">
+                                                        {{ $bbm->jenis_bbm }}
+                                                    </p>
+                                                    <h5 class="mb-0 text-[18px] font-bold">
+                                                        @currency($revenue) </h5>
+                                                    <span
+                                                        class="leading-normal text-[13px] font-bold font-weight-bolder text-lime-500">{{ $liter }}
+                                                        Liter</span>
+                                                    <span
+                                                        class="leading-normal text-[13px] font-bold font-weight-bolder text-red-500">{{ $penyusutan }}
+                                                        Liter</span>
+                                                </div>
+                                            </div>
+                                            <div class="px-3 text-right basis-1/3">
+                                                <div
+                                                    class="inline-block w-14 h-14 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
+                                                    <i
+                                                        class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <span
-                                        class="leading-normal text-sm font-weight-bolder text-lime-500">{{ $penyusutan }}
-                                        Liter</span>
                                 </div>
-                                <div class="px-3 text-right basis-1/3">
-                                    <div
-                                        class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
-                                        <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                            @endforeach
+                            <!-- Card END -->
+                            <div
+                                class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
+                                <div class="flex-auto p-4">
+                                    <div class="flex flex-row -mx-3">
+                                        <div class="flex-none w-2/3 max-w-full px-3">
+                                            <div>
+                                                <p class="mb-0 font-open font-semibold leading-normal text-sm">
+                                                    Total
+                                                </p>
+                                                <h5 class="mb-0 text-[18px] font-bold">
+                                                    @currency($totalPendapatan)</h5>
+                                                <span
+                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-lime-500">{{ $totalLiter }}
+                                                    Liter</span>
+                                                <span
+                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-red-500">{{ $totalPenyusutan }}
+                                                    Liter</span>
+                                            </div>
+                                        </div>
+                                        <div class="px-3 text-right basis-1/3">
+                                            <div
+                                                class="inline-block w-14 h-14 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
+                                                <i
+                                                    class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {{-- <h6 class="mt-6 mb-0 ml-2">Active Users</h6> --}}
                     </div>
                 </div>
-            @endforeach
-            <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
-                <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
+            </div>
+            <div class="w-full max-w-full px-3 mt-4 lg:w-1/2 lg:flex-none">
+                {{-- <div class="flex-auto p-4 pt-7 rounded-2xl border-0 border-solid bg-gray-50">
+                    <div class="py-4 pr-1 mb-4 bg-gradient-to-tl from-gray-900 to-slate-800 rounded-xl">
+                        <div>
+                            <canvas id="chart-bars" height="170"></canvas>
+                        </div>
+                    </div>
+                </div> --}}
+                <div
+                    class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
                     <div class="flex-auto p-4">
-                        <div class="flex flex-row -mx-3">
-                            <div class="flex-none w-2/3 max-w-full px-3">
-                                <div>
-                                    <p class="mb-0 font-open font-semibold leading-normal text-sm">
-                                        Total
-                                    </p>
-                                    <h5 class="mb-0 font-bold">
-                                        @currency($totalPendapatan)</h5>
-                                    <span
-                                        class="leading-normal text-sm font-weight-bolder text-lime-500">{{ $totalLiter }}
-                                        Liter</span>
-                                </div>
-                                <span class="leading-normal text-sm font-weight-bolder text-lime-500">{{ $totalPenyusutan }}
-                                    Liter</span>
-                            </div>
-                            <div class="px-3 text-right basis-1/3">
-                                <div
-                                    class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
-                                    <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
-                                </div>
+                        <div class="py-4 pr-1 mb-4 bg-gradient-to-tl from-gray-900 to-slate-800 rounded-xl">
+                            <div>
+                                <canvas id="chart-bars" height="170"></canvas>
                             </div>
                         </div>
+                        <h6 class="mt-6 mb-0 ml-2">Active Users</h6>
                     </div>
                 </div>
             </div>
@@ -174,7 +205,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                <td
+                                    class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                     <div class="flex px-2 py-1">
                                         <div class="flex flex-col justify-center">
                                             <h6 class="ml-2 mb-0 font-semibold leading-tight text-xs text-slate-400">
@@ -328,4 +360,38 @@
             </div>
         @endif
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script>
+    var labels = <?php echo $labels; ?>;
+    var values = <?php echo $values; ?>;
+    var barChartData = {
+        labels: labels,
+        datasets: [{
+            label: 'Penjualan',
+            backgroundColor: "pink",
+            data: values
+        }]
+    };
+
+    // use window.onload to make sure that the content is loaded
+    window.onload = function() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Grafik Penjualan BBM'
+                }
+            }
+        });
+    };
+
+    </script>
 @endsection

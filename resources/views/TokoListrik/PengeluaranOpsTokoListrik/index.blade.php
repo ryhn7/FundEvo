@@ -170,7 +170,7 @@
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                             <span class="font-semibold leading-tight text-xs text-slate-400">
                                                 @if ($spends[0]->keterangan)
-                                                    {{ $spends[0]->keterangan }}
+                                                    {!! $spends[0]->keterangan !!}
                                                 @else
                                                     -
                                                 @endif
@@ -360,7 +360,7 @@
                                                 class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                                 <span class="font-semibold leading-tight text-xs text-slate-400">
                                                     @if ($spend->keterangan)
-                                                        {{ $spend->keterangan }}
+                                                        {!! $spend->keterangan !!}
                                                     @else
                                                         -
                                                     @endif

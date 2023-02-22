@@ -408,7 +408,7 @@
                                         </span>
                                     </td>
                                     <td
-                                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                        class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                         <span class="font-semibold leading-tight text-xs text-slate-400">
                                             @if ($spend->gas)
                                                 @currency($spend->gas)
@@ -418,7 +418,7 @@
                                         </span>
                                     </td>
                                     <td
-                                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                        class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                         <span class="font-semibold leading-tight text-xs text-slate-400">
                                             @if ($spend->gaji_supervisor)
                                                 @currency($spend->gaji_supervisor)
@@ -428,7 +428,7 @@
                                         </span>
                                     </td>
                                     <td
-                                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                        class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                         <span class="font-semibold leading-tight text-xs text-slate-400">
                                             @if ($spend->gaji_karyawan)
                                                 @currency($spend->gaji_karyawan)
@@ -438,7 +438,7 @@
                                         </span>
                                     </td>
                                     <td
-                                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                        class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                         <span class="font-semibold leading-tight text-xs text-slate-400">
                                             @if ($spend->reward_karyawan)
                                                 @currency($spend->reward_karyawan)
@@ -448,7 +448,7 @@
                                         </span>
                                     </td>
                                     <td
-                                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                        class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                         <span class="font-semibold leading-tight text-xs text-slate-400">
                                             @if ($spend->pln)
                                                 @currency($spend->pln)
@@ -458,7 +458,7 @@
                                         </span>
                                     </td>
                                     <td
-                                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                        class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                         <span class="font-semibold leading-tight text-xs text-slate-400">
                                             @if ($spend->pdam)
                                                 @currency($spend->pdam)
@@ -468,7 +468,7 @@
                                         </span>
                                     </td>
                                     <td
-                                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                        class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                         <span class="font-semibold leading-tight text-xs text-slate-400">
                                             @if ($spend->iuran_rt)
                                                 @currency($spend->iuran_rt)
@@ -478,7 +478,7 @@
                                         </span>
                                     </td>
                                     <td
-                                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                        class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                         <span class="font-semibold leading-tight text-xs text-slate-400">
                                             @if ($spend->pbb)
                                                 @currency($spend->pbb)
@@ -488,7 +488,7 @@
                                         </span>
                                     </td>
                                     <td
-                                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                        class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                         <span class="font-semibold leading-tight text-xs text-slate-400">
                                             @if ($spend->biaya_lain)
                                                 @currency($spend->biaya_lain)
@@ -498,7 +498,7 @@
                                         </span>
                                     </td>
                                     <td
-                                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                        class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                         <span class="font-semibold leading-tight text-xs text-slate-400">
                                             @if ($spend->keterangan)
                                                 {!! $spend->keterangan !!}
@@ -508,7 +508,7 @@
                                         </span>
                                     </td>
                                     <td
-                                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                        class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                         <span class="font-semibold leading-tight text-xs text-green-400">
                                             @if ($spend->nota)
                                                 <button type="button" data-bs-toggle="modal"

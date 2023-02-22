@@ -8,10 +8,10 @@ use Carbon\Carbon;
 
 class LaporanFinansialTokoListrikController extends Controller
 {
-    public function index()
+    public function indexLaporanPenjualanItem()
     {
         $penjualanItem = PenjualanItemListrik::sortable()->get();
-        return view('TokoListrik.laporanFinansial.index', [
+        return view('TokoListrik.laporanFinansial.indexLaporanPenjualan', [
             'sells' => $penjualanItem,
             'count' => $penjualanItem->count(),
         ]);

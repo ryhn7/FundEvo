@@ -1,4 +1,34 @@
+
 @extends('SPBU.laporanFinansial.index')
+
+@section('filter')
+    <ul class=" dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none"
+        aria-labelledby="dropdownMenuButton1">
+        <li class="dropdown">
+            <div
+                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
+                Bulan</div>
+            <ul class="dropdown-content absolute hidden text-gray-700 -pl-5 -ml-[177px] -mt-10">
+                <form id="monthFilter" action="/LaporanFinansialBBM/PenjualanBBM/FilterBulan" class="py-0.5" method="GET">
+                    <input id="month1" type="month" name="month" value="{{ request('month') }}"
+                        class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
+                </form>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <div
+                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
+                Tahun</div>
+            <ul class="dropdown-content absolute hidden text-gray-700 -pl-5 -ml-[211px] -mt-10">
+                <form id="yearFilter" action="/LaporanFinansialBBM/PenjualanBBM/FilterTahun" class="py-0.5" method="GET">
+                    <input id="year1" type="text" name="year" placeholder="Pilih Tahun"
+                        value="{{ request('year') }}"
+                        class="yearpicker px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
+                </form>
+            </ul>
+        </li>
+    </ul>
+@endsection
 
 @section('laporan')
     <div class="flex flex-wrap -mx-3 mt-0">
@@ -24,7 +54,6 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         @endif
@@ -47,7 +76,7 @@
                                 </th>
                                 <th
                                     class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    Jenis BBM</th>
+                                    @sortablelink('bbm_id', 'Jenis BBM')</th>
                                 <th
                                     class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                     @sortablelink('stock_awal', 'Stok Awal')</th>
@@ -88,7 +117,7 @@
                                 <td
                                     class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                     <span class="font-semibold leading-tight text-xs text-slate-400">
-                                        {{ $sells[0]->bbm->jenis_bbm }} Bensin Solar
+                                        {{ $sells[0]->bbm->jenis_bbm }}
                                     </span>
                                 </td>
                                 <td

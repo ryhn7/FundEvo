@@ -25,7 +25,7 @@
                         Jenis BBM
                     </span>
                     <select name="bbm_id" id="bbm_id" required
-                        class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
+                        class="block w-full mt-1 text-sm px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" class="font-semibold">Pilih Jenis BBM</option>
                         @foreach ($bbms as $bbm)
                             @if (old('bbm_id') == $bbm->id)

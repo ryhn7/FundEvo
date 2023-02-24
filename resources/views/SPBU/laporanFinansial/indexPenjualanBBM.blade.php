@@ -60,10 +60,53 @@
 
     @if (request()->is('LaporanFinansialBBM/PenjualanBBM') || request()->is('LaporanFinansialBBM/PenjualanBBM/FilterBulan*'))
         <div class="flex flex-wrap -mx-2">
-            <div class="w-full max-w-full px-3 mt-4 lg:w-1/2 lg:flex-none">
+            <div class="w-full max-w-full px-3 mt-4 lg:w-7/12 lg:flex-none">
                 <div
-                    class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+                    class="border-black/12.5 shadow-inner relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-gray-50 bg-clip-border">
                     <div class="flex-auto p-4">
+                        <div
+                            class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
+                            <div class="flex-auto p-4">
+                                <div class="flex flex-row justify-between -mx-3">
+                                    <div class="flex-none max-w-full px-5">
+                                        <div>
+                                            <p class="mb-0.5 font-open font-semibold leading-normal text-lg">
+                                                Total Penjualan BBM
+                                            </p>
+                                            <h5 class="mb-0 text-4xl font-bold">
+                                                @currency($totalPendapatan)</h5>
+                                            <div class="flex mt-2">
+                                                <div class="flex">
+                                                    <div class="mt-1.25"> <span>
+                                                            <img src="{{ asset('assets/icons/profit.png') }}"
+                                                                alt="icon-profit" width="13px">
+                                                        </span></div>
+                                                    <div class="ml-1"><span
+                                                            class="leading-normal font-bold font-weight-bolder text-lime-500">{{ number_format($totalLiter) }}
+                                                            Liter</span></div>
+                                                </div>
+                                                <div class="flex ml-3">
+                                                    <div class="mt-1.5"> <span>
+                                                            <img src="{{ asset('assets/icons/loss.png') }}" alt="icon-loss"
+                                                                width="13px">
+                                                        </span></div>
+                                                    <div class="ml-1"><span
+                                                            class="leading-normal font-bold font-weight-bolder text-red-500">{{ number_format($totalPenyusutan) }}
+                                                            Liter</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="px-5 text-right">
+                                        <div
+                                            class="inline-block w-28 h-28 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
+                                            <i
+                                                class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="mt-2 mb-2 p-1 font-inter grid grid-cols-2 gap-2">
                             <!-- Card -->
                             @foreach ($bbms as $bbm)
@@ -77,24 +120,38 @@
                                     class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-3xl rounded-2xl bg-clip-border">
                                     <div class="flex-auto p-4">
                                         <div class="flex flex-row -mx-3">
-                                            <div class="flex-none w-2/3 max-w-full px-3">
+                                            <div class="flex-none w-3/4max-w-full px-3">
                                                 <div>
-                                                    <p class="mb-0 font-open font-semibold leading-normal text-sm">
+                                                    <p class="mb-0.38 font-open font-semibold leading-normal text-sm">
                                                         {{ $bbm->jenis_bbm }}
                                                     </p>
-                                                    <h5 class="mb-0 text-[18px] font-bold">
+                                                    <h5 class="mb-0 text-[20px] font-bold">
                                                         @currency($revenue) </h5>
-                                                    <span
-                                                        class="leading-normal text-[13px] font-bold font-weight-bolder text-lime-500">{{ $liter }}
-                                                        Liter</span>
-                                                    <span
-                                                        class="leading-normal text-[13px] font-bold font-weight-bolder text-red-500">{{ $penyusutan }}
-                                                        Liter</span>
+                                                    <div class="flex mt-0.38 w-full">
+                                                        <div class="flex">
+                                                            <div class="mt-1.25"> <span>
+                                                                    <img src="{{ asset('assets/icons/profit.png') }}"
+                                                                        alt="icon-profit" width="13px">
+                                                                </span></div>
+                                                            <div class="ml-1"><span
+                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-lime-500">{{ number_format($liter) }}
+                                                                    Liter</span></div>
+                                                        </div>
+                                                        <div class="flex ml-1.5">
+                                                            <div class="mt-1.5"> <span>
+                                                                    <img src="{{ asset('assets/icons/loss.png') }}"
+                                                                        alt="icon-loss" width="13px">
+                                                                </span></div>
+                                                            <div class="ml-1"><span
+                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-red-500">{{ number_format($penyusutan) }}
+                                                                    Liter</span></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="px-3 text-right basis-1/3">
                                                 <div
-                                                    class="inline-block w-14 h-14 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
+                                                    class="inline-block w-[72px] h-[72px] text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                                     <i
                                                         class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
                                                 </div>
@@ -104,41 +161,12 @@
                                 </div>
                             @endforeach
                             <!-- Card END -->
-                            <div
-                                class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
-                                <div class="flex-auto p-4">
-                                    <div class="flex flex-row -mx-3">
-                                        <div class="flex-none w-2/3 max-w-full px-3">
-                                            <div>
-                                                <p class="mb-0 font-open font-semibold leading-normal text-sm">
-                                                    Total
-                                                </p>
-                                                <h5 class="mb-0 text-[18px] font-bold">
-                                                    @currency($totalPendapatan)</h5>
-                                                <span
-                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-lime-500">{{ $totalLiter }}
-                                                    Liter</span>
-                                                <span
-                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-red-500">{{ $totalPenyusutan }}
-                                                    Liter</span>
-                                            </div>
-                                        </div>
-                                        <div class="px-3 text-right basis-1/3">
-                                            <div
-                                                class="inline-block w-14 h-14 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                                                <i
-                                                    class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         {{-- <h6 class="mt-6 mb-0 ml-2">Active Users</h6> --}}
                     </div>
                 </div>
             </div>
-            <div class="w-full max-w-full px-3 mt-4 lg:w-1/2 lg:flex-none">
+            <div class="w-full max-w-full px-3 mt-4 lg:w-5/12 lg:flex-none">
                 <div
                     class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
                     <div class="flex-auto p-4">

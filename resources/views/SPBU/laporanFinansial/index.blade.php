@@ -87,6 +87,7 @@
             </div>
         </div>
     </div>
+    @yield('chartScript')
 @endsection
 
 @section('scripts')

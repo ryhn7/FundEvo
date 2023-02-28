@@ -89,9 +89,9 @@
                                             ">
                                     Pengeluaran Operasional SPBU
                                 </a>
-                                <a href="/LaporanFinansialSPBU"
+                                <a href="/LaporanFinansialSPBU/Keuangan"
                                     class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
-                                            @if (request()->is('LaporanFinansialSPBU')) text-green-500 border-green-500 @endif
+                                            @if (request()->is('LaporanFinansialSPBU/Keuangan')) text-green-500 border-green-500 @endif
                                             ">
                                     Laporan Keuangan SPBU
                                 </a>

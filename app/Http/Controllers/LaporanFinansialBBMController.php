@@ -189,4 +189,50 @@ class LaporanFinansialBBMController extends Controller
     }
 
     // laporan Finansial //
+
+    public function indexLaporanFinansialSPBU()
+    {
+        return view('SPBU.laporanFinansial.indexLaporanFinansial', [
+            'count' => 0,
+        ]);
+    }
+
+    public function rangeFilterLaporanFinansialSPBU(Request $request)
+    {
+        $start = Carbon::parse($request->start);
+        $end = Carbon::parse($request->end);
+
+        if ($start->month == $end->month) {
+            return redirect()->back()->with('error', 'Tanggal awal dan akhir tidak boleh dalam satu bulan');
+        }
+
+        // range filter minimum 2 month
+        if ($start->diffInMonths($end) < 2) {
+            return redirect()->back()->with('error', 'Range filter minimal 2 bulan');
+        }
+
+
+        return view('SPBU.laporanFinansial.indexLaporanFinansial', [
+            'count' => 0,
+
+        ]);
+    }
+
+    public function monthFilterLaporanFinansialSPBU(Request $request)
+    {
+        $month = $request->month;
+
+        return view('SPBU.laporanFinansial.indexLaporanFinansial', [
+            'count' => 0,
+        ]);
+    }
+
+    public function yearFilterLaporanFinansialSPBU(Request $request)
+    {
+        $year = $request->year;
+
+        return view('SPBU.laporanFinansial.indexLaporanFinansial', [
+            'count' => 0,
+        ]);
+    }
 }

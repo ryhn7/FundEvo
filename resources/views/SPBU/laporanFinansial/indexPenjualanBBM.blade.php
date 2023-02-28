@@ -96,6 +96,24 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="flex-none max-w-full px-5">
+                                    <div>
+                                        <p class="mb-0.5 font-open font-semibold leading-normal text-lg">
+                                            HPP BBM
+                                        </p>
+                                        <h5 class="mb-0 text-4xl font-bold">
+                                            @currency($totalHpp)</h5>
+                                    </div>
+                                </div>
+                                <div class="flex-none max-w-full px-5">
+                                    <div>
+                                        <p class="mb-0.5 font-open font-semibold leading-normal text-lg">
+                                            Keuntungan
+                                        </p>
+                                        <h5 class="mb-0 text-4xl font-bold">
+                                            @currency($keuntungan)</h5>
+                                    </div>
+                                </div>
                                 <div class="px-3 text-right">
                                     <div
                                         class="inline-block w-[98px] h-[98px] text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">

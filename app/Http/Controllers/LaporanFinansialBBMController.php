@@ -7,6 +7,7 @@ use App\Models\PenjualanBBM;
 use App\Models\BBM;
 use App\Models\PengeluaranOpsBBM;
 use Carbon\Carbon;
+use Termwind\Components\Dd;
 
 class LaporanFinansialBBMController extends Controller
 {
@@ -25,6 +26,16 @@ class LaporanFinansialBBMController extends Controller
         $totalLiter = $penjualanBBM->sum('penjualan');
         $totalPenyusutan = $penjualanBBM->sum('penyusutan');
 
+        $hpp = [];
+        foreach ($bbm as $item) {
+            $hargaBeli = $item->harga_beli;
+            $penjualan = $penjualanBBM->where('bbm_id', $item->id)->sum('penjualan');
+            $hpp[$item->id] = $hargaBeli * $penjualan;
+        }
+        
+        $totalHpp = array_sum($hpp);
+        $keuntungan = $totalPendapatan - $totalHpp;
+
 
         return view('SPBU.laporanFinansial.indexPenjualanBBM', [
             'sells' => $penjualanBBM,
@@ -35,6 +46,8 @@ class LaporanFinansialBBMController extends Controller
             'totalPendapatan' => $totalPendapatan,
             'totalLiter' => $totalLiter,
             'totalPenyusutan' => $totalPenyusutan,
+            'totalHpp' => $totalHpp,
+            'keuntungan' => $keuntungan,
         ]);
     }
 
@@ -81,6 +94,16 @@ class LaporanFinansialBBMController extends Controller
         $totalLiter = $penjualanBBM->sum('penjualan');
         $totalPenyusutan = $penjualanBBM->sum('penyusutan');
 
+        $hpp = [];
+        foreach ($bbm as $item) {
+            $hargaBeli = $item->harga_beli;
+            $penjualan = $penjualanBBM->where('bbm_id', $item->id)->sum('penjualan');
+            $hpp[$item->id] = $hargaBeli * $penjualan;
+        }
+        
+        $totalHpp = array_sum($hpp);
+        $keuntungan = $totalPendapatan - $totalHpp;
+
         return view('SPBU.laporanFinansial.indexPenjualanBBM', [
             'sells' => $penjualanBBM,
             'count' => $penjualanBBM->count(),
@@ -90,7 +113,8 @@ class LaporanFinansialBBMController extends Controller
             'totalPendapatan' => $totalPendapatan,
             'totalLiter' => $totalLiter,
             'totalPenyusutan' => $totalPenyusutan,
-
+            'totalHpp' => $totalHpp,
+            'keuntungan' => $keuntungan,
         ]);
     }
 

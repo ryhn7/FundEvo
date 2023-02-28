@@ -21,27 +21,27 @@
                     <div class="flex flex-wrap -mx-3">
                         <div class="max-w-full px-3 lg:w-1/2 lg:flex-none">
                             <div class="flex flex-col h-full">
-                                @if (request()->is('LaporanFinansialBBM/PenjualanBBM'))
+                                @if (request()->is('LaporanFinansialSPBU/PenjualanBBM'))
                                     <h3 class="font-bold">Penjualan BBM Bulan {{ $month }} {{ $year }}</h3>
-                                @elseif (request()->is('LaporanFinansialBBM/PenjualanBBM/FilterRange*'))
+                                @elseif (request()->is('LaporanFinansialSPBU/PenjualanBBM/FilterRange*'))
                                     <h3 class="font-bold">Penjualan BBM Bulan {{ $start }} - {{ $end }}
                                     </h3>
-                                @elseif(request()->is('LaporanFinansialBBM/PenjualanBBM/FilterBulan*'))
+                                @elseif(request()->is('LaporanFinansialSPBU/PenjualanBBM/FilterBulan*'))
                                     <h3 class="font-bold">Penjualan BBM Bulan {{ $month }} {{ $year }}</h3>
-                                @elseif(request()->is('LaporanFinansialBBM/PenjualanBBM/FilterTahun*'))
+                                @elseif(request()->is('LaporanFinansialSPBU/PenjualanBBM/FilterTahun*'))
                                     <h3 class="font-bold">Penjualan BBM Tahun {{ $year }}</h3>
-                                @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU'))
+                                @elseif(request()->is('LaporanFinansialSPBU/PengeluaranSPBU'))
                                     <h3 class="font-bold">Pengeluaran Operasional SPBU Bulan {{ $month }}
                                         {{ $year }}</h3>
-                                @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU/FilterRange*'))
+                                @elseif(request()->is('LaporanFinansialSPBU/PengeluaranSPBU/FilterRange*'))
                                     <h3 class="font-bold">Pengeluaran Operasional SPBU Bulan {{ $start }} -
                                         {{ $end }}</h3>
-                                @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU/FilterBulan*'))
+                                @elseif(request()->is('LaporanFinansialSPBU/PengeluaranSPBU/FilterBulan*'))
                                     <h3 class="font-bold">Pengeluaran Operasional SPBU Bulan {{ $month }}
                                         {{ $year }}</h3>
-                                @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU/FilterTahun*'))
+                                @elseif(request()->is('LaporanFinansialSPBU/PengeluaranSPBU/FilterTahun*'))
                                     <h3 class="font-bold">Pengeluaran Operasional SPBU Tahun {{ $year }}</h3>
-                                @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU/FilterRange*'))
+                                @elseif(request()->is('LaporanFinansialSPBU/PengeluaranSPBU/FilterRange*'))
                                     <h3 class="font-bold">Pengeluaran Operasional SPBU Bulan {{ $start }} -
                                         {{ $end }}</h3>
                                 @else
@@ -77,21 +77,21 @@
                     <div>
                         <ul class="flex border-b-[1.5px]">
                             <li class="mb-1.8">
-                                <a href="/LaporanFinansialBBM/PenjualanBBM"
+                                <a href="/LaporanFinansialSPBU/PenjualanBBM"
                                     class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
-                                            @if (request()->is('LaporanFinansialBBM/PenjualanBBM*')) text-green-500 border-green-500 @endif
+                                            @if (request()->is('LaporanFinansialSPBU/PenjualanBBM*')) text-green-500 border-green-500 @endif
                                             ">
                                     Penjualan BBM
                                 </a>
-                                <a href="/LaporanFinansialBBM/PengeluaranSPBU"
+                                <a href="/LaporanFinansialSPBU/PengeluaranSPBU"
                                     class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
-                                            @if (request()->is('LaporanFinansialBBM/PengeluaranSPBU*')) text-green-500 border-green-500 @endif
+                                            @if (request()->is('LaporanFinansialSPBU/PengeluaranSPBU*')) text-green-500 border-green-500 @endif
                                             ">
                                     Pengeluaran Operasional SPBU
                                 </a>
-                                <a href="/LaporanFinansialBBM"
+                                <a href="/LaporanFinansialSPBU"
                                     class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
-                                            @if (request()->is('LaporanFinansialBBM')) text-green-500 border-green-500 @endif
+                                            @if (request()->is('LaporanFinansialSPBU')) text-green-500 border-green-500 @endif
                                             ">
                                     Laporan Keuangan SPBU
                                 </a>

@@ -1,6 +1,19 @@
 @extends('layouts.main')
 
 @section('container')
+    <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)" class="px-3 mb-5">
+        @if (session()->has('error'))
+            <div alert
+                class="relative p-4 pr-12 mb-4 text-white border border-red-300 border-solid rounded-lg bg-gradient-to-tl from-red-600 to-rose-400"
+                role="alert">
+                <strong class="font-bold">Oops!</strong>
+                {{ session('error') }}
+                <button type="button" alert-close
+                    class="box-content absolute top-0 right-0 p-4 text-sm text-white bg-transparent border-0 rounded w-4 h-4 z-2">
+                </button>
+            </div>
+        @endif
+    </div>
     <div class="flex flex-col mt-6 -mx-3">
         <div class="w-full px-3 mb-6 lg:mb-0 lg:w-full lg:flex-none">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-lg bg-clip-border">
@@ -9,20 +22,23 @@
                         <div class="max-w-full px-3 lg:w-1/2 lg:flex-none">
                             <div class="flex flex-col h-full">
                                 @if (request()->is('LaporanFinansialBBM/PenjualanBBM'))
-                                    <h3 class="font-bold">Total Penjualan BBM</h3>
+                                    <h3 class="font-bold">Penjualan BBM Bulan {{ $month }} {{ $year }}</h3>
                                 @elseif (request()->is('LaporanFinansialBBM/PenjualanBBM/FilterRange*'))
-                                    <h3 class="font-bold">Penjualan BBM Bulan {{ $start }} - {{ $end }} </h3>
+                                    <h3 class="font-bold">Penjualan BBM Bulan {{ $start }} - {{ $end }}
+                                    </h3>
                                 @elseif(request()->is('LaporanFinansialBBM/PenjualanBBM/FilterBulan*'))
-                                    <h3 class="font-bold">Penjualan BBM Bulan {{ $month }}</h3>
+                                    <h3 class="font-bold">Penjualan BBM Bulan {{ $month }} {{ $year }}</h3>
                                 @elseif(request()->is('LaporanFinansialBBM/PenjualanBBM/FilterTahun*'))
                                     <h3 class="font-bold">Penjualan BBM Tahun {{ $year }}</h3>
                                 @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU'))
-                                    <h3 class="font-bold">Total Pengeluaran Operasional SPBU</h3>
+                                    <h3 class="font-bold">Pengeluaran Operasional SPBU Bulan {{ $month }}
+                                        {{ $year }}</h3>
                                 @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU/FilterRange*'))
                                     <h3 class="font-bold">Pengeluaran Operasional SPBU Bulan {{ $start }} -
                                         {{ $end }}</h3>
                                 @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU/FilterBulan*'))
-                                    <h3 class="font-bold">Pengeluaran Operasional SPBU Bulan {{ $month }}</h3>
+                                    <h3 class="font-bold">Pengeluaran Operasional SPBU Bulan {{ $month }}
+                                        {{ $year }}</h3>
                                 @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU/FilterTahun*'))
                                     <h3 class="font-bold">Pengeluaran Operasional SPBU Tahun {{ $year }}</h3>
                                 @elseif(request()->is('LaporanFinansialBBM/PengeluaranSPBU/FilterRange*'))

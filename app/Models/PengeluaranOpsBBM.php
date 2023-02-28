@@ -13,7 +13,7 @@ class PengeluaranOpsBBM extends Model
 
     protected $guarded = ['id'];
 
-    public $sortable = ['created_at', 'harga_penebusan', 'pph', 'tips_sopir', 'oli', 'gas', 'biaya_lain'];
+    public $sortable = ['created_at', 'harga_penebusan_bbm', 'pph', 'tips_sopir', 'oli', 'gas', 'biaya_lain'];
 
     protected $casts = [
         'nota' => 'array',

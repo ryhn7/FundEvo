@@ -15,36 +15,39 @@ class LaporanFinansialBBMController extends Controller
     public function indexPenjualanBBM()
     {
         $bbm = BBM::all();
-        $penjualanBBM = PenjualanBBM::sortable()->get();
 
-        $labels = [];
-        $values = [];
-        foreach ($bbm as $item) {
-            $labels[] = $item->jenis_bbm;
-            $values[] = $penjualanBBM->where('bbm_id', $item->id)->sum('penjualan');
-        }
+        //filter $penjualanBBM by month
+        $penjualanBBM = PenjualanBBM::sortable()->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)->get();
+
 
         $totalPendapatan = $penjualanBBM->sum('pendapatan');
         $totalLiter = $penjualanBBM->sum('penjualan');
         $totalPenyusutan = $penjualanBBM->sum('penyusutan');
 
+
         return view('SPBU.laporanFinansial.indexPenjualanBBM', [
             'sells' => $penjualanBBM,
             'count' => $penjualanBBM->count(),
             'bbms' => $bbm,
+            'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
+            'year' => Carbon::now()->year,
             'totalPendapatan' => $totalPendapatan,
             'totalLiter' => $totalLiter,
             'totalPenyusutan' => $totalPenyusutan,
-        ])->with('labels', json_encode($labels, JSON_NUMERIC_CHECK))
-            ->with('values', json_encode($values, JSON_NUMERIC_CHECK));
+        ]);
     }
 
     public function indexPengeluaranSPBU()
     {
-        $pengeluaranOpsBBM = PengeluaranOpsBBM::sortable()->get();
+        $pengeluaranOpsBBM = PengeluaranOpsBBM::sortable()->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)->get();
+
         return view('SPBU.laporanFinansial.indexPengeluaranOpsBBM', [
             'spends' => $pengeluaranOpsBBM,
             'count' => $pengeluaranOpsBBM->count(),
+            'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
+            'year' => Carbon::now()->year,
         ]);
     }
 
@@ -54,6 +57,10 @@ class LaporanFinansialBBMController extends Controller
         $end = Carbon::parse($request->end);
 
         $penjualanBBM = PenjualanBBM::sortable()->whereBetween('created_at', [$start, $end])->get();
+
+        if ($start->month == $end->month) {
+            return redirect()->back()->with('error', 'Tanggal awal dan akhir tidak boleh dalam satu bulan');
+        }
 
         return view('SPBU.laporanFinansial.indexPenjualanBBM', [
             'sells' => $penjualanBBM,
@@ -70,13 +77,6 @@ class LaporanFinansialBBMController extends Controller
         $penjualanBBM = PenjualanBBM::sortable()->whereYear('created_at', Carbon::parse($month)->year)
             ->whereMonth('created_at', Carbon::parse($month)->month)->get();
 
-        $labels = [];
-        $values = [];
-        foreach ($bbm as $item) {
-            $labels[] = $item->jenis_bbm;
-            $values[] = $penjualanBBM->where('bbm_id', $item->id)->sum('penjualan');
-        }
-
         $totalPendapatan = $penjualanBBM->sum('pendapatan');
         $totalLiter = $penjualanBBM->sum('penjualan');
         $totalPenyusutan = $penjualanBBM->sum('penyusutan');
@@ -85,13 +85,13 @@ class LaporanFinansialBBMController extends Controller
             'sells' => $penjualanBBM,
             'count' => $penjualanBBM->count(),
             'month' => Carbon::parse($month)->locale('id')->isoFormat('MMMM'),
+            'year' => Carbon::parse($month)->year,
             'bbms' => $bbm,
             'totalPendapatan' => $totalPendapatan,
             'totalLiter' => $totalLiter,
             'totalPenyusutan' => $totalPenyusutan,
 
-        ])->with('labels', json_encode($labels, JSON_NUMERIC_CHECK))
-            ->with('values', json_encode($values, JSON_NUMERIC_CHECK));
+        ]);
     }
 
     public function yearFilterPenjualanBBM(Request $request)
@@ -131,6 +131,7 @@ class LaporanFinansialBBMController extends Controller
             'spends' => $pengeluaranOpsBBM,
             'count' => $pengeluaranOpsBBM->count(),
             'month' => Carbon::parse($month)->locale('id')->isoFormat('MMMM'),
+            'year' => Carbon::parse($month)->year,
         ]);
     }
 

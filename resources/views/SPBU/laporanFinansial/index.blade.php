@@ -58,7 +58,7 @@
                                 @if (request()->is('LaporanFinansialSPBU/LaporanRabaRugi*'))
                                 <p class="mb-12"></p>
                                 @else
-                                    <p class="mb-12">{{ $count }} Penjualan</p>
+                                    <p class="mb-12">{{ $count }} {{$info}}</p>
                                 @endif
                             </div>
                         </div>

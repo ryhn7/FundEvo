@@ -34,10 +34,10 @@ Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show');
 Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->except('show');
 Route::get('/pengeluaran-ops-bbm/filter', [PengeluaranOpsBBMController::class, 'filter']);
 
-Route::get('/LaporanFinansialSPBU/LaporanRabaRugi', [LaporanFinansialBBMController::class, 'indexLaporanFinansialSPBU']);
-Route::get('/LaporanFinansialSPBU/LaporanRabaRugi/FilterBulan', [LaporanFinansialBBMController::class, 'monthFilterLaporanFinansialSPBU']);
-Route::get('/LaporanFinansialSPBU/LaporanRabaRugi/FilterTahun', [LaporanFinansialBBMController::class, 'yearFilterLaporanFinansialSPBU']);
-Route::get('/LaporanFinansialSPBU/LaporanRabaRugi/FilterRange', [LaporanFinansialBBMController::class, 'rangeFilterLaporanFinansialSPBU']);
+Route::get('/LaporanFinansialSPBU/LaporanRabaRugi', [LaporanFinansialBBMController::class, 'indexLaporanLabaRugi']);
+Route::get('/LaporanFinansialSPBU/LaporanRabaRugi/FilterBulan', [LaporanFinansialBBMController::class, 'monthFilterLaporanLabaRugi']);
+Route::get('/LaporanFinansialSPBU/LaporanRabaRugi/FilterTahun', [LaporanFinansialBBMController::class, 'yearFilterLaporanLabaRugi']);
+Route::get('/LaporanFinansialSPBU/LaporanRabaRugi/FilterRange', [LaporanFinansialBBMController::class, 'rangeFilterLaporanLabaRugi']);
 
 Route::get('/LaporanFinansialSPBU/PenjualanBBM', [LaporanFinansialBBMController::class, 'indexPenjualanBBM']);
 Route::get('/LaporanFinansialSPBU/PenjualanBBM/FilterBulan', [LaporanFinansialBBMController::class, 'monthFilterPenjualanBBM']);

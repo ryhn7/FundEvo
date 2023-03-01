@@ -49,6 +49,7 @@ class LaporanFinansialBBMController extends Controller
             'totalPenyusutan' => $totalPenyusutan,
             'totalHpp' => $totalHpp,
             'keuntungan' => $keuntungan,
+            'info' => 'Penjualan',
         ]);
     }
 
@@ -73,6 +74,7 @@ class LaporanFinansialBBMController extends Controller
             'count' => $penjualanBBM->count(),
             'start' => $start->locale('id')->isoFormat('MMMM '),
             'end' => $end->locale('id')->isoFormat('MMMM Y'),
+            'info' => 'Penjualan',
         ]);
     }
 
@@ -108,6 +110,7 @@ class LaporanFinansialBBMController extends Controller
             'totalPenyusutan' => $totalPenyusutan,
             'totalHpp' => $totalHpp,
             'keuntungan' => $keuntungan,
+            'info' => 'Penjualan',
         ]);
     }
 
@@ -120,6 +123,7 @@ class LaporanFinansialBBMController extends Controller
             'sells' => $penjualanBBM,
             'count' => $penjualanBBM->count(),
             'year' => $year,
+            'info' => 'Penjualan',
         ]);
     }
 
@@ -135,6 +139,7 @@ class LaporanFinansialBBMController extends Controller
             'count' => $pengeluaranOpsBBM->count(),
             'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
             'year' => Carbon::now()->year,
+            'info' => 'Pengeluaran',
         ]);
     }
 
@@ -159,6 +164,7 @@ class LaporanFinansialBBMController extends Controller
             'count' => $pengeluaranOpsBBM->count(),
             'start' => $start->locale('id')->isoFormat('MMMM '),
             'end' => $end->locale('id')->isoFormat('MMMM Y'),
+            'info' => 'Pengeluaran',
         ]);
     }
 
@@ -173,6 +179,7 @@ class LaporanFinansialBBMController extends Controller
             'count' => $pengeluaranOpsBBM->count(),
             'month' => Carbon::parse($month)->locale('id')->isoFormat('MMMM'),
             'year' => Carbon::parse($month)->year,
+            'info' => 'Pengeluaran',
         ]);
     }
 
@@ -185,12 +192,13 @@ class LaporanFinansialBBMController extends Controller
             'spends' => $pengeluaranOpsBBM,
             'count' => $pengeluaranOpsBBM->count(),
             'year' => $year,
+            'info' => 'Pengeluaran',
         ]);
     }
 
     // laporan Finansial //
 
-    public function indexLaporanFinansialSPBU()
+    public function indexLaporanLabaRugi()
     {
         $bbm = BBM::all();
 
@@ -266,7 +274,7 @@ class LaporanFinansialBBMController extends Controller
     }
 
 
-    public function monthFilterLaporanFinansialSPBU(Request $request)
+    public function monthFilterLaporanLabaRugi(Request $request)
     {
         $bbm = BBM::all();
         $month = $request->month;
@@ -340,7 +348,7 @@ class LaporanFinansialBBMController extends Controller
         ]);
     }
 
-    public function yearFilterLaporanFinansialSPBU(Request $request)
+    public function yearFilterLaporanLabaRugi(Request $request)
     {
         $bbm = BBM::all();
 

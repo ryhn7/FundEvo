@@ -115,7 +115,7 @@
 
                 <label for="penyusutan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Penyusutan</span>
-                    <input type="number" min="0" step="any" id="penyusutan" name="penyusutan" required
+                    <input type="number" step="any" id="penyusutan" name="penyusutan" required
                         value="{{ old('penyusutan', $sell->penyusutan) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penyusutan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -182,7 +182,15 @@
         stockFakta.addEventListener('change', () => {
             const result = parseInt(stockAdm.value) - parseInt(stockFakta.value);
             const hasil = parseInt(penjualan.value) * parseInt(hargaJual.value);
-            penyusutan.value = result;
+
+            if (result > 0) {
+                penyusutan.value = result * -1;
+            } else if (result < 0) {
+                penyusutan.value = result * -1;
+            } else {
+                penyusutan.value = 0;
+            }
+
             pendapatan.value = hasil;
         });
     </script>

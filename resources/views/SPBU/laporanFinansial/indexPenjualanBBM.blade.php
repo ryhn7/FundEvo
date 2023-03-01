@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="px-5 text-right">
                                         <div
-                                            class="inline-block w-28 h-28 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
+                                            class="inline-block w-[98px] h-[98px] text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                             <i
                                                 class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
                                         </div>
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-2 mb-2 p-1 font-inter grid grid-cols-2 gap-2">
+                        <div class="mt-2 mb-auto font-inter grid grid-cols-2 gap-2">
                             <!-- Card -->
                             @foreach ($bbms as $bbm)
                                 {{-- get sum of pendapatan from penjualan bbm use blade --}}
@@ -129,7 +129,7 @@
                                                         @currency($revenue) </h5>
                                                     <div class="flex mt-0.38 w-full">
                                                         <div class="flex">
-                                                            <div class="mt-1.25"> <span>
+                                                            <div class="mt-1.5"> <span>
                                                                     <img src="{{ asset('assets/icons/profit.png') }}"
                                                                         alt="icon-profit" width="13px">
                                                                 </span></div>

@@ -44,9 +44,22 @@
                                 @elseif(request()->is('LaporanFinansialSPBU/PengeluaranSPBU/FilterRange*'))
                                     <h3 class="font-bold">Pengeluaran Operasional SPBU Bulan {{ $start }} -
                                         {{ $end }}</h3>
+                                @elseif(request()->is('LaporanFinansialSPBU/LaporanRabaRugi'))
+                                    <h3 class="font-bold">Laporan Raba Rugi SPBU Bulan {{ $month }}
+                                        {{ $year }}</h3>
+                                @elseif(request()->is('LaporanFinansialSPBU/LaporanRabaRugi/FilterBulan*'))
+                                    <h3 class="font-bold">Laporan Raba Rugi SPBU Bulan {{ $month }}
+                                        {{ $year }}</h3>
+                                @elseif(request()->is('LaporanFinansialSPBU/LaporanRabaRugi/FilterTahun*'))
+                                    <h3 class="font-bold">Laporan Raba Rugi SPBU Tahun {{ $year }}</h3>
                                 @else
                                 @endif
-                                <p class="mb-12">{{ $count }} Penjualan</p>
+
+                                @if (request()->is('LaporanFinansialSPBU/LaporanRabaRugi*'))
+                                <p class="mb-12"></p>
+                                @else
+                                    <p class="mb-12">{{ $count }} Penjualan</p>
+                                @endif
                             </div>
                         </div>
                         <div class="max-w-full px-4.5 mt-12 ml-auto text-center lg:mt-0">
@@ -77,6 +90,12 @@
                     <div>
                         <ul class="flex border-b-[1.5px]">
                             <li class="mb-1.8">
+                                <a href="/LaporanFinansialSPBU/LaporanRabaRugi"
+                                    class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
+                                        @if (request()->is('LaporanFinansialSPBU/LaporanRabaRugi*')) text-green-500 border-green-500 @endif
+                                        ">
+                                    Laporan Laba Rugi
+                                </a>
                                 <a href="/LaporanFinansialSPBU/PenjualanBBM"
                                     class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
                                             @if (request()->is('LaporanFinansialSPBU/PenjualanBBM*')) text-green-500 border-green-500 @endif
@@ -88,12 +107,6 @@
                                             @if (request()->is('LaporanFinansialSPBU/PengeluaranSPBU*')) text-green-500 border-green-500 @endif
                                             ">
                                     Pengeluaran Operasional SPBU
-                                </a>
-                                <a href="/LaporanFinansialSPBU/Keuangan"
-                                    class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
-                                            @if (request()->is('LaporanFinansialSPBU/Keuangan')) text-green-500 border-green-500 @endif
-                                            ">
-                                    Laporan Keuangan SPBU
                                 </a>
                             </li>
                         </ul>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BBMCategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanFinansialBBMController;
 use App\Http\Controllers\PenjualanBBMController;
 use App\Http\Controllers\PengeluaranOpsBBMController;
@@ -26,6 +27,9 @@ use App\Models\PengeluaranOpsTokoListrik;
 */
 
 Route::get('/', fn () => view('index', []));
+Route::get('/dashboard', [DashboardController::class, 'indexDashboardBBM']);
+
+
 Route::get('/oke', fn () => view('tes', []));
 
 //BBM
@@ -70,6 +74,7 @@ Route::get('/LaporanFinansialTokoListrik', [LaporanFinansialTokoListrikControlle
 Route::get('/LaporanFinansialTokoListrik/PenjualanItem/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterPenjualanItem']);
 Route::get('/LaporanFinansialTokoListrik/PenjualanItem/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterPenjualanItem']);
 Route::get('/LaporanFinansialTokoListrik/PenjualanItem/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterPenjualanItem']);
+
 Route::get('/LaporanFinansialSPBU/PenjualanBBM', [LaporanFinansialBBMController::class, 'indexPenjualanBBM']);
 Route::get('/LaporanFinansialSPBU/PenjualanBBM/FilterBulan', [LaporanFinansialBBMController::class, 'monthFilterPenjualanBBM']);
 Route::get('/LaporanFinansialSPBU/PenjualanBBM/FilterTahun', [LaporanFinansialBBMController::class, 'yearFilterPenjualanBBM']);

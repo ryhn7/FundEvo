@@ -1,58 +1,249 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="flex-auto p-4 pt-6">
-        <ul class="flex flex-col pl-0 mb-0 rounded-lg">
-            <li class="relative flex p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50">
-                <div class="flex flex-col">
-                    <h6 class="mb-4 leading-normal text-sm">Oliver Liam</h6>
-                    <span class="mb-2 leading-tight text-xs">Company Name: <span
-                            class="font-semibold text-slate-700 sm:ml-2">Viking Burrito</span></span>
-                    <span class="mb-2 leading-tight text-xs">Email Address: <span
-                            class="font-semibold text-slate-700 sm:ml-2"><a href="/cdn-cgi/l/email-protection"
-                                class="__cf_email__"
-                                data-cfemail="c4aba8adb2a1b684a6b1b6b6adb0abeaa7aba9">[email&#160;protected]</a></span></span>
-                    <span class="leading-tight text-xs">VAT Number: <span
-                            class="font-semibold text-slate-700 sm:ml-2">FRB1235476</span></span>
-                </div>
-                <div class="ml-auto text-right">
-                    <a class="relative z-10 inline-block px-4 py-3 mb-0 font-bold text-center text-transparent uppercase align-middle transition-all border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 bg-gradient-to-tl from-red-600 to-rose-400 hover:scale-102 active:opacity-85 bg-x-25 bg-clip-text"
-                        href="javascript:;"><i
-                            class="mr-2 far fa-trash-alt bg-150 bg-gradient-to-tl from-red-600 to-rose-400 bg-x-25 bg-clip-text"></i>Delete</a>
-                    <a class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700"
-                        href="javascript:;"><i class="mr-2 fas fa-pencil-alt text-slate-700" aria-hidden="true"></i>Edit</a>
-                </div>
-            </li>
-            <li class="relative flex p-6 mt-4 mb-2 border-0 rounded-xl bg-gray-50">
-                <div class="flex flex-col">
-                    <h6 class="mb-4 leading-normal text-sm">Lucas Harper</h6>
-                    <span class="mb-2 leading-tight text-xs">Company Name: <span
-                            class="font-semibold text-slate-700 sm:ml-2">Stone Tech Zone</span></span>
-                    <span class="mb-2 leading-tight text-xs">Email Address: <span
-                            class="font-semibold text-slate-700 sm:ml-2"><a href="/cdn-cgi/l/email-protection"
-                                class="__cf_email__"
-                                data-cfemail="c8a4bdaba9bb88bbbca7a6ade5bcadaba0e6aba7a5">[email&#160;protected]</a></span></span>
-                    <span class="leading-tight text-xs">VAT Number: <span
-                            class="font-semibold text-slate-700 sm:ml-2">FRB1235476</span></span>
-                </div>
-                <div class="ml-auto text-right">
-                    <a class="relative z-10 inline-block px-4 py-3 mb-0 font-bold text-center text-transparent uppercase align-middle transition-all border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 bg-gradient-to-tl from-red-600 to-rose-400 hover:scale-102 active:opacity-85 bg-x-25 bg-clip-text"
-                        href="javascript:;"><i
-                            class="mr-2 far fa-trash-alt bg-150 bg-gradient-to-tl from-red-600 to-rose-400 bg-x-25 bg-clip-text"></i>Delete</a>
-                    <a class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700"
-                        href="javascript:;"><i class="mr-2 fas fa-pencil-alt text-slate-700" aria-hidden="true"></i>Edit</a>
-                </div>
-            </li>
-            <li class="relative flex p-6 mt-4 mb-2 border-0 rounded-b-inherit rounded-xl bg-gray-50">
-                <div class="flex flex-col">
-                    <h6 class="mb-4 leading-normal text-sm">Ethan James</h6>
-                    <span class="mb-2 leading-tight text-xs">Company Name: <span
-                            class="font-semibold text-slate-700 sm:ml-2">Fiber Notion</span></span>
-                    <span class="mb-2 leading-tight text-xs">Email Address: <span
-                            class="font-semibold text-slate-700 sm:ml-2"><a href="/cdn-cgi/l/email-protection"
-                                class="__cf_email__"
-                                data-cfemail="0f6a7b676e614f69666d6a7d216c6062">[email&#160;protected]</a></span></span>
-                    <span class="leading-tight text-xs">VAT Number: <span
-                            class="font-semibold text-slate-700 sm:ml-2">FRB1235476</span></span>
-                </div>
-            @endsection
+<div class="flex-auto px-0 pt-0 pb-2">
+    <div class="p-0 overflow-x-auto">
+        <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
+            <tr>
+                <th
+                    class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-black opacity-70">
+                    Total Pendapatan</th>
+                {{-- <th
+                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Stok Awal</th>
+                <th
+                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Penerimaan</th>
+                <th
+                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Tera & Densiti</th>
+                <th
+                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Penjualan</th>
+                <th
+                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Stok ADM</th>
+                <th
+                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Stok Fakta</th>
+                <th
+                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Penyusutan</th>
+                <th
+                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Pendapatan</th>
+                <th
+                    class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Tanggal</th>
+                <th
+                    class="px-6 py-3 font-bold text-start uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Action
+                </th> --}}
+            </tr>
+            <tr>
+                <th
+                    class="px-16 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Penjualan BBM</th>
+                    <td
+                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                    <p class="mb-0 font-semibold leading-tight text-xs"> 1000000
+                    </p>
+                </td>
+                    
+            </tr>
+            <tr>
+                <th
+                    class="px-16 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Pendapatan Lain</th>
+                    <td
+                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                    <p class="mb-0 font-semibold leading-tight text-xs"> 50000
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td
+                    class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                    <div class="flex px-2 py-1">
+                        <div class="flex flex-col justify-center">
+                            <h6 class="ml-2 mb-0 leading-normal text-sm">
+                                -
+                            </h6>
+                        </div>
+                    </div>
+                </td>
+                <td
+                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                    <p class="mb-0 font-semibold leading-tight text-xs">-
+                    </p>
+                </td>
+                <td
+                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                    <span
+                        class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                </td>
+                <td
+                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                    <span class="font-semibold leading-tight text-xs text-slate-400">
+                    -
+                    </span>
+                </td>
+                <td
+                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                    <span
+                        class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                </td>
+                <td
+                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                    <span
+                        class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                </td>
+                <td
+                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                    <span
+                        class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                </td>
+                <td
+                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                    <span
+                        class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                </td>
+                <td
+                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                    <span
+                        class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                </td>
+                <td
+                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                    <span
+                        class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                </td>
+            </tr>
+            <tbody>
+                {{-- <tr>
+                    <td
+                        class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                        <div class="flex px-2 py-1">
+                            <div class="flex flex-col justify-center">
+                                <h6 class="ml-2 mb-0 leading-normal text-sm">
+                                    -
+                                </h6>
+                            </div>
+                        </div>
+                    </td>
+                    <td
+                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                        <p class="mb-0 font-semibold leading-tight text-xs">-
+                        </p>
+                    </td>
+                    <td
+                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                        <span
+                            class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                    </td>
+                    <td
+                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                        <span class="font-semibold leading-tight text-xs text-slate-400">
+                        -
+                        </span>
+                    </td>
+                    <td
+                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                        <span
+                            class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                    </td>
+                    <td
+                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                        <span
+                            class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                    </td>
+                    <td
+                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                        <span
+                            class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                    </td>
+                    <td
+                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                        <span
+                            class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                    </td>
+                    <td
+                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                        <span
+                            class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                    </td>
+                    <td
+                        class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                        <span
+                            class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                    </td>
+                </tr> --}}
+                {{-- @foreach (-)
+                    <tr>
+                        <td
+                            class="p-2 align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                            <div class="flex px-2 py-1">
+                                <div class="flex flex-col justify-center">
+                                    <h6 class="ml-2 mb-0 leading-normal text-sm">
+                                        {{ $sell->bbm->jenis_bbm }}</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td
+                            class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                            <p class="mb-0 font-semibold leading-tight text-xs">
+                                {{ $sell->stock_awal }}
+                            </p>
+                        </td>
+                        <td
+                            class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                            <span
+                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->penerimaan }}</span>
+                        </td>
+                        <td
+                            class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                            <span class="font-semibold leading-tight text-xs text-slate-400">
+                                @if ($sell->tera_densiti)
+                                    {{ $sell->tera_densiti }}
+                                @else
+                                    -
+                                @endif
+                            </span>
+                        </td>
+                        <td
+                            class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                            <span
+                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->penjualan }}</span>
+                        </td>
+                        <td
+                            class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                            <span
+                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->stock_adm }}</span>
+                        </td>
+                        <td
+                            class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                            <span
+                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->stock_fakta }}</span>
+                        </td>
+                        <td
+                            class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                            <span
+                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->penyusutan }}</span>
+                        </td>
+                        <td
+                            class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                            <span
+                                class="font-semibold leading-tight text-xs text-slate-400">@currency($sell->pendapatan)</span>
+                        </td>
+                        <td
+                            class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                            <span
+                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->created_at->format('d/m/Y') }}</span>
+                        </td>
+                    </tr>
+                @endforeach --}}
+            </tbody>
+        </table>
+    </div>
+</div>
+@endsection

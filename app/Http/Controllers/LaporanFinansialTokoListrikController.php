@@ -15,7 +15,7 @@ class LaporanFinansialTokoListrikController extends Controller
 
         // get pendapatan where bbm_id = 1
         $pendapatanSatu = PenjualanItemListrik::where('id', 1)->sum('pendapatan');
-        return view('TokoListrik.laporanFinansial.indexPenjualanTokoListrik', [
+        return view('TokoListrik.laporanFinansial.indexPenjualanItem', [
             'sells' => $penjualanItem,
             'count' => $penjualanItem->count(),
             'satu' => $pendapatanSatu,
@@ -32,7 +32,7 @@ class LaporanFinansialTokoListrikController extends Controller
     }
 
     // filter by month
-    public function rangeFilterPenjualanTokoListrik(Request $request)
+    public function rangeFilterPenjualanItem(Request $request)
     {
         $start = Carbon::parse($request->start);
         $end = Carbon::parse($request->end);

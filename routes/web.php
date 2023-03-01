@@ -77,6 +77,6 @@ Route::get('/LaporanFinansialTokoListrik/PenjualanTokoListrik/FilterTahun', [Lap
 Route::get('/LaporanFinansialTokoListrik/PenjualanTokoListrik/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterPenjualanItem']);
 
 Route::get('/LaporanFinansialTokoListrik/PengeluaranTokoListrik', [LaporanFinansialTokoListrikController::class, 'indexPengeluaranTokoListrik']);
-Route::get('/LaporanFinansialTokoListrik/PengeluaranTokoListrik/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterPenjualanItem']);
-Route::get('/LaporanFinansialTokoListrik/PengeluaranTokoListrik/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterPenjualanItem']);
-Route::get('/LaporanFinansialTokoListrik/PengeluaranTokoListrik/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterPenjualanItem']);
+Route::get('/LaporanFinansialTokoListrik/PengeluaranTokoListrik/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterPengeluaranItem']);
+Route::get('/LaporanFinansialTokoListrik/PengeluaranTokoListrik/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterPengeluaranItem']);
+Route::get('/LaporanFinansialTokoListrik/PengeluaranTokoListrik/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterPengeluaranItem']);

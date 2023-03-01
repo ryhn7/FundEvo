@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-<<<<<<<<< Temporary merge branch 1
+
         DB::table('items')->insert([
             [
                 'kategori' => 1,
@@ -107,9 +107,9 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
         PenjualanBBM::factory(4)->create();
-=========
+
         PenjualanBBM::factory(30)->create();
->>>>>>>>> Temporary merge branch 2
+
 
     }
 }

@@ -1,83 +1,58 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="flex-auto px-0 pt-0 pb-2">
-        <div class="p-0 overflow-x-auto">
-            <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
-                    <tr>
-                        <th
-                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                            @sortablelink('created_at', 'Tanggal')
-                        </th>
-                        <th
-                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                            @sortablelink('stock_awal', 'Pertalite')</th>
-                        <th
-                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                            @sortablelink('penerimaan', 'Pertamax')</th>
-                        <th
-                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                            @sortablelink('tera_densiti', 'Solar')</th>
-                        <th
-                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                            @sortablelink('penjualan', ' Bio Solar')</th>
-                        <th
-                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                            @sortablelink('penjualan', ' Total Penebusan')</th>
-                        <th
-                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                            @sortablelink('penjualan', ' PPH')</th>
-                    </tr>
-                <tbody>
-                    <tr>
-                        <td class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                            <div class="flex px-2 py-1">
-                                <div class="flex flex-col justify-center">
-                                    <h6 class="ml-2 mb-0 font-semibold leading-tight text-xs text-slate-400">
-                                        {{-- {{ $sells[0]->created_at->format('m/d/Y') }} --}} 05-06-2023
-                                    </h6>
-                                </div>
-                            </div>
-                        </td>
-                        <td
-                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 font-semibold leading-tight text-xs">
-                                {{-- {{ $sells[0]->stock_awal }} --}}8000
-                            </p>
-                        </td>
-                        <td
-                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                            <span
-                                class="font-semibold leading-tight text-xs text-slate-400"></span>
-                        </td>
-                        <td
-                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                            <span class="font-semibold leading-tight text-xs text-slate-400">
-                                {{-- @if ($sells[0]->tera_densiti)
-                                    {{ $sells[0]->tera_densiti }}
-                                @else
-                                    -
-                                @endif --}}800
-                            </span>
-                        </td>
-                        <td
-                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                            <span
-                                class="font-semibold leading-tight text-xs text-slate-400"></span>
-                        </td>
-                        <td
-                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                            <span
-                                class="font-semibold leading-tight text-xs text-slate-400">100000000</span>
-                        </td>
-                        <td
-                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                            <span
-                                class="font-semibold leading-tight text-xs text-slate-400">150000</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-@endsection
+    <div class="flex-auto p-4 pt-6">
+        <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+            <li class="relative flex p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-gray-50">
+                <div class="flex flex-col">
+                    <h6 class="mb-4 leading-normal text-sm">Oliver Liam</h6>
+                    <span class="mb-2 leading-tight text-xs">Company Name: <span
+                            class="font-semibold text-slate-700 sm:ml-2">Viking Burrito</span></span>
+                    <span class="mb-2 leading-tight text-xs">Email Address: <span
+                            class="font-semibold text-slate-700 sm:ml-2"><a href="/cdn-cgi/l/email-protection"
+                                class="__cf_email__"
+                                data-cfemail="c4aba8adb2a1b684a6b1b6b6adb0abeaa7aba9">[email&#160;protected]</a></span></span>
+                    <span class="leading-tight text-xs">VAT Number: <span
+                            class="font-semibold text-slate-700 sm:ml-2">FRB1235476</span></span>
+                </div>
+                <div class="ml-auto text-right">
+                    <a class="relative z-10 inline-block px-4 py-3 mb-0 font-bold text-center text-transparent uppercase align-middle transition-all border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 bg-gradient-to-tl from-red-600 to-rose-400 hover:scale-102 active:opacity-85 bg-x-25 bg-clip-text"
+                        href="javascript:;"><i
+                            class="mr-2 far fa-trash-alt bg-150 bg-gradient-to-tl from-red-600 to-rose-400 bg-x-25 bg-clip-text"></i>Delete</a>
+                    <a class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700"
+                        href="javascript:;"><i class="mr-2 fas fa-pencil-alt text-slate-700" aria-hidden="true"></i>Edit</a>
+                </div>
+            </li>
+            <li class="relative flex p-6 mt-4 mb-2 border-0 rounded-xl bg-gray-50">
+                <div class="flex flex-col">
+                    <h6 class="mb-4 leading-normal text-sm">Lucas Harper</h6>
+                    <span class="mb-2 leading-tight text-xs">Company Name: <span
+                            class="font-semibold text-slate-700 sm:ml-2">Stone Tech Zone</span></span>
+                    <span class="mb-2 leading-tight text-xs">Email Address: <span
+                            class="font-semibold text-slate-700 sm:ml-2"><a href="/cdn-cgi/l/email-protection"
+                                class="__cf_email__"
+                                data-cfemail="c8a4bdaba9bb88bbbca7a6ade5bcadaba0e6aba7a5">[email&#160;protected]</a></span></span>
+                    <span class="leading-tight text-xs">VAT Number: <span
+                            class="font-semibold text-slate-700 sm:ml-2">FRB1235476</span></span>
+                </div>
+                <div class="ml-auto text-right">
+                    <a class="relative z-10 inline-block px-4 py-3 mb-0 font-bold text-center text-transparent uppercase align-middle transition-all border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 bg-gradient-to-tl from-red-600 to-rose-400 hover:scale-102 active:opacity-85 bg-x-25 bg-clip-text"
+                        href="javascript:;"><i
+                            class="mr-2 far fa-trash-alt bg-150 bg-gradient-to-tl from-red-600 to-rose-400 bg-x-25 bg-clip-text"></i>Delete</a>
+                    <a class="inline-block px-4 py-3 mb-0 font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-xs ease-soft-in bg-150 hover:scale-102 active:opacity-85 bg-x-25 text-slate-700"
+                        href="javascript:;"><i class="mr-2 fas fa-pencil-alt text-slate-700" aria-hidden="true"></i>Edit</a>
+                </div>
+            </li>
+            <li class="relative flex p-6 mt-4 mb-2 border-0 rounded-b-inherit rounded-xl bg-gray-50">
+                <div class="flex flex-col">
+                    <h6 class="mb-4 leading-normal text-sm">Ethan James</h6>
+                    <span class="mb-2 leading-tight text-xs">Company Name: <span
+                            class="font-semibold text-slate-700 sm:ml-2">Fiber Notion</span></span>
+                    <span class="mb-2 leading-tight text-xs">Email Address: <span
+                            class="font-semibold text-slate-700 sm:ml-2"><a href="/cdn-cgi/l/email-protection"
+                                class="__cf_email__"
+                                data-cfemail="0f6a7b676e614f69666d6a7d216c6062">[email&#160;protected]</a></span></span>
+                    <span class="leading-tight text-xs">VAT Number: <span
+                            class="font-semibold text-slate-700 sm:ml-2">FRB1235476</span></span>
+                </div>
+            @endsection

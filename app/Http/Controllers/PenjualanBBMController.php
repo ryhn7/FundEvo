@@ -78,7 +78,6 @@ class PenjualanBBMController extends Controller
             return redirect('/penjualan-bbm')->with('error', 'Harap input penjualan BBM hari kemarin terlebih dahulu!');
         }
 
-
         PenjualanBBM::create($validated);
 
         return redirect('/penjualan-bbm')->with('success', 'Data penjualan berhasil ditambahkan!');

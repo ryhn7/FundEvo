@@ -13,63 +13,57 @@ class DashboardController extends Controller
     //
     public function indexDashboardBBM()
     {
+
         $bbm = BBM::all();
-        $penjualanBBM = PenjualanBBM::sortable()->get();
-        $pengeluaranOpsBBM = PengeluaranOpsBBM::sortable()->whereYear('created_at', Carbon::now()->year)
-            ->whereMonth('created_at', Carbon::now()->month)->get();
-        $labels = [];
-        $values = [];
-        foreach ($bbm as $b) {
-            $labels[] = $b->jenis_bbm;
-            //get penjualan from penjualanBBM based on labels
-            $values[] = $penjualanBBM->where('bbm_id', $b->id)->sum('penjualan');
-        }
-        // dd($labels);
-        // dd($values);
-        // foreach ($penjualanBBM as $row) {
-        //     $labels[] = $row->region;
-        //     $values[] = $row->population;
-        // }
-
-        //filter $penjualanBBM by month
-        $penjualanBBM = PenjualanBBM::sortable()->whereYear('created_at', Carbon::now()->year)
-            ->whereMonth('created_at', Carbon::now()->month)->get();
-
+        $penjualanBBM = PenjualanBBM::all();
 
         $totalPendapatan = $penjualanBBM->sum('pendapatan');
-        $totalLiter = $penjualanBBM->sum('penjualan');
-        $totalPenyusutan = $penjualanBBM->sum('penyusutan');
+
+        $pengeluaranOpsBBM = PengeluaranOpsBBM::all();
+
+        $tebusan = $pengeluaranOpsBBM->sum('harga_penebusan_bbm');
+        $totalGajiSupervisor = $pengeluaranOpsBBM->sum('gaji_supervisor');
+        $totalGajiKaryawan = $pengeluaranOpsBBM->sum('gaji_karyawan');
+        $totalReward = $pengeluaranOpsBBM->sum('reward_karyawan');
+        $tipsSopir = $pengeluaranOpsBBM->sum('tips_sopir');
+        $pln = $pengeluaranOpsBBM->sum('pln');
+        $pdam = $pengeluaranOpsBBM->sum('pdam');
+        $pph = $pengeluaranOpsBBM->sum('pph');
+        $iuranRt  = $pengeluaranOpsBBM->sum('iuran_rt');
+        $pbb = $pengeluaranOpsBBM->sum('pbb');
+        $etc = $pengeluaranOpsBBM->sum('biaya_lain');
+
+        $totalTebusan = $tebusan + $pph;
 
         $hpp = [];
         foreach ($bbm as $item) {
             $hargaBeli = $item->harga_beli;
             $penjualan = $penjualanBBM->where('bbm_id', $item->id)->sum('penjualan');
+            $penyusutan = $penjualanBBM->where('bbm_id', $item->id)->sum('penyusutan');
+
+            // if penyusutan < 0, then make it positive
+            if ($penyusutan < 0) {
+                $penyusutan = $penyusutan * -1;
+            }
+
             $hpp[$item->id] = $hargaBeli * $penjualan;
+            $loss[$item->id] = $hargaBeli * $penyusutan;
         }
 
+        $totalPenyusutan = array_sum($loss);
         $totalHpp = array_sum($hpp);
-        $keuntungan = $totalPendapatan - $totalHpp;
-        
-        $bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        $labaKotor = $totalPendapatan - $totalHpp;
 
+        $totalPengeluaran = $totalGajiSupervisor + $totalGajiKaryawan + $totalReward + $pln + $pdam + $iuranRt + $pbb + $etc + $tipsSopir;
+        $finalPengeluaran = $totalPengeluaran + $totalTebusan;
+
+        $labaBersih = $labaKotor - $finalPengeluaran;
 
         return view('index', [
-            'sells' => $penjualanBBM,
-            'count' => $penjualanBBM->count(),
-            'bbms' => $bbm,
-            'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
-            'year' => Carbon::now()->year,
-            'totalPendapatan' => $totalPendapatan,
-            'totalLiter' => $totalLiter,
-            'totalPenyusutan' => $totalPenyusutan,
-            'totalHpp' => $totalHpp,
-            'keuntungan' => $keuntungan,
-            'spends' => $pengeluaranOpsBBM,
-            'count' => $pengeluaranOpsBBM->count(),
-            'bulan' => $bulan,
-        ])->with('values',json_encode($values,JSON_NUMERIC_CHECK))
-        ->with('labels',json_encode($labels,JSON_NUMERIC_CHECK));
-
+            'pendapatan' => $totalPendapatan,
+            'totalPenyusuatan' => $totalPenyusutan,
+            'totalPengeluaran' => $finalPengeluaran,
+            
+        ]);
     }
-
 }

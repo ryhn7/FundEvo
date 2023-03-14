@@ -4224,6 +4224,18 @@ textarea.form-control.is-invalid {
   margin-right: 0.375rem;
 }
 
+.-ml-\[2px\] {
+  margin-left: -2px;
+}
+
+.-ml-\[20px\] {
+  margin-left: -20px;
+}
+
+.-ml-\[205px\] {
+  margin-left: -205px;
+}
+
 .box-content {
   box-sizing: content-box;
 }

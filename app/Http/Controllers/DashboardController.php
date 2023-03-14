@@ -68,18 +68,19 @@ class DashboardController extends Controller
         $totalPendapatanPerBulan = [];
         for ($i = 1; $i <= 12; $i++) {
             $penjualanBBMPerbulan = PenjualanBBM::WhereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->get();
+            $pengeluaranOpsBBMPerbulan = PengeluaranOpsBBM::WhereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->get();
 
-            $tebusanPerBulan = $penjualanBBMPerbulan->sum('harga_penebusan_bbm');
-            $totalGajiSupervisorPerBulan = $penjualanBBMPerbulan->sum('gaji_supervisor');
-            $totalGajiKaryawanPerBulan = $penjualanBBMPerbulan->sum('gaji_karyawan');
-            $totalRewardPerBulan = $penjualanBBMPerbulan->sum('reward_karyawan');
-            $tipsSopirPerBulan = $penjualanBBMPerbulan->sum('tips_sopir');
-            $plnPerBulan = $penjualanBBMPerbulan->sum('pln');
-            $pdamPerBulan = $penjualanBBMPerbulan->sum('pdam');
-            $pphPerBulan = $penjualanBBMPerbulan->sum('pph');
-            $iuranRtPerBulan  = $penjualanBBMPerbulan->sum('iuran_rt');
-            $pbbPerBulan = $penjualanBBMPerbulan->sum('pbb');
-            $etcPerBulan = $penjualanBBMPerbulan->sum('biaya_lain');
+            $tebusanPerBulan = $pengeluaranOpsBBMPerbulan->sum('harga_penebusan_bbm');
+            $totalGajiSupervisorPerBulan = $pengeluaranOpsBBMPerbulan->sum('gaji_supervisor');
+            $totalGajiKaryawanPerBulan = $pengeluaranOpsBBMPerbulan->sum('gaji_karyawan');
+            $totalRewardPerBulan = $pengeluaranOpsBBMPerbulan->sum('reward_karyawan');
+            $tipsSopirPerBulan = $pengeluaranOpsBBMPerbulan->sum('tips_sopir');
+            $plnPerBulan = $pengeluaranOpsBBMPerbulan->sum('pln');
+            $pdamPerBulan = $pengeluaranOpsBBMPerbulan->sum('pdam');
+            $pphPerBulan = $pengeluaranOpsBBMPerbulan->sum('pph');
+            $iuranRtPerBulan  = $pengeluaranOpsBBMPerbulan->sum('iuran_rt');
+            $pbbPerBulan = $pengeluaranOpsBBMPerbulan->sum('pbb');
+            $etcPerBulan = $pengeluaranOpsBBMPerbulan->sum('biaya_lain');
 
             $totalTebusanPerBulan = $tebusanPerBulan + $pphPerBulan;
 
@@ -103,11 +104,15 @@ class DashboardController extends Controller
 
             $totalHppPerBulan = array_sum($hppPerBulan);
             $totalPenyusutanPerBulan = array_sum($lossPerBulan);
-            $totalLabaKotorPerBulan = $totalPendapatanPerBulan[$i] - $totalHppPerBulan;
+            $totalLabaKotorSatuPerBulan = $totalPendapatanPerBulan[$i] - $totalHppPerBulan;
 
             $totalPengeluaranPerBulan = $totalGajiSupervisorPerBulan + $totalGajiKaryawanPerBulan + $totalRewardPerBulan + $plnPerBulan + $pdamPerBulan + $iuranRtPerBulan + $pbbPerBulan + $etcPerBulan + $tipsSopirPerBulan;
 
+            // TODO: cek lagi mengenai laba kotor 2
+            $totalLabaKotorDuaPerBulan = $totalLabaKotorSatuPerBulan - $totalPengeluaranPerBulan;
+            $finalPengeluaranPerBulan = $totalPengeluaranPerBulan + $totalTebusanPerBulan + $totalPenyusutanPerBulan;
 
+            $labaBersihperBulan = $totalLabaKotorSatuPerBulan - $finalPengeluaranPerBulan;
 
 
             $rekap[] = [
@@ -115,8 +120,10 @@ class DashboardController extends Controller
                 'total_pendapatan' => $totalPendapatanPerBulan[$i],
                 'total_hpp_bulan' => $totalHppPerBulan,
                 'total_loss_bulan' => $totalPenyusutanPerBulan,
-                'total_laba_kotor_bulan' => $totalLabaKotorPerBulan,
+                'total_laba_kotorSatu_bulan' => $totalLabaKotorSatuPerBulan,
+                'total_laba_kotorDua_bulan' => $totalLabaKotorDuaPerBulan,
                 'total_pengeluaran_bulan' => $totalPengeluaranPerBulan,
+                'laba_bersih_per_bulan' => $labaBersihperBulan,
             ];
         }
 

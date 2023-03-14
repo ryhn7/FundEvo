@@ -12,7 +12,7 @@
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Keuntungan Penjualan BBM
+                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Penjualan BBM
                                 </p>
                                 <h5 class="mb-0 font-bold">
                                     @currency($totalPendapatan)
@@ -213,7 +213,13 @@
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                            <span class="font-semibold leading-tight text-xs text-slate-400">
+                                                @if ($rekap['total_laba_kotorSatu_bulan'] == null)
+                                                    -
+                                                @else
+                                                    @currency($rekap['total_laba_kotorSatu_bulan'])
+                                                @endif
+                                            </span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
@@ -237,13 +243,16 @@
                                                 @endif
                                             </span>
                                         </td>
+
+                                        {{-- TODO: cek lagi mengenai laba kotor 2 --}}
+                                        
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                             <span class="font-semibold leading-tight text-xs text-slate-400">
-                                                @if ($rekap['total_laba_kotor_bulan'] == null)
+                                                @if ($rekap['total_laba_kotorDua_bulan'] == null)
                                                     -
                                                 @else
-                                                    @currency($rekap['total_laba_kotor_bulan'])
+                                                    @currency($rekap['total_laba_kotorDua_bulan'])
                                                 @endif
                                             </span>
                                         </td>
@@ -263,7 +272,13 @@
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                            <span class="font-semibold leading-tight text-xs text-slate-400">
+                                                @if ($rekap['laba_bersih_per_bulan'] == null)
+                                                    -
+                                                @else
+                                                    @currency($rekap['laba_bersih_per_bulan'])
+                                                @endif
+                                            </span>
                                         </td>
                                     </tr>
                                 @endforeach

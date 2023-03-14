@@ -15,11 +15,13 @@ class DashboardController extends Controller
     {
 
         $bbm = BBM::all();
-        $penjualanBBM = PenjualanBBM::all();
-
+        // penjualan bbm only this year
+        $penjualanBBM = PenjualanBBM::whereYear('created_at', Carbon::now()->year)->get();
         $totalPendapatan = $penjualanBBM->sum('pendapatan');
 
-        $pengeluaranOpsBBM = PengeluaranOpsBBM::all();
+        // pengeluaran ops bbm only this year
+        $pengeluaranOpsBBM = PengeluaranOpsBBM::whereYear('created_at', Carbon::now()->year)->get();
+
 
         $tebusan = $pengeluaranOpsBBM->sum('harga_penebusan_bbm');
         $totalGajiSupervisor = $pengeluaranOpsBBM->sum('gaji_supervisor');
@@ -57,13 +59,75 @@ class DashboardController extends Controller
         $totalPengeluaran = $totalGajiSupervisor + $totalGajiKaryawan + $totalReward + $pln + $pdam + $iuranRt + $pbb + $etc + $tipsSopir;
         $finalPengeluaran = $totalPengeluaran + $totalTebusan;
 
-        $labaBersih = $labaKotor - $finalPengeluaran;
+        $labaBersih = $labaKotor - $totalPenyusutan - $finalPengeluaran;
+
+        // REKAP OMZET PER BULAN
+
+        $rekap = [];
+        $months = [];
+        $totalPendapatanPerBulan = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $penjualanBBMPerbulan = PenjualanBBM::WhereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->get();
+
+            $tebusanPerBulan = $penjualanBBMPerbulan->sum('harga_penebusan_bbm');
+            $totalGajiSupervisorPerBulan = $penjualanBBMPerbulan->sum('gaji_supervisor');
+            $totalGajiKaryawanPerBulan = $penjualanBBMPerbulan->sum('gaji_karyawan');
+            $totalRewardPerBulan = $penjualanBBMPerbulan->sum('reward_karyawan');
+            $tipsSopirPerBulan = $penjualanBBMPerbulan->sum('tips_sopir');
+            $plnPerBulan = $penjualanBBMPerbulan->sum('pln');
+            $pdamPerBulan = $penjualanBBMPerbulan->sum('pdam');
+            $pphPerBulan = $penjualanBBMPerbulan->sum('pph');
+            $iuranRtPerBulan  = $penjualanBBMPerbulan->sum('iuran_rt');
+            $pbbPerBulan = $penjualanBBMPerbulan->sum('pbb');
+            $etcPerBulan = $penjualanBBMPerbulan->sum('biaya_lain');
+
+            $totalTebusanPerBulan = $tebusanPerBulan + $pphPerBulan;
+
+            $months[$i] = Carbon::createFromDate(null, $i, 1)->locale('id')->monthName;
+            $totalPendapatanPerBulan[$i] = $penjualanBBMPerbulan->sum('pendapatan');
+
+            $hppPerBulan = [];
+            foreach ($bbm as $item) {
+                $hargaBeli = $item->harga_beli;
+                $penjualan = $penjualanBBMPerbulan->where('bbm_id', $item->id)->sum('penjualan');
+                $penyusutan = $penjualanBBMPerbulan->where('bbm_id', $item->id)->sum('penyusutan');
+
+                // if penyusutan < 0, then make it positive
+                if ($penyusutan < 0) {
+                    $penyusutan = $penyusutan * -1;
+                }
+
+                $hppPerBulan[$item->id] = $hargaBeli * $penjualan;
+                $lossPerBulan[$item->id] = $hargaBeli * $penyusutan;
+            }
+
+            $totalHppPerBulan = array_sum($hppPerBulan);
+            $totalPenyusutanPerBulan = array_sum($lossPerBulan);
+            $totalLabaKotorPerBulan = $totalPendapatanPerBulan[$i] - $totalHppPerBulan;
+
+            $totalPengeluaranPerBulan = $totalGajiSupervisorPerBulan + $totalGajiKaryawanPerBulan + $totalRewardPerBulan + $plnPerBulan + $pdamPerBulan + $iuranRtPerBulan + $pbbPerBulan + $etcPerBulan + $tipsSopirPerBulan;
+
+
+
+
+            $rekap[] = [
+                'month' => $months[$i],
+                'total_pendapatan' => $totalPendapatanPerBulan[$i],
+                'total_hpp_bulan' => $totalHppPerBulan,
+                'total_loss_bulan' => $totalPenyusutanPerBulan,
+                'total_laba_kotor_bulan' => $totalLabaKotorPerBulan,
+                'total_pengeluaran_bulan' => $totalPengeluaranPerBulan,
+            ];
+        }
 
         return view('index', [
-            'pendapatan' => $totalPendapatan,
-            'totalPenyusuatan' => $totalPenyusutan,
+            'totalPendapatan' => $totalPendapatan,
             'totalPengeluaran' => $finalPengeluaran,
-            
+            'totalLabaKotor' => $labaKotor,
+            'totalLabaBersih' => $labaBersih,
+            'monthSells' => $totalPendapatanPerBulan,
+            'months' => $months,
+            'rekaps' => $rekap,
         ]);
     }
 }

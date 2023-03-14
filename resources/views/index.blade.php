@@ -1,3 +1,5 @@
+{{-- @dd($rekaps) --}}
+
 @extends('layouts.main')
 
 @section('container')
@@ -10,9 +12,10 @@
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Keuntungan Penjualan BBM</p>
+                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Keuntungan Penjualan BBM
+                                </p>
                                 <h5 class="mb-0 font-bold">
-                                    $53,000
+                                    @currency($totalPendapatan)
                                     <span class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span>
                                 </h5>
                             </div>
@@ -37,7 +40,7 @@
                             <div>
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Pengeluaran</p>
                                 <h5 class="mb-0 font-bold">
-                                    2,300
+                                    @currency($totalPengeluaran)
                                     <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span>
                                 </h5>
                             </div>
@@ -62,7 +65,7 @@
                             <div>
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Laba Kotor</p>
                                 <h5 class="mb-0 font-bold">
-                                    +3,462
+                                    @currency($totalLabaKotor)
                                     <span class="leading-normal text-red-600 text-sm font-weight-bolder">-2%</span>
                                 </h5>
                             </div>
@@ -87,7 +90,7 @@
                             <div>
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Laba Bersih</p>
                                 <h5 class="mb-0 font-bold">
-                                    $103,430
+                                    @currency($totalLabaBersih)
                                     <span class="leading-normal text-sm font-weight-bolder text-lime-500">+5%</span>
                                 </h5>
                             </div>
@@ -121,135 +124,153 @@
                         </div>
                     </div>
                 </div>
-                    <div class="flex-auto px-0 pt-0 pb-2">
-                        <div class="p-0 overflow-x-auto">
-                            <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
-                                <thead class="align-bottom">
-                                    <tr>
-                                        <th
-                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Bulan</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Penjualan BBM</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            HPP</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Piutang</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Keuntungan</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Persentase</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Penjualan Oli</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Penjualan Gas</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Pengeluaran</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Laba Kotor</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-start uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Penyusutan</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-start uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Pendapatan Lainn</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-start uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Laba Bersih</th>
-                                    </tr>
-                                </thead>
+                <div class="flex-auto px-0 pt-0 pb-2">
+                    <div class="p-0 overflow-x-auto">
+                        <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
+                            <thead class="align-bottom">
+                                <tr>
+                                    <th
+                                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Bulan</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Penjualan BBM</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        HPP</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Piutang</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Keuntungan</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Persentase</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Penjualan Oli</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Penjualan Gas</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Pengeluaran</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Laba Kotor</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-start uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Penyusutan</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-start uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Pendapatan Lain</th>
+                                    <th
+                                        class="px-6 py-3 font-bold text-start uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Laba Bersih</th>
+                                </tr>
+                            </thead>
 
 
-                                <tbody>
+                            <tbody>
+                                @foreach ($rekaps as $rekap)
                                     <tr>
                                         <td
                                             class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                             <div class="flex px-2 py-1">
                                                 <div class="flex flex-col justify-center">
                                                     <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                        -
+                                                        {{ $rekap['month'] }}
                                                     </h6>
                                                 </div>
                                             </div>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <p class="mb-0 font-semibold leading-tight text-xs">tes
+                                            <p class="mb-0 font-semibold leading-tight text-xs">
+                                                @if ($rekap['total_pendapatan'] == null)
+                                                    -
+                                                @else
+                                                    @currency($rekap['total_pendapatan'])
+                                                @endif
                                             </p>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">tes</span>
-                                        </td>
-                                        <td
-                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                             <span class="font-semibold leading-tight text-xs text-slate-400">
-                                            -
+                                                @if ($rekap['total_hpp_bulan'] == null)
+                                                    -
+                                                @else
+                                                    @currency($rekap['total_hpp_bulan'])
+                                                @endif
                                             </span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                            <span class="font-semibold leading-tight text-xs text-slate-400">
+                                                -
+                                            </span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                            <span class="font-semibold leading-tight text-xs text-slate-400">-</span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                            <span class="font-semibold leading-tight text-xs text-slate-400">-</span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                            <span class="font-semibold leading-tight text-xs text-slate-400">-</span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                            <span class="font-semibold leading-tight text-xs text-slate-400">-</span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                            <span class="font-semibold leading-tight text-xs text-slate-400">
+                                                @if ($rekap['total_pengeluaran_bulan'] == null)
+                                                    -
+                                                @else
+                                                    @currency($rekap['total_pengeluaran_bulan'])
+                                                @endif
+                                            </span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                            <span class="font-semibold leading-tight text-xs text-slate-400">
+                                                @if ($rekap['total_laba_kotor_bulan'] == null)
+                                                    -
+                                                @else
+                                                    @currency($rekap['total_laba_kotor_bulan'])
+                                                @endif
+                                            </span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                            <span class="font-semibold leading-tight text-xs text-slate-400">
+                                                @if ($rekap['total_loss_bulan'] == null)
+                                                    -
+                                                @else
+                                                    @currency($rekap['total_loss_bulan'])
+                                                @endif
+                                            </span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                            <span class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <span class="font-semibold leading-tight text-xs text-slate-400">-</span>
                                         </td>
                                     </tr>
-                                </tbody>
-
-
-
-                            </table>
-                        </div>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -265,7 +286,8 @@
                             <div class="flex flex-col h-full">
                                 <p class="pt-2 mb-1 font-semibold">Built by developers</p>
                                 <h5 class="font-bold">Soft UI Dashboard</h5>
-                                <p class="mb-12">From colors, cards, typography to complex elements, you will find the full
+                                <p class="mb-12">From colors, cards, typography to complex elements, you will find the
+                                    full
                                     documentation.</p>
                                 <a class="mt-auto mb-0 font-semibold leading-normal text-sm group text-slate-500"
                                     href="javascript:;">
@@ -298,7 +320,8 @@
                         class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-gray-900 to-slate-800 opacity-80"></span>
                     <div class="relative z-10 flex flex-col flex-auto h-full p-4">
                         <h5 class="pt-2 mb-6 font-bold text-white">Work with the rockets</h5>
-                        <p class="text-white">Wealth creation is an evolutionarily recent positive-sum game. It is all about
+                        <p class="text-white">Wealth creation is an evolutionarily recent positive-sum game. It is all
+                            about
                             who take the opportunity first.</p>
                         <a class="mt-auto mb-0 font-semibold leading-normal text-white group text-sm" href="javascript:;">
                             Read More

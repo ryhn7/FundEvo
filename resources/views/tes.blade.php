@@ -246,4 +246,80 @@
         </table>
     </div>
 </div>
+
+<tbody>
+    <tr>
+        <td
+            class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+            <div class="flex px-2 py-1">
+                <div class="flex flex-col justify-center">
+                    <h6 class="ml-2 mb-0 leading-normal text-sm">
+                        oke
+                    </h6>
+                </div>
+            </div>
+        </td>
+        <td
+            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+            <p class="mb-0 font-semibold leading-tight text-xs">tes
+            </p>
+        </td>
+        <td
+            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+            <span
+                class="font-semibold leading-tight text-xs text-slate-400">tes</span>
+        </td>
+        <td
+            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+            <span class="font-semibold leading-tight text-xs text-slate-400">
+            -
+            </span>
+        </td>
+        <td
+            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+            <span
+                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+        </td>
+        <td
+            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+            <span
+                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+        </td>
+        <td
+            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+            <span
+                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+        </td>
+        <td
+            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+            <span
+                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+        </td>
+        <td
+            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+            <span
+                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+        </td>
+        <td
+            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+            <span
+                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+        </td>
+        <td
+            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+            <span
+                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+        </td>
+        <td
+            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+            <span
+                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+        </td>
+        <td
+            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+            <span
+                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+        </td>
+    </tr>
+</tbody>
 @endsection

@@ -10,7 +10,7 @@
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Today's Money</p>
+                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Keuntungan Penjualan BBM</p>
                                 <h5 class="mb-0 font-bold">
                                     $53,000
                                     <span class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span>
@@ -35,7 +35,7 @@
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Today's Users</p>
+                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Pengeluaran</p>
                                 <h5 class="mb-0 font-bold">
                                     2,300
                                     <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span>
@@ -60,7 +60,7 @@
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-open font-semibold leading-normal text-sm">New Clients</p>
+                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Laba Kotor</p>
                                 <h5 class="mb-0 font-bold">
                                     +3,462
                                     <span class="leading-normal text-red-600 text-sm font-weight-bolder">-2%</span>
@@ -85,7 +85,7 @@
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Sales</p>
+                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Laba Bersih</p>
                                 <h5 class="mb-0 font-bold">
                                     $103,430
                                     <span class="leading-normal text-sm font-weight-bolder text-lime-500">+5%</span>
@@ -103,6 +103,157 @@
             </div>
         </div>
     </div>
+
+
+    <!--Tabel  -->
+    <div class="flex flex-wrap -mx-3 mt-4">
+        <div class="flex-none w-full max-w-full px-3">
+            <div
+                class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
+                <div class="p-6 pb-0 mb-5 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+                    <div class="flex flex-wrap -mx-3">
+                        <div class="flex items-center flex-none w-1/2 max-w-full px-3">
+                            <h6 class="mb-0">Rekapitulasi Omset Penjualan BBM</h6>
+                        </div>
+                        <div class="flex-none w-1/2 max-w-full px-3 text-right">
+                            <div class="flex justify-end">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="flex-auto px-0 pt-0 pb-2">
+                        <div class="p-0 overflow-x-auto">
+                            <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
+                                <thead class="align-bottom">
+                                    <tr>
+                                        <th
+                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Bulan</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Penjualan BBM</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            HPP</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Piutang</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Keuntungan</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Persentase</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Penjualan Oli</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Penjualan Gas</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Pengeluaran</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Laba Kotor</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-start uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Penyusutan</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-start uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Pendapatan Lainn</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-start uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Laba Bersih</th>
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+                                    <tr>
+                                        <td
+                                            class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <div class="flex px-2 py-1">
+                                                <div class="flex flex-col justify-center">
+                                                    <h6 class="ml-2 mb-0 leading-normal text-sm">
+                                                        -
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <p class="mb-0 font-semibold leading-tight text-xs">tes
+                                            </p>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <span
+                                                class="font-semibold leading-tight text-xs text-slate-400">tes</span>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <span class="font-semibold leading-tight text-xs text-slate-400">
+                                            -
+                                            </span>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <span
+                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <span
+                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <span
+                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <span
+                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <span
+                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <span
+                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <span
+                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <span
+                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                        </td>
+                                        <td
+                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                            <span
+                                                class="font-semibold leading-tight text-xs text-slate-400">-</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+
+
+                            </table>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- cards row 2 -->
     <div class="flex flex-wrap mt-6 -mx-3">

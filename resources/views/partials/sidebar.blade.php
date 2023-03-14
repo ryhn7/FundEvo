@@ -110,28 +110,16 @@
                 </li>
                 <li class="mt-0.5 w-full">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
-                        href="/LaporanFinansialSPBU/PenjualanBBM">
-                        <div
-                            class="{{ request()->is('') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                            @if (request()->is(''))
-                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
-                                    width="512" height="512" x="0" y="0"
-                                    viewBox="0 0 382.499 382.499" style="enable-background:new 0 0 512 512"
-                                    xml:space="preserve" class="">
-                                    <g>
-                                        <path
-                                            d="M0 261.25h100v60H0zM130 191.25h100v130H130zM360 122.087h22.499L310 1.25l-72.5 120.837H260V321.25h100zM0 351.25h360v30H0z"
-                                            fill="#ffffff" data-original="#000000" class=""></path>
-                                    </g>
-                                </svg>
-                            @else
-                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
-                                    width="512" height="512" x="0" y="0"
-                                    viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
-                                    xml:space="preserve" class="">
-                                    <g>
+                        href="/LaporanFinansialSPBU/LaporanRabaRugi">
+                        <div {{-- class="{{ request()->is('dashboard/categories*') ? 'bg-gradient-to-tl from-gray-900 to-slate-800 opacity-80 ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5"> --}}
+                            class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="0,0,256,256" width="12px" height="12px" fill-rule="nonzero">
+                                <g fill="#FFFFFF" fill-rule="nonzero" stroke="none" stroke-width="1"
+                                    stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
+                                    stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+                                    font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+                                    <g transform="scale(4,4)">
                                         <path
                                             d="m414.954 1.673-97.046 161.748h30.118V470.17h-40.157V256H174.013v214.17h-40.157V349.699H0v160.627h481.882V163.421H512L414.954 1.673zM93.699 470.17H40.157v-80.314h53.542v80.314zm174.013 0H214.17V296.157h53.542V470.17zm174.014 0h-53.542V124.347l26.771-44.62 26.771 44.62V470.17z"
                                             fill="#000000" data-original="#000000" class=""></path>

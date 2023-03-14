@@ -63,6 +63,8 @@ class DashboardController extends Controller
 
         // REKAP OMZET PER BULAN
 
+        $labels = [];
+        $values = [];
         $rekap = [];
         $months = [];
         $totalPendapatanPerBulan = [];
@@ -85,6 +87,7 @@ class DashboardController extends Controller
             $totalTebusanPerBulan = $tebusanPerBulan + $pphPerBulan;
 
             $months[$i] = Carbon::createFromDate(null, $i, 1)->locale('id')->monthName;
+            $labels[] = $months[$i];
             $totalPendapatanPerBulan[$i] = $penjualanBBMPerbulan->sum('pendapatan');
 
             $hppPerBulan = [];
@@ -113,6 +116,7 @@ class DashboardController extends Controller
             $finalPengeluaranPerBulan = $totalPengeluaranPerBulan + $totalTebusanPerBulan + $totalPenyusutanPerBulan;
 
             $labaBersihperBulan = $totalLabaKotorSatuPerBulan - $finalPengeluaranPerBulan;
+            $values[] = $labaBersihperBulan;
 
 
             $rekap[] = [
@@ -132,9 +136,8 @@ class DashboardController extends Controller
             'totalPengeluaran' => $finalPengeluaran,
             'totalLabaKotor' => $labaKotor,
             'totalLabaBersih' => $labaBersih,
-            'monthSells' => $totalPendapatanPerBulan,
-            'months' => $months,
             'rekaps' => $rekap,
-        ]);
+        ])->with('labels', json_encode($labels, JSON_NUMERIC_CHECK))
+        ->with('values', json_encode($values, JSON_NUMERIC_CHECK));
     }
 }

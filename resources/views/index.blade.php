@@ -245,7 +245,7 @@
                                         </td>
 
                                         {{-- TODO: cek lagi mengenai laba kotor 2 --}}
-                                        
+
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                             <span class="font-semibold leading-tight text-xs text-slate-400">
@@ -357,7 +357,7 @@
                 <div class="flex-auto p-4">
                     <div class="py-4 pr-1 mb-4 bg-gradient-to-tl from-gray-900 to-slate-800 rounded-xl">
                         <div>
-                            <canvas id="chart-bars" height="170"></canvas>
+                            <canvas id="canvas" class="chart-canvas" height="170"></canvas>
                         </div>
                     </div>
                     <h6 class="mt-6 mb-0 ml-2">Active Users</h6>
@@ -522,7 +522,7 @@
                 </div>
                 <div class="flex-auto p-4">
                     <div>
-                        <canvas id="chart-line" height="300"></canvas>
+                        {{-- <canvas id="chart-line" height="300"></canvas> --}}
                     </div>
                 </div>
             </div>
@@ -1109,3 +1109,77 @@
         </div>
     </div>
 @endsection
+
+<script>
+    var labels = <?php echo $labels; ?>;
+    var values = <?php echo $values; ?>;
+    var barChartData = {
+        labels: labels,
+        datasets: [{
+            label: 'Laba Bersih SPBU',
+            data: values,
+            tension: 0.4,
+            borderWidth: 0,
+            borderRadius: 4,
+            borderSkipped: false,
+            backgroundColor: "#fff",
+            maxBarThickness: 6,
+            label: "Laba Bersih",
+        }]
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                },
+                interaction: {
+                    intersect: false,
+                    mode: "index",
+                },
+                scales: {
+                    y: {
+                        grid: {
+                            drawBorder: false,
+                            display: false,
+                            drawOnChartArea: false,
+                            drawTicks: false,
+                        },
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 600,
+                            beginAtZero: true,
+                            padding: 15,
+                            font: {
+                                size: 14,
+                                family: "Open Sans",
+                                style: "normal",
+                                lineHeight: 2,
+                            },
+                            color: "#fff",
+                        },
+                    },
+                    x: {
+                        grid: {
+                            drawBorder: false,
+                            display: false,
+                            drawOnChartArea: false,
+                            drawTicks: false,
+                        },
+                        ticks: {
+                            display: false,
+                        },
+                    },
+                },
+            }
+        });
+    };
+</script>

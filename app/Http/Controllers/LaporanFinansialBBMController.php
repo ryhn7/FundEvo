@@ -17,6 +17,20 @@ class LaporanFinansialBBMController extends Controller
     public function indexPenjualanBBM()
     {
         $bbm = BBM::all();
+        $penjualanBBM = PenjualanBBM::sortable()->get();
+        $labels = [];
+        $values = [];
+        foreach ($bbm as $b) {
+            $labels[] = $b->jenis_bbm;
+            //get penjualan from penjualanBBM based on labels
+            $values[] = $penjualanBBM->where('bbm_id', $b->id)->sum('penjualan');
+        }
+        // dd($labels);
+        // dd($values);
+        // foreach ($penjualanBBM as $row) {
+        //     $labels[] = $row->region;
+        //     $values[] = $row->population;
+        // }
 
         //filter $penjualanBBM by month
         $penjualanBBM = PenjualanBBM::sortable()->whereYear('created_at', Carbon::now()->year)

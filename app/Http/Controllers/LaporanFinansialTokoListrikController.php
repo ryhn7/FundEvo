@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
+use App\Models\KategoriItem;
 use App\Models\PengeluaranOpsTokoListrik;
 use Illuminate\Http\Request;
 use App\Models\PenjualanItemListrik;
@@ -11,15 +13,99 @@ class LaporanFinansialTokoListrikController extends Controller
 {
     public function indexPenjualanTokoListrik()
     {
-        $penjualanItem = PenjualanItemListrik::sortable()->get();
+        $barang = Item::all();
+
+
+        //filter $penjualanBBM by month
+        $penjualanItem = PenjualanItemListrik::sortable()->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)->get();
+
+        // dd($penjualanItem);
+
+        $totalPendapatan = $penjualanItem->sum('pendapatan');
+        $totalTerjual = $penjualanItem->sum('penjualan');
+
+        $pengeluaranOpsTokoListrik = PengeluaranOpsTokoListrik::sortable()->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)->get();
+
+        $kulakan = $pengeluaranOpsTokoListrik->sum('harga_penebusan_bbm');
+        // $totalGajiSupervisor = $pengeluaranOpsTokoListrik->sum('gaji_supervisor');
+        $totalGajiKaryawan = $pengeluaranOpsTokoListrik->sum('gaji_karyawan');
+        $totalReward = $pengeluaranOpsTokoListrik->sum('reward_karyawan');
+        // $tipsSopir = $pengeluaranOpsTokoListrik->sum('tips_sopir');
+        // $pln = $pengeluaranOpsTokoListrik->sum('pln');
+        // $pdam = $pengeluaranOpsTokoListrik->sum('pdam');
+        // $pph = $pengeluaranOpsTokoListrik->sum('pph');
+        // $iuranRt  = $pengeluaranOpsTokoListrik->sum('iuran_rt');
+        $pbb = $pengeluaranOpsTokoListrik->sum('pbb');
+        $etc = $pengeluaranOpsTokoListrik->sum('biaya_lain');
+
+        $totalKulakan = $kulakan;
+        $keuntungan = $totalPendapatan;
 
         // get pendapatan where bbm_id = 1
         $pendapatanSatu = PenjualanItemListrik::where('id', 1)->sum('pendapatan');
+        $hpp = [];
+        foreach ($barang as $item) {
+            $hargaBeli = $item->harga_beli;
+            $penjualan = $penjualanItem->where('item_id', $item->id)->sum('penjualan');
+            $penyusutan = $penjualanItem->where('item_id', $item->id)->sum('penyusutan');
+
+            // if penyusutan < 0, then make it positive
+            if ($penyusutan < 0) {
+                $penyusutan = $penyusutan * -1;
+            }
+
+            $hpp[$item->id] = $hargaBeli * $penjualan;
+            $loss[$item->id] = $hargaBeli * $penyusutan;
+        }
+
+        // foreach ($kategoris as $kategori) {
+        //     $hargaBeli = $item->harga_beli;
+        //     $penjualan = $penjualanItem->where('item_id', $item->id)->sum('penjualan');
+        //     $penyusutan = $penjualanItem->where('item_id', $item->id)->sum('penyusutan');
+
+        //     // if penyusutan < 0, then make it positive
+        //     if ($penyusutan < 0) {
+        //         $penyusutan = $penyusutan * -1;
+        //     }
+
+        //     $hpp[$item->id] = $hargaBeli * $penjualan;
+        //     $loss[$item->id] = $hargaBeli * $penyusutan;
+        // }
+
+        $totalPenyusutan = array_sum($loss);
+        $totalHpp = array_sum($hpp);
+        $labaKotor = $totalPendapatan - $totalHpp;
+
+        $totalPengeluaran =  + $totalGajiKaryawan + $totalReward + $pbb + $etc;
+        $finalPengeluaran = $totalPengeluaran + $totalKulakan + $totalPenyusutan;
+
+        $labaBersih = $labaKotor - $finalPengeluaran;
         return view('TokoListrik.laporanFinansial.indexPenjualanItem', [
             'sells' => $penjualanItem,
             'count' => $penjualanItem->count(),
             'satu' => $pendapatanSatu,
+            'barang' => $barang,
+            'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
+            'year' => Carbon::now()->year,
+            'keuntungan' => $keuntungan,
+            'totalPendapatan' => $totalPendapatan,
+            'totalPenyusutan' => $totalPenyusutan,
+            'totalTerjual' => $totalTerjual,
+            'totalHpp' => $totalHpp,
+            'labaKotor' => $labaKotor,
+            'kulakan' => $kulakan,
+            'totalKulakan' => $totalKulakan,
+            'totalGajiKaryawan' => $totalGajiKaryawan,
+            'totalReward' => $totalReward,
+            'pbb' => $pbb,
+            'etc' => $etc,
+            'totalPengeluaran' => $totalPengeluaran,
+            'labaBersih' => $labaBersih,
         ]);
+
+    
     }
 
     public function indexPengeluaranTokoListrik()
@@ -111,5 +197,210 @@ class LaporanFinansialTokoListrikController extends Controller
             'year' => $year,
         ]);
     }
+
+    public function indexLaporanLabaRugi()
+    {
+        $items = Item::all();
+
+        //filter $penjualanBBM by month
+        $penjualanItem = PenjualanItemListrik::sortable()->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)->get();
+
+        $totalPendapatan = $penjualanItem->sum('pendapatan');
+
+        $pengeluaranOpsTokoListrik = PengeluaranOpsTokoListrik::sortable()->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)->get();
+
+        $kulakan = $pengeluaranOpsTokoListrik->sum('harga_penebusan_bbm');
+        // $totalGajiSupervisor = $pengeluaranOpsTokoListrik->sum('gaji_supervisor');
+        $totalGajiKaryawan = $pengeluaranOpsTokoListrik->sum('gaji_karyawan');
+        $totalReward = $pengeluaranOpsTokoListrik->sum('reward_karyawan');
+        // $tipsSopir = $pengeluaranOpsTokoListrik->sum('tips_sopir');
+        // $pln = $pengeluaranOpsTokoListrik->sum('pln');
+        // $pdam = $pengeluaranOpsTokoListrik->sum('pdam');
+        // $pph = $pengeluaranOpsTokoListrik->sum('pph');
+        // $iuranRt  = $pengeluaranOpsTokoListrik->sum('iuran_rt');
+        $pbb = $pengeluaranOpsTokoListrik->sum('pbb');
+        $etc = $pengeluaranOpsTokoListrik->sum('biaya_lain');
+
+        $totalKulakan = $kulakan;
+
+        $hpp = [];
+        foreach ($items as $item) {
+            $hargaBeli = $item->harga_beli;
+            $penjualan = $penjualanItem->where('item_id', $item->id)->sum('penjualan');
+            $penyusutan = $penjualanItem->where('item_id', $item->id)->sum('penyusutan');
+
+            // if penyusutan < 0, then make it positive
+            if ($penyusutan < 0) {
+                $penyusutan = $penyusutan * -1;
+            }
+
+            $hpp[$item->id] = $hargaBeli * $penjualan;
+            $loss[$item->id] = $hargaBeli * $penyusutan;
+        }
+
+        $totalPenyusutan = array_sum($loss);
+        $totalHpp = array_sum($hpp);
+        $labaKotor = $totalPendapatan - $totalHpp;
+
+        $totalPengeluaran =  + $totalGajiKaryawan + $totalReward + $pbb + $etc;
+        $finalPengeluaran = $totalPengeluaran + $totalKulakan + $totalPenyusutan;
+
+        $labaBersih = $labaKotor - $finalPengeluaran;
+
+        return view('SPBU.laporanFinansial.indexLaporanFinansial', [
+            'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
+            'year' => Carbon::now()->year,
+            'totalPendapatan' => $totalPendapatan,
+            'totalPenyusutan' => $totalPenyusutan,
+            'totalHpp' => $totalHpp,
+            'labaKotor' => $labaKotor,
+            'kulakan' => $kulakan,
+            'totalKulakan' => $totalKulakan,
+            'totalGajiKaryawan' => $totalGajiKaryawan,
+            'totalReward' => $totalReward,
+            'pbb' => $pbb,
+            'etc' => $etc,
+            'totalPengeluaran' => $totalPengeluaran,
+            'labaBersih' => $labaBersih,
+        ]);
+    }
+
+
+    public function monthFilterLaporanLabaRugi(Request $request)
+    {
+        $items = Item::all();
+        $month = $request->month;
+        $penjualanItem = PenjualanItemListrik::sortable()->whereYear('created_at', Carbon::parse($month)->year)
+            ->whereMonth('created_at', Carbon::parse($month)->month)->get();
+
+        $totalPendapatan = $penjualanItem->sum('pendapatan');
+
+        $pengeluaranOpsTokoListrik = PengeluaranOpsTokoListrik::sortable()->whereYear('created_at', Carbon::parse($month)->year)
+            ->whereMonth('created_at', Carbon::parse($month)->month)->get();
+
+        $kulakan = $pengeluaranOpsTokoListrik->sum('harga_penebusan_bbm');
+        // $totalGajiSupervisor = $pengeluaranOpsTokoListrik->sum('gaji_supervisor');
+        $totalGajiKaryawan = $pengeluaranOpsTokoListrik->sum('gaji_karyawan');
+        $totalReward = $pengeluaranOpsTokoListrik->sum('reward_karyawan');
+        // $tipsSopir = $pengeluaranOpsTokoListrik->sum('tips_sopir');
+        // $pln = $pengeluaranOpsTokoListrik->sum('pln');
+        // $pdam = $pengeluaranOpsTokoListrik->sum('pdam');
+        // $pph = $pengeluaranOpsTokoListrik->sum('pph');
+        // $iuranRt  = $pengeluaranOpsTokoListrik->sum('iuran_rt');
+        $pbb = $pengeluaranOpsTokoListrik->sum('pbb');
+        $etc = $pengeluaranOpsTokoListrik->sum('biaya_lain');
+
+        $totalKulakan = $kulakan;
+
+        $hpp = [];
+        foreach ($items as $item) {
+            $hargaBeli = $item->harga_beli;
+            $penjualan = $penjualanItem->where('item_id', $item->id)->sum('penjualan');
+            $penyusutan = $penjualanItem->where('item_id', $item->id)->sum('penyusutan');
+
+            // if penyusutan < 0, then make it positive
+            if ($penyusutan < 0) {
+                $penyusutan = $penyusutan * -1;
+            }
+
+            $hpp[$item->id] = $hargaBeli * $penjualan;
+            $loss[$item->id] = $hargaBeli * $penyusutan;
+        }
+
+        $totalPenyusutan = array_sum($loss);
+        $totalHpp = array_sum($hpp);
+        $labaKotor = $totalPendapatan - $totalHpp;
+
+        $totalPengeluaran = $totalGajiKaryawan + $totalReward + $pbb + $etc;
+        $finalPengeluaran = $totalPengeluaran + $totalKulakan + $totalPenyusutan;
+
+        $labaBersih = $labaKotor - $finalPengeluaran;
+
+        return view('SPBU.laporanFinansial.indexLaporanFinansial', [
+            'month' => Carbon::parse($month)->locale('id')->isoFormat('MMMM'),
+            'year' => Carbon::parse($month)->year,
+            'totalPendapatan' => $totalPendapatan,
+            'totalPenyusutan' => $totalPenyusutan,
+            'totalHpp' => $totalHpp,
+            'labaKotor' => $labaKotor,
+            'kulakan' => $kulakan,
+            'totalKulakan' => $totalKulakan,
+            'totalGajiKaryawan' => $totalGajiKaryawan,
+            'totalReward' => $totalReward,
+            'pbb' => $pbb,
+            'etc' => $etc,
+            'totalPengeluaran' => $totalPengeluaran,
+            'labaBersih' => $labaBersih,
+        ]);
+    }
+
+    public function yearFilterLaporanLabaRugi(Request $request)
+    {
+        $items = Item::all();
+        $year = $request->year;
+        $penjualanItem = PenjualanItemListrik::sortable()->whereYear('created_at', Carbon::parse($year)->year)
+            ->whereYear('created_at', Carbon::parse($year)->year)->get();
+
+        $totalPendapatan = $penjualanItem->sum('pendapatan');
+
+        $pengeluaranOpsTokoListrik = PengeluaranOpsTokoListrik::sortable()->whereYear('created_at', Carbon::parse($year)->year)
+            ->whereYear('created_at', Carbon::parse($year)->year)->get();
+
+        $kulakan = $pengeluaranOpsTokoListrik->sum('harga_penebusan_bbm');
+        // $totalGajiSupervisor = $pengeluaranOpsTokoListrik->sum('gaji_supervisor');
+        $totalGajiKaryawan = $pengeluaranOpsTokoListrik->sum('gaji_karyawan');
+        $totalReward = $pengeluaranOpsTokoListrik->sum('reward_karyawan');
+        // $tipsSopir = $pengeluaranOpsTokoListrik->sum('tips_sopir');
+        // $pln = $pengeluaranOpsTokoListrik->sum('pln');
+        // $pdam = $pengeluaranOpsTokoListrik->sum('pdam');
+        // $pph = $pengeluaranOpsTokoListrik->sum('pph');
+        // $iuranRt  = $pengeluaranOpsTokoListrik->sum('iuran_rt');
+        $pbb = $pengeluaranOpsTokoListrik->sum('pbb');
+        $etc = $pengeluaranOpsTokoListrik->sum('biaya_lain');
+
+        $totalKulakan = $kulakan;
+
+        $hpp = [];
+        foreach ($items as $item) {
+            $hargaBeli = $item->harga_beli;
+            $penjualan = $penjualanItem->where('item_id', $item->id)->sum('penjualan');
+            $penyusutan = $penjualanItem->where('item_id', $item->id)->sum('penyusutan');
+
+            // if penyusutan < 0, then make it positive
+            if ($penyusutan < 0) {
+                $penyusutan = $penyusutan * -1;
+            }
+
+            $hpp[$item->id] = $hargaBeli * $penjualan;
+            $loss[$item->id] = $hargaBeli * $penyusutan;
+        }
+
+        $totalPenyusutan = array_sum($loss);
+        $totalHpp = array_sum($hpp);
+        $labaKotor = $totalPendapatan - $totalHpp;
+
+        $totalPengeluaran = $totalGajiKaryawan + $totalReward + $pbb + $etc;
+        $finalPengeluaran = $totalPengeluaran + $totalKulakan + $totalPenyusutan;
+
+        $labaBersih = $labaKotor - $finalPengeluaran;
+
+        return view('SPBU.laporanFinansial.indexLaporanFinansial', [
+            'year' => Carbon::parse($year)->year,
+            'totalPendapatan' => $totalPendapatan,
+            'totalPenyusutan' => $totalPenyusutan,
+            'totalHpp' => $totalHpp,
+            'labaKotor' => $labaKotor,
+            'kulakan' => $kulakan,
+            'totalKulakan' => $totalKulakan,
+            'totalGajiKaryawan' => $totalGajiKaryawan,
+            'totalReward' => $totalReward,
+            'pbb' => $pbb,
+            'etc' => $etc,
+            'totalPengeluaran' => $totalPengeluaran,
+            'labaBersih' => $labaBersih,
+        ]);
+    }  
     
 }

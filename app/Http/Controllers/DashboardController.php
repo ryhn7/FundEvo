@@ -54,15 +54,17 @@ class DashboardController extends Controller
 
         $totalPenyusutan = array_sum($loss);
         $totalHpp = array_sum($hpp);
-        $labaKotor = $totalPendapatan - $totalHpp;
+
 
         $totalPengeluaran = $totalGajiSupervisor + $totalGajiKaryawan + $totalReward + $pln + $pdam + $iuranRt + $pbb + $etc + $tipsSopir;
+        $labaKotor = $totalPendapatan - $totalHpp - $totalPengeluaran;
+
         $finalPengeluaran = $totalPengeluaran + $totalTebusan;
 
         $labaBersih = $labaKotor - $totalPenyusutan - $finalPengeluaran;
 
-        // REKAP OMZET PER BULAN
 
+        // REKAP OMZET PER BULAN
         $labels = [];
         $values = [];
         $rekap = [];
@@ -138,6 +140,6 @@ class DashboardController extends Controller
             'totalLabaBersih' => $labaBersih,
             'rekaps' => $rekap,
         ])->with('labels', json_encode($labels, JSON_NUMERIC_CHECK))
-        ->with('values', json_encode($values, JSON_NUMERIC_CHECK));
+            ->with('values', json_encode($values, JSON_NUMERIC_CHECK));
     }
 }

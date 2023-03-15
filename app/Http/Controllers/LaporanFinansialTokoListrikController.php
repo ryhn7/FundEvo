@@ -15,97 +15,39 @@ class LaporanFinansialTokoListrikController extends Controller
     {
         $barang = Item::all();
 
-
         //filter $penjualanBBM by month
         $penjualanItem = PenjualanItemListrik::sortable()->whereYear('created_at', Carbon::now()->year)
             ->whereMonth('created_at', Carbon::now()->month)->get();
 
-        // dd($penjualanItem);
 
         $totalPendapatan = $penjualanItem->sum('pendapatan');
         $totalTerjual = $penjualanItem->sum('penjualan');
+        $totalPenyusutan = $penjualanItem->sum('penyusutan');
 
-        $pengeluaranOpsTokoListrik = PengeluaranOpsTokoListrik::sortable()->whereYear('created_at', Carbon::now()->year)
-            ->whereMonth('created_at', Carbon::now()->month)->get();
-
-        $kulakan = $pengeluaranOpsTokoListrik->sum('harga_penebusan_bbm');
-        // $totalGajiSupervisor = $pengeluaranOpsTokoListrik->sum('gaji_supervisor');
-        $totalGajiKaryawan = $pengeluaranOpsTokoListrik->sum('gaji_karyawan');
-        $totalReward = $pengeluaranOpsTokoListrik->sum('reward_karyawan');
-        // $tipsSopir = $pengeluaranOpsTokoListrik->sum('tips_sopir');
-        // $pln = $pengeluaranOpsTokoListrik->sum('pln');
-        // $pdam = $pengeluaranOpsTokoListrik->sum('pdam');
-        // $pph = $pengeluaranOpsTokoListrik->sum('pph');
-        // $iuranRt  = $pengeluaranOpsTokoListrik->sum('iuran_rt');
-        $pbb = $pengeluaranOpsTokoListrik->sum('pbb');
-        $etc = $pengeluaranOpsTokoListrik->sum('biaya_lain');
-
-        $totalKulakan = $kulakan;
-        $keuntungan = $totalPendapatan;
-
-        // get pendapatan where bbm_id = 1
-        $pendapatanSatu = PenjualanItemListrik::where('id', 1)->sum('pendapatan');
         $hpp = [];
         foreach ($barang as $item) {
             $hargaBeli = $item->harga_beli;
             $penjualan = $penjualanItem->where('item_id', $item->id)->sum('penjualan');
-            $penyusutan = $penjualanItem->where('item_id', $item->id)->sum('penyusutan');
-
-            // if penyusutan < 0, then make it positive
-            if ($penyusutan < 0) {
-                $penyusutan = $penyusutan * -1;
-            }
-
             $hpp[$item->id] = $hargaBeli * $penjualan;
-            $loss[$item->id] = $hargaBeli * $penyusutan;
         }
 
-        // foreach ($kategoris as $kategori) {
-        //     $hargaBeli = $item->harga_beli;
-        //     $penjualan = $penjualanItem->where('item_id', $item->id)->sum('penjualan');
-        //     $penyusutan = $penjualanItem->where('item_id', $item->id)->sum('penyusutan');
-
-        //     // if penyusutan < 0, then make it positive
-        //     if ($penyusutan < 0) {
-        //         $penyusutan = $penyusutan * -1;
-        //     }
-
-        //     $hpp[$item->id] = $hargaBeli * $penjualan;
-        //     $loss[$item->id] = $hargaBeli * $penyusutan;
-        // }
-
-        $totalPenyusutan = array_sum($loss);
         $totalHpp = array_sum($hpp);
-        $labaKotor = $totalPendapatan - $totalHpp;
+        $keuntungan = $totalPendapatan - $totalHpp;
 
-        $totalPengeluaran =  + $totalGajiKaryawan + $totalReward + $pbb + $etc;
-        $finalPengeluaran = $totalPengeluaran + $totalKulakan + $totalPenyusutan;
 
-        $labaBersih = $labaKotor - $finalPengeluaran;
         return view('TokoListrik.laporanFinansial.indexPenjualanItem', [
             'sells' => $penjualanItem,
             'count' => $penjualanItem->count(),
-            'satu' => $pendapatanSatu,
             'barang' => $barang,
             'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
             'year' => Carbon::now()->year,
-            'keuntungan' => $keuntungan,
             'totalPendapatan' => $totalPendapatan,
-            'totalPenyusutan' => $totalPenyusutan,
             'totalTerjual' => $totalTerjual,
+            'totalPenyusutan' => $totalPenyusutan,
             'totalHpp' => $totalHpp,
-            'labaKotor' => $labaKotor,
-            'kulakan' => $kulakan,
-            'totalKulakan' => $totalKulakan,
-            'totalGajiKaryawan' => $totalGajiKaryawan,
-            'totalReward' => $totalReward,
-            'pbb' => $pbb,
-            'etc' => $etc,
-            'totalPengeluaran' => $totalPengeluaran,
-            'labaBersih' => $labaBersih,
+            'keuntungan' => $keuntungan,
+            'info' => 'Penjualan',
         ]);
-
-    
     }
 
     public function indexPengeluaranTokoListrik()
@@ -114,6 +56,9 @@ class LaporanFinansialTokoListrikController extends Controller
         return view('TokoListrik.laporanFinansial.indexPengeluaranOpsTokoListrik', [
             'spends' => $pengeluaranOpsTokoListrik,
             'count' => $pengeluaranOpsTokoListrik->count(),
+            'info' => 'Penjualan',
+            'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
+            'year' => Carbon::now()->year,
         ]);
     }
 
@@ -130,6 +75,7 @@ class LaporanFinansialTokoListrikController extends Controller
             'count' => $penjualanItem->count(),
             'start' => $start->locale('id')->isoFormat('MMMM '),
             'end' => $end->locale('id')->isoFormat('MMMM Y'),
+            'info' => 'Penjualan',
         ]);
     }
 
@@ -143,6 +89,7 @@ class LaporanFinansialTokoListrikController extends Controller
             'sells' => $penjualanItem,
             'count' => $penjualanItem->count(),
             'month' => Carbon::parse($month)->locale('id')->isoFormat('MMMM'),
+            'info' => 'Penjualan',
         ]);
     }
 
@@ -155,6 +102,7 @@ class LaporanFinansialTokoListrikController extends Controller
             'sells' => $penjualanItem,
             'count' => $penjualanItem->count(),
             'year' => $year,
+            'info' => 'Penjualan',
         ]);
     }
 
@@ -170,6 +118,7 @@ class LaporanFinansialTokoListrikController extends Controller
             'count' => $pengeluaranOpsTokoListrik->count(),
             'start' => $start->locale('id')->isoFormat('MMMM '),
             'end' => $end->locale('id')->isoFormat('MMMM Y'),
+            'info' => 'Penjualan',
         ]);
     }
 
@@ -183,6 +132,7 @@ class LaporanFinansialTokoListrikController extends Controller
             'spends' => $pengeluaranOpsTokoListrik,
             'count' => $pengeluaranOpsTokoListrik->count(),
             'month' => Carbon::parse($month)->locale('id')->isoFormat('MMMM'),
+            'info' => 'Penjualan',
         ]);
     }
 
@@ -195,12 +145,13 @@ class LaporanFinansialTokoListrikController extends Controller
             'spends' => $pengeluaranOpsTokoListrik,
             'count' => $pengeluaranOpsTokoListrik->count(),
             'year' => $year,
+            'info' => 'Penjualan',
         ]);
     }
 
     public function indexLaporanLabaRugi()
     {
-        $items = Item::all();
+        $barang = Item::all();
 
         //filter $penjualanBBM by month
         $penjualanItem = PenjualanItemListrik::sortable()->whereYear('created_at', Carbon::now()->year)
@@ -211,7 +162,7 @@ class LaporanFinansialTokoListrikController extends Controller
         $pengeluaranOpsTokoListrik = PengeluaranOpsTokoListrik::sortable()->whereYear('created_at', Carbon::now()->year)
             ->whereMonth('created_at', Carbon::now()->month)->get();
 
-        $kulakan = $pengeluaranOpsTokoListrik->sum('harga_penebusan_bbm');
+        $kulakan = $pengeluaranOpsTokoListrik->sum('biaya_kulakan');
         // $totalGajiSupervisor = $pengeluaranOpsTokoListrik->sum('gaji_supervisor');
         $totalGajiKaryawan = $pengeluaranOpsTokoListrik->sum('gaji_karyawan');
         $totalReward = $pengeluaranOpsTokoListrik->sum('reward_karyawan');
@@ -224,9 +175,9 @@ class LaporanFinansialTokoListrikController extends Controller
         $etc = $pengeluaranOpsTokoListrik->sum('biaya_lain');
 
         $totalKulakan = $kulakan;
-
+        $pengeluaranOpsTokoListrik = PengeluaranOpsTokoListrik::sortable()->get();
         $hpp = [];
-        foreach ($items as $item) {
+        foreach ($barang as $item) {
             $hargaBeli = $item->harga_beli;
             $penjualan = $penjualanItem->where('item_id', $item->id)->sum('penjualan');
             $penyusutan = $penjualanItem->where('item_id', $item->id)->sum('penyusutan');
@@ -249,10 +200,11 @@ class LaporanFinansialTokoListrikController extends Controller
 
         $labaBersih = $labaKotor - $finalPengeluaran;
 
-        return view('SPBU.laporanFinansial.indexLaporanFinansial', [
+        return view('TokoListrik.laporanFinansial.indexLaporanFinansial', [
             'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
             'year' => Carbon::now()->year,
             'totalPendapatan' => $totalPendapatan,
+            'barang' => $barang,
             'totalPenyusutan' => $totalPenyusutan,
             'totalHpp' => $totalHpp,
             'labaKotor' => $labaKotor,
@@ -264,13 +216,14 @@ class LaporanFinansialTokoListrikController extends Controller
             'etc' => $etc,
             'totalPengeluaran' => $totalPengeluaran,
             'labaBersih' => $labaBersih,
+            'info' => 'Penjualan',
         ]);
     }
 
 
     public function monthFilterLaporanLabaRugi(Request $request)
     {
-        $items = Item::all();
+        $barang = Item::all();
         $month = $request->month;
         $penjualanItem = PenjualanItemListrik::sortable()->whereYear('created_at', Carbon::parse($month)->year)
             ->whereMonth('created_at', Carbon::parse($month)->month)->get();
@@ -295,7 +248,7 @@ class LaporanFinansialTokoListrikController extends Controller
         $totalKulakan = $kulakan;
 
         $hpp = [];
-        foreach ($items as $item) {
+        foreach ($barang as $item) {
             $hargaBeli = $item->harga_beli;
             $penjualan = $penjualanItem->where('item_id', $item->id)->sum('penjualan');
             $penyusutan = $penjualanItem->where('item_id', $item->id)->sum('penyusutan');
@@ -318,7 +271,7 @@ class LaporanFinansialTokoListrikController extends Controller
 
         $labaBersih = $labaKotor - $finalPengeluaran;
 
-        return view('SPBU.laporanFinansial.indexLaporanFinansial', [
+        return view('TokoListrik.laporanFinansial.indexLaporanFinansial', [
             'month' => Carbon::parse($month)->locale('id')->isoFormat('MMMM'),
             'year' => Carbon::parse($month)->year,
             'totalPendapatan' => $totalPendapatan,
@@ -329,16 +282,18 @@ class LaporanFinansialTokoListrikController extends Controller
             'totalKulakan' => $totalKulakan,
             'totalGajiKaryawan' => $totalGajiKaryawan,
             'totalReward' => $totalReward,
+            'info' => 'Penjualan',
             'pbb' => $pbb,
             'etc' => $etc,
             'totalPengeluaran' => $totalPengeluaran,
             'labaBersih' => $labaBersih,
+            'barang' => $barang,
         ]);
     }
 
     public function yearFilterLaporanLabaRugi(Request $request)
     {
-        $items = Item::all();
+        $barang = Item::all();
         $year = $request->year;
         $penjualanItem = PenjualanItemListrik::sortable()->whereYear('created_at', Carbon::parse($year)->year)
             ->whereYear('created_at', Carbon::parse($year)->year)->get();
@@ -363,7 +318,7 @@ class LaporanFinansialTokoListrikController extends Controller
         $totalKulakan = $kulakan;
 
         $hpp = [];
-        foreach ($items as $item) {
+        foreach ($barang as $item) {
             $hargaBeli = $item->harga_beli;
             $penjualan = $penjualanItem->where('item_id', $item->id)->sum('penjualan');
             $penyusutan = $penjualanItem->where('item_id', $item->id)->sum('penyusutan');
@@ -385,11 +340,13 @@ class LaporanFinansialTokoListrikController extends Controller
         $finalPengeluaran = $totalPengeluaran + $totalKulakan + $totalPenyusutan;
 
         $labaBersih = $labaKotor - $finalPengeluaran;
+        
 
-        return view('SPBU.laporanFinansial.indexLaporanFinansial', [
+        return view('TokoListrik.laporanFinansial.indexLaporanFinansial', [
             'year' => Carbon::parse($year)->year,
             'totalPendapatan' => $totalPendapatan,
             'totalPenyusutan' => $totalPenyusutan,
+            'info' => 'Penjualan',
             'totalHpp' => $totalHpp,
             'labaKotor' => $labaKotor,
             'kulakan' => $kulakan,
@@ -397,6 +354,7 @@ class LaporanFinansialTokoListrikController extends Controller
             'totalGajiKaryawan' => $totalGajiKaryawan,
             'totalReward' => $totalReward,
             'pbb' => $pbb,
+            'barang' => $barang,
             'etc' => $etc,
             'totalPengeluaran' => $totalPengeluaran,
             'labaBersih' => $labaBersih,

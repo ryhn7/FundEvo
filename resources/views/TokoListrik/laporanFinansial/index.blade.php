@@ -9,28 +9,44 @@
                         <div class="max-w-full px-3 lg:w-1/2 lg:flex-none">
                             <div class="flex flex-col h-full">
                                 @if (request()->is('LaporanFinansialTokoListrik/PenjualanTokoListrik'))
-                                    <h3 class="font-bold">Total Penjualan Toko Listrik</h3>
+                                    <h3 class="font-bold">Penjualan Toko Listrik Bulan {{ $month }} {{ $year }}</h3>
                                 @elseif (request()->is('LaporanFinansialTokoListrik/PenjualanTokoListrik/FilterRange*'))
-                                    <h3 class="font-bold">Penjualan Toko Listrik Bulan {{ $start }} - {{ $end }} </h3>
+                                    <h3 class="font-bold">Penjualan Toko Listrik Bulan {{ $start }} - {{ $end }}
+                                    </h3>
                                 @elseif(request()->is('LaporanFinansialTokoListrik/PenjualanTokoListrik/FilterBulan*'))
-                                    <h3 class="font-bold">Penjualan Toko Listrik Bulan {{ $month }}</h3>
+                                    <h3 class="font-bold">Penjualan Toko Listrik Bulan {{ $month }} {{ $year }}</h3>
                                 @elseif(request()->is('LaporanFinansialTokoListrik/PenjualanTokoListrik/FilterTahun*'))
                                     <h3 class="font-bold">Penjualan Toko Listrik Tahun {{ $year }}</h3>
                                 @elseif(request()->is('LaporanFinansialTokoListrik/PengeluaranTokoListrik'))
-                                    <h3 class="font-bold">Total Pengeluaran Operasional Toko Listrik</h3>
+                                    <h3 class="font-bold">Pengeluaran Operasional Toko Listrik Bulan {{ $month }}
+                                        {{ $year }}</h3>
                                 @elseif(request()->is('LaporanFinansialTokoListrik/PengeluaranTokoListrik/FilterRange*'))
                                     <h3 class="font-bold">Pengeluaran Operasional Toko Listrik Bulan {{ $start }} -
                                         {{ $end }}</h3>
                                 @elseif(request()->is('LaporanFinansialTokoListrik/PengeluaranTokoListrik/FilterBulan*'))
-                                    <h3 class="font-bold">Pengeluaran Operasional Toko Listrik Bulan {{ $month }}</h3>
+                                    <h3 class="font-bold">Pengeluaran Operasional Toko Listrik Bulan {{ $month }}
+                                        {{ $year }}</h3>
                                 @elseif(request()->is('LaporanFinansialTokoListrik/PengeluaranTokoListrik/FilterTahun*'))
                                     <h3 class="font-bold">Pengeluaran Operasional Toko Listrik Tahun {{ $year }}</h3>
                                 @elseif(request()->is('LaporanFinansialTokoListrik/PengeluaranTokoListrik/FilterRange*'))
                                     <h3 class="font-bold">Pengeluaran Operasional Toko Listrik Bulan {{ $start }} -
                                         {{ $end }}</h3>
+                                @elseif(request()->is('LaporanFinansialTokoListrik/LaporanRabaRugi'))
+                                    <h3 class="font-bold">Laporan Raba Rugi Toko Listrik Bulan {{ $month }}
+                                        {{ $year }}</h3>
+                                @elseif(request()->is('LaporanFinansialTokoListrik/LaporanRabaRugi/FilterBulan*'))
+                                    <h3 class="font-bold">Laporan Raba Rugi Toko Listrik Bulan {{ $month }}
+                                        {{ $year }}</h3>
+                                @elseif(request()->is('LaporanFinansialTokoListrik/LaporanRabaRugi/FilterTahun*'))
+                                    <h3 class="font-bold">Laporan Raba Rugi Toko Listrik Tahun {{ $year }}</h3>
                                 @else
                                 @endif
-                                <p class="mb-12">{{ $count }} Penjualan</p>
+
+                                @if (request()->is('LaporanFinansialTokoListrik/LaporanRabaRugi*'))
+                                <p class="mb-12"></p>
+                                @else
+                                    <p class="mb-12">{{ $count }} {{$info}}</p>
+                                @endif
                             </div>
                         </div>
                         <div class="max-w-full px-4.5 mt-12 ml-auto text-center lg:mt-0">
@@ -61,6 +77,12 @@
                     <div>
                         <ul class="flex border-b-[1.5px]">
                             <li class="mb-1.8">
+                                <a href="/LaporanFinansialTokoListrik/LaporanRabaRugi"
+                                    class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
+                                            @if (request()->is('LaporanFinansialTokoListrik/LaporanRabaRugi*')) text-green-500 border-green-500 @endif
+                                            ">
+                                    Laporan Laba Rugi
+                                </a>
                                 <a href="/LaporanFinansialTokoListrik/PenjualanTokoListrik"
                                     class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
                                             @if (request()->is('LaporanFinansialTokoListrik/PenjualanTokoListrik*')) text-green-500 border-green-500 @endif
@@ -72,12 +94,6 @@
                                             @if (request()->is('LaporanFinansialTokoListrik/PengeluaranTokoListrik*')) text-green-500 border-green-500 @endif
                                             ">
                                     Pengeluaran Operasional Toko Listrik
-                                </a>
-                                <a href="/LaporanFinansialTokoListrik"
-                                    class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
-                                            @if (request()->is('LaporanFinansialTokoListrik')) text-green-500 border-green-500 @endif
-                                            ">
-                                    Laporan Keuangan Toko Listrik
                                 </a>
                             </li>
                         </ul>

@@ -46,6 +46,11 @@ Route::get('/LaporanFinansialSPBU/LaporanRabaRugi/FilterBulan', [LaporanFinansia
 Route::get('/LaporanFinansialSPBU/LaporanRabaRugi/FilterTahun', [LaporanFinansialBBMController::class, 'yearFilterLaporanLabaRugi']);
 Route::get('/LaporanFinansialSPBU/LaporanRabaRugi/FilterRange', [LaporanFinansialBBMController::class, 'rangeFilterLaporanLabaRugi']);
 
+Route::get('/LaporanFinansialTokoListrik/LaporanRabaRugi', [LaporanFinansialTokoListrikController::class, 'indexLaporanLabaRugi']);
+Route::get('/LaporanFinansialTokoListrik/LaporanRabaRugi/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterLaporanLabaRugi']);
+Route::get('/LaporanFinansialTokoListrik/LaporanRabaRugi/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterLaporanLabaRugi']);
+Route::get('/LaporanFinansialTokoListrik/LaporanRabaRugi/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterLaporanLabaRugi']);
+
 //Item Listrik
 Route::resource('/penjualan-item', PenjualanItemController::class)->except('show');
 Route::get('/penjualan-item/filter', [PenjualanItemController::class, 'filter']); //ajax for filtering penjualan item based on date

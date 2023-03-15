@@ -101,7 +101,7 @@
                                 <div class="flex-none max-w-full px-5">
                                     <div>
                                         <p class="mb-0.5 font-open font-semibold leading-normal text-lg">
-                                            HPP BBM
+                                            HPP Barang
                                         </p>
                                         <h5 class="mb-0 text-4xl font-bold">
                                             @currency($totalHpp)</h5>
@@ -393,9 +393,9 @@
             return {
                 activeTab: 0,
                 tabs: [
-                    "Penjualan BBM",
-                    "Pengeluaran Operasional SPBU",
-                    "Laporan Keuangan SPBU",
+                    "Penjualan Toko Listrik",
+                    "Pengeluaran Operasional Toko Listrik",
+                    "Laporan Keuangan Toko Listrik",
                 ]
             };
         };

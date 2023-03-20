@@ -42,7 +42,7 @@
                         <div class="px-3 text-right basis-1/3">
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                                <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                <i class="fa-solid fa-money-check-dollar text-white py-4"></i>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,8 @@
                         <div class="px-3 text-right basis-1/3">
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                                <i class="ni leading-none ni-world text-lg relative top-3.5 text-white"></i>
+                                <i class="fa-solid fa-fire-flame-simple text-white py-4"></i>
+                                {{-- <i class="fa-solid fa-gas-pump text-white py-4 pl-1"></i> --}}
                             </div>
                         </div>
                     </div>

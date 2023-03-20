@@ -67,6 +67,9 @@ class DashboardController extends Controller
         // REKAP OMZET PER BULAN
         $labels = [];
         $values = [];
+        $labelLines = [];
+        $valueSatu = [];
+        $valueDua = [];
         $rekap = [];
         $months = [];
         $totalPendapatanPerBulan = [];
@@ -89,7 +92,11 @@ class DashboardController extends Controller
             $totalTebusanPerBulan = $tebusanPerBulan + $pphPerBulan;
 
             $months[$i] = Carbon::createFromDate(null, $i, 1)->locale('id')->monthName;
+
             $labels[] = $months[$i];
+            $labelLines[] = $months[$i];
+
+
             $totalPendapatanPerBulan[$i] = $penjualanBBMPerbulan->sum('pendapatan');
 
             $hppPerBulan = [];
@@ -103,6 +110,8 @@ class DashboardController extends Controller
                     $penyusutan = $penyusutan * -1;
                 }
 
+                $penjualanLiterPerBulan[$item->id] = $penjualan;
+                $penyusutanLiterPerBulan[$item->id] = $penyusutan;
                 $hppPerBulan[$item->id] = $hargaBeli * $penjualan;
                 $lossPerBulan[$item->id] = $hargaBeli * $penyusutan;
             }
@@ -118,7 +127,10 @@ class DashboardController extends Controller
             $finalPengeluaranPerBulan = $totalPengeluaranPerBulan + $totalTebusanPerBulan + $totalPenyusutanPerBulan;
 
             $labaBersihperBulan = $totalLabaKotorSatuPerBulan - $finalPengeluaranPerBulan;
+
             $values[] = $labaBersihperBulan;
+            $valueSatu[] = array_sum($penjualanLiterPerBulan);
+            $valueDua[] = array_sum($penyusutanLiterPerBulan);
 
 
             $rekap[] = [
@@ -140,6 +152,6 @@ class DashboardController extends Controller
             'totalLabaBersih' => $labaBersih,
             'rekaps' => $rekap,
         ])->with('labels', json_encode($labels, JSON_NUMERIC_CHECK))
-            ->with('values', json_encode($values, JSON_NUMERIC_CHECK));
+            ->with('values', json_encode($values, JSON_NUMERIC_CHECK))->with('labelLines', json_encode($labelLines, JSON_NUMERIC_CHECK))->with('valueSatu', json_encode($valueSatu, JSON_NUMERIC_CHECK))->with('valueDua', json_encode($valueDua, JSON_NUMERIC_CHECK));
     }
 }

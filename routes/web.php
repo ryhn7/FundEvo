@@ -28,6 +28,7 @@ use App\Models\PengeluaranOpsTokoListrik;
 
 // Route::get('/', fn () => view('index', []));
 Route::get('/Dashboard/SPBU', [DashboardController::class, 'indexDashboardSPBU']);
+Route::get('/Dashboard/TokoListrik', [DashboardController::class, 'indexDashboardTokoListrik']);
 
 
 Route::get('/oke', fn () => view('tes', []));

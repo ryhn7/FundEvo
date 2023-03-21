@@ -5,12 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\PenjualanBBM;
-use App\Models\PenjualanItemListrik;
 use App\Models\PengeluaranOpsBBM;
-use App\Models\PengeluaranOpsTokoListrik;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,13 +18,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-
         // \App\Models\User::factory(10)->create();
 
-        // PengeluaranOpsBBM::factory(5)->create();
-        PengeluaranOpsTokoListrik::factory(5)->create();
-        PenjualanItemListrik::factory(5)->create();
         // PengeluaranOpsBBM::factory(5)->create();
 
         // \App\Models\User::factory()->create([
@@ -58,6 +50,22 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
+        PenjualanBBM::factory(30)->create();
+
+        DB::table('kategori_items')->insert([
+            [
+                'kategori' => 'Lampu',
+            ],
+            [
+                'kategori' => 'Kabel',
+            ],
+            [
+                'kategori' => 'Stop Kontak',
+            ],
+            [
+                'kategori' => 'Saklar',
+            ],
+        ]);
 
         DB::table('items')->insert([
             [

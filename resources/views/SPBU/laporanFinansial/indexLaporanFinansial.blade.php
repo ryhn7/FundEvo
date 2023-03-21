@@ -18,7 +18,7 @@
             <div
                 class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
                 Tahun</div>
-            <ul class="dropdown-content absolute hidden text-gray-700 -pl-5 -ml-[211px] -mt-10">
+            <ul class="dropdown-content absolute hidden text-gray-700 -pl-5 -ml-[205px] -mt-10">
                 <form id="yearFilter" action="/LaporanFinansialSPBU/LaporanRabaRugi/FilterTahun" class="py-0.5"
                     method="GET">
                     <input id="year1" type="text" name="year" placeholder="Pilih Tahun"
@@ -103,17 +103,6 @@
                     </td>
                 </tr>
 
-
-                <tr>
-                    <th
-                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-black opacity-70">
-                        Laba Kotor</th>
-                    <td
-                        class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 font-semibold leading-tight text-xs"> @currency($labaKotor)
-                        </p>
-                    </td>
-                </tr>
 
                 <tr>
                     <th
@@ -266,6 +255,17 @@
                             @else
                                 -
                             @endif
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th
+                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-black opacity-70">
+                        Laba Kotor</th>
+                    <td
+                        class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
+                        <p class="mb-0 font-semibold leading-tight text-xs"> @currency($labaKotor)
                         </p>
                     </td>
                 </tr>

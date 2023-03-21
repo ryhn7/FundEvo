@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BBMCategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanFinansialBBMController;
 use App\Http\Controllers\PenjualanBBMController;
 use App\Http\Controllers\PengeluaranOpsBBMController;
@@ -25,7 +26,10 @@ use App\Models\PengeluaranOpsTokoListrik;
 |
 */
 
-Route::get('/', fn () => view('index', []));
+// Route::get('/', fn () => view('index', []));
+Route::get('/Dashboard/SPBU', [DashboardController::class, 'indexDashboardSPBU']);
+
+
 Route::get('/oke', fn () => view('tes', []));
 
 //BBM

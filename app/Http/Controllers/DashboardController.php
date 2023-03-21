@@ -11,7 +11,7 @@ use App\Models\PengeluaranOpsBBM;
 class DashboardController extends Controller
 {
     //
-    public function indexDashboardBBM()
+    public function indexDashboardSPBU()
     {
 
         $bbm = BBM::all();
@@ -145,7 +145,7 @@ class DashboardController extends Controller
             ];
         }
 
-        return view('index', [
+        return view('dashboardSPBU', [
             'totalPendapatan' => $totalPendapatan,
             'totalPengeluaran' => $finalPengeluaran,
             'totalLabaKotor' => $labaKotor,

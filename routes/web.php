@@ -27,7 +27,7 @@ use App\Models\PengeluaranOpsTokoListrik;
 */
 
 // Route::get('/', fn () => view('index', []));
-Route::get('/', [DashboardController::class, 'indexDashboardBBM']);
+Route::get('/Dashboard/SPBU', [DashboardController::class, 'indexDashboardSPBU']);
 
 
 Route::get('/oke', fn () => view('tes', []));

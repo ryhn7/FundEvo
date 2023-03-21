@@ -37,10 +37,15 @@
 </head>
 
 <body class="m-0 font-open antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
-    @include('partials.sidebar')
+    {{-- if link is /oke then show sidebar --}}
+    @if (Request::is('oke'))
+        @yield('login')
+    @else
+        @include('partials.sidebar')
+    @endif
 
     <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
-        @include('partials.navbar')
+        {{-- @include('partials.navbar') --}}
         <!-- cards -->
         <div class="w-full px-6 py-6 mx-auto">
             @yield('container')

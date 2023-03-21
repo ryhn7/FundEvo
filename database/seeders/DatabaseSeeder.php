@@ -58,7 +58,21 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-<<<<<<<<< Temporary merge branch 1
+        DB::table('kategori_items')->insert([
+            [
+                'kategori' => 'Lampu',
+            ],
+            [
+                'kategori' => 'Kabel',
+            ],
+            [
+                'kategori' => 'Stop Kontak',
+            ],
+            [
+                'kategori' => 'Saklar',
+            ],
+        ]);
+
         DB::table('items')->insert([
             [
                 'kategori' => 1,
@@ -91,25 +105,7 @@ class DatabaseSeeder extends Seeder
                 'harga_jual' => 3000,
             ],
         ]);
-
-        DB::table('kategori_items')->insert([
-            [
-                'kategori' => 'Lampu',
-            ],
-            [
-                'kategori' => 'Kabel',
-            ],
-            [
-                'kategori' => 'Stop Kontak',
-            ],
-            [
-                'kategori' => 'Saklar',
-            ],
-        ]);
-        PenjualanBBM::factory(4)->create();
-=========
+        
         PenjualanBBM::factory(30)->create();
->>>>>>>>> Temporary merge branch 2
-
     }
 }

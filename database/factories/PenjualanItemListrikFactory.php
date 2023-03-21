@@ -18,6 +18,7 @@ class PenjualanItemListrikFactory extends Factory
     {
         return [
             'item_id' => mt_rand(1, 5),
+            'kategori_id' => mt_rand(1, 5),
             'stock_awal' => fake()->numberBetween(0, 1000),
             'penerimaan' => fake()->numberBetween(500, 1000),
             'penjualan' => fake()->numberBetween(1, 500),

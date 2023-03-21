@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KategoriItem;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Models\PenjualanItemListrik;
 use Carbon\Carbon;
@@ -11,9 +13,13 @@ class LaporanFinansialTokoListrikController extends Controller
     public function index()
     {
         $penjualanItem = PenjualanItemListrik::sortable()->get();
+        $kategori = KategoriItem::all();
+        $item = Item::all();
         return view('TokoListrik.laporanFinansial.index', [
             'sells' => $penjualanItem,
             'count' => $penjualanItem->count(),
+            'kategoris' =>$kategori,
+            'items' => $item,
         ]);
     }
 
@@ -58,4 +64,16 @@ class LaporanFinansialTokoListrikController extends Controller
         ]);
     }
     
+    public function filterKategori(Request $request)
+    {
+        // dd($request->date);
+        $kategor = $request->kategori;
+        // return $date;
+        $penjualanItem = PenjualanItemListrik::where('kategori_id', '=', $kategor)->get();
+        return view('TokoListrik.penjualanItem.index', [
+            'sells' => $penjualanItem,
+            'totalAmount' => $penjualanItem->sum('pendapatan'),
+            'totalSell' => $penjualanItem->sum('penjualan'),
+        ]);
+    }
 }

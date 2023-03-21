@@ -50,6 +50,7 @@ class PenjualanItemController extends Controller
     {
         $validated = $request->validate([
             'item_id' => 'required',
+            'kategori_id' => 'required',
             'stock_awal' => 'required|numeric',
             'penerimaan' => 'nullable|numeric',
             'penyusutan' => 'nullable|numeric',

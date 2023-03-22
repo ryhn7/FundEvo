@@ -125,64 +125,78 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-wrap mt-2 -mx-3">
-                        <!-- card1 -->
-                        @foreach ($barang as $item)
-                            {{-- get sum of pendapatan from penjualan bbm use blade --}}
-                            @php
-                                $revenue = $sells->where('item_id', $item->id)->sum('pendapatan');
-                                $pcs = $sells->where('item_id', $item->id)->sum('penjualan');
-                                $penyusutan = $sells->where('item_id', $item->id)->sum('penyusutan');
-                            @endphp
-
-                            <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
-                                <div
-                                    class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
-                                    <div class="flex-auto p-4">
-                                        <div class="flex flex-row -mx-3">
-                                            <div class="flex-none w-3/4max-w-full px-3">
-                                                <div>
-                                                    <p class="mb-0.38 font-open font-semibold leading-normal text-sm">
-                                                        {{ $item->kategori }}
-                                                    </p>
-                                                    <h5 class="mb-0 text-[20px] font-bold">
-                                                        @currency($revenue) </h5>
-                                                    <div class="flex mt-0.38 w-full">
-                                                        <div class="flex">
-                                                            <div class="mt-1.5"> <span>
-                                                                    <img src="{{ asset('assets/icons/profit.png') }}"
-                                                                        alt="icon-profit" width="13px">
-                                                                </span></div>
-                                                            <div class="ml-1"><span
-                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-lime-500">{{ number_format($pcs) }}
-                                                                    Pcs</span></div>
+                    <!-- CAROUSEL -->
+                        <!-- <input id="kategori1" type="kategori" name="kategori" value="{{ request('kategori') }}" class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 "> -->
+                        <div class="container mx-auto mb-5">
+                            <div class="splide">
+                                <div class="splide__arrows">
+                                    <button class="bg-gray-900 shadow splide__arrow splide__arrow--prev">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                                        </svg>
+                                    </button>
+                                    <button class="bg-gray-900 shadow splide__arrow splide__arrow--next">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <form id="kategoriFilter" action="/LaporanFinansialTokoListrik/PenjualanItem/FilterKategori" class="hidden py-0.5 bg-red-500" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="kategori" value="{{ request('kategori') }}">
+                                </form>
+                                <div class="splide__track ">
+                                    <div class="splide__list gap-x-2">
+                                        @foreach ($kategoris as $kategori)
+                                        @php
+                                        $revenue = $sells->where('kategori_id', $kategori->id)->sum('pendapatan');
+                                        $item = $sells->where('kategori_id', $kategori->id)->sum('penjualan');
+                                        $penyusutan = $sells->where('kategori_id', $kategori->id)->sum('penyusutan');
+                                        @endphp
+                                        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4 shadow splide__slide">
+                                            <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
+                                                <div class="flex-auto p-4">
+                                                    <div class="flex flex-row -mx-3">
+                                                        <div class="flex-none w-3/4max-w-full px-3">
+                                                            <div>
+                                                                <p class="mb-0.38 font-open font-semibold leading-normal text-sm">
+                                                                    {{ $kategori-> kategori }}
+                                                                </p>
+                                                                <h5 class="mb-0 text-[20px] font-bold">
+                                                                    @currency($revenue)</h5>
+                                                                <div class="flex mt-0.38 w-full">
+                                                                    <div class="flex">
+                                                                        <div class="mt-1.5"> <span>
+                                                                                <img src="{{ asset('assets/icons/profit.png') }}" alt="icon-profit" width="13px">
+                                                                            </span></div>
+                                                                        <div class="ml-1"><span class="leading-normal text-[13px] font-bold font-weight-bolder text-lime-500">{{ number_format($item) }} Item</span></div>
+                                                                    </div>
+                                                                    <div class="flex ml-1.5">
+                                                                        <div class="mt-1.5"> <span>
+                                                                                <img src="{{ asset('assets/icons/loss.png') }}" alt="icon-loss" width="13px">
+                                                                            </span></div>
+                                                                        <div class="ml-1"><span class="leading-normal text-[13px] font-bold font-weight-bolder text-red-500">{{ number_format($penyusutan) }} Item</span></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="flex ml-1.5">
-                                                            <div class="mt-1.5"> <span>
-                                                                    <img src="{{ asset('assets/icons/loss.png') }}"
-                                                                        alt="icon-loss" width="13px">
-                                                                </span></div>
-                                                            <div class="ml-1"><span
-                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-red-500">{{ number_format($penyusutan) }}
-                                                                    Pcs</span></div>
+                                                        <div class="px-3 text-right basis-1/3">
+                                                            <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
+                                                                <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="px-3 text-right basis-1/3">
-                                                <div
-                                                    class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                                                    <i
-                                                        class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
-                                                </div>
-                                            </div>
                                         </div>
+                                        @endforeach
+
                                     </div>
                                 </div>
+                                <button onclick="submitForm()">Submit</button>
+
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -193,6 +207,7 @@
             <div class="px-6 pb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
             </div>
         </div>
+        
         @if ($sells->count() > 0)
             <div class="flex-auto px-0 pt-0 pb-2">
                 <div class="p-0 overflow-x-auto">
@@ -414,6 +429,14 @@
         end.addEventListener('change', () => {
             rangeForm.submit();
         })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.2/dist/js/splide.min.js"></script>
+    <script>
+        var splide = new Splide('.splide', {
+            perPage: 4,
+            type: 'loop',
+        });
+        splide.mount();
     </script>
 @endsection
 

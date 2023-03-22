@@ -28,9 +28,9 @@ class AuthenticationController extends Controller
             if (Auth::user()->role_id === 1) {
                 return redirect()->intended('/Dashboard/SPBU');
             } else if (Auth::user()->role_id === 2) {
-                return redirect()->intended('/penjualan-bbm');
+                return redirect()->intended('/Dashboard/SPBU');
             } else if (Auth::user()->role_id === 3) {
-                return redirect()->intended('/penjualan-item');
+                return redirect()->intended('/Dashboard/TokoListrik');
             } else {
                 return redirect()->intended('/Dashboard/SPBU');
             }

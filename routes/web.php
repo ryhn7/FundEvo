@@ -27,9 +27,27 @@ use App\Models\PengeluaranOpsTokoListrik;
 |
 */
 
-// Route::get('/', fn () => view('index', []));
 
-Route::get('/Dashboard/SPBU', [DashboardController::class, 'indexDashboardSPBU'])->middleware('auth', 'checkRole:1');
+// if user want to access page / and not logged in, redirect to login page else redirect to dashboard
+Route::get('/', function () {
+    if (Auth::check()) {
+        if (Auth::user()->role_id === 1) {
+            return redirect()->intended('/Dashboard/SPBU');
+        } else if (Auth::user()->role_id === 2) {
+            return redirect()->intended('/Dashboard/SPBU');
+        } else if (Auth::user()->role_id === 3) {
+            return redirect()->intended('/Dashboard/TokoListrik');
+        } else {
+            return redirect()->intended('/Dashboard/SPBU');
+        }
+    } else {
+        return redirect()->intended('/login');
+    }
+});
+
+
+Route::get('/Dashboard/SPBU', [DashboardController::class, 'indexDashboardSPBU'])->middleware('auth', 'checkRole:1,2');
+Route::get('/Dashboard/TokoListrik', [DashboardController::class, 'indexDashboardTokoListrik'])->middleware('auth', 'checkRole:1,3');
 
 Route::get('/login', [AuthenticationController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [AuthenticationController::class, 'login'])->middleware('guest')->name('login');
@@ -39,7 +57,7 @@ Route::post('/logout', [AuthenticationController::class, 'logout'])->middleware(
 Route::get('/oke', fn () => view('tes', []));
 
 //BBM
-Route::group(['prefix' => 'penjualan-bbm', 'middleware' => ['auth', 'checkRole:1,2']], function () {
+Route::group(['prefix' => 'PenjualanBBM', 'middleware' => ['auth', 'checkRole:1,2']], function () {
     Route::resource('/', PenjualanBBMController::class)->except('show');
     Route::get('/filter', [PenjualanBBMController::class, 'filter']);
     Route::get('/getData/{id}', [PenjualanBBMController::class, 'getHarga']); //ajax for getting harga bbm

@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
-        <form action="/penjualan-bbm/{{ $sell->id }}" method="POST">
+        <form action="/PenjualanBBM/{{ $sell->id }}" method="POST">
             @method('PUT')
             @csrf
             <div>

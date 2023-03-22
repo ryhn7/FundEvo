@@ -70,17 +70,17 @@ class PenjualanBBMController extends Controller
         $penjualanBBMYesterday = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', $yesterday)->first();
         $penjualanBBM = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
         if ($penjualanBBM) {
-            return redirect('/penjualan-bbm')->with('error', 'Hanya boleh input 1 jenis BBM per hari!');
+            return redirect('/PenjualanBBM')->with('error', 'Hanya boleh input 1 jenis BBM per hari!');
         }
 
         // dd($penjualanBBMYesterday);
         if (!$penjualanBBMYesterday) {
-            return redirect('/penjualan-bbm')->with('error', 'Harap input penjualan BBM hari kemarin terlebih dahulu!');
+            return redirect('/PenjualanBBM')->with('error', 'Harap input penjualan BBM hari kemarin terlebih dahulu!');
         }
 
         PenjualanBBM::create($validated);
 
-        return redirect('/penjualan-bbm')->with('success', 'Data penjualan berhasil ditambahkan!');
+        return redirect('/PenjualanBBM')->with('success', 'Data penjualan berhasil ditambahkan!');
     }
 
     /**
@@ -139,7 +139,7 @@ class PenjualanBBMController extends Controller
         PenjualanBBM::where('id', $penjualan_bbm->id)
             ->update($validated);
 
-        return redirect('/penjualan-bbm')->with('success', 'Data penjualan berhasil diubah!');
+        return redirect('/PenjualanBBM')->with('success', 'Data penjualan berhasil diubah!');
     }
 
     /**
@@ -152,7 +152,7 @@ class PenjualanBBMController extends Controller
     {
         PenjualanBBM::destroy($penjualan_bbm->id);
 
-        return redirect('/penjualan-bbm')->with('success', 'Data penjualan berhasil dihapus!');
+        return redirect('/PenjualanBBM')->with('success', 'Data penjualan berhasil dihapus!');
     }
 
     // create filter for date

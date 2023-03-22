@@ -2,13 +2,14 @@
 
 @section('container')
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
-        <form action="/kategori-bbm/{{$bbm->id}}" method="POST">
+        <form action="/kategori-bbm/{{ $bbm->id }}" method="POST">
             @method('PUT')
             @csrf
             <div>
                 <label for="jenis_bbm" class="block text-sm">
                     <span class="text-gray-700 font-semibold">Jenis BBM</span>
-                    <input type="text" id="jenis_bbm" name="jenis_bbm" required value="{{ old('jenis_bbm', $bbm->jenis_bbm) }}" autofocus
+                    <input type="text" id="jenis_bbm" name="jenis_bbm" required
+                        value="{{ old('jenis_bbm', $bbm->jenis_bbm) }}" autofocus
                         class="block px-2 py-1 w-full mt-1 text-sm border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('jenis_bbm')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />

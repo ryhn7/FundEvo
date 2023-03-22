@@ -21,26 +21,7 @@
                 <button type="button" alert-close
                     class="box-content absolute top-0 right-0 p-4 text-sm text-white bg-transparent border-0 rounded w-4 h-4 z-2">
                 </button>
-            </div>new Chart(document.getElementById("chart-bars"), {
-        type: 'bar',
-        data: {
-            labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-            datasets: [{
-                label: "Population (millions)",
-                backgroundColor: ["#000000", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                data: [2478, 5267, 734, 784, 433]
-            }]
-        },
-        options: {
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                text: 'Predicted world population (millions) in 2050'
-            }
-        }
-    });
+            </div>
         @endif
     </div>
     <!-- row 1 -->
@@ -50,7 +31,7 @@
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
                     <div class="flex flex-row -mx-3">
-                        <div class="flex-none w-3/4 max-w-full px-3">
+                        <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Pendapatan/hari</p>
                                 <h5 class="mb-0 font-bold">
@@ -62,7 +43,6 @@
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                 <i class="fa-solid fa-money-check-dollar text-white py-4"></i>
-                                
                             </div>
                         </div>
                     </div>
@@ -75,7 +55,7 @@
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
                     <div class="flex flex-row -mx-3">
-                        <div class="flex-none w-3/4 max-w-full px-3">
+                        <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Penjualan BBM</p>
                                 <h5 class="mb-0 font-bold">
@@ -86,7 +66,8 @@
                         <div class="px-3 text-right basis-1/3">
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                                <i class="fa-solid fa-gas-pump text-white py-4 pl-1"></i>
+                                <i class="fa-solid fa-fire-flame-simple text-white py-4"></i>
+                                {{-- <i class="fa-solid fa-gas-pump text-white py-4 pl-1"></i> --}}
                             </div>
                         </div>
                     </div>
@@ -384,5 +365,5 @@
 @endsection
 
 @section('scripts')
-<script src="{{asset('assets/js/submitDateFilter.js')}}"></script>
+    <script src="{{ asset('assets/js/submitDateFilter.js') }}"></script>
 @endsection

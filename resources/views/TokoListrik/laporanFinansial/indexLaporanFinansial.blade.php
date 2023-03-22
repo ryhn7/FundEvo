@@ -1,4 +1,4 @@
-@extends('SPBU.laporanFinansial.index')
+@extends('TokoListrik.laporanFinansial.index')
 
 @section('filter')
     <ul class=" dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none"
@@ -8,7 +8,7 @@
                 class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
                 Bulan</div>
             <ul class="dropdown-content absolute hidden text-gray-700 -pl-5 -ml-[177px] -mt-10">
-                <form id="monthFilter" action="/LaporanFinansialSPBU/LaporanRabaRugi/FilterBulan" class="py-0.5" method="GET">
+                <form id="monthFilter" action="/LaporanFinansialTokoListrik/LaporanRabaRugi/FilterBulan" class="py-0.5" method="GET">
                     <input id="month1" type="month" name="month" value="{{ request('month') }}"
                         class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
                 </form>
@@ -18,8 +18,8 @@
             <div
                 class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
                 Tahun</div>
-            <ul class="dropdown-content absolute hidden text-gray-700 -pl-5 -ml-[205px] -mt-10">
-                <form id="yearFilter" action="/LaporanFinansialSPBU/LaporanRabaRugi/FilterTahun" class="py-0.5"
+            <ul class="dropdown-content absolute hidden text-gray-700 -pl-5 -ml-[211px] -mt-10">
+                <form id="yearFilter" action="/LaporanFinansialTokoListrik/LaporanRabaRugi/FilterTahun" class="py-0.5"
                     method="GET">
                     <input id="year1" type="text" name="year" placeholder="Pilih Tahun"
                         value="{{ request('year') }}"
@@ -74,7 +74,7 @@
                 <tr>
                     <th
                         class="px-16 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                        Penjualan BBM</th>
+                        Penjualan Barang</th>
                     <td
                         class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
                         <p class="mb-0 font-semibold leading-tight text-xs"> @currency($totalPendapatan)
@@ -102,7 +102,16 @@
                         </p>
                     </td>
                 </tr>
-
+                <tr>
+                    <th
+                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-black opacity-70">
+                        Laba Kotor</th>
+                    <td
+                        class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
+                        <p class="mb-0 font-semibold leading-tight text-xs"> @currency($labaKotor)
+                        </p>
+                    </td>
+                </tr>
 
                 <tr>
                     <th
@@ -111,22 +120,6 @@
                     <td
                         class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
                         <p class="mb-0 font-semibold leading-tight text-xs">
-                        </p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th
-                        class="px-16 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                        Gaji Supervisor</th>
-                    <td
-                        class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 font-semibold leading-tight text-xs">
-                            @if ($totalGajiSupervisor)
-                                @currency($totalGajiSupervisor)
-                            @else
-                                -
-                            @endif
                         </p>
                     </td>
                 </tr>
@@ -156,70 +149,6 @@
                         <p class="mb-0 font-semibold leading-tight text-xs">
                             @if ($totalReward)
                                 @currency($totalReward)
-                            @else
-                                -
-                            @endif
-                        </p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th
-                        class="px-16 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                        PLN</th>
-                    <td
-                        class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 font-semibold leading-tight text-xs">
-                            @if ($pln)
-                                @currency($pln)
-                            @else
-                                -
-                            @endif
-                        </p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th
-                        class="px-16 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                        PDAM</th>
-                    <td
-                        class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 font-semibold leading-tight text-xs">
-                            @if ($pdam)
-                                @currency($pdam)
-                            @else
-                                -
-                            @endif
-                        </p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th
-                        class="px-16 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                        Iuran RT</th>
-                    <td
-                        class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 font-semibold leading-tight text-xs">
-                            @if ($iuranRt)
-                                @currency($iuranRt)
-                            @else
-                                -
-                            @endif
-                        </p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th
-                        class="px-16 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                        Tips Sopir</th>
-                    <td
-                        class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 font-semibold leading-tight text-xs">
-                            @if ($tipsSopir)
-                                @currency($tipsSopir)
                             @else
                                 -
                             @endif
@@ -262,17 +191,6 @@
                 <tr>
                     <th
                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-black opacity-70">
-                        Laba Kotor</th>
-                    <td
-                        class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 font-semibold leading-tight text-xs"> @currency($labaKotor)
-                        </p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th
-                        class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-black opacity-70">
                         Penyusutan</th>
                     <td
                         class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
@@ -290,55 +208,12 @@
                 <tr>
                     <th
                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-black opacity-70">
-                        Tebusan</th>
+                        Total Kulakan</th>
                     <td
                         class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
                         <p class="mb-0 font-semibold leading-tight text-xs">
-                        </p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th
-                        class="px-16 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                        PPH</th>
-                    <td
-                        class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 font-semibold leading-tight text-xs">
-                            @if ($pph)
-                                @currency($pph)
-                            @else
-                                -
-                            @endif
-                        </p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th
-                        class="px-16 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                        Tebusan BBM</th>
-                    <td
-                        class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 font-semibold leading-tight text-xs">
-                            @if ($tebusan)
-                                @currency($tebusan)
-                            @else
-                                -
-                            @endif
-                        </p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th
-                        class="px-12 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                        Total Tebusan</th>
-                    <td
-                        class="p-2 text-center align-middle bg-transparent border-b border-gray-200 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 font-semibold leading-tight text-xs">
-                            @if ($totalTebusan)
-                                @currency($totalTebusan)
+                            @if ($totalKulakan)
+                                @currency($totalKulakan)
                             @else
                                 -
                             @endif

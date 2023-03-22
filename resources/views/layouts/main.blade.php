@@ -34,10 +34,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     {{-- custom css --}}
     <link href={{ asset('css/custom-css.css') }} rel="stylesheet" />
-    {{-- flowbite--}} 
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css"  rel="stylesheet" /> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.2/dist/css/splide.min.css">
 </head>
 
 <body class="m-0 font-open antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">

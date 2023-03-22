@@ -163,7 +163,6 @@
         const pendapatan = document.getElementById('pendapatan');
         const hargaJual = document.getElementById('harga_jual');
         const item = document.getElementById('item_id');
-        const kategori = document.getElementById('kategori_item')
 
         stockAwal.addEventListener('change', ()=> {
             console.log(stockAwal.value)

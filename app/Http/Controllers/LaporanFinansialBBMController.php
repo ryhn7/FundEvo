@@ -63,9 +63,8 @@ class LaporanFinansialBBMController extends Controller
             'totalPenyusutan' => $totalPenyusutan,
             'totalHpp' => $totalHpp,
             'keuntungan' => $keuntungan,
-        ])->with('values',json_encode($values,JSON_NUMERIC_CHECK))
-        ->with('labels',json_encode($labels,JSON_NUMERIC_CHECK));
-
+            'info' => 'Penjualan',
+        ]);
     }
 
     public function rangeFilterPenjualanBBM(Request $request)
@@ -89,6 +88,7 @@ class LaporanFinansialBBMController extends Controller
             'count' => $penjualanBBM->count(),
             'start' => $start->locale('id')->isoFormat('MMMM '),
             'end' => $end->locale('id')->isoFormat('MMMM Y'),
+            'info' => 'Penjualan',
         ]);
     }
 
@@ -124,6 +124,7 @@ class LaporanFinansialBBMController extends Controller
             'totalPenyusutan' => $totalPenyusutan,
             'totalHpp' => $totalHpp,
             'keuntungan' => $keuntungan,
+            'info' => 'Penjualan',
         ]);
     }
 
@@ -136,6 +137,7 @@ class LaporanFinansialBBMController extends Controller
             'sells' => $penjualanBBM,
             'count' => $penjualanBBM->count(),
             'year' => $year,
+            'info' => 'Penjualan',
         ]);
     }
 
@@ -151,6 +153,7 @@ class LaporanFinansialBBMController extends Controller
             'count' => $pengeluaranOpsBBM->count(),
             'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
             'year' => Carbon::now()->year,
+            'info' => 'Pengeluaran',
         ]);
     }
 
@@ -175,6 +178,7 @@ class LaporanFinansialBBMController extends Controller
             'count' => $pengeluaranOpsBBM->count(),
             'start' => $start->locale('id')->isoFormat('MMMM '),
             'end' => $end->locale('id')->isoFormat('MMMM Y'),
+            'info' => 'Pengeluaran',
         ]);
     }
 
@@ -189,6 +193,7 @@ class LaporanFinansialBBMController extends Controller
             'count' => $pengeluaranOpsBBM->count(),
             'month' => Carbon::parse($month)->locale('id')->isoFormat('MMMM'),
             'year' => Carbon::parse($month)->year,
+            'info' => 'Pengeluaran',
         ]);
     }
 
@@ -201,54 +206,237 @@ class LaporanFinansialBBMController extends Controller
             'spends' => $pengeluaranOpsBBM,
             'count' => $pengeluaranOpsBBM->count(),
             'year' => $year,
+            'info' => 'Pengeluaran',
         ]);
     }
 
     // laporan Finansial //
 
-    public function indexLaporanFinansialSPBU()
+    public function indexLaporanLabaRugi()
     {
+        $bbm = BBM::all();
+
+        //filter $penjualanBBM by month
+        $penjualanBBM = PenjualanBBM::sortable()->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)->get();
+
+        $totalPendapatan = $penjualanBBM->sum('pendapatan');
+
+        $pengeluaranOpsBBM = PengeluaranOpsBBM::sortable()->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)->get();
+
+        $tebusan = $pengeluaranOpsBBM->sum('harga_penebusan_bbm');
+        $totalGajiSupervisor = $pengeluaranOpsBBM->sum('gaji_supervisor');
+        $totalGajiKaryawan = $pengeluaranOpsBBM->sum('gaji_karyawan');
+        $totalReward = $pengeluaranOpsBBM->sum('reward_karyawan');
+        $tipsSopir = $pengeluaranOpsBBM->sum('tips_sopir');
+        $pln = $pengeluaranOpsBBM->sum('pln');
+        $pdam = $pengeluaranOpsBBM->sum('pdam');
+        $pph = $pengeluaranOpsBBM->sum('pph');
+        $iuranRt  = $pengeluaranOpsBBM->sum('iuran_rt');
+        $pbb = $pengeluaranOpsBBM->sum('pbb');
+        $etc = $pengeluaranOpsBBM->sum('biaya_lain');
+
+        $totalTebusan = $tebusan + $pph;
+
+        $hpp = [];
+        foreach ($bbm as $item) {
+            $hargaBeli = $item->harga_beli;
+            $penjualan = $penjualanBBM->where('bbm_id', $item->id)->sum('penjualan');
+            $penyusutan = $penjualanBBM->where('bbm_id', $item->id)->sum('penyusutan');
+
+            // if penyusutan < 0, then make it positive
+            if ($penyusutan < 0) {
+                $penyusutan = $penyusutan * -1;
+            }
+
+            $hpp[$item->id] = $hargaBeli * $penjualan;
+            $loss[$item->id] = $hargaBeli * $penyusutan;
+        }
+
+        $totalPenyusutan = array_sum($loss);
+        $totalHpp = array_sum($hpp);
+
+
+        $totalPengeluaran = $totalGajiSupervisor + $totalGajiKaryawan + $totalReward + $pln + $pdam + $iuranRt + $pbb + $etc + $tipsSopir;
+        $labaKotor = $totalPendapatan - $totalHpp - $totalPengeluaran;
+
+        $finalPengeluaran = $totalPengeluaran + $totalTebusan + $totalPenyusutan;
+
+        $labaBersih = $labaKotor - $finalPengeluaran;
+
         return view('SPBU.laporanFinansial.indexLaporanFinansial', [
-            'count' => 0,
+            'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
+            'year' => Carbon::now()->year,
+            'totalPendapatan' => $totalPendapatan,
+            'totalPenyusutan' => $totalPenyusutan,
+            'totalHpp' => $totalHpp,
+            'labaKotor' => $labaKotor,
+            'tebusan' => $tebusan,
+            'totalTebusan' => $totalTebusan,
+            'totalGajiSupervisor' => $totalGajiSupervisor,
+            'totalGajiKaryawan' => $totalGajiKaryawan,
+            'totalReward' => $totalReward,
+            'tipsSopir' => $tipsSopir,
+            'pln' => $pln,
+            'pdam' => $pdam,
+            'pph' => $pph,
+            'iuranRt' => $iuranRt,
+            'pbb' => $pbb,
+            'etc' => $etc,
+            'totalPengeluaran' => $totalPengeluaran,
+            'labaBersih' => $labaBersih,
         ]);
     }
 
-    public function rangeFilterLaporanFinansialSPBU(Request $request)
+
+    public function monthFilterLaporanLabaRugi(Request $request)
     {
-        $start = Carbon::parse($request->start);
-        $end = Carbon::parse($request->end);
-
-        if ($start->month == $end->month) {
-            return redirect()->back()->with('error', 'Tanggal awal dan akhir tidak boleh dalam satu bulan');
-        }
-
-        // range filter minimum 2 month
-        if ($start->diffInMonths($end) < 2) {
-            return redirect()->back()->with('error', 'Range filter minimal 2 bulan');
-        }
-
-
-        return view('SPBU.laporanFinansial.indexLaporanFinansial', [
-            'count' => 0,
-
-        ]);
-    }
-
-    public function monthFilterLaporanFinansialSPBU(Request $request)
-    {
+        $bbm = BBM::all();
         $month = $request->month;
+        $penjualanBBM = PenjualanBBM::sortable()->whereYear('created_at', Carbon::parse($month)->year)
+            ->whereMonth('created_at', Carbon::parse($month)->month)->get();
+
+        $totalPendapatan = $penjualanBBM->sum('pendapatan');
+
+        $pengeluaranOpsBBM = PengeluaranOpsBBM::sortable()->whereYear('created_at', Carbon::parse($month)->year)
+            ->whereMonth('created_at', Carbon::parse($month)->month)->get();
+
+        $tebusan = $pengeluaranOpsBBM->sum('harga_penebusan_bbm');
+        $totalGajiSupervisor = $pengeluaranOpsBBM->sum('gaji_supervisor');
+        $totalGajiKaryawan = $pengeluaranOpsBBM->sum('gaji_karyawan');
+        $totalReward = $pengeluaranOpsBBM->sum('reward_karyawan');
+        $tipsSopir = $pengeluaranOpsBBM->sum('tips_sopir');
+        $pln = $pengeluaranOpsBBM->sum('pln');
+        $pdam = $pengeluaranOpsBBM->sum('pdam');
+        $pph = $pengeluaranOpsBBM->sum('pph');
+        $iuranRt  = $pengeluaranOpsBBM->sum('iuran_rt');
+        $pbb = $pengeluaranOpsBBM->sum('pbb');
+        $etc = $pengeluaranOpsBBM->sum('biaya_lain');
+
+        $totalTebusan = $tebusan + $pph;
+
+        $hpp = [];
+        foreach ($bbm as $item) {
+            $hargaBeli = $item->harga_beli;
+            $penjualan = $penjualanBBM->where('bbm_id', $item->id)->sum('penjualan');
+            $penyusutan = $penjualanBBM->where('bbm_id', $item->id)->sum('penyusutan');
+
+            // if penyusutan < 0, then make it positive
+            if ($penyusutan < 0) {
+                $penyusutan = $penyusutan * -1;
+            }
+
+            $hpp[$item->id] = $hargaBeli * $penjualan;
+            $loss[$item->id] = $hargaBeli * $penyusutan;
+        }
+
+        $totalPenyusutan = array_sum($loss);
+        $totalHpp = array_sum($hpp);
+
+        $totalPengeluaran = $totalGajiSupervisor + $totalGajiKaryawan + $totalReward + $pln + $pdam + $iuranRt + $pbb + $etc + $tipsSopir;
+        $labaKotor = $totalPendapatan - $totalHpp - $totalPengeluaran;
+
+        $finalPengeluaran = $totalPengeluaran + $totalTebusan + $totalPenyusutan;
+
+        $labaBersih = $labaKotor - $finalPengeluaran;
 
         return view('SPBU.laporanFinansial.indexLaporanFinansial', [
-            'count' => 0,
+            'month' => Carbon::parse($month)->locale('id')->isoFormat('MMMM'),
+            'year' => Carbon::parse($month)->year,
+            'totalPendapatan' => $totalPendapatan,
+            'totalPenyusutan' => $totalPenyusutan,
+            'totalHpp' => $totalHpp,
+            'labaKotor' => $labaKotor,
+            'tebusan' => $tebusan,
+            'totalTebusan' => $totalTebusan,
+            'totalGajiSupervisor' => $totalGajiSupervisor,
+            'totalGajiKaryawan' => $totalGajiKaryawan,
+            'totalReward' => $totalReward,
+            'tipsSopir' => $tipsSopir,
+            'pln' => $pln,
+            'pdam' => $pdam,
+            'pph' => $pph,
+            'iuranRt' => $iuranRt,
+            'pbb' => $pbb,
+            'etc' => $etc,
+            'totalPengeluaran' => $totalPengeluaran,
+            'labaBersih' => $labaBersih,
         ]);
     }
 
-    public function yearFilterLaporanFinansialSPBU(Request $request)
+    public function yearFilterLaporanLabaRugi(Request $request)
     {
+        $bbm = BBM::all();
+
         $year = $request->year;
 
+        $penjualanBBM = PenjualanBBM::sortable()->whereYear('created_at', '=', $year)->get();
+
+        $totalPendapatan = $penjualanBBM->sum('pendapatan');
+
+        $pengeluaranOpsBBM = PengeluaranOpsBBM::sortable()->whereYear('created_at', '=', $year)->get();
+
+        $tebusan = $pengeluaranOpsBBM->sum('harga_penebusan_bbm');
+        $totalGajiSupervisor = $pengeluaranOpsBBM->sum('gaji_supervisor');
+        $totalGajiKaryawan = $pengeluaranOpsBBM->sum('gaji_karyawan');
+        $totalReward = $pengeluaranOpsBBM->sum('reward_karyawan');
+        $tipsSopir = $pengeluaranOpsBBM->sum('tips_sopir');
+        $pln = $pengeluaranOpsBBM->sum('pln');
+        $pdam = $pengeluaranOpsBBM->sum('pdam');
+        $pph = $pengeluaranOpsBBM->sum('pph');
+        $iuranRt  = $pengeluaranOpsBBM->sum('iuran_rt');
+        $pbb = $pengeluaranOpsBBM->sum('pbb');
+        $etc = $pengeluaranOpsBBM->sum('biaya_lain');
+
+        $totalTebusan = $tebusan + $pph;
+
+        $hpp = [];
+        foreach ($bbm as $item) {
+            $hargaBeli = $item->harga_beli;
+            $penjualan = $penjualanBBM->where('bbm_id', $item->id)->sum('penjualan');
+            dd($penjualan);
+            $penyusutan = $penjualanBBM->where('bbm_id', $item->id)->sum('penyusutan');
+
+            // if penyusutan < 0, then make it positive
+            if ($penyusutan < 0) {
+                $penyusutan = $penyusutan * -1;
+            }
+
+            $hpp[$item->id] = $hargaBeli * $penjualan;
+            $loss[$item->id] = $hargaBeli * $penyusutan;
+        }
+
+        $totalPenyusutan = array_sum($loss);
+        $totalHpp = array_sum($hpp);
+
+        $totalPengeluaran = $totalGajiSupervisor + $totalGajiKaryawan + $totalReward + $pln + $pdam + $iuranRt + $pbb + $etc + $tipsSopir;
+        $labaKotor = $totalPendapatan - $totalHpp - $totalPengeluaran;
+
+        $finalPengeluaran = $totalPengeluaran + $totalTebusan + $totalPenyusutan;
+
+        $labaBersih = $labaKotor - $finalPengeluaran;
+
         return view('SPBU.laporanFinansial.indexLaporanFinansial', [
-            'count' => 0,
+            'year' => $year,
+            'totalPendapatan' => $totalPendapatan,
+            'totalPenyusutan' => $totalPenyusutan,
+            'totalHpp' => $totalHpp,
+            'labaKotor' => $labaKotor,
+            'tebusan' => $tebusan,
+            'totalTebusan' => $totalTebusan,
+            'totalGajiSupervisor' => $totalGajiSupervisor,
+            'totalGajiKaryawan' => $totalGajiKaryawan,
+            'totalReward' => $totalReward,
+            'tipsSopir' => $tipsSopir,
+            'pln' => $pln,
+            'pdam' => $pdam,
+            'pph' => $pph,
+            'iuranRt' => $iuranRt,
+            'pbb' => $pbb,
+            'etc' => $etc,
+            'totalPengeluaran' => $totalPengeluaran,
+            'labaBersih' => $labaBersih,
         ]);
     }
 }

@@ -29,14 +29,17 @@
                                     @enderror
                                 </div>
                                 <div class="flex flex-col mt-5">
-                                    <input type="password" name="password" id="password" autofocus required
+                                    <input type="password" name="password" id="password" required
                                         value="{{ old('password') }}" placeholder="Password"
                                         class=" text-sm leading-5.6 ease-soft block w-full appearance-none rounded-full border bg-[#f1f1f1] bg-clip-padding px-3 py-3 font-normal text-black outline-none transition-all placeholder:text-gray-700 pl-5  focus:border-[#00b7dd] focus:outline-none">
                                     @error('password')
                                         <p class="text-xs mt-1.5 ml-2.5 text-red-700">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <button type="button"
+                                @if (session()->has('loginError'))
+                                    <div class="mt-3 ml-2.5 text-sm text-red-700">{{ session('loginError') }}</div>
+                                @endif
+                                <button
                                     class="mt-5 inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-full cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-red-500 to-yellow-400 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25">Masuk</button>
                             </div>
                         </form>

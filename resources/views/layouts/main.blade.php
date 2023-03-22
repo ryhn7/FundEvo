@@ -38,20 +38,21 @@
 
 <body class="m-0 font-open antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
     {{-- if link is /oke then show sidebar --}}
-    @if (Request::is('oke'))
+    @if (Request::is('login'))
         @yield('login')
     @else
         @include('partials.sidebar')
+
+        <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
+            @include('partials.navbar')
+            <!-- cards -->
+            <div class="w-full px-6 py-6 mx-auto">
+                @yield('container')
+            </div>
+            <!-- end cards -->
+        </main>
     @endif
 
-    <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
-        {{-- @include('partials.navbar') --}}
-        <!-- cards -->
-        <div class="w-full px-6 py-6 mx-auto">
-            @yield('container')
-        </div>
-        <!-- end cards -->
-    </main>
 
     {{-- Alpine js --}}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>

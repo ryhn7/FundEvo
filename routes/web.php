@@ -73,12 +73,13 @@ Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
 Route::resource('/KategoriBBM', BBMCategoryController::class)->except('show')->middleware('auth', 'checkRole:1,2');
 
 
-Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->except('show');
 
 
-Route::group(['prefix' => 'pengeluaran-ops-bbm', 'middleware' => ['auth', 'checkRole:1,2']], function () {
-    // Route::resource('/', PengeluaranOpsBBMController::class)->except('show');
-    Route::get('/filter', [PengeluaranOpsBBMController::class, 'filter']);
+Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
+    Route::resource('/PengeluaranOperasionalSPBU', PengeluaranOpsBBMController::class)->except('show');
+    Route::group(['prefix' => 'PengeluaranOperasionalSPBU'], function () {
+        Route::get('/filter', [PengeluaranOpsBBMController::class, 'filter']);
+    });
 });
 
 

@@ -93,11 +93,11 @@
                     </li>
 
                     <li class="mt-0.5 w-full">
-                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('pengeluaran-ops-bbm*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
-                            href="/pengeluaran-ops-bbm">
+                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('PengeluaranOperasionalSPBU*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
+                            href="/PengeluaranOperasionalSPBU">
                             <div
-                                class="{{ request()->is('pengeluaran-ops-bbm*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                                @if (request()->is('pengeluaran-ops-bbm*'))
+                                class="{{ request()->is('PengeluaranOperasionalSPBU*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                                @if (request()->is('PengeluaranOperasionalSPBU*'))
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
                                         width="512" height="512" x="0" y="0"
@@ -488,11 +488,11 @@
                     </li>
 
                     <li class="mt-0.5 w-full">
-                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('pengeluaran-ops-bbm*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
-                            href="/pengeluaran-ops-bbm">
+                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('PengeluaranOperasionalSPBU*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
+                            href="/PengeluaranOperasionalSPBU">
                             <div
-                                class="{{ request()->is('pengeluaran-ops-bbm*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                                @if (request()->is('pengeluaran-ops-bbm*'))
+                                class="{{ request()->is('PengeluaranOperasionalSPBU*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                                @if (request()->is('PengeluaranOperasionalSPBU*'))
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
                                         width="512" height="512" x="0" y="0"

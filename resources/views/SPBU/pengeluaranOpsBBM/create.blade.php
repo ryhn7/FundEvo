@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
-        <form action="/pengeluaran-ops-bbm" method="POST" enctype="multipart/form-data">
+        <form action="/PengeluaranOperasionalSPBU" method="POST" enctype="multipart/form-data">
             @csrf
             <div>
                 <label for="harga_penebusan_bbm" class="block mt-4 text-sm">
@@ -288,5 +288,5 @@
 
 @section('scripts')
     <script src="https://unpkg.com/create-file-list"></script>
-    <script src="{{asset('assets/js/dropzoneConfig.js')}}"></script>
+    <script src="{{ asset('assets/js/dropzoneConfig.js') }}"></script>
 @endsection

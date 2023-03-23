@@ -14,13 +14,13 @@
                                 </p>
                                 <h5 class="mb-0 font-bold">
                                     @currency($totalPendapatan)
-                                    <span class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span>
+                                    {{-- <span class="leading-normal text-sm font-weight-bolder text-lime-500">+55%</span> --}}
                                 </h5>
                             </div>
                         </div>
                         <div class="px-3 text-right basis-1/3">
                             <div
-                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
+                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                 <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
                             </div>
                         </div>
@@ -39,13 +39,13 @@
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Pengeluaran</p>
                                 <h5 class="mb-0 font-bold">
                                     @currency($totalPengeluaran)
-                                    <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span>
+                                    {{-- <span class="leading-normal text-sm font-weight-bolder text-lime-500">+3%</span> --}}
                                 </h5>
                             </div>
                         </div>
                         <div class="px-3 text-right basis-1/3">
                             <div
-                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
+                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                 <i class="ni leading-none ni-world text-lg relative top-3.5 text-white"></i>
                             </div>
                         </div>
@@ -64,13 +64,13 @@
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Laba Kotor</p>
                                 <h5 class="mb-0 font-bold">
                                     @currency($totalLabaKotor)
-                                    <span class="leading-normal text-red-600 text-sm font-weight-bolder">-2%</span>
+                                    {{-- <span class="leading-normal text-red-600 text-sm font-weight-bolder">-2%</span> --}}
                                 </h5>
                             </div>
                         </div>
                         <div class="px-3 text-right basis-1/3">
                             <div
-                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
+                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                 <i class="ni leading-none ni-paper-diploma text-lg relative top-3.5 text-white"></i>
                             </div>
                         </div>
@@ -89,13 +89,13 @@
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Laba Bersih</p>
                                 <h5 class="mb-0 font-bold">
                                     @currency($totalLabaBersih)
-                                    <span class="leading-normal text-sm font-weight-bolder text-lime-500">+5%</span>
+                                    {{-- <span class="leading-normal text-sm font-weight-bolder text-lime-500">+5%</span> --}}
                                 </h5>
                             </div>
                         </div>
                         <div class="px-3 text-right basis-1/3">
                             <div
-                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
+                                class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                 <i class="ni leading-none ni-cart text-lg relative top-3.5 text-white"></i>
                             </div>
                         </div>

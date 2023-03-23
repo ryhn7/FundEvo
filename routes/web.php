@@ -56,20 +56,28 @@ Route::post('/logout', [AuthenticationController::class, 'logout'])->middleware(
 
 Route::get('/oke', fn () => view('tes', []));
 
-//BBM
-Route::group(['prefix' => 'PenjualanBBM', 'middleware' => ['auth', 'checkRole:1,2']], function () {
-    Route::resource('/', PenjualanBBMController::class)->except('show');
-    Route::get('/filter', [PenjualanBBMController::class, 'filter']);
-    Route::get('/getData/{id}', [PenjualanBBMController::class, 'getHarga']); //ajax for getting harga bbm
-    Route::get('/getPreviousStock/{id}', [PenjualanBBMController::class, 'getPreviousStock']); //ajax for getting previous stock
-    Route::get('/checkBBM/{id}', [PenjualanBBMController::class, 'checkYesterday']); //ajax for check bbm from yesterday
+//PenjualanBBM
+Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
+    Route::resource('/PenjualanBBM', PenjualanBBMController::class)->except('show');
+    Route::group(['prefix' => 'PenjualanBBM'], function () {
+        Route::get('/filter', [PenjualanBBMController::class, 'filter']);
+        Route::get('/getData/{id}', [PenjualanBBMController::class, 'getHarga']); //ajax for getting harga bbm
+        Route::get('/getPreviousStock/{id}', [PenjualanBBMController::class, 'getPreviousStock']); //ajax for getting previous stock
+        Route::get('/checkBBM/{id}', [PenjualanBBMController::class, 'checkYesterday']); //ajax for check bbm from yesterday
+    });
 });
+
+
 
 
 Route::resource('/kategori-bbm', BBMCategoryController::class)->except('show')->middleware('auth', 'checkRole:1,2');
 
+
+Route::resource('/pengeluaran-ops-bbm', PengeluaranOpsBBMController::class)->except('show');
+
+
 Route::group(['prefix' => 'pengeluaran-ops-bbm', 'middleware' => ['auth', 'checkRole:1,2']], function () {
-    Route::resource('/', PengeluaranOpsBBMController::class)->except('show');
+    // Route::resource('/', PengeluaranOpsBBMController::class)->except('show');
     Route::get('/filter', [PengeluaranOpsBBMController::class, 'filter']);
 });
 

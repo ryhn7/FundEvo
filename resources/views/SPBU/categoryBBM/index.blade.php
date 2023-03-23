@@ -121,28 +121,28 @@
                                     @foreach ($bbms->skip(1) as $bbm)
                                         <tr>
                                             <td
-                                                class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                                class="p-2 align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                                 <div class="flex px-2 py-1">
                                                     <div class="flex flex-col justify-center">
                                                         <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                            {{ $bbm->jenis_bbm }}
-                                                        </h6>
+                                                            {{ $bbm->jenis_bbm }}</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td
-                                                class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                                <p class="mb-0 font-semibold leading-tight text-xs">@currency($bbm->harga_beli)
+                                                class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                                                <p class="mb-0 font-semibold leading-tight text-xs">
+                                                    @currency($bbm->harga_beli)
                                                 </p>
                                             </td>
                                             <td
-                                                class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                                class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                                 <span
                                                     class="font-semibold leading-tight text-xs text-slate-400">@currency($bbm->harga_jual)</span>
                                             </td>
                                             <td
-                                                class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                                <div class="flex items-center space-x-1.25 text-sm">
+                                                class="p-2 align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                                                <div class="mr-1.5 flex items-center space-x-1.25 text-sm">
                                                     <button
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                         aria-label="Edit">

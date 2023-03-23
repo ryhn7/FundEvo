@@ -59,7 +59,11 @@
                             <div>
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Penjualan BBM</p>
                                 <h5 class="mb-0 font-bold">
-                                    {{ $totalSell }}
+                                    @if ($totalSell > 0)
+                                        {{ $totalSell }} Liter
+                                    @else
+                                        {{ $totalSell }}
+                                    @endif
                                 </h5>
                             </div>
                         </div>

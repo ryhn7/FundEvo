@@ -40,7 +40,7 @@
                             </div>
                             <div class="flex-none w-1/2 max-w-full px-3 text-right">
                                 <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-red-500 to-yellow-400 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
-                                    href="/kategori-bbm/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah
+                                    href="/KategoriBBM/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah
                                     Kategori</a>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                                                 <button
                                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                     aria-label="Edit">
-                                                    <a href="/kategori-bbm/{{ $bbms[0]->id }}/edit">
+                                                    <a href="/KategoriBBM/{{ $bbms[0]->id }}/edit">
                                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                             viewBox="0 0 20 20">
                                                             <path
@@ -101,7 +101,7 @@
                                                             </path>
                                                         </svg></a>
                                                 </button>
-                                                <form action="/kategori-bbm/{{ $bbms[0]->id }}" method="POST">
+                                                <form action="/KategoriBBM/{{ $bbms[0]->id }}" method="POST">
                                                     @method('delete')
                                                     @csrf
                                                     <button
@@ -146,7 +146,7 @@
                                                     <button
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                         aria-label="Edit">
-                                                        <a href="/kategori-bbm/{{ $bbm->id }}/edit">
+                                                        <a href="/KategoriBBM/{{ $bbm->id }}/edit">
                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                                 viewBox="0 0 20 20">
                                                                 <path
@@ -154,7 +154,7 @@
                                                                 </path>
                                                             </svg></a>
                                                     </button>
-                                                    <form action="/kategori-bbm/{{ $bbm->id }}" method="POST">
+                                                    <form action="/KategoriBBM/{{ $bbm->id }}" method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button

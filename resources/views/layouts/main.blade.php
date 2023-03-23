@@ -37,20 +37,29 @@
 </head>
 
 <body class="m-0 font-open antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
-    {{-- if link is /oke then show sidebar --}}
+
+    @if (Request::is('oke'))
+        @yield('tes')
+    @endif
+
+
     @if (Request::is('login'))
         @yield('login')
     @else
-        @include('partials.sidebar')
+        {{-- check if auth --}}
+        @if (Auth::check())
+            @include('partials.sidebar')
 
-        <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
-            @include('partials.navbar')
-            <!-- cards -->
-            <div class="w-full px-6 py-6 mx-auto">
-                @yield('container')
-            </div>
-            <!-- end cards -->
-        </main>
+            <main
+                class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
+                @include('partials.navbar')
+                <!-- cards -->
+                <div class="w-full px-6 py-6 mx-auto">
+                    @yield('container')
+                </div>
+                <!-- end cards -->
+            </main>
+        @endif
     @endif
 
 

@@ -1,48 +1,75 @@
 @extends('layouts.main')
 
-@section('login')
-    <div class="jaya"></div>
-    <div class="min-w-screen min-h-screen flex items-center justify-center px-5 py-5">
-        <div class="bg-white text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
-            <div class="md:flex w-full">
-                <div class="hidden md:block w-1/2 py-10 px-10 polygon">
-                    <div class="z-10">
-                        <img src="{{ asset('assets/img/shapes/logo.png') }}" alt="logo" width="300px">
-                    </div>
+@section('tes')
+    <div>
+        <div class="container w-full h-[400px] mt-12" id="animation">
+            <script>
+                var animation = bodymovin.loadAnimation({
+                    container: document.getElementById('animation'),
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: 'https://assets1.lottiefiles.com/packages/lf20_0emKnVT48m.json'
+                })
+            </script>
+        </div>
+        <div class="w-full mt-5">
+            <div class="flex justify-center">
+                <div class="text-center">
+                    <h1 class="text-2xl font-bold">Halaman tidak dapat di akses</h1>
+                    <p class="text-gray-500">Silahkan kembali ke halaman awal</p>
+                    @can('isOwner')
+                        <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-[#060764] to-[#00b7dd] hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                            href="/Dashboard/SPBU">&nbsp;&nbsp;Kembali&nbsp;&nbsp;</a>
+                    @endcan
 
-                </div>
-                <div class="w-full md:w-1/2 py-10 px-5 md:px-10">
-                    <div class="text-left mb-10">
-                        <h1 class="font-bold text-4xl text-gray-900 mb-3">Login</h1>
-                        <p class="text-gray-600">Silakan masukan kredensial Anda</p>
-                    </div>
-                    <div>
-                        <form action="/login" method="POST">
-                            @csrf
-                            <div>
-                                <div class="flex flex-col">
-                                    <input type="email" name="email" id="email" autofocus required
-                                        value="{{ old('email') }}" placeholder="Email"
-                                        class=" text-sm leading-5.6 ease-soft block w-full appearance-none rounded-full border bg-[#f1f1f1] bg-clip-padding px-3 py-3 font-normal text-black outline-none transition-all placeholder:text-gray-700 pl-5  focus:border-[#00b7dd] focus:outline-none">
-                                    @error('email')
-                                        <p class="text-xs mt-1.5 ml-2.5 text-red-700">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="flex flex-col mt-5">
-                                    <input type="password" name="password" id="password" autofocus required
-                                        value="{{ old('password') }}" placeholder="Password"
-                                        class=" text-sm leading-5.6 ease-soft block w-full appearance-none rounded-full border bg-[#f1f1f1] bg-clip-padding px-3 py-3 font-normal text-black outline-none transition-all placeholder:text-gray-700 pl-5  focus:border-[#00b7dd] focus:outline-none">
-                                    @error('password')
-                                        <p class="text-xs mt-1.5 ml-2.5 text-red-700">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <button type="button"
-                                    class="mt-5 inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-full cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-red-500 to-yellow-400 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25">Masuk</button>
-                            </div>
-                        </form>
-                    </div>
+                    @can('isAdminSPBU')
+                        <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-[#060764] to-[#00b7dd] hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                            href="/Dashboard/SPBU">&nbsp;&nbsp;Kembali&nbsp;&nbsp;</a>
+                    @endcan
+
+                    @can('isAdminTokoListrik')
+                        <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-[#060764] to-[#00b7dd] hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                            href="/Dashboard/TokoListrik">&nbsp;&nbsp;Kembali&nbsp;&nbsp;</a>
+                    @endcan
                 </div>
             </div>
         </div>
     </div>
+    {{-- <div>
+        <div class="container w-full h-[400px] mt-10" id="animation">
+            <script>
+                var animation = bodymovin.loadAnimation({
+                    container: document.getElementById('animation'),
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: 'https://assets1.lottiefiles.com/private_files/lf30_tonsVH.json'
+                })
+            </script>
+        </div>
+        <div class="w-full">
+            <div class="flex justify-center">
+                <div class="text-center">
+                    <h1 class="text-2xl font-bold">Halaman tidak ditemukan</h1>
+                    <p class="text-gray-500">Silahkan kembali ke halaman awal</p>
+
+                    @can('isOwner')
+                        <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-red-500 to-yellow-400 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                            href="/Dashboard/SPBU">&nbsp;&nbsp;Kembali&nbsp;&nbsp;</a>
+                    @endcan
+
+                    @can('isAdminSPBU')
+                        <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-red-500 to-yellow-400 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                            href="/Dashboard/SPBU">&nbsp;&nbsp;Kembali&nbsp;&nbsp;</a>
+                    @endcan
+
+                    @can('isAdminTokoListrik')
+                        <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-red-500 to-yellow-400 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                            href="/Dashboard/TokoListrik">&nbsp;&nbsp;Kembali&nbsp;&nbsp;</a>
+                    @endcan
+                </div>
+            </div>
+        </div>
+    </div> --}}
 @endsection

@@ -29,7 +29,6 @@ class CheckRole
         if (in_array($request->user()->role_id, $roles)) {
             return $next($request);
         }
-        auth()->logout();
-        return redirect()->route('login');
+        abort(403);
     }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.main')
 
-@section('container ')
-    OKEE
+@section('container')
+    <div>OKEE</div>
 @endsection

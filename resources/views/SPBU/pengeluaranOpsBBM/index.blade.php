@@ -1,4 +1,6 @@
-{{-- @dd($spends) --}}
+{{-- @foreach ($spends as $spend)
+    @dd($spend->nota)
+@endforeach --}}
 
 @extends('layouts.main')
 
@@ -66,7 +68,7 @@
                         <div class="flex-none w-1/2 max-w-full px-3 text-right">
                             <div class="flex justify-end">
                                 <div class="mr-5">
-                                    <form id="dateFilter" action="/pengeluaran-ops-bbm/filter" class="py-0.5"
+                                    <form id="dateFilter" action="/PengeluaranOperasionalSPBU/filter" class="py-0.5"
                                         method="GET">
                                         <input id="date1" type="date" name="date" value="{{ request('date') }}"
                                             class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
@@ -74,7 +76,8 @@
                                 </div>
                                 <div class="">
                                     <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-red-500 to-yellow-400 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
-                                        href="/pengeluaran-ops-bbm/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah
+                                        href="/PengeluaranOperasionalSPBU/create"> <i class="fas fa-plus">
+                                        </i>&nbsp;&nbsp;Tambah
                                         Pengeluaran</a>
                                 </div>
                             </div>
@@ -386,7 +389,7 @@
                                                 <button
                                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                     aria-label="Edit">
-                                                    <a href="/pengeluaran-ops-bbm/{{ $spends[0]->id }}/edit">
+                                                    <a href="/PengeluaranOperasionalSPBU/{{ $spends[0]->id }}/edit">
                                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                             viewBox="0 0 20 20">
                                                             <path
@@ -394,7 +397,8 @@
                                                             </path>
                                                         </svg></a>
                                                 </button>
-                                                <form action="/pengeluaran-ops-bbm/{{ $spends[0]->id }}" method="POST">
+                                                <form action="/PengeluaranOperasionalSPBU/{{ $spends[0]->id }}"
+                                                    method="POST">
                                                     @method('delete')
                                                     @csrf
                                                     <button
@@ -657,7 +661,7 @@
                                                     <button
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                         aria-label="Edit">
-                                                        <a href="/pengeluaran-ops-bbm/{{ $spend->id }}/edit">
+                                                        <a href="/PengeluaranOperasionalSPBU/{{ $spend->id }}/edit">
                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                                 viewBox="0 0 20 20">
                                                                 <path
@@ -665,7 +669,7 @@
                                                                 </path>
                                                             </svg></a>
                                                     </button>
-                                                    <form action="/pengeluaran-ops-bbm/{{ $spend->id }}"
+                                                    <form action="/PengeluaranOperasionalSPBU/{{ $spend->id }}"
                                                         method="POST">
                                                         @method('delete')
                                                         @csrf

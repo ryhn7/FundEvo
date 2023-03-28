@@ -45,7 +45,7 @@ class BBMCategoryController extends Controller
 
         BBM::create($validated);
 
-        return redirect('/kategori-bbm')->with('success', 'Data BBM berhasil ditambahkan!');
+        return redirect('/KategoriBBM')->with('success', 'Data BBM berhasil ditambahkan!');
     }
 
     /**
@@ -65,11 +65,11 @@ class BBMCategoryController extends Controller
      * @param  \App\Models\BBM  $bBM
      * @return \Illuminate\Http\Response
      */
-    public function edit(BBM $kategori_bbm)
+    public function edit(BBM $KategoriBBM)
     {
-        // return $kategori_bbm;
+        // return $KategoriBBM;
         return view('SPBU.categoryBBM.edit', [
-            'bbm' => $kategori_bbm
+            'bbm' => $KategoriBBM
         ]);
     }
 
@@ -80,7 +80,7 @@ class BBMCategoryController extends Controller
      * @param  \App\Models\BBM  $bBM
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BBM $kategori_bbm)
+    public function update(Request $request, BBM $KategoriBBM)
     {
         $rules = [
             'jenis_bbm' => 'required|max:25',
@@ -90,10 +90,10 @@ class BBMCategoryController extends Controller
 
         $validated = $request->validate($rules);
 
-        BBM::where('id', $kategori_bbm->id)
+        BBM::where('id', $KategoriBBM->id)
             ->update($validated);
 
-        return redirect('/kategori-bbm')->with('success', 'Data BBM berhasil diubah!');
+        return redirect('/KategoriBBM')->with('success', 'Data BBM berhasil diubah!');
     }
 
     /**
@@ -102,9 +102,9 @@ class BBMCategoryController extends Controller
      * @param  \App\Models\BBM  $bBM
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BBM $kategori_bbm)
+    public function destroy(BBM $KategoriBBM)
     {
-        BBM::destroy($kategori_bbm->id);
-        return redirect('/kategori-bbm')->with('success', 'Data BBM berhasil dihapus!');
+        BBM::destroy($KategoriBBM->id);
+        return redirect('/KategoriBBM')->with('success', 'Data BBM berhasil dihapus!');
     }
 }

@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
-        <form action="/pengeluaran-ops-bbm/{{ $spend->id }}" method="POST" enctype="multipart/form-data">
+        <form action="/PengeluaranOperasionalSPBU/{{ $spend->id }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div>
@@ -288,7 +288,7 @@
                 </label>
 
                 <button
-                class="mt-10 w-full px-3 py-3 bg-orange-500 text-white font-bold uppercase transition-all bg-transparent rounded cursor-pointer leading-pro ease-soft-in shadow-soft-md hover:bg-yellow-500 hover:shadow-soft-xs active:opacity-85 hover:scale-[1.005] tracking-tight-soft bg-x-25">Edit
+                    class="mt-10 w-full px-3 py-3 bg-orange-500 text-white font-bold uppercase transition-all bg-transparent rounded cursor-pointer leading-pro ease-soft-in shadow-soft-md hover:bg-yellow-500 hover:shadow-soft-xs active:opacity-85 hover:scale-[1.005] tracking-tight-soft bg-x-25">Edit
                     Pengeluaran</button>
             </div>
         </form>

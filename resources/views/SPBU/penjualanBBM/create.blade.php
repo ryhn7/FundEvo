@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
-        <form action="/penjualan-bbm" method="POST">
+        <form action="/PenjualanBBM" method="POST">
             @csrf
             <div>
                 <div id="date" class="hidden">
@@ -172,7 +172,7 @@
         bbm.addEventListener('change', () => {
             const bbm_id = bbm.value;
             $.ajax({
-                url: '/penjualan-bbm/getData/' + bbm_id,
+                url: '/PenjualanBBM/getData/' + bbm_id,
                 type: 'GET',
                 data: {
                     _token: '{{ csrf_token() }}'
@@ -187,7 +187,7 @@
         bbm.addEventListener('change', () => {
             const bbm_id = bbm.value;
             $.ajax({
-                url: '/penjualan-bbm/getPreviousStock/' + bbm_id,
+                url: '/PenjualanBBM/getPreviousStock/' + bbm_id,
                 type: 'GET',
                 data: {
                     _token: '{{ csrf_token() }}'
@@ -206,7 +206,7 @@
         bbm.addEventListener('change', () => {
             const bbm_id = bbm.value;
             $.ajax({
-                url: '/penjualan-bbm/checkBBM/' + bbm_id,
+                url: '/PenjualanBBM/checkBBM/' + bbm_id,
                 type: 'GET',
                 data: {
                     _token: '{{ csrf_token() }}'
@@ -248,7 +248,7 @@
             } else {
                 penyusutan.value = 0;
             }
-            
+
             pendapatan.value = hasil;
         });
     </script>

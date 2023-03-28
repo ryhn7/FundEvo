@@ -93,16 +93,16 @@ class PengeluaranOpsBBMController extends Controller
 
         PengeluaranOpsBBM::create($validated);
 
-        return redirect('/pengeluaran-ops-bbm')->with('success', 'Data pengeluaran berhasil ditambahkan!');
+        return redirect('/PengeluaranOperasionalSPBU')->with('success', 'Data pengeluaran berhasil ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PengeluaranOpsBBM  $pengeluaran_ops_bbm
+     * @param  \App\Models\PengeluaranOpsBBM  $PengeluaranOperasionalSPBU
      * @return \Illuminate\Http\Response
      */
-    public function show(PengeluaranOpsBBM $pengeluaran_ops_bbm)
+    public function show(PengeluaranOpsBBM $PengeluaranOperasionalSPBU)
     {
         //
     }
@@ -110,13 +110,13 @@ class PengeluaranOpsBBMController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PengeluaranOpsBBM  $pengeluaran_ops_bbm
+     * @param  \App\Models\PengeluaranOpsBBM  $PengeluaranOperasionalSPBU
      * @return \Illuminate\Http\Response
      */
-    public function edit(PengeluaranOpsBBM $pengeluaran_ops_bbm)
+    public function edit(PengeluaranOpsBBM $PengeluaranOperasionalSPBU)
     {
         return view('SPBU.pengeluaranOpsBBM.edit', [
-            'spend' => $pengeluaran_ops_bbm,
+            'spend' => $PengeluaranOperasionalSPBU,
             'bbms' => BBM::all(),
         ]);
     }
@@ -125,10 +125,10 @@ class PengeluaranOpsBBMController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PengeluaranOpsBBM  $pengeluaran_ops_bbm
+     * @param  \App\Models\PengeluaranOpsBBM  $PengeluaranOperasionalSPBU
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PengeluaranOpsBBM $pengeluaran_ops_bbm)
+    public function update(Request $request, PengeluaranOpsBBM $PengeluaranOperasionalSPBU)
     {
 
         // dd($request->oldImage);
@@ -172,29 +172,29 @@ class PengeluaranOpsBBMController extends Controller
             $validated['nota'] = $imagesName;
         }
 
-        PengeluaranOpsBBM::where('id', $pengeluaran_ops_bbm->id)
+        PengeluaranOpsBBM::where('id', $PengeluaranOperasionalSPBU->id)
             ->update($validated);
 
-        return redirect('/pengeluaran-ops-bbm')->with('success', 'Data pengeluaran berhasil diubah!');
+        return redirect('/PengeluaranOperasionalSPBU')->with('success', 'Data pengeluaran berhasil diubah!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PengeluaranOpsBBM  $pengeluaran_ops_bbm
+     * @param  \App\Models\PengeluaranOpsBBM  $PengeluaranOperasionalSPBU
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PengeluaranOpsBBM $pengeluaran_ops_bbm)
+    public function destroy(PengeluaranOpsBBM $PengeluaranOperasionalSPBU)
     {
-        if ($pengeluaran_ops_bbm->nota) {
-            foreach ($pengeluaran_ops_bbm->nota as $oldImage) {
+        if ($PengeluaranOperasionalSPBU->nota) {
+            foreach ($PengeluaranOperasionalSPBU->nota as $oldImage) {
                 Storage::delete('nota/' . $oldImage);
             }
         }
 
-        PengeluaranOpsBBM::destroy($pengeluaran_ops_bbm->id);
+        PengeluaranOpsBBM::destroy($PengeluaranOperasionalSPBU->id);
 
-        return redirect('/pengeluaran-ops-bbm')->with('success', 'Data pengeluaran berhasil dihapus!');
+        return redirect('/PengeluaranOperasionalSPBU')->with('success', 'Data pengeluaran berhasil dihapus!');
     }
 
     public function filter(Request $request)

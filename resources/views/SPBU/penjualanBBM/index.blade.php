@@ -21,26 +21,7 @@
                 <button type="button" alert-close
                     class="box-content absolute top-0 right-0 p-4 text-sm text-white bg-transparent border-0 rounded w-4 h-4 z-2">
                 </button>
-            </div>new Chart(document.getElementById("chart-bars"), {
-        type: 'bar',
-        data: {
-            labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-            datasets: [{
-                label: "Population (millions)",
-                backgroundColor: ["#000000", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                data: [2478, 5267, 734, 784, 433]
-            }]
-        },
-        options: {
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                text: 'Predicted world population (millions) in 2050'
-            }
-        }
-    });
+            </div>
         @endif
     </div>
     <!-- row 1 -->
@@ -50,7 +31,7 @@
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
                     <div class="flex flex-row -mx-3">
-                        <div class="flex-none w-3/4 max-w-full px-3">
+                        <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Pendapatan/hari</p>
                                 <h5 class="mb-0 font-bold">
@@ -62,7 +43,6 @@
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                 <i class="fa-solid fa-money-check-dollar text-white py-4"></i>
-                                
                             </div>
                         </div>
                     </div>
@@ -75,18 +55,23 @@
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
                     <div class="flex flex-row -mx-3">
-                        <div class="flex-none w-3/4 max-w-full px-3">
+                        <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Penjualan BBM</p>
                                 <h5 class="mb-0 font-bold">
-                                    {{ $totalSell }}
+                                    @if ($totalSell > 0)
+                                        {{ $totalSell }} Liter
+                                    @else
+                                        {{ $totalSell }}
+                                    @endif
                                 </h5>
                             </div>
                         </div>
                         <div class="px-3 text-right basis-1/3">
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                                <i class="fa-solid fa-gas-pump text-white py-4 pl-1"></i>
+                                <i class="fa-solid fa-fire-flame-simple text-white py-4"></i>
+                                {{-- <i class="fa-solid fa-gas-pump text-white py-4 pl-1"></i> --}}
                             </div>
                         </div>
                     </div>
@@ -107,14 +92,14 @@
                         <div class="flex-none w-1/2 max-w-full px-3 text-right">
                             <div class="flex justify-end">
                                 <div class="mr-5">
-                                    <form id="dateFilter" action="/penjualan-bbm/filter" class="py-0.5" method="GET">
+                                    <form id="dateFilter" action="/PenjualanBBM/filter" class="py-0.5" method="GET">
                                         <input id="date1" type="date" name="date" value="{{ request('date') }}"
                                             class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
                                     </form>
                                 </div>
                                 <div class="">
                                     <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-red-500 to-yellow-400 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
-                                        href="/penjualan-bbm/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah
+                                        href="/PenjualanBBM/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah
                                         Penjualan</a>
                                 </div>
                             </div>
@@ -231,7 +216,7 @@
                                                 <button
                                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                     aria-label="Edit">
-                                                    <a href="/penjualan-bbm/{{ $sells[0]->id }}/edit">
+                                                    <a href="/PenjualanBBM/{{ $sells[0]->id }}/edit">
                                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                             viewBox="0 0 20 20">
                                                             <path
@@ -239,7 +224,7 @@
                                                             </path>
                                                         </svg></a>
                                                 </button>
-                                                <form action="/penjualan-bbm/{{ $sells[0]->id }}" method="POST">
+                                                <form action="/PenjualanBBM/{{ $sells[0]->id }}" method="POST">
                                                     @method('delete')
                                                     @csrf
                                                     <button
@@ -324,7 +309,7 @@
                                                     <button
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                         aria-label="Edit">
-                                                        <a href="/penjualan-bbm/{{ $sell->id }}/edit">
+                                                        <a href="/PenjualanBBM/{{ $sell->id }}/edit">
                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                                 viewBox="0 0 20 20">
                                                                 <path
@@ -332,7 +317,7 @@
                                                                 </path>
                                                             </svg></a>
                                                     </button>
-                                                    <form action="/penjualan-bbm/{{ $sell->id }}" method="POST">
+                                                    <form action="/PenjualanBBM/{{ $sell->id }}" method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button
@@ -384,5 +369,5 @@
 @endsection
 
 @section('scripts')
-<script src="{{asset('assets/js/submitDateFilter.js')}}"></script>
+    <script src="{{ asset('assets/js/submitDateFilter.js') }}"></script>
 @endsection

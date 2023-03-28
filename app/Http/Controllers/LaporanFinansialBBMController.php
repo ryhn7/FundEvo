@@ -256,9 +256,11 @@ class LaporanFinansialBBMController extends Controller
 
         $totalPenyusutan = array_sum($loss);
         $totalHpp = array_sum($hpp);
-        $labaKotor = $totalPendapatan - $totalHpp;
+
 
         $totalPengeluaran = $totalGajiSupervisor + $totalGajiKaryawan + $totalReward + $pln + $pdam + $iuranRt + $pbb + $etc + $tipsSopir;
+        $labaKotor = $totalPendapatan - $totalHpp - $totalPengeluaran;
+
         $finalPengeluaran = $totalPengeluaran + $totalTebusan + $totalPenyusutan;
 
         $labaBersih = $labaKotor - $finalPengeluaran;
@@ -331,9 +333,10 @@ class LaporanFinansialBBMController extends Controller
 
         $totalPenyusutan = array_sum($loss);
         $totalHpp = array_sum($hpp);
-        $labaKotor = $totalPendapatan - $totalHpp;
 
         $totalPengeluaran = $totalGajiSupervisor + $totalGajiKaryawan + $totalReward + $pln + $pdam + $iuranRt + $pbb + $etc + $tipsSopir;
+        $labaKotor = $totalPendapatan - $totalHpp - $totalPengeluaran;
+
         $finalPengeluaran = $totalPengeluaran + $totalTebusan + $totalPenyusutan;
 
         $labaBersih = $labaKotor - $finalPengeluaran;
@@ -405,9 +408,10 @@ class LaporanFinansialBBMController extends Controller
 
         $totalPenyusutan = array_sum($loss);
         $totalHpp = array_sum($hpp);
-        $labaKotor = $totalPendapatan - $totalHpp;
 
         $totalPengeluaran = $totalGajiSupervisor + $totalGajiKaryawan + $totalReward + $pln + $pdam + $iuranRt + $pbb + $etc + $tipsSopir;
+        $labaKotor = $totalPendapatan - $totalHpp - $totalPengeluaran;
+
         $finalPengeluaran = $totalPengeluaran + $totalTebusan + $totalPenyusutan;
 
         $labaBersih = $labaKotor - $finalPengeluaran;

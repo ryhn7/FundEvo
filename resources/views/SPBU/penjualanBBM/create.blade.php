@@ -213,7 +213,10 @@
                 },
                 dataType: 'json',
                 success: function(result) {
-                    if (result.created_at == date.value) {
+                    console.log(result);
+                    if (result == true) {
+                        date.classList.add('hidden');
+                    } else if (result.created_at == date.value) {
                         date.classList.remove('hidden');
                         alert(
                             'Anda belum memasukan data penjualan BBM sebelumnya, silakan isi tanggal yang sesuai terlebih dahulu'

@@ -69,8 +69,9 @@ Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
 
 
 
-
-Route::resource('/KategoriBBM', BBMCategoryController::class)->except('show')->middleware('auth', 'checkRole:1,2');
+Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
+Route::resource('/KategoriBBM', BBMCategoryController::class)->except('show');
+});
 
 
 

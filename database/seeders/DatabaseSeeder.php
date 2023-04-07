@@ -89,7 +89,7 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        PenjualanBBM::factory(30)->create();
+        // PenjualanBBM::factory(30)->create();
 
         DB::table('kategori_items')->insert([
             [

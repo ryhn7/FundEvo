@@ -80,6 +80,7 @@ Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
     Route::resource('/PengeluaranOperasionalSPBU', PengeluaranOpsBBMController::class)->except('show');
     Route::group(['prefix' => 'PengeluaranOperasionalSPBU'], function () {
         Route::get('/filter', [PengeluaranOpsBBMController::class, 'filter']);
+        Route::get('/chekPengeluaran', [PengeluaranOpsBBMController::class, 'checkYesterday']);
     });
 });
 

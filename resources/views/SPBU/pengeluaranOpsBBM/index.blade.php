@@ -1,7 +1,3 @@
-{{-- @foreach ($spends as $spend)
-    @dd($spend->nota)
-@endforeach --}}
-
 @extends('layouts.main')
 
 @section('container')

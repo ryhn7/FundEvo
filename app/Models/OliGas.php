@@ -18,6 +18,6 @@ class OliGas extends Model
 
     public function oliGasStatics()
     {
-        return $this->belongsTo(OliGasStatic::class);
+        return $this->belongsTo(OliGasStatic::class, 'oli_gas_static_id');
     }
 }

@@ -51,7 +51,7 @@
         </div>
 
         <!-- card2 -->
-        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-[27%]">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
                     <div class="flex flex-row -mx-3">
@@ -71,7 +71,6 @@
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                 <i class="fa-solid fa-fire-flame-simple text-white py-4"></i>
-                                {{-- <i class="fa-solid fa-gas-pump text-white py-4 pl-1"></i> --}}
                             </div>
                         </div>
                     </div>
@@ -117,10 +116,10 @@
                                             Jenis</th>
                                         <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Stok Awal</th>
+                                            Nama</th>
                                         <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Nama</th>
+                                            Stok Awal</th>
                                         <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Penerimaan</th>
@@ -149,7 +148,7 @@
                                             <div class="flex px-2 py-1">
                                                 <div class="flex flex-col justify-center">
                                                     <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                        {{ $sells[0]->oliGas->jenis }}
+                                                        {{ $sells[0]->oliGas->oliGasStatics->jenis }}
                                                     </h6>
                                                 </div>
                                             </div>
@@ -182,17 +181,7 @@
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                             <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sells[0]->stock_adm }}</span>
-                                        </td>
-                                        <td
-                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sells[0]->stock_fakta }}</span>
-                                        </td>
-                                        <td
-                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sells[0]->penyusutan }}</span>
+                                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sells[0]->stock_akhir }}</span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
@@ -242,9 +231,15 @@
                                                 <div class="flex px-2 py-1">
                                                     <div class="flex flex-col justify-center">
                                                         <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                            {{ $sell->bbm->jenis_bbm }}</h6>
+                                                            {{ $sell->oliGas->oliGasStatics->jenis }}</h6>
                                                     </div>
                                                 </div>
+                                            </td>
+                                            <td
+                                                class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                                                <p class="mb-0 font-semibold leading-tight text-xs">
+                                                    {{ $sell->nama }}
+                                                </p>
                                             </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
@@ -254,14 +249,9 @@
                                             </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
-                                                <span
-                                                    class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->penerimaan }}</span>
-                                            </td>
-                                            <td
-                                                class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                                 <span class="font-semibold leading-tight text-xs text-slate-400">
-                                                    @if ($sell->tera_densiti)
-                                                        {{ $sell->tera_densiti }}
+                                                    @if ($sell->penerimaan)
+                                                        {{ $sell->penerimaan }}
                                                     @else
                                                         -
                                                     @endif
@@ -275,17 +265,7 @@
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                                 <span
-                                                    class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->stock_adm }}</span>
-                                            </td>
-                                            <td
-                                                class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
-                                                <span
-                                                    class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->stock_fakta }}</span>
-                                            </td>
-                                            <td
-                                                class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
-                                                <span
-                                                    class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->penyusutan }}</span>
+                                                    class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->stock_akhir }}</span>
                                             </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">

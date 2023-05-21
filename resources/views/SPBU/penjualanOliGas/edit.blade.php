@@ -2,26 +2,26 @@
 
 @section('container')
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
-        <form action="/PenjualanBBM/{{ $sell->id }}" method="POST">
+        <form action="/PenjualanOliGas/{{ $sell->id }}" method="POST">
             @method('PUT')
             @csrf
             <div>
-                <label for="bbm_id" class="block mt-4 text-sm">
+                <label for="oli_gas_id" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">
-                        Jenis BBM
+                        Jenis
                     </span>
-                    <select name="bbm_id" id="bbm_id" required
+                    <select name="oli_gas_id" id="oli_gas_id" required
                         class="block w-full mt-1 text-sm px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
-                        <option value="" class="font-semibold">Pilih Jenis BBM</option>
-                        @foreach ($bbms as $bbm)
-                            @if (old('bbm_id', $sell->bbm_id) == $bbm->id)
-                                <option value="{{ $bbm->id }}" selected>{{ $bbm->jenis_bbm }}</option>
+                        <option value="" class="font-semibold">Pilih Jenis</option>
+                        @foreach ($oligases as $oligas)
+                            @if (old('oli_gas_id', $sell->oli_gas_id) == $oligas->id)
+                                <option value="{{ $oligas->id }}" selected>{{ $oligas->oliGasStatics->jenis }}</option>
                             @else
-                                <option value="{{ $bbm->id }}">{{ $bbm->jenis_bbm }}</option>
+                                <option value="{{ $oligas->id }}">{{ $oligas->oliGasStatics->jenis }}</option>
                             @endif
                         @endforeach
                     </select>
-                    @error('bbm_id')
+                    @error('oli_gas_id')
                         <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
                     @enderror
                 </label>

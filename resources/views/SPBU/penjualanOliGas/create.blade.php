@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
-        <form action="/penjualanOliGas" method="POST">
+        <form action="/PenjualanOliGas" method="POST">
             @csrf
             <div>
                 <div id="date" class="hidden">
@@ -29,9 +29,11 @@
                         <option value="" class="font-semibold">Pilih Jenis</option>
                         @foreach ($oligases as $oligas)
                             @if (old('oli_gas_id') == $oligas->id)
-                                <option value="{{ $oligas->id }}" selected>{{ $oligas->jenis }}</option>
+                                <option value="{{ $oligas->id }}" selected>
+                                    {{ $oligas->jenis }}</option>
                             @else
-                                <option value="{{ $oligas->id }}">{{ $oligas->jenis }}</option>
+                                <option value="{{ $oligas->id }}">{{ $oligas->jenis }}
+                                </option>
                             @endif
                         @endforeach
                     </select>
@@ -47,13 +49,6 @@
                     <select name="nama" id="nama" required
                         class="block w-full mt-1 text-sm px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" class="font-semibold">Pilih Nama</option>
-                        @foreach ($oligases as $oligas)
-                            @if (old('nama') == $oligas->id)
-                                <option value="{{ $oligas->nama }}" selected>{{ $oligas->nama }}</option>
-                            @else
-                                <option value="{{ $oligas->nama }}">{{ $oligas->nama }}</option>
-                            @endif
-                        @endforeach
                     </select>
                     @error('nama')
                         <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
@@ -129,47 +124,54 @@
     </div>
 @endsection
 
-{{-- @section('scripts')
+@section('scripts')
     <script>
         const stockAwal = document.getElementById('stock_awal');
         const penerimaan = document.getElementById('penerimaan');
         const penjualan = document.getElementById('penjualan');
-        const stockAdm = document.getElementById('stock_adm');
-        const stockFakta = document.getElementById('stock_fakta');
-        const penyusutan = document.getElementById('penyusutan');
+        const stockAkhir = document.getElementById('stock_akhir');
         const pendapatan = document.getElementById('pendapatan');
-        const hargaJual = document.getElementById('harga_jual');
-        const bbm = document.getElementById('bbm_id');
+        // let harga = null;
+        const oliGas = document.getElementById('oli_gas_id');
+        const nama = document.getElementById('nama');
         const date = document.getElementById('date');
         const inputDate = document.getElementById('created_at');
 
-        bbm.addEventListener('change', () => {
-            const bbm_id = bbm.value;
+        oliGas.addEventListener('change', () => {
+            const oliGas_id = oliGas.value;
             $.ajax({
-                url: '/PenjualanBBM/getData/' + bbm_id,
+                url: '/PenjualanOliGas/getData/' + oliGas_id,
                 type: 'GET',
                 data: {
                     _token: '{{ csrf_token() }}'
                 },
                 dataType: 'json',
+
                 success: function(result) {
-                    hargaJual.value = result.harga_jual;
+                    $('select[name="nama"]').empty();
+                    $('#nama').html('<option value="" class="font-semibold">Pilih Nama</option>');
+
+                    $.each(result, function(key, value) {
+                        $('select[name="nama"]').append('<option value="' + value.nama + '">' +
+                            value.nama + '</option>');
+                    });
                 }
             })
         });
 
-        bbm.addEventListener('change', () => {
-            const bbm_id = bbm.value;
+        nama.addEventListener('change', () => {
+            const nama_id = nama.value;
             $.ajax({
-                url: '/PenjualanBBM/getPreviousStock/' + bbm_id,
+                url: '/PenjualanOliGas/getPreviousStock/' + nama_id,
                 type: 'GET',
                 data: {
                     _token: '{{ csrf_token() }}'
                 },
                 dataType: 'json',
                 success: function(result) {
+                    // console.log(result);
                     if (result.stock_awal > 0) {
-                        stockAwal.value = result.stock_fakta;
+                        stockAwal.value = result.stock_akhir;
                     } else {
                         stockAwal.value = null;
                     }
@@ -177,57 +179,71 @@
             })
         });
 
-        bbm.addEventListener('change', () => {
-            const bbm_id = bbm.value;
+        stockAkhir.addEventListener('change', () => {
+            if (penerimaan.value == '') {
+                penerimaan.value = 0;
+            }
+            const sum = parseInt(stockAwal.value) + parseInt(penerimaan.value);
+            const sell = sum - parseInt(stockAkhir.value);
+
+            penjualan.value = sell;
+        });
+
+        stockAkhir.addEventListener('change', () => {
+            const nama_id = nama.value;
             $.ajax({
-                url: '/PenjualanBBM/checkBBM/' + bbm_id,
+                url: '/PenjualanOliGas/getHarga/' + nama_id,
                 type: 'GET',
                 data: {
                     _token: '{{ csrf_token() }}'
                 },
                 dataType: 'json',
+
                 success: function(result) {
-                    console.log(result);
-                    if (result == true) {
-                        date.classList.add('hidden');
-                    } else if (result.created_at == date.value) {
-                        date.classList.remove('hidden');
-                        alert(
-                            'Anda belum memasukan data penjualan BBM sebelumnya, silakan isi tanggal yang sesuai terlebih dahulu'
-                        );
-                        inputDate.setAttribute('required', 'true');
-                    } else {
-                        date.classList.add('hidden');
-                    }
+                    const harga = result[0].harga_jual;
+                    const hasil = parseInt(penjualan.value) * parseInt(harga);
+
+                    pendapatan.value = hasil;
                 }
             })
         });
 
 
-        stockAdm.addEventListener('change', () => {
-            if (penerimaan.value == '') {
-                penerimaan.value = 0;
-            }
-            const sum = parseInt(stockAwal.value) + parseInt(penerimaan.value);
-            const sell = sum - parseInt(stockAdm.value);
+        // bbm.addEventListener('change', () => {
+        //     const bbm_id = bbm.value;
+        //     $.ajax({
+        //         url: '/PenjualanBBM/checkBBM/' + bbm_id,
+        //         type: 'GET',
+        //         data: {
+        //             _token: '{{ csrf_token() }}'
+        //         },
+        //         dataType: 'json',
+        //         success: function(result) {
+        //             console.log(result);
+        //             if (result == true) {
+        //                 date.classList.add('hidden');
+        //             } else if (result.created_at == date.value) {
+        //                 date.classList.remove('hidden');
+        //                 alert(
+        //                     'Anda belum memasukan data penjualan BBM sebelumnya, silakan isi tanggal yang sesuai terlebih dahulu'
+        //                 );
+        //                 inputDate.setAttribute('required', 'true');
+        //             } else {
+        //                 date.classList.add('hidden');
+        //             }
+        //         }
+        //     })
+        // });
 
-            penjualan.value = sell;
-        });
 
-        stockFakta.addEventListener('change', () => {
-            const result = parseInt(stockAdm.value) - parseInt(stockFakta.value);
-            const hasil = parseInt(penjualan.value) * parseInt(hargaJual.value);
+        // stockAdm.addEventListener('change', () => {
+        //     if (penerimaan.value == '') {
+        //         penerimaan.value = 0;
+        //     }
+        //     const sum = parseInt(stockAwal.value) + parseInt(penerimaan.value);
+        //     const sell = sum - parseInt(stockAdm.value);
 
-
-            if (result > 0) {
-                penyusutan.value = result * -1;
-            } else if (result < 0) {
-                penyusutan.value = result * -1;
-            } else {
-                penyusutan.value = 0;
-            }
-
-            pendapatan.value = hasil;
-        });
+        //     penjualan.value = sell;
+        // });
     </script>
-@endsection --}}
+@endsection

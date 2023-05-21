@@ -172,9 +172,7 @@ class PenjualanBBMController extends Controller
     // create filter for date
     public function filter(Request $request)
     {
-        // dd($request->date);
         $date = Carbon::parse($request->date)->toDateString();
-        // return $date;
         $penjualanBBM = PenjualanBBM::whereDate('created_at', '=', $date)->get();
         return view('SPBU.penjualanBBM.index', [
             'sells' => $penjualanBBM,

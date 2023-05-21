@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PenjualanOliGas;
 use App\Models\OliGas;
+use App\Models\OliGasStatic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,8 @@ class PenjualanOliGasController extends Controller
     public function create()
     {
         return view('SPBU.penjualanOliGas.create', [
-            'oligases' => OliGas::all(),
+            // 'oligases' => OliGas::all(),
+            'oligases' => OliGasStatic::all(),
         ]);
     }
 
@@ -64,29 +66,32 @@ class PenjualanOliGasController extends Controller
 
         $yesterday = Carbon::yesterday()->toDateString();
         $dayBeforeYesterday = Carbon::yesterday()->subDay()->toDateString();
-        $PenjualanOliGasDayBeforeYesterday = OliGas::where('nama', $nama)->whereDate('created_at', $dayBeforeYesterday)->first();
-        $PenjualanOliGasYesterday = OliGas::where('nama', $nama)->whereDate('created_at', $yesterday)->first();
-        $PenjualanOliGas = OliGas::where('nama', $nama)->whereDate('created_at', Carbon::now()->toDateString())->first();
-        $allOliGas = OliGas::all();
+        $PenjualanOliGasDayBeforeYesterday = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', $dayBeforeYesterday)->first();
+        $PenjualanOliGasYesterday = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', $yesterday)->first();
+        $PenjualanOliGas = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', Carbon::now()->toDateString())->first();
+        $allOliGas = PenjualanOliGas::all();
+
+        // dd($PenjualanOliGasDayBeforeYesterday);
 
         if ($PenjualanOliGas) {
-            return redirect('/penjualanOliGas')->with('error', 'Data sudah ada!');
+            return redirect('/PenjualanOliGas')->with('error', 'Data sudah ada!');
         }
 
         if ($allOliGas->count() == 0) {
             PenjualanOliGas::create($validated);
-            return redirect('/penjualanOliGas')->with('success', 'Data berhasil ditambahkan!');
+            return redirect('/PenjualanOliGas')->with('success', 'Data berhasil ditambahkan!');
         } else if (!$PenjualanOliGasYesterday) {
             if ($PenjualanOliGasDayBeforeYesterday && $date != Carbon::now()->toDateString()) {
                 PenjualanOliGas::create($validated);
-                return redirect('/penjualanOliGas')->with('success', 'Data berhasil ditambahkan!');
+                return redirect('/PenjualanOliGas')->with('success', 'Data berhasil ditambahkan!');
             } else {
-                return redirect('/penjualanOliGas')->with('error', 'Data hari sebelumnya belum ada!');
+                return redirect('/PenjualanOliGas')->with('error', 'Data hari sebelumnya belum ada!');
             }
         }
 
+        dd($validated);
         PenjualanOliGas::create($validated);
-        return redirect('/penjualanOliGas')->with('success', 'Data berhasil ditambahkan!');
+        return redirect('/PenjualanOliGas')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -133,7 +138,7 @@ class PenjualanOliGasController extends Controller
             'pendapatan' => 'required|numeric',
             'created_at' => 'nullable|date',
         ];
-        
+
         $validated = $request->validate($rules);
 
         if ($validated['created_at'] == null) {
@@ -143,7 +148,7 @@ class PenjualanOliGasController extends Controller
         PenjualanOliGas::where('id', $PenjualanOliGa->id)
             ->update($validated);
 
-        return redirect('/penjualanOliGas')->with('success', 'Data berhasil diubah!');
+        return redirect('/PenjualanOliGas')->with('success', 'Data berhasil diubah!');
     }
 
     /**
@@ -156,6 +161,35 @@ class PenjualanOliGasController extends Controller
     {
         PenjualanOliGas::destroy($PenjualanOliGa->id);
 
-        return redirect('/penjualanOliGas')->with('success', 'Data berhasil dihapus!');
+        return redirect('/PenjualanOliGas')->with('success', 'Data berhasil dihapus!');
+    }
+
+    public function filter(Request $request)
+    {
+        $date = Carbon::parse($request->date)->toDateString();
+        $PenjualanOliGas = PenjualanOliGas::whereDate('created_at', '=', $date)->get();
+        return view('SPBU.penjualanOliGas.index', [
+            'sells' => $PenjualanOliGas,
+            'totalAmount' => $PenjualanOliGas->sum('pendapatan'),
+            'totalSell' => $PenjualanOliGas->sum('penjualan'),
+        ]);
+    }
+
+    public function getData($id)
+    {
+        $oligas = OliGas::where('oli_gas_static_id', $id)->get();
+        return response()->json($oligas);
+    }
+
+    public function getHarga($id)
+    {
+        $oligas = OliGas::where('nama', $id)->get();
+        return response()->json($oligas);
+    }
+
+    public function getPreviousStock($id)
+    {
+        $penjualanOliGas = PenjualanOliGas::where('nama', $id)->latest()->first();
+        return response()->json($penjualanOliGas);
     }
 }

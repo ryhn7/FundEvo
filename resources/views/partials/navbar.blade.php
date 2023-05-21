@@ -86,6 +86,37 @@
                                 aria-current="page">Edit Kategori BBM</li>
                         </ol>
                         <h6 class="mb-0 font-bold capitalize">Edit Kategori BBM</h6>
+                    @elseif (Request::is('KategoriOliGas'))
+                        <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+                            <li class="leading-normal text-sm">
+                                <a class="opacity-50 text-slate-700" href="">Pages</a>
+                            </li>
+                            <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                                aria-current="page">Kategori Oli & Gas</li>
+                        </ol>
+                        <h6 class="mb-0 font-bold capitalize">Kategori Oli & Gas</h6>
+                    @elseif (Request::is('KategoriOliGas/create'))
+                        <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+                            <li class="leading-normal text-sm">
+                                <a class="opacity-50 text-slate-700" href="">Pages</a>
+                            </li>
+                            <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                                aria-current="page">Kategori Oli & Gas</li>
+                            <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                                aria-current="page">Tambah Kategori Oli & Gas</li>
+                        </ol>
+                        <h6 class="mb-0 font-bold capitalize">Tambah Kategori Oli & Gas</h6>
+                    @elseif (Request::is('KategoriOliGas/*/edit'))
+                        <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+                            <li class="leading-normal text-sm">
+                                <a class="opacity-50 text-slate-700" href="">Pages</a>
+                            </li>
+                            <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                                aria-current="page">Kategori Oli & Gas</li>
+                            <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                                aria-current="page">Edit Kategori Oli & Gas</li>
+                        </ol>
+                        <h6 class="mb-0 font-bold capitalize">Edit Kategori Oli & Gas</h6>
                     @elseif (Request::is('PengeluaranOperasionalSPBU'))
                         <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
                             <li class="leading-normal text-sm">

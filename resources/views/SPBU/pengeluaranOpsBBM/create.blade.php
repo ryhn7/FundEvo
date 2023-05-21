@@ -5,12 +5,12 @@
         <form action="/PengeluaranOperasionalSPBU" method="POST" enctype="multipart/form-data">
             @csrf
             <div>
-                <div id="date" class="">
+                <div id="date" class="hidden">
                     <label for="created_at" class="block mt-4 text-sm">
                         <span class="text-gray-700 font-semibold">Tanggal <span
                                 class="text-[10px] text-red-500 tracking-wider">(Wajib diisi)
                             </span></span>
-                        <input type="date" name="created_at" value="{{ old('created_at') }}"
+                        <input type="date" id="created_at" name="created_at" value="{{ old('created_at') }}"
                             class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('created_at')
                         border-red-600 focus:border-red-600 focus:ring-red-600
                         @enderror" />
@@ -293,8 +293,8 @@
                     @enderror
                 </label>
 
-                <button
-                    id="submit" class="mt-10 w-full px-3 py-3 bg-orange-500 text-white font-bold uppercase transition-all bg-transparent rounded cursor-pointer leading-pro ease-soft-in shadow-soft-md hover:bg-yellow-500 hover:shadow-soft-xs active:opacity-85 hover:scale-[1.005] tracking-tight-soft bg-x-25">Tambah
+                <button id="submit"
+                    class="mt-10 w-full px-3 py-3 bg-orange-500 text-white font-bold uppercase transition-all bg-transparent rounded cursor-pointer leading-pro ease-soft-in shadow-soft-md hover:bg-yellow-500 hover:shadow-soft-xs active:opacity-85 hover:scale-[1.005] tracking-tight-soft bg-x-25">Tambah
                     Pengeluaran</button>
             </div>
         </form>
@@ -308,10 +308,12 @@
     <script>
         const date = document.getElementById('date');
         const submit = document.getElementById('submit');
+        const inputDate = document.getElementById('created_at');
+        const ket = document.getElementById('biaya_lain');
 
-        submit.addEventListener('click', function() {
+        ket.addEventListener('change', function() {
             $.ajax({
-                url: '/PengeluaranOperasionalSPBU/checkPengeluaran/'
+                url: '/PengeluaranOperasionalSPBU/checkPengeluaran/',
                 type: 'GET',
                 data: {
                     _token: '{{ csrf_token() }}'
@@ -323,8 +325,9 @@
                         date.classList.add('hidden');
                     } else if (result.created_at == date.value) {
                         date.classList.remove('hidden');
+                        inputDate.setAttribute('required', 'true');
                         alert(
-                            'Anda belum memasukan data penjualan BBM sebelumnya, silakan isi tanggal yang sesuai terlebih dahulu'
+                            'Anda belum memasukan data pengeluaran di hari sebelumnya, silakan isi tanggal yang sesuai terlebih dahulu'
                         );
                     } else {
                         date.classList.add('hidden');

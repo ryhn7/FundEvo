@@ -3787,6 +3787,10 @@ textarea.form-control.is-invalid {
   visibility: visible;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .collapse {
   visibility: collapse;
 }

@@ -28,7 +28,6 @@
         @endif
     </div>
 
-
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             <div
@@ -36,16 +35,16 @@
                 <div class="p-6 pb-0 mb-3 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <div class="flex flex-wrap -mx-3">
                         <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                            <h6 class="mb-0">Kategori BBM</h6>
+                            <h6 class="mb-0">Kategori Oli & Gas</h6>
                         </div>
                         <div class="flex-none w-1/2 max-w-full px-3 text-right">
                             <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-red-500 to-yellow-400 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
-                                href="/KategoriBBM/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah
+                                href="/KategoriOliGas/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah
                                 Kategori</a>
                         </div>
                     </div>
                 </div>
-                @if ($bbms->count() > 0)
+                @if ($oligases->count() > 0)
                     <div class="flex-auto px-0 pt-0 pb-2">
                         <div class="p-0 overflow-x-auto">
                             <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
@@ -53,7 +52,7 @@
                                     <tr>
                                         <th
                                             class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Jenis BBM</th>
+                                            Nama</th>
                                         <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Harga Beli</th>
@@ -73,20 +72,20 @@
                                             <div class="flex px-2 py-1">
                                                 <div class="flex flex-col justify-center">
                                                     <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                        {{ $bbms[0]->jenis_bbm }}
+                                                        {{ $oligases[0]->nama }}
                                                     </h6>
                                                 </div>
                                             </div>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <p class="mb-0 font-semibold leading-tight text-xs">@currency($bbms[0]->harga_beli)
+                                            <p class="mb-0 font-semibold leading-tight text-xs">@currency($oligases[0]->harga_beli)
                                             </p>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                             <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">@currency($bbms[0]->harga_jual)</span>
+                                                class="font-semibold leading-tight text-xs text-slate-400">@currency($oligases[0]->harga_jual)</span>
                                         </td>
                                         <td
                                             class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
@@ -94,7 +93,7 @@
                                                 <button
                                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                     aria-label="Edit">
-                                                    <a href="/KategoriBBM/{{ $bbms[0]->id }}/edit">
+                                                    <a href="/KategoriOliGas/{{ $oligases[0]->id }}/edit">
                                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                             viewBox="0 0 20 20">
                                                             <path
@@ -102,7 +101,7 @@
                                                             </path>
                                                         </svg></a>
                                                 </button>
-                                                <form action="/KategoriBBM/{{ $bbms[0]->id }}" method="POST">
+                                                <form action="/KategoriOliGas/{{ $oligases[0]->id }}" method="POST">
                                                     @method('delete')
                                                     @csrf
                                                     <button
@@ -119,27 +118,27 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    @foreach ($bbms->skip(1) as $bbm)
+                                    @foreach ($oligases->skip(1) as $oligas)
                                         <tr>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                                 <div class="flex px-2 py-1">
                                                     <div class="flex flex-col justify-center">
                                                         <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                            {{ $bbm->jenis_bbm }}</h6>
+                                                            {{ $oligas->nama }}</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                                 <p class="mb-0 font-semibold leading-tight text-xs">
-                                                    @currency($bbm->harga_beli)
+                                                    @currency($oligas->harga_beli)
                                                 </p>
                                             </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                                 <span
-                                                    class="font-semibold leading-tight text-xs text-slate-400">@currency($bbm->harga_jual)</span>
+                                                    class="font-semibold leading-tight text-xs text-slate-400">@currency($oligas->harga_jual)</span>
                                             </td>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
@@ -147,7 +146,7 @@
                                                     <button
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                         aria-label="Edit">
-                                                        <a href="/KategoriBBM/{{ $bbm->id }}/edit">
+                                                        <a href="/KategoriOliGas/{{ $oligas->id }}/edit">
                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                                 viewBox="0 0 20 20">
                                                                 <path
@@ -155,7 +154,7 @@
                                                                 </path>
                                                             </svg></a>
                                                     </button>
-                                                    <form action="/KategoriBBM/{{ $bbm->id }}" method="POST">
+                                                    <form action="/KategoriOliGas/{{ $oligas->id }}" method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button
@@ -204,5 +203,4 @@
             </div>
         </div>
     </div>
-
 @endsection

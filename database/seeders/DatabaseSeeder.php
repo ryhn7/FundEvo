@@ -89,6 +89,15 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
+        DB::table('oli_gas_statics')->insert([
+            [
+                'jenis' => 'Oli',
+            ],
+            [
+                'jenis' => 'Gas',
+            ],
+        ]);
+
         // PenjualanBBM::factory(30)->create();
 
         DB::table('kategori_items')->insert([

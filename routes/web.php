@@ -6,12 +6,14 @@ use App\Http\Controllers\BBMCategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanFinansialBBMController;
 use App\Http\Controllers\PenjualanBBMController;
+use App\Http\Controllers\PenjualanOliGasController;
 use App\Http\Controllers\PengeluaranOpsBBMController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\PenjualanItemController;
 use App\Http\Controllers\KategoryItemController;
 use App\Http\Controllers\PengeluaranOpsTokoListrikController;
 use App\Http\Controllers\LaporanFinansialTokoListrikController;
+use App\Http\Controllers\OliGasCategoryController;
 use App\Models\BBM;
 use App\Models\Item;
 use App\Models\PengeluaranOpsTokoListrik;
@@ -67,20 +69,32 @@ Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
     });
 });
 
+//PenjualanOliGas
+Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
+    Route::resource('/PenjualanOliGas', PenjualanOliGasController::class)->except('show');
+    Route::group(['prefix' => 'PenjualanOliGas'], function () {
+        Route::get('/filter', [PenjualanOliGasController::class, 'filter']);
+        Route::get('/getData/{id}', [PenjualanOliGasController::class, 'getHarga']); //ajax for getting harga bbm
+        Route::get('/getPreviousStock/{id}', [PenjualanOliGasController::class, 'getPreviousStock']); //ajax for getting previous stock
+        Route::get('/checkBBM/{id}', [PenjualanOliGasController::class, 'checkYesterday']); //ajax for check bbm from yesterday
+    });
+});
 
 
 Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
 Route::resource('/KategoriBBM', BBMCategoryController::class)->except('show');
 });
 
-
+Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
+Route::resource('/KategoriOliGas', OliGasCategoryController::class)->except('show');
+});
 
 
 Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
     Route::resource('/PengeluaranOperasionalSPBU', PengeluaranOpsBBMController::class)->except('show');
     Route::group(['prefix' => 'PengeluaranOperasionalSPBU'], function () {
         Route::get('/filter', [PengeluaranOpsBBMController::class, 'filter']);
-        Route::get('/chekPengeluaran', [PengeluaranOpsBBMController::class, 'checkYesterday']);
+        Route::get('/checkPengeluaran', [PengeluaranOpsBBMController::class, 'checkYesterday']);
     });
 });
 

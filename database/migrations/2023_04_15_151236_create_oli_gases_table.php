@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('oli_gases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('role_id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->foreignId('oli_gas_static_id')->constrained('oli_gas_statics')->onDelete('cascade');
+            $table->string('nama');
+            $table->decimal('harga_beli', 12, 2);
+            $table->decimal('harga_jual', 12, 2);
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('oli_gases');
     }
 };

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BBM;
+use App\Models\OliGas;
+use App\Models\OliGasStatic;
 use Illuminate\Http\Request;
 
-class BBMCategoryController extends Controller
+class OliGasCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class BBMCategoryController extends Controller
      */
     public function index()
     {
-        return view('SPBU.categoryBBM.index', [
-            'bbms' => BBM::all()
+        return view('SPBU.categoryOliGas.index', [
+            'oligases' => OliGas::all()
         ]);
     }
 
@@ -26,7 +27,9 @@ class BBMCategoryController extends Controller
      */
     public function create()
     {
-        return view('SPBU.categoryBBM.create');
+        return view('SPBU.categoryOliGas.create', [
+            'oligases' => OliGasStatic::all()
+        ]);
     }
 
     /**
@@ -38,23 +41,24 @@ class BBMCategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'jenis_bbm' => 'required|max:25',
+            'oli_gas_static_id' => 'required',
+            'nama' => 'required|max:25',
             'harga_beli' => 'required|numeric',
             'harga_jual' => 'required|numeric',
         ]);
 
-        BBM::create($validated);
+        OliGas::create($validated);
 
-        return redirect('/KategoriBBM')->with('success', 'Data BBM berhasil ditambahkan!');
+        return redirect('/KategoriOliGas')->with('success', 'Data Oli/Gas berhasil ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BBM  $bBM
+     * @param  \App\Models\OliGas  $KategoriOliGa
      * @return \Illuminate\Http\Response
      */
-    public function show(BBM $bBM)
+    public function show(OliGas $KategoriOliGa)
     {
         //
     }
@@ -62,14 +66,14 @@ class BBMCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\BBM  $bBM
+     * @param  \App\Models\OliGas  $KategoriOliGa
      * @return \Illuminate\Http\Response
      */
-    public function edit(BBM $KategoriBBM)
+    public function edit(OliGas $KategoriOliGa)
     {
-        // return $KategoriBBM;
-        return view('SPBU.categoryBBM.edit', [
-            'bbm' => $KategoriBBM
+        return view('SPBU.categoryOliGas.edit', [
+            'oligas' => $KategoriOliGa,
+            'oligases' => OliGasStatic::all()
         ]);
     }
 
@@ -77,34 +81,35 @@ class BBMCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BBM  $bBM
+     * @param  \App\Models\OliGas  $KategoriOliGa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BBM $KategoriBBM)
+    public function update(Request $request, OliGas $KategoriOliGa)
     {
         $rules = [
-            'jenis_bbm' => 'required|max:25',
+            'oli_gas_static_id' => 'required',
+            'nama' => 'required|max:25',
             'harga_beli' => 'required|numeric',
             'harga_jual' => 'required|numeric',
         ];
 
         $validated = $request->validate($rules);
 
-        BBM::where('id', $KategoriBBM->id)
+        OliGas::where('id', $KategoriOliGa->id)
             ->update($validated);
 
-        return redirect('/KategoriBBM')->with('success', 'Data BBM berhasil diubah!');
+        return redirect('/KategoriOliGas')->with('success', 'Data Oli/Gas berhasil diubah!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BBM  $bBM
+     * @param  \App\Models\OliGas  $KategoriOliGa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BBM $KategoriBBM)
+    public function destroy(OliGas $KategoriOliGa)
     {
-        BBM::destroy($KategoriBBM->id);
-        return redirect('/KategoriBBM')->with('success', 'Data BBM berhasil dihapus!');
+        OliGas::destroy($KategoriOliGa->id);
+        return redirect('/KategoriOliGas')->with('success', 'Data Oli/Gas berhasil dihapus!');
     }
 }

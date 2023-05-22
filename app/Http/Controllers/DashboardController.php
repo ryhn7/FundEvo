@@ -157,9 +157,12 @@ class DashboardController extends Controller
         ])->with('labels', json_encode($labels, JSON_NUMERIC_CHECK))
             ->with('values', json_encode($values, JSON_NUMERIC_CHECK))->with('labelLines', json_encode($labelLines, JSON_NUMERIC_CHECK))->with('valueSatu', json_encode($valueSatu, JSON_NUMERIC_CHECK))->with('valueDua', json_encode($valueDua, JSON_NUMERIC_CHECK));
     }
-    
+
     public function indexDashboardTokoListrik()
     {
+
+        return view('dashboardTokoListrik');
+        
         $barang = Item::all();
         // penjualan bbm only this year
         $penjualanItem = PenjualanItemListrik::whereYear('created_at', Carbon::now()->year)->get();

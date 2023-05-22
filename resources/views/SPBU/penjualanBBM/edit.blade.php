@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md">
-        <form action="/penjualan-bbm/{{ $sell->id }}" method="POST">
+        <form action="/PenjualanBBM/{{ $sell->id }}" method="POST">
             @method('PUT')
             @csrf
             <div>
@@ -11,7 +11,7 @@
                         Jenis BBM
                     </span>
                     <select name="bbm_id" id="bbm_id" required
-                        class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
+                        class="block w-full mt-1 text-sm px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" class="font-semibold">Pilih Jenis BBM</option>
                         @foreach ($bbms as $bbm)
                             @if (old('bbm_id', $sell->bbm_id) == $bbm->id)
@@ -150,7 +150,7 @@
                 </label>
 
                 <button
-                    class="mt-10 w-full px-3 py-3 bg-black text-white font-bold rounded shadow-md hover:bg-[#333333]">Tambah
+                    class="mt-10 w-full px-3 py-3 bg-orange-500 text-white font-bold uppercase transition-all bg-transparent rounded cursor-pointer leading-pro ease-soft-in shadow-soft-md hover:bg-yellow-500 hover:shadow-soft-xs active:opacity-85 hover:scale-[1.005] tracking-tight-soft bg-x-25">Edit
                     Penjualan</button>
             </div>
         </form>

@@ -51,16 +51,16 @@
         </div>
 
         <!-- card2 -->
-        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-[27%]">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Penjualan BBM</p>
+                                <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Penjualan Oli & Gas</p>
                                 <h5 class="mb-0 font-bold">
                                     @if ($totalSell > 0)
-                                        {{ $totalSell }} Liter
+                                        {{ $totalSell }} Biji
                                     @else
                                         {{ $totalSell }}
                                     @endif
@@ -71,7 +71,6 @@
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                 <i class="fa-solid fa-fire-flame-simple text-white py-4"></i>
-                                {{-- <i class="fa-solid fa-gas-pump text-white py-4 pl-1"></i> --}}
                             </div>
                         </div>
                     </div>
@@ -87,19 +86,19 @@
                 <div class="p-6 pb-0 mb-5 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <div class="flex flex-wrap -mx-3">
                         <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                            <h6 class="mb-0">Penjualan BBM Harian</h6>
+                            <h6 class="mb-0">Penjualan Oli & Gas</h6>
                         </div>
                         <div class="flex-none w-1/2 max-w-full px-3 text-right">
                             <div class="flex justify-end">
                                 <div class="mr-5">
-                                    <form id="dateFilter" action="/PenjualanBBM/filter" class="py-0.5" method="GET">
+                                    <form id="dateFilter" action="/PenjualanOliGas/filter" class="py-0.5" method="GET">
                                         <input id="date1" type="date" name="date" value="{{ request('date') }}"
                                             class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
                                     </form>
                                 </div>
                                 <div class="">
                                     <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-red-500 to-yellow-400 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
-                                        href="/PenjualanBBM/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah
+                                        href="/PenjualanOliGas/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah
                                         Penjualan</a>
                                 </div>
                             </div>
@@ -114,7 +113,10 @@
                                     <tr>
                                         <th
                                             class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Jenis BBM</th>
+                                            Jenis</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Nama</th>
                                         <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Stok Awal</th>
@@ -123,19 +125,10 @@
                                             Penerimaan</th>
                                         <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Tera & Densiti</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Penjualan</th>
                                         <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Stok ADM</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Stok Fakta</th>
-                                        <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Penyusutan</th>
+                                            Stok Akhir</th>
                                         <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Pendapatan</th>
@@ -155,26 +148,26 @@
                                             <div class="flex px-2 py-1">
                                                 <div class="flex flex-col justify-center">
                                                     <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                        {{ $sells[0]->bbm->jenis_bbm }}
+                                                        {{ $sells[0]->oliGas->oliGasStatics->jenis }}
                                                     </h6>
                                                 </div>
                                             </div>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <p class="mb-0 font-semibold leading-tight text-xs">{{ $sells[0]->stock_awal }}
+                                            <p class="mb-0 font-semibold leading-tight text-xs">{{ $sells[0]->nama }}
                                             </p>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                             <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sells[0]->penerimaan }}</span>
+                                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sells[0]->stock_awal }}</span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                             <span class="font-semibold leading-tight text-xs text-slate-400">
-                                                @if ($sells[0]->tera_densiti)
-                                                    {{ $sells[0]->tera_densiti }}
+                                                @if ($sells[0]->penerimaan)
+                                                    {{ $sells[0]->penerimaan }}
                                                 @else
                                                     -
                                                 @endif
@@ -188,17 +181,7 @@
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                             <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sells[0]->stock_adm }}</span>
-                                        </td>
-                                        <td
-                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sells[0]->stock_fakta }}</span>
-                                        </td>
-                                        <td
-                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sells[0]->penyusutan }}</span>
+                                                class="font-semibold leading-tight text-xs text-slate-400">{{ $sells[0]->stock_akhir }}</span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
@@ -216,7 +199,7 @@
                                                 <button
                                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                     aria-label="Edit">
-                                                    <a href="/PenjualanBBM/{{ $sells[0]->id }}/edit">
+                                                    <a href="/PenjualanOliGas/{{ $sells[0]->id }}/edit">
                                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                             viewBox="0 0 20 20">
                                                             <path
@@ -224,7 +207,7 @@
                                                             </path>
                                                         </svg></a>
                                                 </button>
-                                                <form action="/PenjualanBBM/{{ $sells[0]->id }}" method="POST">
+                                                <form action="/PenjualanOliGas/{{ $sells[0]->id }}" method="POST">
                                                     @method('delete')
                                                     @csrf
                                                     <button
@@ -248,9 +231,15 @@
                                                 <div class="flex px-2 py-1">
                                                     <div class="flex flex-col justify-center">
                                                         <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                                            {{ $sell->bbm->jenis_bbm }}</h6>
+                                                            {{ $sell->oliGas->oliGasStatics->jenis }}</h6>
                                                     </div>
                                                 </div>
+                                            </td>
+                                            <td
+                                                class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                                                <p class="mb-0 font-semibold leading-tight text-xs">
+                                                    {{ $sell->nama }}
+                                                </p>
                                             </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
@@ -260,14 +249,9 @@
                                             </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
-                                                <span
-                                                    class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->penerimaan }}</span>
-                                            </td>
-                                            <td
-                                                class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                                 <span class="font-semibold leading-tight text-xs text-slate-400">
-                                                    @if ($sell->tera_densiti)
-                                                        {{ $sell->tera_densiti }}
+                                                    @if ($sell->penerimaan)
+                                                        {{ $sell->penerimaan }}
                                                     @else
                                                         -
                                                     @endif
@@ -281,17 +265,7 @@
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                                 <span
-                                                    class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->stock_adm }}</span>
-                                            </td>
-                                            <td
-                                                class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
-                                                <span
-                                                    class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->stock_fakta }}</span>
-                                            </td>
-                                            <td
-                                                class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
-                                                <span
-                                                    class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->penyusutan }}</span>
+                                                    class="font-semibold leading-tight text-xs text-slate-400">{{ $sell->stock_akhir }}</span>
                                             </td>
                                             <td
                                                 class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
@@ -309,7 +283,7 @@
                                                     <button
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                         aria-label="Edit">
-                                                        <a href="/PenjualanBBM/{{ $sell->id }}/edit">
+                                                        <a href="/PenjualanOliGas/{{ $sell->id }}/edit">
                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                                 viewBox="0 0 20 20">
                                                                 <path
@@ -317,7 +291,7 @@
                                                                 </path>
                                                             </svg></a>
                                                     </button>
-                                                    <form action="/PenjualanBBM/{{ $sell->id }}" method="POST">
+                                                    <form action="/PenjualanOliGas/{{ $sell->id }}" method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button

@@ -169,7 +169,6 @@
                 },
                 dataType: 'json',
                 success: function(result) {
-                    // console.log(result);
                     if (result.stock_awal > 0) {
                         stockAwal.value = result.stock_akhir;
                     } else {
@@ -209,41 +208,29 @@
         });
 
 
-        // bbm.addEventListener('change', () => {
-        //     const bbm_id = bbm.value;
-        //     $.ajax({
-        //         url: '/PenjualanBBM/checkBBM/' + bbm_id,
-        //         type: 'GET',
-        //         data: {
-        //             _token: '{{ csrf_token() }}'
-        //         },
-        //         dataType: 'json',
-        //         success: function(result) {
-        //             console.log(result);
-        //             if (result == true) {
-        //                 date.classList.add('hidden');
-        //             } else if (result.created_at == date.value) {
-        //                 date.classList.remove('hidden');
-        //                 alert(
-        //                     'Anda belum memasukan data penjualan BBM sebelumnya, silakan isi tanggal yang sesuai terlebih dahulu'
-        //                 );
-        //                 inputDate.setAttribute('required', 'true');
-        //             } else {
-        //                 date.classList.add('hidden');
-        //             }
-        //         }
-        //     })
-        // });
-
-
-        // stockAdm.addEventListener('change', () => {
-        //     if (penerimaan.value == '') {
-        //         penerimaan.value = 0;
-        //     }
-        //     const sum = parseInt(stockAwal.value) + parseInt(penerimaan.value);
-        //     const sell = sum - parseInt(stockAdm.value);
-
-        //     penjualan.value = sell;
-        // });
+        nama.addEventListener('change', () => {
+            const nama_id = nama.value;
+            $.ajax({
+                url: '/PenjualanOliGas/checkOliGas/' + nama_id,
+                type: 'GET',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function(result) {
+                    if (result == true) {
+                        date.classList.add('hidden');
+                    } else if (result.created_at == date.value) {
+                        date.classList.remove('hidden');
+                        alert(
+                            'Anda belum memasukan data penjualan sebelumnya, silakan isi tanggal yang sesuai terlebih dahulu'
+                        );
+                        inputDate.setAttribute('required', 'true');
+                    } else {
+                        date.classList.add('hidden');
+                    }
+                }
+            })
+        });
     </script>
 @endsection

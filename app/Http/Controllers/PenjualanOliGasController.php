@@ -69,9 +69,8 @@ class PenjualanOliGasController extends Controller
         $PenjualanOliGasDayBeforeYesterday = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', $dayBeforeYesterday)->first();
         $PenjualanOliGasYesterday = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', $yesterday)->first();
         $PenjualanOliGas = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', Carbon::now()->toDateString())->first();
-        $allOliGas = PenjualanOliGas::all();
+        $allOliGas = PenjualanOliGas::where('nama', $nama)->get();
 
-        // dd($PenjualanOliGasDayBeforeYesterday);
 
         if ($PenjualanOliGas) {
             return redirect('/PenjualanOliGas')->with('error', 'Data sudah ada!');
@@ -83,13 +82,13 @@ class PenjualanOliGasController extends Controller
         } else if (!$PenjualanOliGasYesterday) {
             if ($PenjualanOliGasDayBeforeYesterday && $date != Carbon::now()->toDateString()) {
                 PenjualanOliGas::create($validated);
-                return redirect('/PenjualanOliGas')->with('success', 'Data berhasil ditambahkan!');
+                return redirect('/PenjualanOliGas')->with('success', 'Data penjualan berhasil ditambahkan!');
             } else {
-                return redirect('/PenjualanOliGas')->with('error', 'Data hari sebelumnya belum ada!');
+                return redirect('/PenjualanOliGas')->with('error', 'Harap input data penjualan hari kemarin terlebih dahulu!');
             }
         }
 
-        dd($validated);
+        // dd($validated);
         PenjualanOliGas::create($validated);
         return redirect('/PenjualanOliGas')->with('success', 'Data berhasil ditambahkan!');
     }
@@ -191,5 +190,22 @@ class PenjualanOliGasController extends Controller
     {
         $penjualanOliGas = PenjualanOliGas::where('nama', $id)->latest()->first();
         return response()->json($penjualanOliGas);
+    }
+
+    public function checkYesterday($id)
+    {
+        $oliGas = PenjualanOliGas::where('nama', $id)->get();
+        $yesterday = Carbon::yesterday()->toDateString();
+        $PenjualanOliGasYesterday = PenjualanOliGas::where('nama', $id)->whereDate('created_at', $yesterday)->first();
+
+        if ($oliGas->count() == 0) {
+            return response()->json(true);
+        } else {
+            if ($PenjualanOliGasYesterday == null) {
+                return response()->json(false);
+            } else {
+                return response()->json($PenjualanOliGasYesterday);
+            }
+        }
     }
 }

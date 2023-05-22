@@ -72,7 +72,7 @@ class PenjualanBBMController extends Controller
         $penjualanBBMDayBeforeYesterday = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', $dayBeforeYesterday)->first();
         $penjualanBBMYesterday = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', $yesterday)->first();
         $penjualanBBM = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
-        $allBBM = PenjualanBBM::all();
+        $allBBM = PenjualanBBM::where('bbm_id', $bbm_id)->get();
 
         if ($penjualanBBM) {
             return redirect('/PenjualanBBM')->with('error', 'Hanya boleh input 1 jenis BBM per hari!');
@@ -195,7 +195,7 @@ class PenjualanBBMController extends Controller
 
     public function checkYesterday($id)
     {
-        $allBBM = PenjualanBBM::all();
+        $allBBM = PenjualanBBM::where('bbm_id', $id)->get();
         $yesterday = Carbon::yesterday()->toDateString();
         $penjualanBBMYesterday = PenjualanBBM::where('bbm_id', $id)->whereDate('created_at', $yesterday)->first();
 

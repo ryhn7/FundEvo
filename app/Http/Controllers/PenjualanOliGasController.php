@@ -143,6 +143,14 @@ class PenjualanOliGasController extends Controller
             $validated['created_at'] = Carbon::now();
         }
 
+        $nama = $request->nama;
+        $PenjualanOliGas = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', Carbon::now()->toDateString())->first();
+
+
+        if ($PenjualanOliGas) {
+            return redirect('/PenjualanOliGas')->with('error', 'Data sudah ada!');
+        }
+
         PenjualanOliGas::where('id', $PenjualanOliGa->id)
             ->update($validated);
 

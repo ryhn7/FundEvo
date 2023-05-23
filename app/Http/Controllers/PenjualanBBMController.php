@@ -150,6 +150,13 @@ class PenjualanBBMController extends Controller
             $validated['created_at'] = Carbon::now();
         }
 
+        $bbm_id = $request->bbm_id;
+        $penjualanBBM = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
+
+        if ($penjualanBBM) {
+            return redirect('/PenjualanBBM')->with('error', 'Hanya boleh input 1 jenis BBM per hari!');
+        }
+
         PenjualanBBM::where('id', $PenjualanBBM->id)
             ->update($validated);
 

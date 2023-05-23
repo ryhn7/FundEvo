@@ -6,15 +6,14 @@ use App\Http\Controllers\BBMCategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanFinansialBBMController;
 use App\Http\Controllers\PenjualanBBMController;
+use App\Http\Controllers\PenjualanOliGasController;
 use App\Http\Controllers\PengeluaranOpsBBMController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\PenjualanItemController;
 use App\Http\Controllers\KategoryItemController;
 use App\Http\Controllers\PengeluaranOpsTokoListrikController;
 use App\Http\Controllers\LaporanFinansialTokoListrikController;
-use App\Models\BBM;
-use App\Models\Item;
-use App\Models\PengeluaranOpsTokoListrik;
+use App\Http\Controllers\OliGasCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,18 +66,33 @@ Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
     });
 });
 
+//PenjualanOliGas
+Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
+    Route::resource('/PenjualanOliGas', PenjualanOliGasController::class)->except('show');
+    Route::group(['prefix' => 'PenjualanOliGas'], function () {
+        Route::get('/filter', [PenjualanOliGasController::class, 'filter']);
+        Route::get('/getData/{id}', [PenjualanOliGasController::class, 'getData']); //ajax for getting nama of oli/gas
+        Route::get('/getHarga/{id}', [PenjualanOliGasController::class, 'getHarga']); //ajax for getting harga of oli/gas
+        Route::get('/getPreviousStock/{id}', [PenjualanOliGasController::class, 'getPreviousStock']); //ajax for getting previous stock
+        Route::get('/checkOliGas/{id}', [PenjualanOliGasController::class, 'checkYesterday']); //ajax for check oli/gas from yesterday
+    });
+});
 
 
+Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
+Route::resource('/KategoriBBM', BBMCategoryController::class)->except('show');
+});
 
-Route::resource('/KategoriBBM', BBMCategoryController::class)->except('show')->middleware('auth', 'checkRole:1,2');
-
-
+Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
+Route::resource('/KategoriOliGas', OliGasCategoryController::class)->except('show');
+});
 
 
 Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
     Route::resource('/PengeluaranOperasionalSPBU', PengeluaranOpsBBMController::class)->except('show');
     Route::group(['prefix' => 'PengeluaranOperasionalSPBU'], function () {
         Route::get('/filter', [PengeluaranOpsBBMController::class, 'filter']);
+        Route::get('/checkPengeluaran', [PengeluaranOpsBBMController::class, 'checkYesterday']);
     });
 });
 

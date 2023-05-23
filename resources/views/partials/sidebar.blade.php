@@ -12,6 +12,7 @@
         <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent mb-5" />
 
         <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
+            {{-- OWNER --}}
             @can('isOwner')
                 <ul class="flex flex-col pl-0 mb-0">
                     <li class="mt-0.5 w-full">
@@ -86,7 +87,48 @@
                                 @endif
                             </div>
                             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Penjualan BBM
-                                </span>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="mt-0.5 w-full">
+                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('PenjualanOliGas*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
+                            href="/PenjualanOliGas">
+                            <div
+                                class="{{ request()->is('PenjualanOliGas*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                                @if (request()->is('PenjualanOliGas*'))
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
+                                        width="512" height="512" x="0" y="0"
+                                        viewBox="0 0 400 400" style="enable-background:new 0 0 512 512"
+                                        xml:space="preserve" class="">
+                                        <g>
+                                            <path
+                                                d="M270 310h90V0H40v400h230v-90zM100 80h200v30H100V80zm0 60h200v30H100v-30zm0 60h200v30H100v-30z"
+                                                fill="#ffffff" data-original="#000000" class=""></path>
+                                            <path d="M300 340v59.999L360 340z" fill="#ffffff" data-original="#000000"
+                                                class=""></path>
+                                        </g>
+                                    </svg>
+                                @else
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
+                                        width="512" height="512" x="0" y="0"
+                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+                                        xml:space="preserve" class="">
+                                        <g>
+                                            <path
+                                                d="M51.2 0v512h332.799l76.801-76.8V0H51.2zM384 457.693V435.2h22.493L384 457.693zm38.4-60.893h-76.8v76.8h-256V38.4h332.8v358.4z"
+                                                fill="#000000" data-original="#000000" class=""></path>
+                                            <path
+                                                d="M128 102.4h256v38.4H128zM128 179.2h256v38.4H128zM128 256h256v38.4H128z"
+                                                fill="#000000" data-original="#000000" class=""></path>
+                                        </g>
+                                    </svg>
+                                @endif
+                            </div>
+                            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Penjualan Oli & Gas
+                            </span>
                         </a>
                     </li>
 
@@ -128,7 +170,7 @@
                                 @endif
                             </div>
                             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Pengeluaran Harian
-                                </span>
+                            </span>
                         </a>
                     </li>
                     <li class="mt-0.5 w-full">
@@ -172,6 +214,49 @@
                             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Kategori BBM</span>
                         </a>
                     </li>
+                    <li class="mt-0.5 w-full">
+                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('KategoriOliGas*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
+                            href="/KategoriOliGas">
+                            <div
+                                class="{{ request()->is('KategoriOliGas*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                                @if (request()->is('KategoriOliGas*'))
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
+                                        width="512" height="512" x="0" y="0"
+                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+                                        xml:space="preserve" class="">
+                                        <g>
+                                            <path d="M95.274 59.883h89.825v29.942H95.274z" fill="#ffffff"
+                                                data-original="#000000" class=""></path>
+                                            <path
+                                                d="M401.756 0H280.64l-59.883 119.766H95.273v1.895c-25.799 6.664-44.912 30.136-44.912 57.988v272.468c0 33.02 26.864 59.883 59.883 59.883h291.513c33.019 0 59.883-26.864 59.883-59.883V59.883C461.639 26.864 434.776 0 401.756 0zm-74.853 74.854h59.883v44.912h-82.339l22.456-44.912zm70.728 351.474-21.692 20.638-52.545-55.231H191.298L135.8 447.233l-21.172-21.172 55.498-55.498V260.704l-55.498-55.498 21.172-21.172 55.498 55.498h132.096l52.545-55.231 21.692 20.638-52.846 55.547v110.295l52.846 55.547z"
+                                                fill="#ffffff" data-original="#000000" class=""></path>
+                                            <path d="M200.069 269.474h114.776v92.32H200.069z" fill="#ffffff"
+                                                data-original="#000000" class=""></path>
+                                        </g>
+                                    </svg>
+                                @else
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
+                                        width="512" height="512" x="0" y="0"
+                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+                                        xml:space="preserve" class="">
+                                        <g>
+                                            <path
+                                                d="M401.756 0H280.64l-59.883 119.766h-35.659V59.883H95.273v61.778c-25.799 6.664-44.912 30.136-44.912 57.988v272.468c0 33.02 26.864 59.883 59.883 59.883h291.513c33.02 0 59.883-26.864 59.883-59.883V59.883C461.639 26.864 434.776 0 401.756 0zM125.214 89.825h29.942v29.941h-29.942V89.825zm306.485 362.292h-.001c0 16.51-13.432 29.942-29.942 29.942H110.244c-16.51 0-29.941-13.432-29.941-29.942V179.649c0-16.51 13.432-29.942 29.941-29.942h129.019l59.883-119.766h102.612c16.51 0 29.942 13.432 29.942 29.942v392.234z"
+                                                fill="#000000" data-original="#000000" class=""></path>
+                                            <path
+                                                d="m317.651 59.883-44.912 89.825h129.019V59.883h-84.107zm54.164 59.883h-50.63l14.971-29.941h35.659v29.941zM344.786 370.781V260.486l52.846-55.547-21.692-20.638-52.545 55.231H191.298L135.8 184.034l-21.172 21.172 55.498 55.498v109.859l-55.498 55.498 21.172 21.172 55.498-55.498h132.096l52.545 55.231 21.692-20.638-52.845-55.547zm-29.942-8.988H200.068v-92.32h114.776v92.32z"
+                                                fill="#000000" data-original="#000000" class=""></path>
+                                        </g>
+                                    </svg>
+                                @endif
+                            </div>
+                            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Kategori Oli &
+                                Gas</span>
+                        </a>
+                    </li>
+
                     <li class="mt-0.5 w-full">
                         <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
                             href="/LaporanFinansialSPBU/LaporanRabaRugi">
@@ -403,6 +488,7 @@
                 </ul>
             @endcan
 
+            {{-- SPBU --}}
             @can('isAdminSPBU')
                 <ul class="flex flex-col pl-0 mb-0">
                     <li class="mt-0.5 w-full">
@@ -481,7 +567,48 @@
                                 @endif
                             </div>
                             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Penjualan BBM
-                                </span>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="mt-0.5 w-full">
+                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('PenjualanOliGas*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
+                            href="/PenjualanOliGas">
+                            <div
+                                class="{{ request()->is('PenjualanOliGas*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                                @if (request()->is('PenjualanOliGas*'))
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
+                                        width="512" height="512" x="0" y="0"
+                                        viewBox="0 0 400 400" style="enable-background:new 0 0 512 512"
+                                        xml:space="preserve" class="">
+                                        <g>
+                                            <path
+                                                d="M270 310h90V0H40v400h230v-90zM100 80h200v30H100V80zm0 60h200v30H100v-30zm0 60h200v30H100v-30z"
+                                                fill="#ffffff" data-original="#000000" class=""></path>
+                                            <path d="M300 340v59.999L360 340z" fill="#ffffff" data-original="#000000"
+                                                class=""></path>
+                                        </g>
+                                    </svg>
+                                @else
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
+                                        width="512" height="512" x="0" y="0"
+                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+                                        xml:space="preserve" class="">
+                                        <g>
+                                            <path
+                                                d="M51.2 0v512h332.799l76.801-76.8V0H51.2zM384 457.693V435.2h22.493L384 457.693zm38.4-60.893h-76.8v76.8h-256V38.4h332.8v358.4z"
+                                                fill="#000000" data-original="#000000" class=""></path>
+                                            <path
+                                                d="M128 102.4h256v38.4H128zM128 179.2h256v38.4H128zM128 256h256v38.4H128z"
+                                                fill="#000000" data-original="#000000" class=""></path>
+                                        </g>
+                                    </svg>
+                                @endif
+                            </div>
+                            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Penjualan Oli & Gas
+                            </span>
                         </a>
                     </li>
 
@@ -568,6 +695,48 @@
                         </a>
                     </li>
                     <li class="mt-0.5 w-full">
+                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('KategoriOliGas*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
+                            href="/KategoriOliGas">
+                            <div
+                                class="{{ request()->is('KategoriOliGas*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                                @if (request()->is('KategoriOliGas*'))
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
+                                        width="512" height="512" x="0" y="0"
+                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+                                        xml:space="preserve" class="">
+                                        <g>
+                                            <path d="M95.274 59.883h89.825v29.942H95.274z" fill="#ffffff"
+                                                data-original="#000000" class=""></path>
+                                            <path
+                                                d="M401.756 0H280.64l-59.883 119.766H95.273v1.895c-25.799 6.664-44.912 30.136-44.912 57.988v272.468c0 33.02 26.864 59.883 59.883 59.883h291.513c33.019 0 59.883-26.864 59.883-59.883V59.883C461.639 26.864 434.776 0 401.756 0zm-74.853 74.854h59.883v44.912h-82.339l22.456-44.912zm70.728 351.474-21.692 20.638-52.545-55.231H191.298L135.8 447.233l-21.172-21.172 55.498-55.498V260.704l-55.498-55.498 21.172-21.172 55.498 55.498h132.096l52.545-55.231 21.692 20.638-52.846 55.547v110.295l52.846 55.547z"
+                                                fill="#ffffff" data-original="#000000" class=""></path>
+                                            <path d="M200.069 269.474h114.776v92.32H200.069z" fill="#ffffff"
+                                                data-original="#000000" class=""></path>
+                                        </g>
+                                    </svg>
+                                @else
+                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
+                                        width="512" height="512" x="0" y="0"
+                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+                                        xml:space="preserve" class="">
+                                        <g>
+                                            <path
+                                                d="M401.756 0H280.64l-59.883 119.766h-35.659V59.883H95.273v61.778c-25.799 6.664-44.912 30.136-44.912 57.988v272.468c0 33.02 26.864 59.883 59.883 59.883h291.513c33.02 0 59.883-26.864 59.883-59.883V59.883C461.639 26.864 434.776 0 401.756 0zM125.214 89.825h29.942v29.941h-29.942V89.825zm306.485 362.292h-.001c0 16.51-13.432 29.942-29.942 29.942H110.244c-16.51 0-29.941-13.432-29.941-29.942V179.649c0-16.51 13.432-29.942 29.941-29.942h129.019l59.883-119.766h102.612c16.51 0 29.942 13.432 29.942 29.942v392.234z"
+                                                fill="#000000" data-original="#000000" class=""></path>
+                                            <path
+                                                d="m317.651 59.883-44.912 89.825h129.019V59.883h-84.107zm54.164 59.883h-50.63l14.971-29.941h35.659v29.941zM344.786 370.781V260.486l52.846-55.547-21.692-20.638-52.545 55.231H191.298L135.8 184.034l-21.172 21.172 55.498 55.498v109.859l-55.498 55.498 21.172 21.172 55.498-55.498h132.096l52.545 55.231 21.692-20.638-52.845-55.547zm-29.942-8.988H200.068v-92.32h114.776v92.32z"
+                                                fill="#000000" data-original="#000000" class=""></path>
+                                        </g>
+                                    </svg>
+                                @endif
+                            </div>
+                            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Kategori Oli &
+                                Gas</span>
+                        </a>
+                    </li>
+                    <li class="mt-0.5 w-full">
                         <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
                             href="/LaporanFinansialSPBU/LaporanRabaRugi">
                             <div
@@ -605,6 +774,7 @@
                 </ul>
             @endcan
 
+            {{-- Toko Listrik --}}
             @can('isAdminTokoListrik')
                 <ul class="flex flex-col pl-0 mb-0">
                     <li class="mt-0.5 w-full">

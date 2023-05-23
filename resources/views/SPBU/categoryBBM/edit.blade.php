@@ -19,7 +19,7 @@
                 </label>
 
                 <label for="harga_beli" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Harga Beli</span>
+                    <span class="text-gray-700 font-semibold">Harga Beli/Liter</span>
                     <input type="number" min="1000" step="any" id="harga_beli" name="harga_beli" required
                         value="{{ old('harga_beli', $bbm->harga_beli) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('harga_beli')
@@ -31,7 +31,7 @@
                 </label>
 
                 <label for="harga_jual" class="block mt-4 text-sm">
-                    <span class="text-gray-700 font-semibold">Harga Jual</span>
+                    <span class="text-gray-700 font-semibold">Harga Jual/Liter</span>
                     <input type="number" min="1000" step="any" id="harga_jual" name="harga_jual" required
                         value="{{ old('harga_jual', $bbm->harga_jual) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('harga_jual')

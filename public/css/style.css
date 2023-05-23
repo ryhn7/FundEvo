@@ -4139,6 +4139,22 @@ textarea.form-control.is-invalid {
   margin-bottom: 1.75rem;
 }
 
+.-ml-\[255px\] {
+  margin-left: -255px;
+}
+
+.-ml-\[200px\] {
+  margin-left: -200px;
+}
+
+.-ml-\[203px\] {
+  margin-left: -203px;
+}
+
+.-ml-\[202px\] {
+  margin-left: -202px;
+}
+
 .box-content {
   box-sizing: content-box;
 }

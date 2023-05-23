@@ -17,6 +17,7 @@ use App\Http\Controllers\OliGasCategoryController;
 use App\Models\BBM;
 use App\Models\Item;
 use App\Models\PengeluaranOpsTokoListrik;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,6 +117,24 @@ Route::group(['prefix' => 'LaporanFinansialSPBU', 'middleware' => ['auth', 'chec
     Route::get('/PengeluaranSPBU/FilterBulan', [LaporanFinansialBBMController::class, 'monthFilterPengeluaranSPBU']);
     Route::get('/PengeluaranSPBU/FilterTahun', [LaporanFinansialBBMController::class, 'yearFilterPengeluaranSPBU']);
     Route::get('/PengeluaranSPBU/FilterRange', [LaporanFinansialBBMController::class, 'rangeFilterPengeluaranSPBU']);
+});
+
+Route::group(['prefix' => 'LaporanFinansialTokoListrik', 'middleware' => ['auth', 'checkRole:1,3']], function () {
+
+    Route::get('/LaporanRabaRugi', [LaporanFinansialTokoListrikController::class, 'indexLaporanLabaRugi']);
+    Route::get('/LaporanRabaRugi/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterLaporanLabaRugi']);
+    Route::get('/LaporanRabaRugi/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterLaporanLabaRugi']);
+    Route::get('/LaporanRabaRugi/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterLaporanLabaRugi']);
+
+    Route::get('/PenjualanBBM', [LaporanFinansialTokoListrikController::class, 'indexPenjualanBBM']);
+    Route::get('/PenjualanBBM/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterPenjualanItem']);
+    Route::get('/PenjualanBBM/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterPenjualanItem']);
+    Route::get('/PenjualanBBM/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterPenjualanItem']);
+
+    Route::get('/PengeluaranSPBU', [LaporanFinansialTokoListrikController::class, 'indexPengeluaranItem']);
+    Route::get('/PengeluaranSPBU/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterPengeluaranItem']);
+    Route::get('/PengeluaranSPBU/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterPengeluaranItem']);
+    Route::get('/PengeluaranSPBU/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterPengeluaranItem']);
 });
 
 //Item Listrik

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\PenjualanBBM;
 use App\Models\PengeluaranOpsBBM;
+use App\Models\PenjualanItemListrik;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -162,9 +163,9 @@ class DatabaseSeeder extends Seeder
                 'kategori' => 'Saklar',
             ],
         ]);
-        PenjualanBBM::factory(4)->create();
 
         PenjualanBBM::factory(30)->create();
+        PenjualanItemListrik::factory(30)->create();
 
 
     }

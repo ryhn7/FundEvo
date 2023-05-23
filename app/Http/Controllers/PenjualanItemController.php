@@ -67,11 +67,12 @@ class PenjualanItemController extends Controller
         $yesterday = Carbon::yesterday()->toDateString();
         $penjualanItemYesterday = PenjualanItemListrik::where('item_id', $item_id)->whereDate('created_at', $yesterday)->first();
         $penjualanItemListrik = PenjualanItemListrik::where('item_id', $item_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
+        dd($penjualanItemYesterday);
         if ($penjualanItemListrik) {
             return redirect('/penjualan-item')->with('error', 'Hanya boleh input 1 jenis Item per hari!');
         }
 
-        // dd($penjualanItemYesterday);
+        
         if (!$penjualanItemYesterday) {
             return redirect('/penjualan-item')->with('error', 'Harap input penjualan Item hari kemarin terlebih dahulu!');
         }

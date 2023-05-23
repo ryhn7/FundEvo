@@ -33,7 +33,6 @@ class PenjualanOliGasController extends Controller
     public function create()
     {
         return view('SPBU.penjualanOliGas.create', [
-            // 'oligases' => OliGas::all(),
             'oligases' => OliGasStatic::all(),
         ]);
     }
@@ -113,7 +112,7 @@ class PenjualanOliGasController extends Controller
     public function edit(PenjualanOliGas $PenjualanOliGa)
     {
         return view('SPBU.penjualanOliGas.edit', [
-            'oligases' => OliGas::all(),
+            'oligases' => OliGasStatic::all(),
             'sell' => $PenjualanOliGa,
         ]);
     }
@@ -142,6 +141,14 @@ class PenjualanOliGasController extends Controller
 
         if ($validated['created_at'] == null) {
             $validated['created_at'] = Carbon::now();
+        }
+
+        $nama = $request->nama;
+        $PenjualanOliGas = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', Carbon::now()->toDateString())->first();
+
+
+        if ($PenjualanOliGas) {
+            return redirect('/PenjualanOliGas')->with('error', 'Data sudah ada!');
         }
 
         PenjualanOliGas::where('id', $PenjualanOliGa->id)

@@ -158,40 +158,79 @@
 @endsection
 
 @section('scripts')
-    <script>
-        const stockAwal = document.getElementById('stock_awal');
-        const penerimaan = document.getElementById('penerimaan');
-        const penjualan = document.getElementById('penjualan');
-        const stockAdm = document.getElementById('stock_adm');
-        const stockFakta = document.getElementById('stock_fakta');
-        const penyusutan = document.getElementById('penyusutan');
-        const pendapatan = document.getElementById('pendapatan');
-        const hargaJual = document.getElementById('harga_jual');
+<script>
+    const stockAwal = document.getElementById('stock_awal');
+    const penerimaan = document.getElementById('penerimaan');
+    const penjualan = document.getElementById('penjualan');
+    const stockAdm = document.getElementById('stock_adm');
+    const stockFakta = document.getElementById('stock_fakta');
+    const penyusutan = document.getElementById('penyusutan');
+    const pendapatan = document.getElementById('pendapatan');
+    const hargaJual = document.getElementById('harga_jual');
+    const bbm = document.getElementById('bbm_id');
+    const date = document.getElementById('date');
+    const inputDate = document.getElementById('created_at');
 
-
-        stockAdm.addEventListener('change', () => {
-            if (penerimaan.value == '') {
-                penerimaan.value = 0;
+    bbm.addEventListener('change', () => {
+        const bbm_id = bbm.value;
+        $.ajax({
+            url: '/PenjualanBBM/getData/' + bbm_id,
+            type: 'GET',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            dataType: 'json',
+            success: function(result) {
+                hargaJual.value = result.harga_jual;
             }
-            const sum = parseInt(stockAwal.value) + parseInt(penerimaan.value);
-            const sell = sum - parseInt(stockAdm.value);
+        })
+    });
 
-            penjualan.value = sell;
-        });
-
-        stockFakta.addEventListener('change', () => {
-            const result = parseInt(stockAdm.value) - parseInt(stockFakta.value);
-            const hasil = parseInt(penjualan.value) * parseInt(hargaJual.value);
-
-            if (result > 0) {
-                penyusutan.value = result * -1;
-            } else if (result < 0) {
-                penyusutan.value = result * -1;
-            } else {
-                penyusutan.value = 0;
+    bbm.addEventListener('change', () => {
+        const bbm_id = bbm.value;
+        $.ajax({
+            url: '/PenjualanBBM/getPreviousStock/' + bbm_id,
+            type: 'GET',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            dataType: 'json',
+            success: function(result) {
+                if (result.stock_awal > 0) {
+                    stockAwal.value = result.stock_fakta;
+                } else {
+                    stockAwal.value = null;
+                }
             }
+        })
+    });
 
-            pendapatan.value = hasil;
-        });
-    </script>
+
+
+    stockAdm.addEventListener('change', () => {
+        if (penerimaan.value == '') {
+            penerimaan.value = 0;
+        }
+        const sum = parseInt(stockAwal.value) + parseInt(penerimaan.value);
+        const sell = sum - parseInt(stockAdm.value);
+
+        penjualan.value = sell;
+    });
+
+    stockFakta.addEventListener('change', () => {
+        const result = parseInt(stockAdm.value) - parseInt(stockFakta.value);
+        const hasil = parseInt(penjualan.value) * parseInt(hargaJual.value);
+
+
+        if (result > 0) {
+            penyusutan.value = result * -1;
+        } else if (result < 0) {
+            penyusutan.value = result * -1;
+        } else {
+            penyusutan.value = 0;
+        }
+
+        pendapatan.value = hasil;
+    });
+</script>
 @endsection

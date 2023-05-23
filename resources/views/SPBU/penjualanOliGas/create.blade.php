@@ -103,7 +103,6 @@
                     @enderror
                 </label>
 
-
                 <label for="pendapatan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Pendapatan</span>
                     <input type="number" min="0" step="any" id="pendapatan" name="pendapatan" required
@@ -131,7 +130,6 @@
         const penjualan = document.getElementById('penjualan');
         const stockAkhir = document.getElementById('stock_akhir');
         const pendapatan = document.getElementById('pendapatan');
-        // let harga = null;
         const oliGas = document.getElementById('oli_gas_id');
         const nama = document.getElementById('nama');
         const date = document.getElementById('date');
@@ -206,7 +204,6 @@
                 }
             })
         });
-
 
         nama.addEventListener('change', () => {
             const nama_id = nama.value;

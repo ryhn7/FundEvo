@@ -78,7 +78,7 @@ Route::group(['middleware' => ['auth', 'checkRole:1,2']], function () {
         Route::get('/getData/{id}', [PenjualanOliGasController::class, 'getData']); //ajax for getting nama of oli/gas
         Route::get('/getHarga/{id}', [PenjualanOliGasController::class, 'getHarga']); //ajax for getting harga of oli/gas
         Route::get('/getPreviousStock/{id}', [PenjualanOliGasController::class, 'getPreviousStock']); //ajax for getting previous stock
-        Route::get('/checkBBM/{id}', [PenjualanOliGasController::class, 'checkYesterday']); //ajax for check bbm from yesterday
+        Route::get('/checkOliGas/{id}', [PenjualanOliGasController::class, 'checkYesterday']); //ajax for check oli/gas from yesterday
     });
 });
 

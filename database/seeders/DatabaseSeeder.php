@@ -99,23 +99,6 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        // PenjualanBBM::factory(30)->create();
-
-        DB::table('kategori_items')->insert([
-            [
-                'kategori' => 'Lampu',
-            ],
-            [
-                'kategori' => 'Kabel',
-            ],
-            [
-                'kategori' => 'Stop Kontak',
-            ],
-            [
-                'kategori' => 'Saklar',
-            ],
-        ]);
-
         DB::table('items')->insert([
             [
                 'kategori' => 1,

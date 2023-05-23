@@ -48,14 +48,16 @@ class PenjualanItemController extends Controller
      */
     public function store(Request $request)
     {
+        // dd(request()->all());
         $validated = $request->validate([
-            'item_id' => 'required',
+            'item_id' => 'nullable',
             'stock_awal' => 'required|numeric',
             'penerimaan' => 'nullable|numeric',
             'penyusutan' => 'nullable|numeric',
             'penjualan' => 'nullable|numeric',
             'stock_akhir' => 'required|numeric',
             'pendapatan' => 'required|numeric',
+            'created_at' => 'nullable|date',
         ]);
 
         if ($validated['created_at'] == null) {
@@ -134,7 +136,7 @@ class PenjualanItemController extends Controller
     public function update(Request $request, PenjualanItemListrik $penjualan_item)
     {
         $rules = [
-            'item_id' => 'required',
+            'item_id' => 'nullable',
             'stock_awal' => 'required|numeric',
             'penerimaan' => 'nullable|numeric',
             'penjualan' => 'nullable|numeric',

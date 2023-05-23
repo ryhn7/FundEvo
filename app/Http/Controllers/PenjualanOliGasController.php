@@ -33,7 +33,6 @@ class PenjualanOliGasController extends Controller
     public function create()
     {
         return view('SPBU.penjualanOliGas.create', [
-            // 'oligases' => OliGas::all(),
             'oligases' => OliGasStatic::all(),
         ]);
     }
@@ -113,7 +112,7 @@ class PenjualanOliGasController extends Controller
     public function edit(PenjualanOliGas $PenjualanOliGa)
     {
         return view('SPBU.penjualanOliGas.edit', [
-            'oligases' => OliGas::all(),
+            'oligases' => OliGasStatic::all(),
             'sell' => $PenjualanOliGa,
         ]);
     }

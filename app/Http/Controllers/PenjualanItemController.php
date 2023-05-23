@@ -58,23 +58,39 @@ class PenjualanItemController extends Controller
             'pendapatan' => 'required|numeric',
         ]);
 
-        // if ($validated['created_at'] == null) {
-        //     $validated['created_at'] = Carbon::now();
-        // }
+        if ($validated['created_at'] == null) {
+            $validated['created_at'] = Carbon::now();
+        }
 
         //limit item from item_id to 1 each
         $item_id = $request->item_id;
+        $date = $request->created_at;
+
         $yesterday = Carbon::yesterday()->toDateString();
+        $dayBeforeYesterday = Carbon::yesterday()->subDay()->toDateString();
+        $penjualanItemDayBeforeYesterday = PenjualanItemListrik::where('item_id', $item_id)->whereDate('created_at', $dayBeforeYesterday)->first();
         $penjualanItemYesterday = PenjualanItemListrik::where('item_id', $item_id)->whereDate('created_at', $yesterday)->first();
-        $penjualanItemListrik = PenjualanItemListrik::where('item_id', $item_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
-        dd($penjualanItemYesterday);
-        if ($penjualanItemListrik) {
+        $penjualanItem = PenjualanItemListrik::where('item_id', $item_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
+        $allItem = PenjualanItemListrik::where('item_id', $item_id)->get();
+
+        if ($penjualanItem) {
             return redirect('/penjualan-item')->with('error', 'Hanya boleh input 1 jenis Item per hari!');
         }
 
         
-        if (!$penjualanItemYesterday) {
-            return redirect('/penjualan-item')->with('error', 'Harap input penjualan Item hari kemarin terlebih dahulu!');
+        if ($allItem->count() == 0) {
+            PenjualanItemListrik::create($validated);
+            return redirect('/penjualan-item')->with('success', 'Data penjualan berhasil ditambahkan!');
+        } else if (!$penjualanItemYesterday) {
+            if ($penjualanItemDayBeforeYesterday && $date != Carbon::now()->toDateString()) {
+                PenjualanItemListrik::create($validated);
+                return redirect('/penjualan-item')->with('success', 'Data penjualan berhasil ditambahkan!');
+            } else {
+                return redirect('/penjualan-item')->with('error', 'Harap input penjualan Item hari kemarin terlebih dahulu!');
+            }
+        } else {
+            PenjualanItemListrik::create($validated);
+            return redirect('/penjualan-item')->with('success', 'Data penjualan berhasil ditambahkan!');
         }
 
         PenjualanItemListrik::create($validated);
@@ -182,13 +198,18 @@ class PenjualanItemController extends Controller
 
     public function checkYesterday($id)
     {
+        $allItem = PenjualanItemListrik::where('item_id', $id)->get();
         $yesterday = Carbon::yesterday()->toDateString();
-        $penjualanItem = PenjualanItemListrik::where('item_id', $id)->whereDate('created_at', $yesterday)->first();
+        $penjualanItemYesterday = PenjualanItemListrik::where('bbm_id', $id)->whereDate('created_at', $yesterday)->first();
 
-        if ($penjualanItem == null) {
-            return response()->json(false);
+        if ($allItem->count() == 0) {
+            return response()->json(true);
         } else {
-            return response()->json($penjualanItem);
+            if ($penjualanItemYesterday == null) {
+                return response()->json(false);
+            } else {
+                return response()->json($penjualanItemYesterday);
+            }
         }
     }
 }

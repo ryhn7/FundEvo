@@ -194,6 +194,8 @@
         //         }
         //     })
         // });
+        
+
         penyusutan.value = 0;
         penyusutan.addEventListener('keyup', ()=> {
             const jual = parseInt(stockAwal.value) + parseInt(penerimaan.value) - parseInt(penjualan.value)- parseInt(penyusutan.value);
@@ -281,6 +283,10 @@
                 }
             })
         });
+
+        if ((stockAwal.value) == null) {
+            stockAwal.value = 0;
+        } 
 
         $('#item_id').select2(
             {

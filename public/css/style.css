@@ -6274,6 +6274,22 @@ textarea.form-control.is-invalid {
     width: 30%;
   }
 
+  .xl\:w-\[\%\] {
+    width: %;
+  }
+
+  .xl\:w-\[2\%\] {
+    width: 2%;
+  }
+
+  .xl\:w-\[29\%\] {
+    width: 29%;
+  }
+
+  .xl\:w-\[28\%\] {
+    width: 28%;
+  }
+
   .xl\:translate-x-0 {
     --tw-translate-x: 0px;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));

@@ -62,7 +62,7 @@
             request()->is('LaporanFinansialSPBU/PenjualanBBM/FilterBulan*'))
         <div class="w-full max-w-full px-3 mt-4 lg:w-full lg:flex-none">
             <div
-                class="border-black/12.5 shadow-inner relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-gray-50 bg-clip-border">
+                class="border-black/12.5 shadow-inner relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-[#cbcccd] bg-clip-border">
                 <div class="flex-auto p-4">
 
                     <div class="mt-2 -mx-3">
@@ -87,8 +87,13 @@
                                                                         alt="icon-profit" width="13px">
                                                                 </span></div>
                                                             <div class="ml-1"><span
-                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-lime-500">{{ number_format($totalLiter) }}
-                                                                    Liter</span></div>
+                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-lime-500">
+                                                                    @if ($totalLiter >= 1000)
+                                                                        {{ number_format($totalLiter / 1000, 0) }}K
+                                                                    @else
+                                                                        {{ number_format($totalLiter) }} Liter
+                                                                    @endif
+                                                                </span></div>
                                                         </div>
                                                         <div class="flex ml-1.5">
                                                             <div class="mt-1.5"> <span>
@@ -96,8 +101,15 @@
                                                                         alt="icon-loss" width="13px">
                                                                 </span></div>
                                                             <div class="ml-1"><span
-                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-red-500">{{ number_format($totalPenyusutan) }}
-                                                                    Liter</span></div>
+                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-red-500">
+                                                                    @if ($totalPenyusutan == 0)
+                                                                        {{ number_format($totalPenyusutan) }} Liter
+                                                                    @elseif ($totalPenyusutan >= -1000)
+                                                                        {{ number_format($totalPenyusutan / 1000, 0) }}K
+                                                                    @else
+                                                                        {{ number_format($totalPenyusutan) }} Liter
+                                                                    @endif
+                                                                </span></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -106,7 +118,8 @@
                                             <div class="px-3 text-right basis-1/3">
                                                 <div
                                                     class="inline-block w-[112px] h-[112px] text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                                                        <i class="fa-solid fa-money-bill-trend-up text-6xl relative top-5.5 text-white"></i>
+                                                    <i
+                                                        class="fa-solid fa-money-bill-trend-up text-6xl relative top-5.5 text-white"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -125,7 +138,11 @@
                                                             Total Pendapatan
                                                         </p>
                                                         <h5 class="mb-0 text-[20px] font-bold">
-                                                            @currency($totalPendapatan) </h5>
+                                                            <span class="truncate w-40 inline-block"
+                                                                title="{{ number_format($totalPendapatan) }}">
+                                                                @currency($totalPendapatan)
+                                                            </span>
+                                                        </h5>
                                                     </div>
                                                 </div>
 
@@ -146,9 +163,13 @@
                                                     <div>
                                                         <p class="mb-0.38 font-open font-semibold leading-normal text-sm">
                                                             HPP
-                                                        </p>       
+                                                        </p>
                                                         <h5 class="mb-0 text-[20px] font-bold">
-                                                            @currency($totalHpp) </h5>
+                                                            <span class="truncate w-40 inline-block"
+                                                                title="{{ number_format($totalHpp) }}">
+                                                                @currency($totalHpp)
+                                                            </span>
+                                                        </h5>
                                                     </div>
                                                 </div>
 
@@ -166,7 +187,7 @@
                         </div>
 
                     </div>
-                    <div class="flex flex-wrap mt-3 -mx-3">
+                    <div class="flex flex-wrap mt-3 -mx-3 pr-1.5 carousel-container">
                         <!-- card1 -->
                         @foreach ($bbms as $bbm)
                             {{-- get sum of pendapatan from penjualan bbm use blade --}}
@@ -175,18 +196,22 @@
                                 $liter = $sells->where('bbm_id', $bbm->id)->sum('penjualan');
                                 $penyusutan = $sells->where('bbm_id', $bbm->id)->sum('penyusutan');
                             @endphp
-                            <div class="w-full max-w-full px-2 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+                            <div class="w-full max-w-full px-2 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
                                 <div
                                     class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
                                     <div class="flex-auto p-4">
                                         <div class="flex flex-row -mx-3">
-                                            <div class="flex-none w-[65%] max-w-full px-3">
+                                            <div class="flex-none max-w-full px-3">
                                                 <div>
                                                     <p class="mb-0.38 font-open font-semibold leading-normal text-sm">
                                                         {{ $bbm->jenis_bbm }}
                                                     </p>
                                                     <h5 class="mb-0 text-[20px] font-bold">
-                                                        @currency($revenue) </h5>
+                                                        <span class="truncate w-40 inline-block"
+                                                            title="{{ number_format($revenue) }}">
+                                                            @currency($revenue)
+                                                        </span>
+                                                    </h5>
                                                     <div class="flex mt-0.38 w-full">
                                                         <div class="flex">
                                                             <div class="mt-1.5"> <span>
@@ -194,8 +219,13 @@
                                                                         alt="icon-profit" width="13px">
                                                                 </span></div>
                                                             <div class="ml-1"><span
-                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-lime-500">{{ number_format($liter) }}
-                                                                    Liter</span></div>
+                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-lime-500">
+                                                                    @if ($liter >= 1000)
+                                                                        {{ number_format($liter / 1000, 0) }}K
+                                                                    @else
+                                                                        {{ number_format($liter) }} Liter
+                                                                    @endif
+                                                                </span></div>
                                                         </div>
                                                         <div class="flex ml-1.5">
                                                             <div class="mt-1.5"> <span>
@@ -203,17 +233,25 @@
                                                                         alt="icon-loss" width="13px">
                                                                 </span></div>
                                                             <div class="ml-1"><span
-                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-red-500">{{ number_format($penyusutan) }}
-                                                                    Liter</span></div>
+                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-red-500">
+                                                                    @if ($penyusutan == 0)
+                                                                        {{ number_format($penyusutan) }} Liter
+                                                                    @elseif ($penyusutan >= -1000)
+                                                                        {{ number_format($penyusutan / 1000, 0) }}K
+                                                                    @else
+                                                                        {{ number_format($penyusutan) }} Liter
+                                                                    @endif
+                                                                </span></div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="pr-1.5 text-right basis-1/3">
+                                            <div class="pr-2 text-right basis-3/4">
                                                 <div
-                                                    class="inline-block w-20 h-20 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                                                    <i class="fa-solid fa-gas-pump text-white text-3xl relative top-6 left-0.5"></i>
+                                                    class="inline-block w-16 h-16 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
+                                                    <i
+                                                        class="fa-solid fa-gas-pump text-white text-2xl relative top-5 left-0.5"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -430,4 +468,16 @@
             </div>
         @endif
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.carousel-container').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 1
+            });
+        });
+    </script>
 @endsection

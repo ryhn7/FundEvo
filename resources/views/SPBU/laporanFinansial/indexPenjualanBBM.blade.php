@@ -18,7 +18,7 @@
             <div
                 class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
                 Tahun</div>
-            <ul class="dropdown-content absolute hidden text-gray-700 -pl-5 -ml-[211px] -mt-10">
+            <ul class="dropdown-content absolute hidden text-gray-700 -pl-5 -ml-[202px] -mt-10">
                 <form id="yearFilter" action="/LaporanFinansialSPBU/PenjualanBBM/FilterTahun" class="py-0.5" method="GET">
                     <input id="year1" type="text" name="year" placeholder="Pilih Tahun"
                         value="{{ request('year') }}"
@@ -87,9 +87,9 @@
                                                                         alt="icon-profit" width="13px">
                                                                 </span></div>
                                                             <div class="ml-1"><span
-                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-lime-500">
-                                                                    @if ($totalLiter >= 1000)
-                                                                        {{ number_format($totalLiter / 1000, 0) }}K
+                                                                    class="leading-normal font-bold font-weight-bolder text-lime-500">
+                                                                    @if ($totalLiter >= 10000)
+                                                                        {{ number_format($totalLiter / 1000, 0) }}K Liter
                                                                     @else
                                                                         {{ number_format($totalLiter) }} Liter
                                                                     @endif
@@ -101,11 +101,10 @@
                                                                         alt="icon-loss" width="13px">
                                                                 </span></div>
                                                             <div class="ml-1"><span
-                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-red-500">
-                                                                    @if ($totalPenyusutan == 0)
-                                                                        {{ number_format($totalPenyusutan) }} Liter
-                                                                    @elseif ($totalPenyusutan >= -1000)
-                                                                        {{ number_format($totalPenyusutan / 1000, 0) }}K
+                                                                    class="leading-normal font-bold font-weight-bolder text-red-500">
+                                                                    @if ($totalPenyusutan <= -10000)
+                                                                        {{ number_format($totalPenyusutan / 1000, 0) }}K Liter
+                                                                        Liter
                                                                     @else
                                                                         {{ number_format($totalPenyusutan) }} Liter
                                                                     @endif
@@ -187,7 +186,7 @@
                         </div>
 
                     </div>
-                    <div class="flex flex-wrap mt-3 -mx-3 pr-1.5 carousel-container">
+                    <div class="flex flex-wrap mt-3 -mx-3 pr-0.75 carousel-container">
                         <!-- card1 -->
                         @foreach ($bbms as $bbm)
                             {{-- get sum of pendapatan from penjualan bbm use blade --}}
@@ -216,12 +215,12 @@
                                                         <div class="flex">
                                                             <div class="mt-1.5"> <span>
                                                                     <img src="{{ asset('assets/icons/profit.png') }}"
-                                                                        alt="icon-profit" width="13px">
+                                                                        alt="icon-profit" width="14px">
                                                                 </span></div>
                                                             <div class="ml-1"><span
-                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-lime-500">
-                                                                    @if ($liter >= 1000)
-                                                                        {{ number_format($liter / 1000, 0) }}K
+                                                                    class="leading-normal text-[12px] font-bold font-weight-bolder text-lime-500">
+                                                                    @if ($liter >= 10000)
+                                                                        {{ number_format($liter / 1000, 0) }}K Liter
                                                                     @else
                                                                         {{ number_format($liter) }} Liter
                                                                     @endif
@@ -230,14 +229,12 @@
                                                         <div class="flex ml-1.5">
                                                             <div class="mt-1.5"> <span>
                                                                     <img src="{{ asset('assets/icons/loss.png') }}"
-                                                                        alt="icon-loss" width="13px">
+                                                                        alt="icon-loss" width="14px">
                                                                 </span></div>
                                                             <div class="ml-1"><span
-                                                                    class="leading-normal text-[13px] font-bold font-weight-bolder text-red-500">
-                                                                    @if ($penyusutan == 0)
-                                                                        {{ number_format($penyusutan) }} Liter
-                                                                    @elseif ($penyusutan >= -1000)
-                                                                        {{ number_format($penyusutan / 1000, 0) }}K
+                                                                    class="leading-normal text-[12px] font-bold font-weight-bolder text-red-500">
+                                                                    @if ($penyusutan <= -10000)
+                                                                        {{ number_format($penyusutan / 1000, 0) }}K Liter
                                                                     @else
                                                                         {{ number_format($penyusutan) }} Liter
                                                                     @endif
@@ -470,7 +467,7 @@
     </div>
 @endsection
 
-@section('scripts')
+@section('slick')
     <script>
         $(document).ready(function() {
             $('.carousel-container').slick({

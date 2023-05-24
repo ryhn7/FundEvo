@@ -71,7 +71,14 @@ class LaporanFinansialTokoListrikController extends Controller
         $end = Carbon::parse($request->end);
 
         $penjualanItem = PenjualanItemListrik::sortable()->whereBetween('created_at', [$start, $end])->get();
+        if ($start->month == $end->month) {
+            return redirect()->back()->with('error', 'Tanggal awal dan akhir tidak boleh dalam satu bulan');
+        }
 
+        // range filter minimum 2 month
+        if ($start->diffInMonths($end) < 2) {
+            return redirect()->back()->with('error', 'Range filter minimal 2 bulan');
+        }
         return view('TokoListrik.laporanFinansial.indexPenjualanItem', [
             'sells' => $penjualanItem,
             'count' => $penjualanItem->count(),
@@ -83,15 +90,38 @@ class LaporanFinansialTokoListrikController extends Controller
 
     public function monthFilterPenjualanItem(Request $request)
     {
+        $barang = Item::all();
+        $kategori = KategoriItem::all();
         $month = $request->month;
         $penjualanItem = PenjualanItemListrik::sortable()->whereYear('created_at', Carbon::parse($month)->year)
             ->whereMonth('created_at', Carbon::parse($month)->month)->get();
+        $totalPendapatan = $penjualanItem->sum('pendapatan');
+        $totalTerjual = $penjualanItem->sum('penjualan');
+        $totalPenyusutan = $penjualanItem->sum('penyusutan');
+        
+
+        $hpp = [];
+        foreach ($barang as $item) {
+            $hargaBeli = $item->harga_beli;
+            $penjualan = $penjualanItem->where('item_id', $item->id)->sum('penjualan');
+            $hpp[$item->id] = $hargaBeli * $penjualan;
+        }
+
+        $totalHpp = array_sum($hpp);
+        $keuntungan = $totalPendapatan - $totalHpp;
 
         return view('TokoListrik.laporanFinansial.indexPenjualanItem', [
             'sells' => $penjualanItem,
             'count' => $penjualanItem->count(),
             'month' => Carbon::parse($month)->locale('id')->isoFormat('MMMM'),
+            'totalPendapatan' => $totalPendapatan,
+            'year' => Carbon::now()->year,
+            'totalTerjual' => $totalTerjual,
+            'totalPenyusutan' => $totalPenyusutan,
+            'totalHpp' => $totalHpp,
+            'keuntungan' => $keuntungan,
             'info' => 'Penjualan',
+            'kategoris' => $kategori,
         ]);
     }
 

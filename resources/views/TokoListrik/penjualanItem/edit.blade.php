@@ -17,7 +17,7 @@
                         @foreach ($items as $item)
                             @if (old('item_id', $sell->item_id) == $item->id)
                                 @foreach ($kategoris as $kategori)
-                                    @if (old('kategori_item', $ori) == $kategori->id)
+                                    @if (old('kategori_item', $item->kategori) == $kategori->id)
                                         <option value="{{ $kategori->id }}" selected>{{ $kategori->kategori }}</option>
                                     @else
                                         <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>

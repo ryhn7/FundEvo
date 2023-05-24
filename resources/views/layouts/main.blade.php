@@ -34,6 +34,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     {{-- custom css --}}
     <link href={{ asset('css/custom-css.css') }} rel="stylesheet" />
+    {{-- Slick --}}
+    <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
+
 </head>
 
 <body class="m-0 font-open antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
@@ -68,6 +72,11 @@
 
     {{-- Jquery --}}
     <script src="{{ asset('assets/js/jquery-3.6.0.js') }}"></script>
+
+    {{-- Slick --}}
+    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+
+    {{-- Select2 --}}
 
     {{--  --}}
     <script src="{{ asset('assets/js/index.min.js') }}"></script>

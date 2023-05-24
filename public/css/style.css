@@ -5156,6 +5156,14 @@ textarea.form-control.is-invalid {
   padding-left: 2.25rem;
 }
 
+.pr-0\.75 {
+  padding-right: 0.1875rem;
+}
+
+.pr-0 {
+  padding-right: 0px;
+}
+
 .text-left {
   text-align: left;
 }
@@ -5243,6 +5251,10 @@ textarea.form-control.is-invalid {
 
 .text-\[10px\] {
   font-size: 10px;
+}
+
+.text-\[12px\] {
+  font-size: 12px;
 }
 
 .font-semibold {

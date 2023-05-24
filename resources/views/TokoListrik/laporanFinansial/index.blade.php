@@ -120,4 +120,5 @@
             rangeForm.submit();
         })
     </script>
+    @yield('slick')
 @endsection

@@ -103,7 +103,8 @@
                                                             <div class="ml-1"><span
                                                                     class="leading-normal font-bold font-weight-bolder text-red-500">
                                                                     @if ($totalPenyusutan <= -10000)
-                                                                        {{ number_format($totalPenyusutan / 1000, 0) }}K Liter
+                                                                        {{ number_format($totalPenyusutan / 1000, 0) }}K
+                                                                        Liter
                                                                         Liter
                                                                     @else
                                                                         {{ number_format($totalPenyusutan) }} Liter

@@ -387,7 +387,7 @@
     </div>
 @endsection
 
-@section('scripts')
+@section('slick')
     <script>
         function setup() {
             return {
@@ -425,8 +425,4 @@
         });
     });
 </script>
-@endsection
-
-@section('scripts')
-
 @endsection

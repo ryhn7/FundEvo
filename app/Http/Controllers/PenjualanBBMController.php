@@ -64,23 +64,37 @@ class PenjualanBBMController extends Controller
             $validated['created_at'] = Carbon::now();
         }
 
-        //limit jenis_bbm from bbm_id to 1 each
         $bbm_id = $request->bbm_id;
+        $date = $request->created_at;
+
         $yesterday = Carbon::yesterday()->toDateString();
+        $dayBeforeYesterday = Carbon::yesterday()->subDay()->toDateString();
+        $penjualanBBMDayBeforeYesterday = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', $dayBeforeYesterday)->first();
         $penjualanBBMYesterday = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', $yesterday)->first();
         $penjualanBBM = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
+        $allBBM = PenjualanBBM::where('bbm_id', $bbm_id)->get();
+
         if ($penjualanBBM) {
-            return redirect('/penjualan-bbm')->with('error', 'Hanya boleh input 1 jenis BBM per hari!');
+            return redirect('/PenjualanBBM')->with('error', 'Hanya boleh input 1 jenis BBM per hari!');
         }
 
-        // dd($penjualanBBMYesterday);
-        if (!$penjualanBBMYesterday) {
-            return redirect('/penjualan-bbm')->with('error', 'Harap input penjualan BBM hari kemarin terlebih dahulu!');
+        if ($allBBM->count() == 0) {
+            PenjualanBBM::create($validated);
+            return redirect('/PenjualanBBM')->with('success', 'Data penjualan berhasil ditambahkan!');
+        } else if (!$penjualanBBMYesterday) {
+            if ($penjualanBBMDayBeforeYesterday && $date != Carbon::now()->toDateString()) {
+                PenjualanBBM::create($validated);
+                return redirect('/PenjualanBBM')->with('success', 'Data penjualan berhasil ditambahkan!');
+            } else {
+                return redirect('/PenjualanBBM')->with('error', 'Harap input penjualan BBM hari kemarin terlebih dahulu!');
+            }
+        } else {
+            PenjualanBBM::create($validated);
+            return redirect('/PenjualanBBM')->with('success', 'Data penjualan berhasil ditambahkan!');
         }
 
         PenjualanBBM::create($validated);
-
-        return redirect('/penjualan-bbm')->with('success', 'Data penjualan berhasil ditambahkan!');
+        return redirect('/PenjualanBBM')->with('success', 'Data penjualan berhasil ditambahkan!');
     }
 
     /**
@@ -100,11 +114,11 @@ class PenjualanBBMController extends Controller
      * @param  \App\Models\PenjualanBBM  $penjualanBBM
      * @return \Illuminate\Http\Response
      */
-    public function edit(PenjualanBBM $penjualan_bbm)
+    public function edit(PenjualanBBM $PenjualanBBM)
     {
         return view('SPBU.penjualanBBM.edit', [
             'bbms' => BBM::all(),
-            'sell' => $penjualan_bbm,
+            'sell' => $PenjualanBBM,
         ]);
     }
 
@@ -115,7 +129,7 @@ class PenjualanBBMController extends Controller
      * @param  \App\Models\PenjualanBBM  $penjualanBBM
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PenjualanBBM $penjualan_bbm)
+    public function update(Request $request, PenjualanBBM $PenjualanBBM)
     {
         $rules = [
             'bbm_id' => 'required',
@@ -136,10 +150,17 @@ class PenjualanBBMController extends Controller
             $validated['created_at'] = Carbon::now();
         }
 
-        PenjualanBBM::where('id', $penjualan_bbm->id)
+        $bbm_id = $request->bbm_id;
+        $penjualanBBM = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
+
+        if ($penjualanBBM) {
+            return redirect('/PenjualanBBM')->with('error', 'Hanya boleh input 1 jenis BBM per hari!');
+        }
+
+        PenjualanBBM::where('id', $PenjualanBBM->id)
             ->update($validated);
 
-        return redirect('/penjualan-bbm')->with('success', 'Data penjualan berhasil diubah!');
+        return redirect('/PenjualanBBM')->with('success', 'Data penjualan berhasil diubah!');
     }
 
     /**
@@ -148,19 +169,17 @@ class PenjualanBBMController extends Controller
      * @param  \App\Models\PenjualanBBM  $penjualanBBM
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PenjualanBBM $penjualan_bbm)
+    public function destroy(PenjualanBBM $PenjualanBBM)
     {
-        PenjualanBBM::destroy($penjualan_bbm->id);
+        PenjualanBBM::destroy($PenjualanBBM->id);
 
-        return redirect('/penjualan-bbm')->with('success', 'Data penjualan berhasil dihapus!');
+        return redirect('/PenjualanBBM')->with('success', 'Data penjualan berhasil dihapus!');
     }
 
     // create filter for date
     public function filter(Request $request)
     {
-        // dd($request->date);
         $date = Carbon::parse($request->date)->toDateString();
-        // return $date;
         $penjualanBBM = PenjualanBBM::whereDate('created_at', '=', $date)->get();
         return view('SPBU.penjualanBBM.index', [
             'sells' => $penjualanBBM,
@@ -183,13 +202,18 @@ class PenjualanBBMController extends Controller
 
     public function checkYesterday($id)
     {
+        $allBBM = PenjualanBBM::where('bbm_id', $id)->get();
         $yesterday = Carbon::yesterday()->toDateString();
-        $penjualanBBM = PenjualanBBM::where('bbm_id', $id)->whereDate('created_at', $yesterday)->first();
+        $penjualanBBMYesterday = PenjualanBBM::where('bbm_id', $id)->whereDate('created_at', $yesterday)->first();
 
-        if ($penjualanBBM == null) {
-            return response()->json(false);
+        if ($allBBM->count() == 0) {
+            return response()->json(true);
         } else {
-            return response()->json($penjualanBBM);
+            if ($penjualanBBMYesterday == null) {
+                return response()->json(false);
+            } else {
+                return response()->json($penjualanBBMYesterday);
+            }
         }
     }
 }

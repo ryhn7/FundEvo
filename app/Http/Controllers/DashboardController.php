@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PenjualanBBM;
 use App\Models\PenjualanItemListrik;
+use App\Models\PenjualanOliGas;
 use App\Models\BBM;
 use App\Models\Item;
 use Carbon\Carbon;
@@ -21,6 +22,13 @@ class DashboardController extends Controller
         // penjualan bbm only this year
         $penjualanBBM = PenjualanBBM::whereYear('created_at', Carbon::now()->year)->get();
         $totalPendapatan = $penjualanBBM->sum('pendapatan');
+
+        // penjualan oli gas only this year
+        $penjualanOliGas = PenjualanOliGas::whereYear('created_at', Carbon::now()->year)->get();
+        // separate total pendapatan oli and gas
+        $totalPendapatanOli = $penjualanOliGas->where('oli_gas_id', 1)->sum('pendapatan');
+        $totalPendapatanGas = $penjualanOliGas->where('oli_gas_id', 2)->sum('pendapatan');
+
 
         // pengeluaran ops bbm only this year
         $pengeluaranOpsBBM = PengeluaranOpsBBM::whereYear('created_at', Carbon::now()->year)->get();
@@ -76,8 +84,11 @@ class DashboardController extends Controller
         $rekap = [];
         $months = [];
         $totalPendapatanPerBulan = [];
+        $totalPendapatanOliPerBulan = [];
+        $totalPendapatanGasPerBulan = [];
         for ($i = 1; $i <= 12; $i++) {
             $penjualanBBMPerbulan = PenjualanBBM::WhereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->get();
+            $penjualanOliGasPerbulan = PenjualanOliGas::WhereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->get();
             $pengeluaranOpsBBMPerbulan = PengeluaranOpsBBM::WhereYear('created_at', Carbon::now()->year)->whereMonth('created_at', $i)->get();
 
             $tebusanPerBulan = $pengeluaranOpsBBMPerbulan->sum('harga_penebusan_bbm');
@@ -101,6 +112,9 @@ class DashboardController extends Controller
 
 
             $totalPendapatanPerBulan[$i] = $penjualanBBMPerbulan->sum('pendapatan');
+            $totalPendapatanOliPerBulan[$i] = $penjualanOliGasPerbulan->where('oli_gas_id', 1)->sum('pendapatan');
+            $totalPendapatanGasPerBulan[$i] = $penjualanOliGasPerbulan->where('oli_gas_id', 2)->sum('pendapatan');
+
 
             $hppPerBulan = [];
             foreach ($bbm as $item) {
@@ -135,10 +149,19 @@ class DashboardController extends Controller
             $valueSatu[] = array_sum($penjualanLiterPerBulan);
             $valueDua[] = array_sum($penyusutanLiterPerBulan);
 
+            $persentaseBulan = 0; // Initialize the variable with a default value
+
+            if ($totalPendapatanPerBulan[$i] != 0) {
+                $persentaseBulan = round(($totalLabaKotorSatuPerBulan / $totalPendapatanPerBulan[$i]) * 100, 2);
+            }
+
 
             $rekap[] = [
                 'month' => $months[$i],
                 'total_pendapatan' => $totalPendapatanPerBulan[$i],
+                'total_pendapatan_oli' => $totalPendapatanOliPerBulan[$i],
+                'total_pendapatan_gas' => $totalPendapatanGasPerBulan[$i],
+                'persentase_bulan' => $persentaseBulan,
                 'total_hpp_bulan' => $totalHppPerBulan,
                 'total_loss_bulan' => $totalPenyusutanPerBulan,
                 'total_laba_kotorSatu_bulan' => $totalLabaKotorSatuPerBulan,
@@ -157,9 +180,12 @@ class DashboardController extends Controller
         ])->with('labels', json_encode($labels, JSON_NUMERIC_CHECK))
             ->with('values', json_encode($values, JSON_NUMERIC_CHECK))->with('labelLines', json_encode($labelLines, JSON_NUMERIC_CHECK))->with('valueSatu', json_encode($valueSatu, JSON_NUMERIC_CHECK))->with('valueDua', json_encode($valueDua, JSON_NUMERIC_CHECK));
     }
-    
+
     public function indexDashboardTokoListrik()
     {
+
+        // return view('dashboardTokoListrik');
+
         $barang = Item::all();
         // penjualan bbm only this year
         $penjualanItem = PenjualanItemListrik::whereYear('created_at', Carbon::now()->year)->get();

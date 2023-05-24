@@ -3,29 +3,30 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="mb-3">
-        <ul class="flex border-b-[1.5px]">
-            <li class="mb-1.8">
-                <a href="/Dashboard/SPBU"
-                    class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
+    @can('isOwner')
+        <div class="mb-3">
+            <ul class="flex border-b-[1.5px]">
+                <li class="mb-1.8">
+                    <a href="/Dashboard/SPBU"
+                        class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
                     @if (request()->is('Dashboard/SPBU*')) text-green-500 border-green-500 @endif
                     ">
-                    Dashboard SPBU
-                </a>
-                <a href="/Dashboard/TokoListrik"
-                    class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
+                        Dashboard SPBU
+                    </a>
+                    <a href="/Dashboard/TokoListrik"
+                        class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
                         @if (request()->is('Dashboard/TokoListrik*')) text-green-500 border-green-500 @endif
                         ">
-                    Dashboard Toko Listrik
-                </a>
-            </li>
-        </ul>
-    </div>
+                        Dashboard Toko Listrik
+                    </a>
+                </li>
+            </ul>
+        </div>
+    @endcan
+
 
     @yield('dashboard')
     @yield('chartScript')
-
-
 @endsection
 
 <script>

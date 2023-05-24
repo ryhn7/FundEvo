@@ -59,7 +59,11 @@
                             <div>
                                 <p class="mb-0 font-open font-semibold leading-normal text-sm">Total Penjualan BBM</p>
                                 <h5 class="mb-0 font-bold">
-                                    {{ $totalSell }}
+                                    @if ($totalSell > 0)
+                                        {{ $totalSell }} Liter
+                                    @else
+                                        {{ $totalSell }}
+                                    @endif
                                 </h5>
                             </div>
                         </div>
@@ -88,14 +92,14 @@
                         <div class="flex-none w-1/2 max-w-full px-3 text-right">
                             <div class="flex justify-end">
                                 <div class="mr-5">
-                                    <form id="dateFilter" action="/penjualan-bbm/filter" class="py-0.5" method="GET">
+                                    <form id="dateFilter" action="/PenjualanBBM/filter" class="py-0.5" method="GET">
                                         <input id="date1" type="date" name="date" value="{{ request('date') }}"
                                             class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
                                     </form>
                                 </div>
                                 <div class="">
                                     <a class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 bg-gradient-to-tl from-red-500 to-yellow-400 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
-                                        href="/penjualan-bbm/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah
+                                        href="/PenjualanBBM/create"> <i class="fas fa-plus"> </i>&nbsp;&nbsp;Tambah
                                         Penjualan</a>
                                 </div>
                             </div>
@@ -212,7 +216,7 @@
                                                 <button
                                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                     aria-label="Edit">
-                                                    <a href="/penjualan-bbm/{{ $sells[0]->id }}/edit">
+                                                    <a href="/PenjualanBBM/{{ $sells[0]->id }}/edit">
                                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                             viewBox="0 0 20 20">
                                                             <path
@@ -220,7 +224,7 @@
                                                             </path>
                                                         </svg></a>
                                                 </button>
-                                                <form action="/penjualan-bbm/{{ $sells[0]->id }}" method="POST">
+                                                <form action="/PenjualanBBM/{{ $sells[0]->id }}" method="POST">
                                                     @method('delete')
                                                     @csrf
                                                     <button
@@ -305,7 +309,7 @@
                                                     <button
                                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-500 rounded-lg hover:bg-orange-400 hover:text-white"
                                                         aria-label="Edit">
-                                                        <a href="/penjualan-bbm/{{ $sell->id }}/edit">
+                                                        <a href="/PenjualanBBM/{{ $sell->id }}/edit">
                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                                 viewBox="0 0 20 20">
                                                                 <path
@@ -313,7 +317,7 @@
                                                                 </path>
                                                             </svg></a>
                                                     </button>
-                                                    <form action="/penjualan-bbm/{{ $sell->id }}" method="POST">
+                                                    <form action="/PenjualanBBM/{{ $sell->id }}" method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button

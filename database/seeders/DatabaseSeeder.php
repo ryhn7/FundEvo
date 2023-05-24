@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\PenjualanBBM;
 use App\Models\PengeluaranOpsBBM;
+use App\Models\PenjualanItemListrik;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -26,6 +27,45 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        DB::table('roles')->insert([
+            [
+                'name' => 'Owner',
+            ],
+            [
+                'name' => 'Admin SPBU',
+            ],
+            [
+                'name' => 'Admin Toko Listrik',
+            ],
+        ]);
+
+        DB::table('users')->insert([
+            [
+                'role_id' => 1,
+                'name' => 'Ashlan',
+                'email' => 'ashlan@gmail.com',
+                'password' => bcrypt('Narnia'),
+            ],
+            [
+                'role_id' => 1,
+                'name' => 'Owner',
+                'email' => 'owner@gmail.com',
+                'password' => bcrypt('Owner'),
+            ],
+            [
+                'role_id' => 2,
+                'name' => 'Admin SPBU',
+                'email' => 'spbu@gmail.com',
+                'password' => bcrypt('SPBU'),
+            ],
+            [
+                'role_id' => 3,
+                'name' => 'Admin Toko Listrik',
+                'email' => 'listrik@gmail.com',
+                'password' => bcrypt('TokoListrik'),
+            ],
+        ]);
 
         DB::table('b_b_m_s')->insert([
             [
@@ -50,20 +90,12 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        PenjualanBBM::factory(30)->create();
-
-        DB::table('kategori_items')->insert([
+        DB::table('oli_gas_statics')->insert([
             [
-                'kategori' => 'Lampu',
+                'jenis' => 'Oli',
             ],
             [
-                'kategori' => 'Kabel',
-            ],
-            [
-                'kategori' => 'Stop Kontak',
-            ],
-            [
-                'kategori' => 'Saklar',
+                'jenis' => 'Gas',
             ],
         ]);
 
@@ -114,9 +146,9 @@ class DatabaseSeeder extends Seeder
                 'kategori' => 'Saklar',
             ],
         ]);
-        PenjualanBBM::factory(4)->create();
 
         PenjualanBBM::factory(30)->create();
+        PenjualanItemListrik::factory(30)->create();
 
 
     }

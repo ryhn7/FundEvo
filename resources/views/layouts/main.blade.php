@@ -34,25 +34,49 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     {{-- custom css --}}
     <link href={{ asset('css/custom-css.css') }} rel="stylesheet" />
+    {{-- Slick --}}
+    <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
+
 </head>
 
 <body class="m-0 font-open antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
-    @include('partials.sidebar')
 
-    <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
-        @include('partials.navbar')
-        <!-- cards -->
-        <div class="w-full px-6 py-6 mx-auto">
-            @yield('container')
-        </div>
-        <!-- end cards -->
-    </main>
+    @if (Request::is('oke'))
+        @yield('tes')
+    @endif
+
+
+    @if (Request::is('login'))
+        @yield('login')
+    @else
+        {{-- check if auth --}}
+        @if (Auth::check())
+            @include('partials.sidebar')
+
+            <main
+                class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
+                @include('partials.navbar')
+                <!-- cards -->
+                <div class="w-full px-6 py-6 mx-auto">
+                    @yield('container')
+                </div>
+                <!-- end cards -->
+            </main>
+        @endif
+    @endif
+
 
     {{-- Alpine js --}}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     {{-- Jquery --}}
     <script src="{{ asset('assets/js/jquery-3.6.0.js') }}"></script>
+
+    {{-- Slick --}}
+    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+
+    {{-- Select2 --}}
 
     {{--  --}}
     <script src="{{ asset('assets/js/index.min.js') }}"></script>

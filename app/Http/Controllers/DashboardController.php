@@ -184,7 +184,7 @@ class DashboardController extends Controller
     public function indexDashboardTokoListrik()
     {
 
-        return view('dashboardTokoListrik');
+        // return view('dashboardTokoListrik');
 
         $barang = Item::all();
         // penjualan bbm only this year

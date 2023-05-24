@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('penjualan_item_listriks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('item_id');
+            $table->foreignId('kategori_id');
             $table->integer('stock_awal');
             $table->integer('penerimaan');
             $table->integer('penjualan');

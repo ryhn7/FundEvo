@@ -33,6 +33,7 @@ class LaporanFinansialTokoListrikController extends Controller
 
         $totalHpp = array_sum($hpp);
         $keuntungan = $totalPendapatan - $totalHpp;
+        $kategori = KategoriItem::all();
 
 
         return view('TokoListrik.laporanFinansial.indexPenjualanItem', [
@@ -47,6 +48,7 @@ class LaporanFinansialTokoListrikController extends Controller
             'totalHpp' => $totalHpp,
             'keuntungan' => $keuntungan,
             'info' => 'Penjualan',
+            'kategoris' => $kategori,
         ]);
     }
 

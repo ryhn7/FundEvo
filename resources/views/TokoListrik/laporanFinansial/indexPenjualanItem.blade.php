@@ -125,14 +125,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-wrap mt-2 -mx-3">
+                    <div class="flex flex-wrap mt-3 -mx-3 pr-1.5 carousel-container">
                         <!-- card1 -->
-                        @foreach ($barang as $item)
+                        @foreach ($kategoris as $kategori)
                             {{-- get sum of pendapatan from penjualan bbm use blade --}}
                             @php
-                                $revenue = $sells->where('item_id', $item->id)->sum('pendapatan');
-                                $pcs = $sells->where('item_id', $item->id)->sum('penjualan');
-                                $penyusutan = $sells->where('item_id', $item->id)->sum('penyusutan');
+                                $revenue = $sells->where('kategori_id', $kategori->id)->sum('pendapatan');
+                                $pcs = $sells->where('kategori_id', $kategori->id)->sum('penjualan');
+                                $penyusutan = $sells->where('kategori_id', $kategori->id)->sum('penyusutan');
                             @endphp
 
                             <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
@@ -143,7 +143,7 @@
                                             <div class="flex-none w-3/4max-w-full px-3">
                                                 <div>
                                                     <p class="mb-0.38 font-open font-semibold leading-normal text-sm">
-                                                        {{ $item->kategori }}
+                                                        {{ $kategori->kategori}}
                                                     </p>
                                                     <h5 class="mb-0 text-[20px] font-bold">
                                                         @currency($revenue) </h5>
@@ -415,6 +415,18 @@
             rangeForm.submit();
         })
     </script>
+
+<script>
+    $(document).ready(function() {
+        $('.carousel-container').slick({
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 1
+        });
+    });
+</script>
 @endsection
 
+@section('scripts')
 
+@endsection

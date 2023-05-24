@@ -20,11 +20,11 @@
                     </label>
                 </div>
 
-                <label for="kategori_item" class="block mt-4 text-sm">
+                <label for="kategori_id" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">
                         Kategori Item
                     </span>
-                    <select name="kategori_item" id="kategori_item" required
+                    <select name="kategori_id" id="kategori_id" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" disabled selected class="font-semibold" style="display: none;" >Pilih Kategori</option>
                         @foreach ($kategoris as $kategor)
@@ -35,7 +35,7 @@
                             <!-- @endif -->
                         @endforeach
                     </select>
-                    @error('kategori_item')
+                    @error('kategori_id')
                         <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
                     @enderror
                 </label>
@@ -214,13 +214,13 @@
             Kategori Dropdown Change Event
             --------------------------------------------
             --------------------------------------------*/
-            $('#kategori_item').select2(
+            $('#kategori_id').select2(
                 {
                     placeholder: 'Pilih Kategori',
                     allowClear: true,
                 }
             );
-            $('#kategori_item').on('change', function () {
+            $('#kategori_id').on('change', function () {
                 var kategori_id = this.value;
                 console.log(kategori_id);
                 // $("#nama_item").html('');

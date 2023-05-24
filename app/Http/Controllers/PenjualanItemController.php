@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\KategoriItem;
 use Carbon\Carbon;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class PenjualanItemController extends Controller
 {
@@ -51,6 +52,7 @@ class PenjualanItemController extends Controller
         // dd(request()->all());
         $validated = $request->validate([
             'item_id' => 'nullable',
+            'kategori_id' => 'required',
             'stock_awal' => 'required|numeric',
             'penerimaan' => 'nullable|numeric',
             'penyusutan' => 'nullable|numeric',

@@ -53,7 +53,6 @@
         {{-- check if auth --}}
         @if (Auth::check())
             @include('partials.sidebar')
-
             <main
                 class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
                 @include('partials.navbar')

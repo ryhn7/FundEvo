@@ -56,9 +56,9 @@
                                 @endif
 
                                 @if (request()->is('LaporanFinansialSPBU/LaporanRabaRugi*'))
-                                <p class="mb-12"></p>
+                                    <p class="mb-12"></p>
                                 @else
-                                    <p class="mb-12">{{ $count }} {{$info}}</p>
+                                    <p class="mb-12">{{ $count }} {{ $info }}</p>
                                 @endif
                             </div>
                         </div>
@@ -133,4 +133,5 @@
             rangeForm.submit();
         })
     </script>
+    @yield('slick')
 @endsection

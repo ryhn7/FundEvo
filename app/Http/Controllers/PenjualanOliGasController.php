@@ -34,6 +34,7 @@ class PenjualanOliGasController extends Controller
     {
         return view('SPBU.penjualanOliGas.create', [
             'oligases' => OliGasStatic::all(),
+            'oligasesName' => OliGas::all(),
         ]);
     }
 
@@ -113,6 +114,7 @@ class PenjualanOliGasController extends Controller
     {
         return view('SPBU.penjualanOliGas.edit', [
             'oligases' => OliGasStatic::all(),
+            'oligasesName' => OliGas::all(),
             'sell' => $PenjualanOliGa,
         ]);
     }
@@ -144,10 +146,9 @@ class PenjualanOliGasController extends Controller
         }
 
         $nama = $request->nama;
-        $PenjualanOliGas = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', Carbon::now()->toDateString())->first();
+        $existingpenjualanOliGas = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', Carbon::now()->toDateString())->first();
 
-
-        if ($PenjualanOliGas) {
+        if ($existingpenjualanOliGas && $existingpenjualanOliGas->id !== $PenjualanOliGa->id) {
             return redirect('/PenjualanOliGas')->with('error', 'Data sudah ada!');
         }
 

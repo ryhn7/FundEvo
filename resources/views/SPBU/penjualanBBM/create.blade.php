@@ -214,7 +214,6 @@
                 },
                 dataType: 'json',
                 success: function(result) {
-                    console.log(result);
                     if (result == true) {
                         date.classList.add('hidden');
                     } else if (result.created_at == date.value) {

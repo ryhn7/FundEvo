@@ -151,9 +151,9 @@ class PenjualanBBMController extends Controller
         }
 
         $bbm_id = $request->bbm_id;
-        $penjualanBBM = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
+        $existingPenjualanBBM  = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
 
-        if ($penjualanBBM) {
+        if ($existingPenjualanBBM && $existingPenjualanBBM->id !== $PenjualanBBM->id) {
             return redirect('/PenjualanBBM')->with('error', 'Hanya boleh input 1 jenis BBM per hari!');
         }
 

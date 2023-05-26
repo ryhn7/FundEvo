@@ -5124,8 +5124,12 @@ textarea.form-control.is-invalid {
   padding-top: 1.25rem;
 }
 
-.pr-1\.5 {
-  padding-right: 0.375rem;
+.pr-0\.75 {
+  padding-right: 0.1875rem;
+}
+
+.pr-0 {
+  padding-right: 0px;
 }
 
 .pr-2 {
@@ -5138,18 +5142,6 @@ textarea.form-control.is-invalid {
 
 .pl-9 {
   padding-left: 2.25rem;
-}
-
-.pr-0\.5 {
-  padding-right: 0.125rem;
-}
-
-.pr-0 {
-  padding-right: 0px;
-}
-
-.pr-0\.75 {
-  padding-right: 0.1875rem;
 }
 
 .text-left {
@@ -5224,10 +5216,6 @@ textarea.form-control.is-invalid {
   line-height: 1.75rem;
 }
 
-.text-\[13px\] {
-  font-size: 13px;
-}
-
 .text-6xl {
   font-size: 3.75rem;
   line-height: 1;
@@ -5237,12 +5225,12 @@ textarea.form-control.is-invalid {
   font-size: 20px;
 }
 
-.text-\[10px\] {
-  font-size: 10px;
-}
-
 .text-\[12px\] {
   font-size: 12px;
+}
+
+.text-\[10px\] {
+  font-size: 10px;
 }
 
 .font-semibold {
@@ -5427,8 +5415,14 @@ textarea.form-control.is-invalid {
   color: rgb(21 128 61 / var(--tw-text-opacity));
 }
 
-.text-\[12\] {
-  color: 12;
+.text-yellow-700 {
+  --tw-text-opacity: 1;
+  color: rgb(161 98 7 / var(--tw-text-opacity));
+}
+
+.text-\[\#CC5500\] {
+  --tw-text-opacity: 1;
+  color: rgb(204 85 0 / var(--tw-text-opacity));
 }
 
 .antialiased {

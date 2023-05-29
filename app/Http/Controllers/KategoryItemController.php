@@ -41,7 +41,9 @@ class KategoryItemController extends Controller
     {
         //
         $validated = $request->validate([
-            'kategori' => 'required|max:25'
+            'kategori' => 'required|max:25|unique:kategori_items'
+        ], [
+            'kategori.unique' => 'Kategori sudah terdaftar',
         ]);
 
         KategoriItem::create($validated);
@@ -85,10 +87,12 @@ class KategoryItemController extends Controller
     {
         //
         $rules = [
-            'kategori' => 'required|max:25',
+            'kategori' => 'required|max:25|unique:kategori_items',
         ];
 
-        $validated = $request->validate($rules);
+        $validated = $request->validate($rules,[
+            'kategori.unique' => 'Nama item sudah terdaftar',
+        ]);
 
         KategoriItem::where('id', $kategori->id)
             ->update($validated);

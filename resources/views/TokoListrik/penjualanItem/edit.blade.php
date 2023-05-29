@@ -11,13 +11,13 @@
                     <span class="text-gray-700 font-semibold">
                         Kategori Item
                     </span>
-                    <select name="kategori_item" id="kategori_item" required disabled
+                    <select name="kategori_item" id="kategori_item" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
-                        <option value="" class="font-semibold">Pilih Kategori</option>
+                        <!-- <option value="" class="font-semibold">Pilih Kategori</option> -->
                         @foreach ($items as $item)
                             @if (old('item_id', $sell->item_id) == $item->id)
                                 @foreach ($kategoris as $kategori)
-                                    @if (old('kategori_item', $ori) == $kategori->id)
+                                    @if (old('kategori_item', $item->kategori) == $kategori->id)
                                         <option value="{{ $kategori->id }}" selected>{{ $kategori->kategori }}</option>
                                     @else
                                         <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
@@ -56,7 +56,7 @@
                     <span class="text-gray-700 font-semibold">
                         Nama Item
                     </span>
-                    <select name="item_id" id="item_id" required disabled
+                    <select name="item_id" id="item_id" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" class="font-semibold">Pilih Item</option>
                         @foreach ($items as $item)

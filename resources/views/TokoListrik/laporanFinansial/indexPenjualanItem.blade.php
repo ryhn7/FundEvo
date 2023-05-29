@@ -169,15 +169,20 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        @endforeach
 
+                                            <div class="px-3 text-right basis-1/3">
+                                                <div
+                                                    class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
+                                                    <i
+                                                        class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <button onclick="submitForm()">Submit</button>
-
                             </div>
-                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
@@ -188,7 +193,6 @@
             <div class="px-6 pb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
             </div>
         </div>
-        
         @if ($sells->count() > 0)
             <div class="flex-auto px-0 pt-0 pb-2">
                 <div class="p-0 overflow-x-auto">

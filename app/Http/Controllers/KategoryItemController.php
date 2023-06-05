@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\KategoriItem;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class KategoryItemController extends Controller
@@ -87,12 +88,10 @@ class KategoryItemController extends Controller
     {
         //
         $rules = [
-            'kategori' => 'required|max:25|unique:kategori_items',
+            'kategori' => 'required|max:25',
         ];
 
-        $validated = $request->validate($rules,[
-            'kategori.unique' => 'Nama item sudah terdaftar',
-        ]);
+        $validated = $request->validate($rules);
 
         KategoriItem::where('id', $kategori->id)
             ->update($validated);
@@ -109,6 +108,10 @@ class KategoryItemController extends Controller
     public function destroy(KategoriItem $kategori)
     {
         //
+        $itemExists = Item::where('kategori', $kategori->id)->exists();
+        if ($itemExists) {
+            return redirect('/kategori')->with('error', 'Tidak dapat menghapus kategori karena item terkait masih ada!');
+        }
         KategoriItem::destroy($kategori->id);
         return redirect('/kategori')->with('success', 'Data kategori berhasil dihapus!');
     

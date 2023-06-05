@@ -96,14 +96,12 @@ class ItemCategoryController extends Controller
         //
         $rules = [
             'kategori' => 'required|max:25',
-            'nama_item' => 'required|unique:items',
+            'nama_item' => 'required',
             'harga_beli' => 'required|numeric',
             'harga_jual' => 'required|numeric',
         ];
 
-        $validated = $request->validate($rules, [
-            'nama_item.unique' => 'Nama item sudah terdaftar',
-        ]);
+        $validated = $request->validate($rules);
 
         Item::where('id', $kategori_item->id)
             ->update($validated);

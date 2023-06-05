@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PengeluaranOpsBBM;
 use App\Models\BBM;
+use App\Models\PenjualanBBM;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -44,8 +45,20 @@ class PengeluaranOpsBBMController extends Controller
      */
     public function create()
     {
+        $bbm = BBM::all();
+        $penjualanBBMToday = PenjualanBBM::whereDate('created_at', Carbon::now()->toDateString())->get();
+
+        foreach ($bbm as $item) {
+            $hargaBeli = $item->harga_beli;
+            $penerimaan = $penjualanBBMToday->where('bbm_id', $item->id)->sum('penerimaan');
+
+            $penebusan[$item->id] = $hargaBeli * $penerimaan;
+        }
+        $totalPenebusan = array_sum($penebusan);
+        
         return view('SPBU.pengeluaranOpsBBM.create', [
-            'bbms' => BBM::all(),
+            'totalTebusan' => $totalPenebusan,
+
         ]);
     }
 

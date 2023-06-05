@@ -71,7 +71,7 @@ class PenjualanBBMController extends Controller
         $dayBeforeYesterday = Carbon::yesterday()->subDay()->toDateString();
         $penjualanBBMDayBeforeYesterday = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', $dayBeforeYesterday)->first();
         $penjualanBBMYesterday = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', $yesterday)->first();
-        $penjualanBBM = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', Carbon::now()->toDateString());
+        $penjualanBBM = PenjualanBBM::where('bbm_id', $bbm_id)->whereDate('created_at', Carbon::now()->toDateString())->first();
         $allBBM = PenjualanBBM::where('bbm_id', $bbm_id)->get();
 
         if ($penjualanBBM) {

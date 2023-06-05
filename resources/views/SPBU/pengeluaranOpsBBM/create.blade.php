@@ -10,7 +10,8 @@
                             class="text-[10px] text-[#42dc7a] tracking-wider">(Optional)
                         </span></span>
                     <input type="number" min="0" step="any" id="harga_penebusan_bbm" name="harga_penebusan_bbm"
-                        value="{{ old('harga_penebusan_bbm') }}"
+                        value="{{ $totalTebusan ?? old('harga_penebusan_bbm', 0) }}"
+                        readonly
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('harga_penebusan_bbm')
                     border-red-600 focus:border-red-600 focus:ring-red-600
                     @enderror" />

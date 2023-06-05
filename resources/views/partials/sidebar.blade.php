@@ -223,7 +223,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
                                         width="512" height="512" x="0" y="0"
-                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
                                         xml:space="preserve" class="">
                                         <g>
                                             <path d="M95.274 59.883h89.825v29.942H95.274z" fill="#ffffff"

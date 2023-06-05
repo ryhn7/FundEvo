@@ -68,7 +68,7 @@ class PenjualanOliGasController extends Controller
         $dayBeforeYesterday = Carbon::yesterday()->subDay()->toDateString();
         $PenjualanOliGasDayBeforeYesterday = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', $dayBeforeYesterday)->first();
         $PenjualanOliGasYesterday = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', $yesterday)->first();
-        $PenjualanOliGas = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', Carbon::now()->toDateString());
+        $PenjualanOliGas = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', Carbon::now()->toDateString())->first();
         $allOliGas = PenjualanOliGas::where('nama', $nama)->get();
 
 

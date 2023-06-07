@@ -92,7 +92,7 @@
                             <div class="flex justify-end">
                                 <div class="mr-5">
                                     <form id="dateFilter" action="/PenjualanOliGas/filter" class="py-0.5" method="GET">
-                                        <input id="date1" type="date" name="date" value="{{ request('date') }}"
+                                        <input id="date1" type="date" name="date" value="{{ request('date') ?: now()->format('Y-m-d') }}"
                                             class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
                                     </form>
                                 </div>

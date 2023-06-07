@@ -292,11 +292,17 @@ class DashboardController extends Controller
             $valueSatu[] = array_sum($penjualanPcsPerBulan);
             $valueDua[] = array_sum($penyusutanPcsPerBulan);
 
+            $persentaseBulan = 0; // Initialize the variable with a default value
+
+            if ($totalPendapatanPerBulan[$i] != 0) {
+                $persentaseBulan = round(($totalLabaKotorSatuPerBulan / $totalPendapatanPerBulan[$i]) * 100, 2);
+            }
 
             $rekap[] = [
                 'month' => $months[$i],
                 'total_pendapatan' => $totalPendapatanPerBulan[$i],
                 'total_hpp_bulan' => $totalHppPerBulan,
+                'persentase_bulan' => $persentaseBulan,
                 'total_loss_bulan' => $totalPenyusutanPerBulan,
                 'total_laba_kotorSatu_bulan' => $totalLabaKotorSatuPerBulan,
                 'total_laba_kotorDua_bulan' => $totalLabaKotorDuaPerBulan,

@@ -14,6 +14,7 @@ class LaporanFinansialTokoListrikController extends Controller
     public function indexPenjualanTokoListrik()
     {
         $barang = Item::all();
+        $kategori = KategoriItem::all();
 
         //filter $penjualanBBM by month
         $penjualanItem = PenjualanItemListrik::sortable()->whereYear('created_at', Carbon::now()->year)
@@ -40,6 +41,7 @@ class LaporanFinansialTokoListrikController extends Controller
             'sells' => $penjualanItem,
             'count' => $penjualanItem->count(),
             'barang' => $barang,
+            'kategoris' =>$kategori,
             'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
             'year' => Carbon::now()->year,
             'totalPendapatan' => $totalPendapatan,

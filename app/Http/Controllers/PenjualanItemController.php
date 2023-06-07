@@ -21,7 +21,9 @@ class PenjualanItemController extends Controller
         // $date = Carbon::today()->toDateString();
         // return($date);
         $penjualanItem = PenjualanItemListrik::whereDate('created_at', Carbon::today()->toDateString())->get();
+        $page = PenjualanItemListrik::paginate(10);
         return view('TokoListrik.penjualanItem.index', [
+            'pages' => $page,
             'sells' => $penjualanItem,
             'totalAmount' => $penjualanItem->sum('pendapatan'),
             'totalSell' => $penjualanItem->sum('penjualan'),
@@ -140,8 +142,8 @@ class PenjualanItemController extends Controller
         $rules = [
             'item_id' => 'nullable',
             'stock_awal' => 'required|numeric',
-            'penerimaan' => 'nullable|numeric',
-            'penjualan' => 'nullable|numeric',
+            'penerimaan' => 'required|numeric',
+            'penjualan' => 'required|numeric',
             'stock_akhir' => 'required|numeric',
             'penyusutan' => 'required|numeric',
             'pendapatan' => 'required|numeric',

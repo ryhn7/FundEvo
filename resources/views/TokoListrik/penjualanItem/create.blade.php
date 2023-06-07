@@ -27,7 +27,7 @@
                     <select name="kategori_id" id="kategori_id" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" disabled selected class="font-semibold" style="display: none;" >Pilih Kategori</option>
-                        @foreach ($kategoris as $kategor)
+                        @foreach ($kategoris->sortBy('kategori') as $kategor)
                             <!-- @if (old('kategori') == $kategor->id)
                                 <option value="{{ $kategor->id }}" selected>{{ $kategor->kategori}}</option>
                             @else -->
@@ -47,7 +47,7 @@
                     <select name="item_id" id="item_id" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" class="font-semibold" style="display: none;" disabled selected hidden>Pilih Item</option>
-                        @foreach ($items as $item)
+                        @foreach ($items->sortBy('nama_item') as $item)
                         {{-- @foreach ($items as $item)
                             @if (old('item_id') == $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->nama_item}}</option>
@@ -148,7 +148,7 @@
                 </label>
 
                 <button
-                    class="mt-10 w-full px-3 py-3 bg-black text-white font-bold rounded shadow-md hover:bg-[#333333]">Tambah
+                    class="mt-10 w-full px-3 py-3 bg-orange-500 text-white font-bold uppercase transition-all bg-transparent rounded cursor-pointer leading-pro ease-soft-in shadow-soft-md hover:bg-yellow-500 hover:shadow-soft-xs active:opacity-85 hover:scale-[1.005] tracking-tight-soft bg-x-25">Tambah
                     Penjualan</button>
             </div>
         </form>

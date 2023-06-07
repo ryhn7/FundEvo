@@ -426,3 +426,7 @@
     });
 </script>
 @endsection
+
+@section('scripts')
+
+@endsection

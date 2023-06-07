@@ -13,7 +13,7 @@
                     </span>
                     <select name="kategori_item" id="kategori_item" required disabled
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
-                        <option value="" class="font-semibold">Pilih Kategori</option>
+                        <!-- <option value="" class="font-semibold">Pilih Kategori</option> -->
                         @foreach ($items as $item)
                             @if (old('item_id', $sell->item_id) == $item->id)
                                 @foreach ($kategoris as $kategori)
@@ -74,7 +74,7 @@
 
                 <label for="harga_jual" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Harga Item</span>
-                    <input type="number" min="0" step="any" id="harga_jual" name="harga_jual" required
+                    <input type="number" min="0" step="any" id="harga_jual" name="harga_jual" required disabled
                         @foreach ($items as $item)
                             @if (old('harga_jual', $sell->item_id) == $item->id)
                             value="{{ old('harga_jual', $item->harga_jual) }}"
@@ -101,7 +101,7 @@
 
                 <label for="penerimaan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Penerimaan</span>
-                    <input type="number" min="0" step="any" id="penerimaan" name="penerimaan"
+                    <input type="number" min="0" step="any" id="penerimaan" name="penerimaan" required
                         value="{{ old('penerimaan', $sell->penerimaan) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penerimaan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -125,7 +125,7 @@
 
                 <label for="penjualan" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">Penjualan</span>
-                    <input type="number" min="0" step="any" id="penjualan" name="penjualan"
+                    <input type="number" min="0" step="any" id="penjualan" name="penjualan" required
                         value="{{ old('penjualan', $sell->penjualan) }}"
                         class="block px-2 py-1 w-full mt-1 text-sm border border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow @error('penjualan')
                     border-red-600 focus:border-red-600 focus:ring-red-600
@@ -161,7 +161,7 @@
                 </label>
 
                 <button
-                    class="mt-10 w-full px-3 py-3 bg-black text-white font-bold rounded shadow-md hover:bg-[#333333]">Edit
+                    class="mt-10 w-full px-3 py-3 bg-orange-500 text-white font-bold uppercase transition-all bg-transparent rounded cursor-pointer leading-pro ease-soft-in shadow-soft-md hover:bg-yellow-500 hover:shadow-soft-xs active:opacity-85 hover:scale-[1.005] tracking-tight-soft bg-x-25">Edit
                     Penjualan</button>
             </div>
         </form>

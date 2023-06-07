@@ -80,7 +80,7 @@ class PenjualanOliGasController extends Controller
             PenjualanOliGas::create($validated);
             return redirect('/PenjualanOliGas')->with('success', 'Data berhasil ditambahkan!');
         } else if (!$PenjualanOliGasYesterday) {
-            if ($PenjualanOliGasDayBeforeYesterday && $date != Carbon::now()->toDateString()) {
+            if ($PenjualanOliGasDayBeforeYesterday && ($date != Carbon::now()->toDateString() && $date == Carbon::yesterday()->toDateString())) {
                 PenjualanOliGas::create($validated);
                 return redirect('/PenjualanOliGas')->with('success', 'Data penjualan berhasil ditambahkan!');
             } else {

@@ -64,6 +64,8 @@ class PenjualanBBMController extends Controller
             $validated['created_at'] = Carbon::now();
         }
 
+        // dd($validated);
+
         $bbm_id = $request->bbm_id;
         $date = $request->created_at;
 
@@ -82,7 +84,7 @@ class PenjualanBBMController extends Controller
             PenjualanBBM::create($validated);
             return redirect('/PenjualanBBM')->with('success', 'Data penjualan berhasil ditambahkan!');
         } else if (!$penjualanBBMYesterday) {
-            if ($penjualanBBMDayBeforeYesterday && $date != Carbon::now()->toDateString()) {
+            if ($penjualanBBMDayBeforeYesterday && ($date != Carbon::now()->toDateString() && $date == Carbon::yesterday()->toDateString())) {
                 PenjualanBBM::create($validated);
                 return redirect('/PenjualanBBM')->with('success', 'Data penjualan berhasil ditambahkan!');
             } else {

@@ -16,7 +16,7 @@
             @can('isOwner')
                 <ul class="flex flex-col pl-0 mb-0">
                     <li class="mt-0.5 w-full">
-                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('/') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
+                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('Dashboard*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
                             href="/Dashboard/SPBU">
                             <div
                                 class="{{ request()->is('Dashboard*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
@@ -173,6 +173,7 @@
                             </span>
                         </a>
                     </li>
+
                     <li class="mt-0.5 w-full">
                         <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('KategoriBBM*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
                             href="/KategoriBBM">
@@ -214,6 +215,7 @@
                             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Kategori BBM</span>
                         </a>
                     </li>
+
                     <li class="mt-0.5 w-full">
                         <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('KategoriOliGas*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
                             href="/KategoriOliGas">
@@ -223,7 +225,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
                                         width="512" height="512" x="0" y="0"
-                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
                                         xml:space="preserve" class="">
                                         <g>
                                             <path d="M95.274 59.883h89.825v29.942H95.274z" fill="#ffffff"
@@ -258,7 +260,7 @@
                     </li>
 
                     <li class="mt-0.5 w-full">
-                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
+                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('LaporanFinansialSPBU*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
                             href="/LaporanFinansialSPBU/LaporanRabaRugi">
                             <div
                                 class="{{ request()->is('LaporanFinansialSPBU*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
@@ -492,7 +494,7 @@
             @can('isAdminSPBU')
                 <ul class="flex flex-col pl-0 mb-0">
                     <li class="mt-0.5 w-full">
-                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('/') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
+                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('Dashboard/SPBU') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
                             href="/Dashboard/SPBU">
                             <div
                                 class="{{ request()->is('Dashboard*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
@@ -653,6 +655,7 @@
                                 Harian</span>
                         </a>
                     </li>
+
                     <li class="mt-0.5 w-full">
                         <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('KategoriBBM*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
                             href="/KategoriBBM">
@@ -694,6 +697,7 @@
                             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Kategori BBM</span>
                         </a>
                     </li>
+
                     <li class="mt-0.5 w-full">
                         <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('KategoriOliGas*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
                             href="/KategoriOliGas">
@@ -737,7 +741,7 @@
                         </a>
                     </li>
                     <li class="mt-0.5 w-full">
-                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
+                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('LaporanFinansialSPBU*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors""
                             href="/LaporanFinansialSPBU/LaporanRabaRugi">
                             <div
                                 class="{{ request()->is('LaporanFinansialSPBU*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">

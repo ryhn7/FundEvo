@@ -5395,6 +5395,11 @@ textarea.form-control.is-invalid {
   color: rgb(206 212 218 / var(--tw-text-opacity));
 }
 
+.text-\[\#CC5500\] {
+  --tw-text-opacity: 1;
+  color: rgb(204 85 0 / var(--tw-text-opacity));
+}
+
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

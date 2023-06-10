@@ -17,6 +17,7 @@ class PengeluaranOpsTokoListrikFactory extends Factory
     public function definition()
     {
         return [
+            'biaya_kulakan' => fake()->numberBetween(30000000, 35000000),
             'gaji_karyawan' => fake()->numberBetween(20000000, 25000000),
             'reward_karyawan' => fake()->numberBetween(1000000, 3000000),
             'pbb' => fake()->numberBetween(1000000, 3000000),

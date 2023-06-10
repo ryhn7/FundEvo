@@ -41,7 +41,7 @@ class LaporanFinansialTokoListrikController extends Controller
             'sells' => $penjualanItem,
             'count' => $penjualanItem->count(),
             'barang' => $barang,
-            'kategoris' =>$kategori,
+            'kategoris' => $kategori,
             'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
             'year' => Carbon::now()->year,
             'totalPendapatan' => $totalPendapatan,
@@ -68,27 +68,25 @@ class LaporanFinansialTokoListrikController extends Controller
 
     // filter by month
     public function rangeFilterPenjualanItem(Request $request)
-    {
-        $start = Carbon::parse($request->start);
-        $end = Carbon::parse($request->end);
+{
+    $start = Carbon::parse($request->start);
+    $end = Carbon::parse($request->end)->endOfDay(); // Menggunakan akhir hari untuk memasukkan tanggal 10
 
-        $penjualanItem = PenjualanItemListrik::sortable()->whereBetween('created_at', [$start, $end])->get();
-        if ($start->month == $end->month) {
-            return redirect()->back()->with('error', 'Tanggal awal dan akhir tidak boleh dalam satu bulan');
-        }
+    $penjualanItem = PenjualanItemListrik::sortable()
+        ->where(function ($query) use ($start, $end) {
+            $query->whereDate('created_at', '>=', $start)
+                ->whereDate('created_at', '<=', $end);
+        })
+        ->get();
 
-        // range filter minimum 2 month
-        if ($start->diffInMonths($end) < 2) {
-            return redirect()->back()->with('error', 'Range filter minimal 2 bulan');
-        }
-        return view('TokoListrik.laporanFinansial.indexPenjualanItem', [
-            'sells' => $penjualanItem,
-            'count' => $penjualanItem->count(),
-            'start' => $start->locale('id')->isoFormat('MMMM '),
-            'end' => $end->locale('id')->isoFormat('MMMM Y'),
-            'info' => 'Penjualan',
-        ]);
-    }
+    return view('TokoListrik.laporanFinansial.indexPenjualanItem', [
+        'sells' => $penjualanItem,
+        'count' => $penjualanItem->count(),
+        'start' => $start->locale('id')->isoFormat('MMMM '),
+        'end' => $end->locale('id')->isoFormat('MMMM Y'),
+        'info' => 'Penjualan',
+    ]);
+}
 
     public function monthFilterPenjualanItem(Request $request)
     {
@@ -100,7 +98,7 @@ class LaporanFinansialTokoListrikController extends Controller
         $totalPendapatan = $penjualanItem->sum('pendapatan');
         $totalTerjual = $penjualanItem->sum('penjualan');
         $totalPenyusutan = $penjualanItem->sum('penyusutan');
-        
+
 
         $hpp = [];
         foreach ($barang as $item) {
@@ -143,9 +141,14 @@ class LaporanFinansialTokoListrikController extends Controller
     public function rangeFilterPengeluaranItem(Request $request)
     {
         $start = Carbon::parse($request->start);
-        $end = Carbon::parse($request->end);
+        $end = Carbon::parse($request->end)->endOfDay(); // Menggunakan akhir hari untuk memasukkan tanggal 10
 
-        $pengeluaranOpsTokoListrik = PengeluaranOpsTokoListrik::sortable()->whereBetween('created_at', [$start, $end])->get();
+        $pengeluaranOpsTokoListrik = PengeluaranOpsTokoListrik::sortable()
+            ->where(function ($query) use ($start, $end) {
+                $query->whereDate('created_at', '>=', $start)
+                    ->whereDate('created_at', '<=', $end);
+            })
+            ->get();
 
         return view('TokoListrik.laporanFinansial.indexPengeluaranOpsTokoListrik', [
             'spends' => $pengeluaranOpsTokoListrik,
@@ -229,7 +232,7 @@ class LaporanFinansialTokoListrikController extends Controller
         $totalHpp = array_sum($hpp);
         $labaKotor = $totalPendapatan - $totalHpp;
 
-        $totalPengeluaran =  + $totalGajiKaryawan + $totalReward + $pbb + $etc;
+        $totalPengeluaran =  +$totalGajiKaryawan + $totalReward + $pbb + $etc;
         $finalPengeluaran = $totalPengeluaran + $totalKulakan + $totalPenyusutan;
 
         $labaBersih = $labaKotor - $finalPengeluaran;
@@ -374,7 +377,7 @@ class LaporanFinansialTokoListrikController extends Controller
         $finalPengeluaran = $totalPengeluaran + $totalKulakan + $totalPenyusutan;
 
         $labaBersih = $labaKotor - $finalPengeluaran;
-        
+
 
         return view('TokoListrik.laporanFinansial.indexLaporanFinansial', [
             'year' => Carbon::parse($year)->year,
@@ -393,6 +396,5 @@ class LaporanFinansialTokoListrikController extends Controller
             'totalPengeluaran' => $totalPengeluaran,
             'labaBersih' => $labaBersih,
         ]);
-    }  
-    
+    }
 }

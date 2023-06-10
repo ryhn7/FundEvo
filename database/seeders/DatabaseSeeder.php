@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\PenjualanBBM;
 use App\Models\PengeluaranOpsBBM;
 use App\Models\PenjualanItemListrik;
+use App\Models\PengeluaranOpsTokoListrik;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -232,7 +233,8 @@ class DatabaseSeeder extends Seeder
 
 
 
-
+        PengeluaranOpsTokoListrik::factory()->count(10)->create();
+        PengeluaranOpsBBM::factory(30)->create();
         PenjualanBBM::factory(30)->create();
         $startDate = '2023-01-01';
         $endDate = '2023-06-07';

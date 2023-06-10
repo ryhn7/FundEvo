@@ -57,7 +57,12 @@
                         <div class="flex justify-end">
                             <div class="mr-5">
                                 <form id="dateFilter" action="/pengeluaran-ops-listrik/filter" class="py-0.5" method="GET">
-                                    <input id="date1" type="date" name="date" value="{{ request('date') }}" class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
+                                    @php
+                                    $today = \Carbon\Carbon::now()->format('Y-m-d');
+                                    $selectedDate = request('date');
+                                    $dateValue = $selectedDate ?: $today;
+                                    @endphp
+                                    <input id="date1" type="date" name="date" value="{{ $dateValue }}" placeholder="{{ date('Y-m-d') }}" class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
                                 </form>
                             </div>
                             <div class="">
@@ -244,7 +249,11 @@
                         <div class="flex px-2 py-1">
                             <div class="flex flex-col justify-center">
                                 <h6 class="ml-2 mb-0 leading-normal text-sm">
-                                    Rp. 0
+                                    @if ($spend->biaya_kulakan)
+                            @currency($spend->biaya_kulakan)
+                            @else
+                            -
+                            @endif
                                 </h6>
                             </div>
                         </div>

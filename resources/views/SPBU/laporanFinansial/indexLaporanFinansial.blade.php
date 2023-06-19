@@ -18,7 +18,7 @@
             <div
                 class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100">
                 Tahun</div>
-            <ul class="dropdown-content absolute hidden text-gray-700 -pl-5 -ml-[205px] -mt-10">
+            <ul class="dropdown-content absolute hidden text-gray-700 -pl-5 -ml-[202px] -mt-10">
                 <form id="yearFilter" action="/LaporanFinansialSPBU/LaporanRabaRugi/FilterTahun" class="py-0.5"
                     method="GET">
                     <input id="year1" type="text" name="year" placeholder="Pilih Tahun"

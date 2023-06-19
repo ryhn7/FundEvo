@@ -51,7 +51,7 @@
         </div>
 
         <!-- card2 -->
-        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-[27%]">
+        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-[28%]">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
                     <div class="flex flex-row -mx-3">
@@ -92,7 +92,7 @@
                             <div class="flex justify-end">
                                 <div class="mr-5">
                                     <form id="dateFilter" action="/PenjualanOliGas/filter" class="py-0.5" method="GET">
-                                        <input id="date1" type="date" name="date" value="{{ request('date') }}"
+                                        <input id="date1" type="date" name="date" value="{{ request('date') ?: now()->format('Y-m-d') }}"
                                             class="px-2 py-1 shadow-md border rounded-lg border-[#CC5500] cursor-pointer leading-pro ease-soft-in hover:shadow-soft-xs active:opacity-85 active:border-red-500 hover:scale-102 tracking-tight-soft bg-x-25 ">
                                     </form>
                                 </div>

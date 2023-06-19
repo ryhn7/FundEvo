@@ -44,6 +44,7 @@
                                 aria-current="page">Tambah Penjualan BBM</li>
                         </ol>
                         <h6 class="mb-0 font-bold capitalize">Tambah Penjualan BBM</h6>
+                        <h6 class="mb-0 mt-1 font-bold text-red-500 tracking-wider capitalize">*Isilah Form Secara Berurutan!</h6>
                     @elseif (Request::is('PenjualanBBM/*/edit'))
                         <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
                             <li class="leading-normal text-sm">

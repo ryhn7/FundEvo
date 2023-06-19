@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PengeluaranOpsBBM;
 use App\Models\BBM;
+use App\Models\PenjualanBBM;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -44,8 +45,20 @@ class PengeluaranOpsBBMController extends Controller
      */
     public function create()
     {
+        $bbm = BBM::all();
+        $penjualanBBMToday = PenjualanBBM::whereDate('created_at', Carbon::now()->toDateString())->get();
+
+        foreach ($bbm as $item) {
+            $hargaBeli = $item->harga_beli;
+            $penerimaan = $penjualanBBMToday->where('bbm_id', $item->id)->sum('penerimaan');
+
+            $penebusan[$item->id] = $hargaBeli * $penerimaan;
+        }
+        $totalPenebusan = array_sum($penebusan);
+        
         return view('SPBU.pengeluaranOpsBBM.create', [
-            'bbms' => BBM::all(),
+            'totalTebusan' => $totalPenebusan,
+
         ]);
     }
 
@@ -79,11 +92,6 @@ class PengeluaranOpsBBMController extends Controller
         ]);
 
 
-        if ($validated['created_at'] == null) {
-            $validated['created_at'] = Carbon::now();
-        }
-
-
         if ($request->file('nota')) {
             $images = $request->file('nota');
             $imagesName = [];
@@ -96,36 +104,11 @@ class PengeluaranOpsBBMController extends Controller
             $validated['nota'] = $imagesName;
         }
 
-        $date = $request->created_at;
-
-        $yesterday = Carbon::yesterday()->toDateString();
-        $dayBeforeYesterday = Carbon::yesterday()->subDay()->toDateString();
-
         $pengeluaranOpsBBM = PengeluaranOpsBBM::whereDate('created_at', Carbon::now()->toDateString())->first();
-        $pengeluaranOpsBBMYesterday = PengeluaranOpsBBM::whereDate('created_at', $yesterday)->first();
-        $pengeluaranOpsBBMDayBeforeYesterday = PengeluaranOpsBBM::whereDate('created_at', $dayBeforeYesterday)->first();
-
-        $allPengeluaran = PengeluaranOpsBBM::all();
 
 
         if ($pengeluaranOpsBBM) {
             return redirect('/PengeluaranOperasionalSPBU')->with('error', 'Hanya boleh input 1 pengeluaran per hari!');
-        }
-
-        if ($allPengeluaran->count() == 0) {
-            PengeluaranOpsBBM::create($validated);
-            return redirect('/PengeluaranOperasionalSPBU')->with('success', 'Data pengeluaran berhasil ditambahkan!');
-        } else if (!$pengeluaranOpsBBMYesterday) {
-            if ($pengeluaranOpsBBMDayBeforeYesterday && $date != Carbon::now()->toDateString()) {
-                PengeluaranOpsBBM::create($validated);
-                return redirect('/PengeluaranOperasionalSPBU')->with('success', 'Data pengeluaran berhasil ditambahkan!');
-            } else {
-                return redirect('/PengeluaranOperasionalSPBU')->with('error', 'Harap input data pengeluaran di hari kemarin terlebih dahulu!');
-            }
-        } else {
-            PengeluaranOpsBBM::create($validated);
-
-            return redirect('/PengeluaranOperasionalSPBU')->with('success', 'Data pengeluaran berhasil ditambahkan!');
         }
 
         PengeluaranOpsBBM::create($validated);
@@ -256,22 +239,5 @@ class PengeluaranOpsBBMController extends Controller
             'spends' => $spend,
             'result' => $result,
         ]);
-    }
-
-    public function checkYesterday()
-    {
-        $allPengeluaran = PengeluaranOpsBBM::all();
-        $yesterday = Carbon::yesterday()->toDateString();
-        $pengeluaranOpsBBMYesterday = PengeluaranOpsBBM::whereDate('created_at', $yesterday)->first();
-
-        if ($allPengeluaran->count() == 0) {
-            return response()->json(true);
-        } else {
-            if ($pengeluaranOpsBBMYesterday == null) {
-                return response()->json(false);
-            } else {
-                return response()->json($pengeluaranOpsBBMYesterday);
-            }
-        }
     }
 }

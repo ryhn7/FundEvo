@@ -3859,10 +3859,6 @@ textarea.form-control.is-invalid {
   top: 1.25rem;
 }
 
-.top-6 {
-  top: 1.5rem;
-}
-
 .left-0\.5 {
   left: 0.125rem;
 }
@@ -4107,8 +4103,8 @@ textarea.form-control.is-invalid {
   margin-top: -2.5rem;
 }
 
-.-ml-\[205px\] {
-  margin-left: -205px;
+.-ml-\[202px\] {
+  margin-left: -202px;
 }
 
 .mr-5 {
@@ -4231,8 +4227,8 @@ textarea.form-control.is-invalid {
   height: 112px;
 }
 
-.h-20 {
-  height: 5rem;
+.h-16 {
+  height: 4rem;
 }
 
 .h-6 {
@@ -4315,12 +4311,8 @@ textarea.form-control.is-invalid {
   width: 112px;
 }
 
-.w-\[65\%\] {
-  width: 65%;
-}
-
-.w-20 {
-  width: 5rem;
+.w-16 {
+  width: 4rem;
 }
 
 .w-6 {
@@ -4378,6 +4370,10 @@ textarea.form-control.is-invalid {
 
 .basis-full {
   flex-basis: 100%;
+}
+
+.basis-3\/4 {
+  flex-basis: 75%;
 }
 
 .-translate-x-full {
@@ -4748,6 +4744,11 @@ textarea.form-control.is-invalid {
 .bg-orange-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 115 22 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#cbcccd\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 204 205 / var(--tw-bg-opacity));
 }
 
 .bg-gray-100 {
@@ -5123,8 +5124,16 @@ textarea.form-control.is-invalid {
   padding-top: 1.25rem;
 }
 
-.pr-1\.5 {
-  padding-right: 0.375rem;
+.pr-0\.75 {
+  padding-right: 0.1875rem;
+}
+
+.pr-0 {
+  padding-right: 0px;
+}
+
+.pr-2 {
+  padding-right: 0.5rem;
 }
 
 .pl-1 {
@@ -5207,10 +5216,6 @@ textarea.form-control.is-invalid {
   line-height: 1.75rem;
 }
 
-.text-\[13px\] {
-  font-size: 13px;
-}
-
 .text-6xl {
   font-size: 3.75rem;
   line-height: 1;
@@ -5220,9 +5225,8 @@ textarea.form-control.is-invalid {
   font-size: 20px;
 }
 
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+.text-\[12px\] {
+  font-size: 12px;
 }
 
 .text-\[10px\] {
@@ -5404,6 +5408,11 @@ textarea.form-control.is-invalid {
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(206 212 218 / var(--tw-text-opacity));
+}
+
+.text-\[\#CC5500\] {
+  --tw-text-opacity: 1;
+  color: rgb(204 85 0 / var(--tw-text-opacity));
 }
 
 .text-green-700 {
@@ -6052,8 +6061,8 @@ textarea.form-control.is-invalid {
     width: 75%;
   }
 
-  .xl\:w-\[27\%\] {
-    width: 27%;
+  .xl\:w-\[28\%\] {
+    width: 28%;
   }
 
   .xl\:translate-x-0 {

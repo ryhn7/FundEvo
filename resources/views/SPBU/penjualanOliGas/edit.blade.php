@@ -35,7 +35,19 @@
                     <select name="nama" id="nama" required
                         class="block w-full mt-1 text-sm px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" class="font-semibold">Pilih Nama</option>
+                        @foreach ($oligasesName as $oligasName)
+                            @if (old('nama', $sell->nama) == $oligasName->nama)
+                                <option value="{{ $oligasName->nama }}" selected>
+                                    {{ $oligasName->nama }}</option>
+                            @else
+                                <option value="{{ $oligasName->nama }}">{{ $oligasName->nama }}
+                                </option>
+                            @endif
+                        @endforeach
                     </select>
+                    {{-- <p id="pilih_jenis" class="text-xs mt-1 text-[#CC5500]  font-franklin mb-0.5">Jika ingin mengganti, pilih
+                        jenis terlebih dahulu
+                    </p> --}}
                     @error('nama')
                         <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
                     @enderror
@@ -132,6 +144,7 @@
         const nama = document.getElementById('nama');
         const date = document.getElementById('date');
         const inputDate = document.getElementById('created_at');
+        const pilihJenis = document.getElementById('pilih_jenis');
 
         oliGas.addEventListener('change', () => {
             const oliGas_id = oliGas.value;
@@ -154,6 +167,16 @@
                 }
             })
         });
+
+        // oliGas.addEventListener('change', () => {
+        //     if (oliGas.value != '') {
+        //         nama.disabled = false;
+        //         pilihJenis.classList.add('hidden');
+        //     } else {
+        //         nama.disabled = true;
+        //         pilihJenis.classList.remove('hidden');
+        //     }
+        // });
 
 
         stockAkhir.addEventListener('change', () => {

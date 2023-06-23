@@ -20,14 +20,14 @@
                     </label>
                 </div>
 
-                <label for="kategori_item" class="block mt-4 text-sm">
+                <label for="kategori_id" class="block mt-4 text-sm">
                     <span class="text-gray-700 font-semibold">
                         Kategori Item
                     </span>
-                    <select name="kategori_item" id="kategori_item" required
+                    <select name="kategori_id" id="kategori_id" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
                         <option value="" disabled selected class="font-semibold" style="display: none;" >Pilih Kategori</option>
-                        @foreach ($kategoris as $kategor)
+                        @foreach ($kategoris->sortBy('kategori') as $kategor)
                             <!-- @if (old('kategori') == $kategor->id)
                                 <option value="{{ $kategor->id }}" selected>{{ $kategor->kategori}}</option>
                             @else -->
@@ -35,7 +35,7 @@
                             <!-- @endif -->
                         @endforeach
                     </select>
-                    @error('kategori_item')
+                    @error('kategori_id')
                         <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
                     @enderror
                 </label>
@@ -46,14 +46,16 @@
                     </span>
                     <select name="item_id" id="item_id" required
                         class="block w-full mt-1 text-sm form-select px-2 py-1 border border-gray-500 rounded focus:border-sky-800 focus:outline-none focus:shadow-sm focus:shadow-[#2c3e50] focus:transition-shadow">
-                        <!-- <option value="" class="font-semibold" style="display: none;" disabled selected hidden>Pilih Item</option> -->
-                        <!-- @foreach ($items as $item)
+                        <option value="" class="font-semibold" style="display: none;" disabled selected hidden>Pilih Item</option>
+                        @foreach ($items->sortBy('nama_item') as $item)
+                        {{-- @foreach ($items as $item)
                             @if (old('item_id') == $item->id)
                                 <option value="{{ $item->id }}" selected>{{ $item->nama_item}}</option>
                             @else
                                 <option value="{{ $item->id }}">{{ $item->nama_item}}</option>
                             @endif
-                        @endforeach -->
+                        @endforeach --}}
+                        @endforeach
                     </select>
                     @error('item_id')
                         <p class="text-xs mt-1 text-red-700 font-franklin">{{ $message }}</p>
@@ -146,7 +148,7 @@
                 </label>
 
                 <button
-                    class="mt-10 w-full px-3 py-3 bg-black text-white font-bold rounded shadow-md hover:bg-[#333333]">Tambah
+                    class="mt-10 w-full px-3 py-3 bg-orange-500 text-white font-bold uppercase transition-all bg-transparent rounded cursor-pointer leading-pro ease-soft-in shadow-soft-md hover:bg-yellow-500 hover:shadow-soft-xs active:opacity-85 hover:scale-[1.005] tracking-tight-soft bg-x-25">Tambah
                     Penjualan</button>
             </div>
         </form>
@@ -212,16 +214,16 @@
             Kategori Dropdown Change Event
             --------------------------------------------
             --------------------------------------------*/
-            $('#kategori_item').select2(
+            $('#kategori_id').select2(
                 {
                     placeholder: 'Pilih Kategori',
                     allowClear: true,
                 }
             );
-            $('#kategori_item').on('change', function () {
+            $('#kategori_id').on('change', function () {
                 var kategori_id = this.value;
                 console.log(kategori_id);
-                $("#nama_item").html('');
+                // $("#nama_item").html('');
                 $.ajax({
                     url: '/penjualan-item/'+kategori_id,
                     type: "GET",

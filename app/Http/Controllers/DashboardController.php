@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PenjualanBBM;
+use App\Models\PenjualanItemListrik;
 use App\Models\PenjualanOliGas;
 use App\Models\BBM;
+use App\Models\Item;
 use Carbon\Carbon;
 use App\Models\PengeluaranOpsBBM;
+use App\Models\PengeluaranOpsTokoListrik;
 
 class DashboardController extends Controller
 {
@@ -181,7 +184,7 @@ class DashboardController extends Controller
     public function indexDashboardTokoListrik()
     {
 
-        return view('dashboardTokoListrik');
+        // return view('dashboardTokoListrik');
 
         $barang = Item::all();
         // penjualan bbm only this year
@@ -289,11 +292,17 @@ class DashboardController extends Controller
             $valueSatu[] = array_sum($penjualanPcsPerBulan);
             $valueDua[] = array_sum($penyusutanPcsPerBulan);
 
+            $persentaseBulan = 0; // Initialize the variable with a default value
+
+            if ($totalPendapatanPerBulan[$i] != 0) {
+                $persentaseBulan = round(($totalLabaKotorSatuPerBulan / $totalPendapatanPerBulan[$i]) * 100, 2);
+            }
 
             $rekap[] = [
                 'month' => $months[$i],
                 'total_pendapatan' => $totalPendapatanPerBulan[$i],
                 'total_hpp_bulan' => $totalHppPerBulan,
+                'persentase_bulan' => $persentaseBulan,
                 'total_loss_bulan' => $totalPenyusutanPerBulan,
                 'total_laba_kotorSatu_bulan' => $totalLabaKotorSatuPerBulan,
                 'total_laba_kotorDua_bulan' => $totalLabaKotorDuaPerBulan,

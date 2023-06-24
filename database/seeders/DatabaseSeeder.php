@@ -233,16 +233,15 @@ class DatabaseSeeder extends Seeder
 
 
 
-        PenjualanBBM::factory(30)->create();
+        // PenjualanBBM::factory(30)->create();
         $startDate = '2023-01-01';
-        $endDate = '2023-06-07';
+        $endDate = '2023-06-26';
         $currentDate = $startDate;
 
         while ($currentDate <= $endDate) {
             foreach ($this->getItems() as $item) {
-                PenjualanItemListrik::factory()->create([
-                    'item_id' => $item['id'],
-                    'kategori_id' => $item['kategori'],
+                PenjualanBBM::factory()->create([
+                    'bbm_id' => $item['id'],
                     'created_at' => $currentDate,
                     'updated_at' => $currentDate,
                 ]);
@@ -257,88 +256,19 @@ class DatabaseSeeder extends Seeder
         return [
             [
                 'id' => 1,
-                'kategori' => 5,
-                'harga_jual' => 26500.00,
+                'harga_jual' => 10000.00,
             ],
             [
                 'id' => 2,
-                'kategori' => 5,
-                'harga_jual' => 28450.00,
+                'harga_jual' => 13500.00,
             ],
             [
                 'id' => 3,
-                'kategori' => 2,
-                'harga_jual' => 41900.00,
+                'harga_jual' => 7000.00,
             ],
             [
                 'id' => 4,
-                'kategori' => 2,
-                'harga_jual' => 99500.00,
-            ],
-            [
-                'id' => 5,
-                'kategori' => 1,
-                'harga_jual' => 130000.00,
-            ],
-            [
-                'id' => 6,
-                'kategori' => 1,
-                'harga_jual' => 171000.00,
-            ],
-            [
-                'id' => 7,
-                'kategori' => 1,
-                'harga_jual' => 45000.00,
-            ],
-            [
-                'id' => 8,
-                'kategori' => 4,
-                'harga_jual' => 168531.00,
-            ],
-            [
-                'id' => 9,
-                'kategori' => 4,
-                'harga_jual' => 28000.00,
-            ],
-            [
-                'id' => 10,
-                'kategori' => 6,
-                'harga_jual' => 2313600.00,
-            ],
-            [
-                'id' => 11,
-                'kategori' => 6,
-                'harga_jual' => 113850.00,
-            ],
-            [
-                'id' => 12,
-                'kategori' => 3,
-                'harga_jual' => 100900.00,
-            ],
-            [
-                'id' => 13,
-                'kategori' => 3,
-                'harga_jual' => 249000.00,
-            ],
-            [
-                'id' => 14,
-                'kategori' => 3,
-                'harga_jual' => 24900.00,
-            ],
-            [
-                'id' => 15,
-                'kategori' => 5,
-                'harga_jual' => 36000.00,
-            ],
-            [
-                'id' => 16,
-                'kategori' => 1,
-                'harga_jual' => 85000.00,
-            ],
-            [
-                'id' => 17,
-                'kategori' => 1,
-                'harga_jual' => 27000.00,
+                'harga_jual' => 9000.00,
             ],
         ];
     }

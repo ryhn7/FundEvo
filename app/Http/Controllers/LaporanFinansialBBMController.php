@@ -395,6 +395,7 @@ class LaporanFinansialBBMController extends Controller
         foreach ($bbm as $item) {
             $hargaBeli = $item->harga_beli;
             $penjualan = $penjualanBBM->where('bbm_id', $item->id)->sum('penjualan');
+            // dd($penjualan);
             $penyusutan = $penjualanBBM->where('bbm_id', $item->id)->sum('penyusutan');
 
             // if penyusutan < 0, then make it positive

@@ -19,7 +19,7 @@
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-soft-xl rounded-lg bg-clip-border">
                 <div class="flex-auto p-4">
                     <div class="flex flex-wrap -mx-3">
-                        <div class="max-w-full px-3 lg:w-1/2 lg:flex-none">
+                        <div class="max-w-full pl-3 lg:w-3/4 lg:flex-none">
                             <div class="flex flex-col h-full">
                                 @if (request()->is('LaporanFinansialSPBU/PenjualanBBM'))
                                     <h3 class="font-bold">Penjualan BBM Bulan {{ $month }} {{ $year }}</h3>
@@ -58,11 +58,11 @@
                                 @if (request()->is('LaporanFinansialSPBU/LaporanRabaRugi*'))
                                     <p class="mb-12"></p>
                                 @else
-                                    <p class="mb-12">{{ $count }} {{ $info }}</p>
+                                    <p class="mb-5">{{ $count }} {{ $info }}</p>
                                 @endif
                             </div>
                         </div>
-                        <div class="max-w-full px-4.5 mt-12 ml-auto text-center lg:mt-0">
+                        <div class="max-w-full pr-4.5 mt-12 ml-auto text-center lg:mt-0">
                             <div class="relative">
                                 <div>
                                     <div class="dropdown relative">
@@ -88,27 +88,19 @@
                     </div>
 
                     <div>
-                        <ul class="flex border-b-[1.5px]">
-                            <li class="mb-1.8">
-                                <a href="/LaporanFinansialSPBU/LaporanRabaRugi"
-                                    class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
-                                        @if (request()->is('LaporanFinansialSPBU/LaporanRabaRugi*')) text-green-500 border-green-500 @endif
-                                        ">
-                                    Laporan Laba Rugi
-                                </a>
-                                <a href="/LaporanFinansialSPBU/PenjualanBBM"
-                                    class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
-                                            @if (request()->is('LaporanFinansialSPBU/PenjualanBBM*')) text-green-500 border-green-500 @endif
-                                            ">
-                                    Penjualan BBM
-                                </a>
-                                <a href="/LaporanFinansialSPBU/PengeluaranSPBU"
-                                    class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
-                                            @if (request()->is('LaporanFinansialSPBU/PengeluaranSPBU*')) text-green-500 border-green-500 @endif
-                                            ">
-                                    Pengeluaran Operasional SPBU
-                                </a>
-                            </li>
+                        <ul class="flex mb-5">
+                            <div class="px-1">
+                                <a class="{{ request()->is('LaporanFinansialSPBU/LaporanRabaRugi*') ? 'font-bold text-white bg-gradient-to-tl from-red-500 to-yellow-400' : 'font-semibold text-black bg-white' }} inline-block px-6 py-2 text-center uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                                    href="/LaporanFinansialSPBU/LaporanRabaRugi">Laporan Laba Rugi</a>
+                            </div>
+                            <div class="pl-2 pr-2">
+                                <a class="{{ request()->is('LaporanFinansialSPBU/PenjualanBBM*') ? 'font-bold text-white bg-gradient-to-tl from-red-500 to-yellow-400' : 'font-semibold text-black bg-white' }} inline-block px-6 py-2 text-center uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                                    href="/LaporanFinansialSPBU/PenjualanBBM">Penjualan BBM</a>
+                            </div>
+                            <div class="pl-1.5 pr-2">
+                                <a class="{{ request()->is('LaporanFinansialSPBU/PengeluaranSPBU*') ? 'font-bold text-white bg-gradient-to-tl from-red-500 to-yellow-400' : 'font-semibold text-black bg-white' }} inline-block px-6 py-2 text-center uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                                    href="/LaporanFinansialSPBU/PengeluaranSPBU">Pengeluaran Operasional SPBU</a>
+                            </div>
                         </ul>
                     </div>
                     @yield('laporan')

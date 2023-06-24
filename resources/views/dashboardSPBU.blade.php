@@ -167,9 +167,6 @@
                                         HPP</th>
                                     <th
                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Piutang</th>
-                                    <th
-                                        class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Keuntungan</th>
                                     <th
                                         class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
@@ -230,12 +227,6 @@
                                                 @else
                                                     @currency($rekap['total_hpp_bulan'])
                                                 @endif
-                                            </span>
-                                        </td>
-                                        <td
-                                            class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
-                                            <span class="font-semibold leading-tight text-xs text-slate-400">
-                                                -
                                             </span>
                                         </td>
                                         <td

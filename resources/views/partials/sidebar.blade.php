@@ -9,7 +9,7 @@
             </a>
         </div>
 
-        <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent mb-5" />
+<hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent mb-5" />
 
         <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
             {{-- OWNER --}}
@@ -453,11 +453,11 @@
                         </a>
                     </li>
                     <li class="mt-0.5 w-full">
-                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
-                            href="/LaporanFinansialTokoListrik">
+                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('LaporanFinansialTokoListrik*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
+                            href="/LaporanFinansialTokoListrik/LaporanRabaRugi">
                             <div
-                                class="{{ request()->is('') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                                @if (request()->is(''))
+                                class="{{ request()->is('LaporanFinansialTokoListrik*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                                @if (request()->is('LaporanFinansialTokoListrik*'))
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
                                         width="512" height="512" x="0" y="0"
@@ -973,11 +973,11 @@
                         </a>
                     </li>
                     <li class="mt-0.5 w-full">
-                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg px-4 transition-colors"
-                            href="/LaporanFinansialTokoListrik">
+                        <a class="py-2.7 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg px-4 {{ request()->is('LaporanFinansialTokoListrik*') ? 'shadow-soft-xl bg-white font-semibold text-slate-700' : '' }} transition-colors"
+                            href="/LaporanFinansialTokoListrik/LaporanRabaRugi">
                             <div
-                                class="{{ request()->is('') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                                @if (request()->is(''))
+                                class="{{ request()->is('LaporanFinansialTokoListrik*') ? 'bg-gradient-to-tl from-[#060764] to-[#00b7dd] ' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                                @if (request()->is('LaporanFinansialTokoListrik*'))
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
                                         width="512" height="512" x="0" y="0"

@@ -4,9 +4,17 @@
 
 @section('container')
     @can('isOwner')
-        <div class="mb-3">
-            <ul class="flex border-b-[1.5px]">
-                <li class="mb-1.8">
+        <div class="mb-5">
+            <ul class="flex">
+                <div class="px-1">
+                    <a class="{{ request()->is('Dashboard/SPBU*') ? 'font-bold text-white bg-gradient-to-tl from-red-500 to-yellow-400' : 'font-semibold text-black bg-white' }} inline-block px-6 py-2 text-center uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                        href="/Dashboard/SPBU">SPBU</a>
+                </div>
+                <div class="px-3">
+                    <a class="{{ request()->is('Dashboard/TokoListrik*') ? 'font-bold text-white bg-gradient-to-tl from-red-500 to-yellow-400' : 'font-semibold text-black bg-white' }} inline-block px-6 py-2 text-center uppercase align-middle transition-all bg-transparent rounded-lg cursor-pointer leading-pro text-xs ease-soft-in shadow-soft-md bg-150 hover:shadow-soft-xs active:opacity-85 hover:scale-102 tracking-tight-soft bg-x-25"
+                        href="/Dashboard/TokoListrik">Toko Listrik</a>
+                </div>
+                {{-- <li class="mb-1.8">
                     <a href="/Dashboard/SPBU"
                         class="cursor-pointer py-2 px-4 text-gray-500 border-b-2 border-transparent
                     @if (request()->is('Dashboard/SPBU*')) text-green-500 border-green-500 @endif
@@ -19,7 +27,7 @@
                         ">
                         Dashboard Toko Listrik
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </div>
     @endcan

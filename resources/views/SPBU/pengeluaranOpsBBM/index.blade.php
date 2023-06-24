@@ -398,8 +398,8 @@
                                                     @method('delete')
                                                     @csrf
                                                     <button
-                                                        class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-pink-600 rounded-lg hover:bg-pink-500 hover:text-white"
-                                                        aria-label="Delete" onclick="return confirm('Are you sure?')">
+                                                        class="deleteButton flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-pink-600 rounded-lg hover:bg-pink-500 hover:text-white"
+                                                        aria-label="Delete">
                                                         <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                             viewBox="0 0 20 20">
                                                             <path fill-rule="evenodd"
@@ -670,8 +670,8 @@
                                                         @method('delete')
                                                         @csrf
                                                         <button
-                                                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-pink-600 rounded-lg hover:bg-pink-500 hover:text-white"
-                                                            aria-label="Delete" onclick="return confirm('Are you sure?')">
+                                                            class="deleteButton flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-pink-600 rounded-lg hover:bg-pink-500 hover:text-white"
+                                                            aria-label="Delete">
                                                             <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                                 viewBox="0 0 20 20">
                                                                 <path fill-rule="evenodd"
@@ -719,4 +719,5 @@
 
 @section('scripts')
     <script src="{{ asset('assets/js/submitDateFilter.js') }}"></script>
+    <script src="{{ asset('assets/js/confirm-delete.js') }}"></script>
 @endsection

@@ -86,6 +86,7 @@
     <script src="{{ asset('assets/js/yearpicker-init.js') }}"></script>
 
     <script src="{{ asset('assets/js/chartjs.min.js') }}"></script>
+    <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
     @yield('scripts')
 </body>
 

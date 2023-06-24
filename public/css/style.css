@@ -719,6 +719,18 @@ h6 {
   text-shadow: 0 0 0 #212529;
 }
 
+.btn-check[disabled] + .btn {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.65;
+}
+
+.btn-check:disabled + .btn {
+  pointer-events: none;
+  filter: none;
+  opacity: 0.65;
+}
+
 .form-floating > .form-select {
   height: calc(3.5rem + 2px);
   line-height: 1.25;
@@ -734,6 +746,15 @@ h6 {
 }
 
 .input-group > .form-select:focus {
+  z-index: 3;
+}
+
+.input-group .btn {
+  position: relative;
+  z-index: 2;
+}
+
+.input-group .btn:focus {
   z-index: 3;
 }
 
@@ -930,7 +951,41 @@ textarea.form-control.is-invalid {
   z-index: 3;
 }
 
+.btn-check:focus + .btn {
+  outline: 0;
+  box-shadow: none;
+}
+
+.btn:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.btn-check:checked + .btn {
+  box-shadow: none;
+}
+
+.btn-check:active + .btn {
+  box-shadow: none;
+}
+
+.btn:active {
+  box-shadow: none;
+}
+
 .btn.active {
+  box-shadow: none;
+}
+
+.btn-check:checked + .btn:focus {
+  box-shadow: none;
+}
+
+.btn-check:active + .btn:focus {
+  box-shadow: none;
+}
+
+.btn:active:focus {
   box-shadow: none;
 }
 
@@ -4763,6 +4818,18 @@ textarea.form-control.is-invalid {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.from-\[\#ea0606\] {
+  --tw-gradient-from: #ea0606;
+  --tw-gradient-to: rgb(234 6 6 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-\[\#17ad37\] {
+  --tw-gradient-from: #17ad37;
+  --tw-gradient-to: rgb(23 173 55 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 .via-black\/40 {
   --tw-gradient-to: rgb(0 0 0 / 0);
   --tw-gradient-stops: var(--tw-gradient-from), rgb(0 0 0 / 0.4), var(--tw-gradient-to);
@@ -4790,6 +4857,14 @@ textarea.form-control.is-invalid {
 
 .to-rose-400 {
   --tw-gradient-to: #ff667c;
+}
+
+.to-\[\#e11d48\] {
+  --tw-gradient-to: #e11d48;
+}
+
+.to-\[\#98ec2d\] {
+  --tw-gradient-to: #98ec2d;
 }
 
 .bg-cover {

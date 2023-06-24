@@ -71,7 +71,7 @@ class PenjualanOliGasController extends Controller
         $PenjualanOliGas = PenjualanOliGas::where('nama', $nama)->whereDate('created_at', Carbon::now()->toDateString())->first();
         $allOliGas = PenjualanOliGas::where('nama', $nama)->get();
 
-        dd($yesterday);
+        // dd($yesterday);
         if ($PenjualanOliGas) {
             return redirect('/PenjualanOliGas')->with('error', 'Data sudah ada!');
         }

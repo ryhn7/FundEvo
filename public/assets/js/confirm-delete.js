@@ -13,11 +13,11 @@ deleteButtons.forEach((deleteBtn) => {
 
         swalWithTailwindButtons
             .fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Konfirmasi Penghapusan',
+                text: "Apakah anda yakin ingin menghapus item ini?",
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal',
                 reverseButtons: true,
             })
             .then((result) => {
@@ -25,8 +25,8 @@ deleteButtons.forEach((deleteBtn) => {
                     deleteBtn.parentElement.submit();
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     swalWithTailwindButtons.fire(
-                        'Cancelled',
-                        'Your imaginary file is safe :)',
+                        'Dibatalkan',
+                        'Item anda aman :)',
                         'error'
                     );
                 }

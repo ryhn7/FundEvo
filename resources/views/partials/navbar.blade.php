@@ -44,7 +44,8 @@
                                 aria-current="page">Tambah Penjualan BBM</li>
                         </ol>
                         <h6 class="mb-0 font-bold capitalize">Tambah Penjualan BBM</h6>
-                        <h6 class="mb-0 mt-1 font-bold text-red-500 tracking-wider capitalize">*Isilah Form Secara Berurutan!</h6>
+                        <h6 class="mb-0 mt-1 font-bold text-red-500 tracking-wider capitalize">*Isilah Form Secara
+                            Berurutan!</h6>
                     @elseif (Request::is('PenjualanBBM/*/edit'))
                         <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
                             <li class="leading-normal text-sm">
@@ -56,6 +57,39 @@
                                 aria-current="page">Edit Penjualan BBM</li>
                         </ol>
                         <h6 class="mb-0 font-bold capitalize">Edit Penjualan BBM</h6>
+                    @elseif (Request::is('PenjualanOliGas'))
+                        <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+                            <li class="leading-normal text-sm">
+                                <a class="opacity-50 text-slate-700" href="">Pages</a>
+                            </li>
+                            <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                                aria-current="page">Penjualan Oli & Gas</li>
+                        </ol>
+                        <h6 class="mb-0 font-bold capitalize">Penjualan Oli & Gas</h6>
+                    @elseif (Request::is('PenjualanOliGas/create'))
+                        <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+                            <li class="leading-normal text-sm">
+                                <a class="opacity-50 text-slate-700" href="">Pages</a>
+                            </li>
+                            <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                                aria-current="page">Penjualan Oli & Gas</li>
+                            <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                                aria-current="page">Tambah Penjualan Oli & Gas</li>
+                        </ol>
+                        <h6 class="mb-0 font-bold capitalize">Tambah Penjualan Oli & Gas</h6>
+                        <h6 class="mb-0 mt-1 font-bold text-red-500 tracking-wider capitalize">*Isilah Form Secara
+                            Berurutan!</h6>
+                    @elseif (Request::is('PenjualanOliGas/*/edit'))
+                        <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+                            <li class="leading-normal text-sm">
+                                <a class="opacity-50 text-slate-700" href="">Pages</a>
+                            </li>
+                            <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                                aria-current="page">Penjualan Oli & Gas</li>
+                            <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                                aria-current="page">Edit Penjualan Oli & Gas</li>
+                        </ol>
+                        <h6 class="mb-0 font-bold capitalize">Edit Penjualan Oli & Gas</h6>
                     @elseif (Request::is('KategoriBBM'))
                         <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
                             <li class="leading-normal text-sm">

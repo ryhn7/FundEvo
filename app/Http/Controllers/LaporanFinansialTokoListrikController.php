@@ -109,6 +109,7 @@ class LaporanFinansialTokoListrikController extends Controller
 
         $totalHpp = array_sum($hpp);
         $keuntungan = $totalPendapatan - $totalHpp;
+        return('ok');
 
         return view('TokoListrik.laporanFinansial.indexPenjualanItem', [
             'sells' => $penjualanItem,
@@ -332,13 +333,11 @@ class LaporanFinansialTokoListrikController extends Controller
     {
         $barang = Item::all();
         $year = $request->year;
-        $penjualanItem = PenjualanItemListrik::sortable()->whereYear('created_at', Carbon::parse($year)->year)
-            ->whereYear('created_at', Carbon::parse($year)->year)->get();
+        $penjualanItem = PenjualanItemListrik::sortable()->whereYear('created_at', '=', $year)->get();
 
         $totalPendapatan = $penjualanItem->sum('pendapatan');
 
-        $pengeluaranOpsTokoListrik = PengeluaranOpsTokoListrik::sortable()->whereYear('created_at', Carbon::parse($year)->year)
-            ->whereYear('created_at', Carbon::parse($year)->year)->get();
+        $pengeluaranOpsTokoListrik = PengeluaranOpsTokoListrik::sortable()->whereYear('created_at', '=', $year)->get();
 
         $kulakan = $pengeluaranOpsTokoListrik->sum('harga_penebusan_bbm');
         // $totalGajiSupervisor = $pengeluaranOpsTokoListrik->sum('gaji_supervisor');
@@ -380,7 +379,7 @@ class LaporanFinansialTokoListrikController extends Controller
 
 
         return view('TokoListrik.laporanFinansial.indexLaporanFinansial', [
-            'year' => Carbon::parse($year)->year,
+            'year' => $year,
             'totalPendapatan' => $totalPendapatan,
             'totalPenyusutan' => $totalPenyusutan,
             'info' => 'Penjualan',

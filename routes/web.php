@@ -116,23 +116,23 @@ Route::group(['prefix' => 'LaporanFinansialSPBU', 'middleware' => ['auth', 'chec
     Route::get('/PengeluaranSPBU/FilterRange', [LaporanFinansialBBMController::class, 'rangeFilterPengeluaranSPBU']);
 });
 
-Route::group(['prefix' => 'LaporanFinansialTokoListrik', 'middleware' => ['auth', 'checkRole:1,3']], function () {
+// Route::group(['prefix' => 'LaporanFinansialTokoListrik', 'middleware' => ['auth', 'checkRole:1,3']], function () {
 
-    Route::get('/LaporanRabaRugi', [LaporanFinansialTokoListrikController::class, 'indexLaporanLabaRugi']);
-    Route::get('/LaporanRabaRugi/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterLaporanLabaRugi']);
-    Route::get('/LaporanRabaRugi/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterLaporanLabaRugi']);
-    Route::get('/LaporanRabaRugi/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterLaporanLabaRugi']);
+//     Route::get('/LaporanRabaRugi', [LaporanFinansialTokoListrikController::class, 'indexLaporanLabaRugi']);
+//     Route::get('/LaporanRabaRugi/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterLaporanLabaRugi']);
+//     Route::get('/LaporanRabaRugi/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterLaporanLabaRugi']);
+//     Route::get('/LaporanRabaRugi/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterLaporanLabaRugi']);
 
-    Route::get('/PenjualanTokoListrik', [LaporanFinansialTokoListrikController::class, 'indexPenjualanItem']);
-    Route::get('/PenjualanTokoListrik/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterPenjualanItem']);
-    Route::get('/PenjualanTokoListrik/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterPenjualanItem']);
-    Route::get('/PenjualanTokoListrik/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterPenjualanItem']);
+//     Route::get('/PenjualanTokoListrik', [LaporanFinansialTokoListrikController::class, 'indexPenjualanItem']);
+//     Route::get('/PenjualanTokoListrik/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterPenjualanItem']);
+//     Route::get('/PenjualanTokoListrik/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterPenjualanItem']);
+//     Route::get('/PenjualanTokoListrik/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterPenjualanItem']);
 
-    Route::get('/PengeluaranTokoListrik', [LaporanFinansialTokoListrikController::class, 'indexPengeluaran']);
-    Route::get('/PengeluaranTokoListrik/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterPengeluaranTokoListrik']);
-    Route::get('/PengeluaranTokoListrik/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterPengeluaranTokoListrik']);
-    Route::get('/PengeluaranTokoListrik/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterPengeluaranTokoListrik']);
-});
+//     Route::get('/PengeluaranTokoListrik', [LaporanFinansialTokoListrikController::class, 'indexPengeluaran']);
+//     Route::get('/PengeluaranTokoListrik/FilterBulan', [LaporanFinansialTokoListrikController::class, 'monthFilterPengeluaranTokoListrik']);
+//     Route::get('/PengeluaranTokoListrik/FilterTahun', [LaporanFinansialTokoListrikController::class, 'yearFilterPengeluaranTokoListrik']);
+//     Route::get('/PengeluaranTokoListrik/FilterRange', [LaporanFinansialTokoListrikController::class, 'rangeFilterPengeluaranTokoListrik']);
+// });
 
 
 //Item Listrik

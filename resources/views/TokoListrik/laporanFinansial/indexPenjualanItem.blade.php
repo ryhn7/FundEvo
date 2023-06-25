@@ -57,10 +57,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
     @endif
 
-    @if (request()->is('LaporanFinansialTokoListrik/PenjualanTokoListrik') || request()->is('LaporanFinansialTokoListrik/PenjualanTokoListrik/FilterBulan*'))
+    @if (request()->is('LaporanFinansialTokoListrik/PenjualanTokoListrik') ||
+            request()->is('LaporanFinansialTokoListrik/PenjualanTokoListrik/FilterBulan*'))
         <div class="w-full max-w-full px-3 mt-4 lg:w-full lg:flex-none">
             <div
                 class="border-black/12.5 shadow-inner relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-gray-50 bg-clip-border">
@@ -143,7 +144,7 @@
                                             <div class="flex-none w-3/4max-w-full px-3">
                                                 <div>
                                                     <p class="mb-0.38 font-open font-semibold leading-normal text-sm">
-                                                        {{ $kategori->kategori}}
+                                                        {{ $kategori->kategori }}
                                                     </p>
                                                     <h5 class="mb-0 text-[20px] font-bold">
                                                         @currency($revenue) </h5>
@@ -239,7 +240,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                <td
+                                    class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                     <div class="flex px-2 py-1">
                                         <div class="flex flex-col justify-center">
                                             <h6 class="ml-2 mb-0 font-semibold leading-tight text-xs text-slate-400">
@@ -248,7 +250,8 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                <td
+                                    class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                     <div class="flex px-2 py-1">
                                         <div class="flex flex-col justify-center">
                                             <h6 class="ml-2 mb-0 leading-normal text-sm">
@@ -257,7 +260,8 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                <td
+                                    class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                     <p class="mb-0 font-semibold leading-tight text-xs">
                                         {{ $sells[0]->item->itemKategoris->kategori }}
                                     </p>
@@ -389,44 +393,12 @@
 
 @section('slick')
     <script>
-        function setup() {
-            return {
-                activeTab: 0,
-                tabs: [
-                    "Penjualan Toko Listrik",
-                    "Pengeluaran Operasional Toko Listrik",
-                    "Laporan Keuangan Toko Listrik",
-                ]
-            };
-        };
-    </script>
-
-    <script>
-        const month = document.getElementById('month1');
-        const end = document.getElementById('end');
-        const monthForm = document.getElementById('monthFilter');
-        const rangeForm = document.getElementById('rangeFilter');
-
-        month.addEventListener('change', () => {
-            monthForm.submit();
-        })
-
-        end.addEventListener('change', () => {
-            rangeForm.submit();
-        })
-    </script>
-
-<script>
-    $(document).ready(function() {
-        $('.carousel-container').slick({
-            infinite: true,
-            slidesToShow: 4,
-            slidesToScroll: 1
+        $(document).ready(function() {
+            $('.carousel-container').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 1
+            });
         });
-    });
-</script>
-@endsection
-
-@section('scripts')
-
+    </script>
 @endsection

@@ -109,7 +109,6 @@ class LaporanFinansialTokoListrikController extends Controller
 
         $totalHpp = array_sum($hpp);
         $keuntungan = $totalPendapatan - $totalHpp;
-        return('ok');
 
         return view('TokoListrik.laporanFinansial.indexPenjualanItem', [
             'sells' => $penjualanItem,

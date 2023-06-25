@@ -120,7 +120,7 @@
                                 <div class="px-3 text-right">
                                     <div
                                         class="inline-block w-[98px] h-[98px] text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                                        <i class="fa-solid fa-gas-pump text-white text-2xl relative top-3.5 text-white"></i>
+                                        <i class="fas fa-money-bill-trend-up text-white text-5xl relative top-5"></i>
                                     </div>
                                 </div>
                             </div>
@@ -174,8 +174,8 @@
                                             <div class="px-3 text-right basis-1/3">
                                                 <div
                                                     class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                                                    <i
-                                                        class="fa-solid fa-gas-pump text-white text-2xl relative top-3.5 text-white"></i>
+                                                    <i class="fas fa-bolt text-white text-2xl relative top-3"></i>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -251,7 +251,7 @@
                                     </div>
                                 </td>
                                 <td
-                                    class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                     <div class="flex px-2 py-1">
                                         <div class="flex flex-col justify-center">
                                             <h6 class="ml-2 mb-0 leading-normal text-sm">
@@ -261,7 +261,7 @@
                                     </div>
                                 </td>
                                 <td
-                                    class="p-2 align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
+                                    class="p-2 text-center align-middle bg-transparent border-b-0 whitespace-nowrap shadow-transparent">
                                     <p class="mb-0 font-semibold leading-tight text-xs">
                                         {{ $sells[0]->item->itemKategoris->kategori }}
                                     </p>
@@ -319,7 +319,7 @@
                                         </div>
                                     </td>
                                     <td
-                                        class="p-2 align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
+                                        class="p-2 text-center align-middle bg-transparent border-t whitespace-nowrap shadow-transparent">
                                         <p class="mb-0 font-semibold leading-tight text-xs">
                                             {{ $sell->item->itemKategoris->kategori }}
                                         </p>

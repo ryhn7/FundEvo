@@ -3863,6 +3863,14 @@ textarea.form-control.is-invalid {
   top: 50%;
 }
 
+.top-4\.5 {
+  top: 1.125rem;
+}
+
+.top-4 {
+  top: 1rem;
+}
+
 .z-20 {
   z-index: 20;
 }
@@ -4114,16 +4122,16 @@ textarea.form-control.is-invalid {
   margin-bottom: 1.75rem;
 }
 
+.-ml-\[203px\] {
+  margin-left: -203px;
+}
+
 .mt-1\.25 {
   margin-top: 0.3125rem;
 }
 
 .ml-3 {
   margin-left: 0.75rem;
-}
-
-.-ml-\[203px\] {
-  margin-left: -203px;
 }
 
 .box-content {
@@ -5125,6 +5133,11 @@ textarea.form-control.is-invalid {
 
 .text-\[13px\] {
   font-size: 13px;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
 
 .font-semibold {

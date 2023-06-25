@@ -3,25 +3,25 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\PengeluaranOpsTokoListrik;
+use Carbon\Carbon;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PengeluaranOpsTokoListrik>
- */
 class PengeluaranOpsTokoListrikFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = PengeluaranOpsTokoListrik::class;
+
     public function definition()
     {
+        $date = $this->faker->dateTimeBetween('2023-01-01', now());
+
         return [
-            'biaya_kulakan' => fake()->numberBetween(30000000, 35000000),
-            'gaji_karyawan' => fake()->numberBetween(20000000, 25000000),
-            'reward_karyawan' => fake()->numberBetween(1000000, 3000000),
-            'pbb' => fake()->numberBetween(1000000, 3000000),
-            'biaya_lain' => fake()->numberBetween(100000, 300000),
+            'biaya_kulakan' => $this->faker->numberBetween(30000000, 35000000),
+            'gaji_karyawan' => $this->faker->numberBetween(20000000, 25000000),
+            'reward_karyawan' => $this->faker->numberBetween(1000000, 3000000),
+            'pbb' => $this->faker->numberBetween(1000000, 3000000),
+            'biaya_lain' => $this->faker->numberBetween(100000, 300000),
+            'created_at' => $date,
+            'updated_at' => $date,
         ];
     }
 }

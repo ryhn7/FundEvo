@@ -233,11 +233,10 @@ class DatabaseSeeder extends Seeder
 
 
 
-        PengeluaranOpsTokoListrik::factory()->count(10)->create();
         PengeluaranOpsBBM::factory(30)->create();
         PenjualanBBM::factory(30)->create();
         $startDate = '2023-01-01';
-        $endDate = '2023-06-07';
+        $endDate = '2023-06-25';
         $currentDate = $startDate;
 
         while ($currentDate <= $endDate) {
@@ -252,7 +251,9 @@ class DatabaseSeeder extends Seeder
 
             $currentDate = date('Y-m-d', strtotime($currentDate . ' +1 day'));
         }
+        $this->call(PengeluaranOpsTokoListrikSeeder::class);
     }
+
 
     private function getItems()
     {

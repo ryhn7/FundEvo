@@ -35,9 +35,10 @@
                         </div>
                     </div>
                     <div class="px-3 text-right basis-1/3">
-                        <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                            <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
-                        </div>
+                    <div class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
+    <i class="fas fa-money-bill text-lg relative top-3.5 text-white"></i>
+</div>
+
                     </div>
                 </div>
             </div>
@@ -196,7 +197,7 @@
                                                             @continue
                                                             @endif
                                                             <div class="carousel-item float-left w-full">
-                                                                <img src="{{ asset('storage/nota/' . $nota) }}" class="block w-full" alt="Camera" />
+                                                                <img src="{{ asset('storage/app/nota/' . $nota) }}" class="block w-full" alt="Camera" />
                                                             </div>
                                                             @endforeach
 
@@ -337,6 +338,7 @@
                                                 @foreach ($spend->nota as $index => $nota)
                                                 @if ($index == 0)
                                                 @continue
+                                                {{ dd($nota) }}
                                                 @endif
                                                 <div class="carousel-item float-left w-full">
                                                     <img src="{{ asset('storage/nota/' . $nota) }}" class="block w-full" alt="Camera" />

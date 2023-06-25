@@ -56,11 +56,12 @@ class LaporanFinansialTokoListrikController extends Controller
 
     public function indexPengeluaranTokoListrik()
     {
-        $pengeluaranOpsTokoListrik = PengeluaranOpsTokoListrik::sortable()->get();
+        $pengeluaranOpsTokoListrik = PengeluaranOpsTokoListrik::sortable()->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)->get();
         return view('TokoListrik.laporanFinansial.indexPengeluaranOpsTokoListrik', [
             'spends' => $pengeluaranOpsTokoListrik,
             'count' => $pengeluaranOpsTokoListrik->count(),
-            'info' => 'Penjualan',
+            'info' => 'Pengeluaran',
             'month' => Carbon::now()->locale('id')->isoFormat('MMMM'),
             'year' => Carbon::now()->year,
         ]);

@@ -170,6 +170,7 @@ class LaporanFinansialTokoListrikController extends Controller
             'count' => $pengeluaranOpsTokoListrik->count(),
             'month' => Carbon::parse($month)->locale('id')->isoFormat('MMMM'),
             'info' => 'Penjualan',
+            'year' => Carbon::parse($month)->year,
         ]);
     }
 

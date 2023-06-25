@@ -120,7 +120,7 @@
                                 <div class="px-3 text-right">
                                     <div
                                         class="inline-block w-[98px] h-[98px] text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
-                                        <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                        <i class="fa-solid fa-gas-pump text-white text-2xl relative top-3.5 text-white"></i>
                                     </div>
                                 </div>
                             </div>
@@ -175,7 +175,7 @@
                                                 <div
                                                     class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-[#060764] to-[#00b7dd]">
                                                     <i
-                                                        class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                                        class="fa-solid fa-gas-pump text-white text-2xl relative top-3.5 text-white"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -206,11 +206,11 @@
                                 </th>
                                 <th
                                     class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    @sortablelink('nama_item', 'Nama Item')
+                                    Nama Item
                                 </th>
                                 <th
                                     class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    @sortablelink('kategori', 'Kategori')
+                                    Kategori
                                 </th>
                                 <th
                                     class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">

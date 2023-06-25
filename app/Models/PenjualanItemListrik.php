@@ -19,6 +19,6 @@ class PenjualanItemListrik extends Model
     {
         return $this->belongsTo(KategoriItem::class, 'kategori');
     }
-    public $sortable = ['created_at','nama_item','kategori', 'stock_awal', 'penerimaan', 'penjualan', 'stock_akhir', 'penyusutan', 'pendapatan'];
+    public $sortable = ['created_at', 'stock_awal', 'penerimaan', 'penjualan', 'stock_akhir', 'penyusutan', 'pendapatan'];
 
 }

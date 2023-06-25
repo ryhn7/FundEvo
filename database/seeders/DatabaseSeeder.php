@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\PenjualanBBM;
 use App\Models\PengeluaranOpsBBM;
+use App\Models\PengeluaranOpsTokoListrik;
 use App\Models\PenjualanItemListrik;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -235,7 +236,7 @@ class DatabaseSeeder extends Seeder
 
         PenjualanBBM::factory(30)->create();
         $startDate = '2023-01-01';
-        $endDate = '2023-06-07';
+        $endDate = '2023-06-25';
         $currentDate = $startDate;
 
         while ($currentDate <= $endDate) {
@@ -247,6 +248,11 @@ class DatabaseSeeder extends Seeder
                     'updated_at' => $currentDate,
                 ]);
             }
+
+            PengeluaranOpsTokoListrik::factory()->create([
+                'date' => $currentDate,
+                'created_at' => $currentDate,
+                'updated_at' => $currentDate,]);
 
             $currentDate = date('Y-m-d', strtotime($currentDate . ' +1 day'));
         }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\item;
 use App\Models\KategoriItem;
+use App\Models\PenjualanItemListrik;
 use Illuminate\Http\Request;
 
 class ItemCategoryController extends Controller
@@ -118,6 +119,10 @@ class ItemCategoryController extends Controller
     public function destroy(item $kategori_item)
     {
         //
+        $penjualanExists = PenjualanItemListrik::where('item_id', $kategori_item->id)->exists();
+        if ($penjualanExists) {
+            return redirect('/kategori-item')->with('error', 'Tidak dapat menghapus item karena penjualan item terkait masih ada!');
+        }
         Item::destroy($kategori_item->id);
         return redirect('/kategori-item')->with('success', 'Data Item berhasil dihapus!');
     }

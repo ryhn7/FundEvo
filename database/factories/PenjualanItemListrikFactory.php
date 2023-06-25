@@ -20,7 +20,7 @@ class PenjualanItemListrikFactory extends Factory
     public function definition()
     {
         $startDate = '2023-01-01';
-        $endDate = '2023-06-07';
+        $endDate = '2023-06-25';
         $items = [
             [
                 'id' => 1,

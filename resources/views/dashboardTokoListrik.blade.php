@@ -114,7 +114,7 @@
         <div class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border h-full">
             <div class="flex-auto p-4">
                 <h6>Gambaran Umum Laba Bersih</h6>
-                <div class="py-4 pr-1 mb-4 bg-gradient-to-tl from-[#060764] to-[#00b7dd] rounded-xl" style="width: 100%; height: 85%;">
+                <div class="py-4 pr-1 mb-4 bg-gradient-to-tl from-red-500 to-yellow-400 rounded-xl" style="width: 100%; height: 85%;">
                     <div>
                         <canvas id="canvas" class="chart-canvas" height="250"></canvas>
                     </div>

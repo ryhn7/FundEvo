@@ -3,13 +3,13 @@
         class="max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent">
         <div class="h-19.5">
             <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700">
-                {{-- <img src="{{ asset('assets/img/times.svg') }}"
-                class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8" alt="main_logo" /> --}}
+                <img src="{{ asset('assets/img/shapes/logo_inside.png') }}"
+                    class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8" alt="main_logo" />
                 <span class="ml-1 self-center text-lg whitespace-nowrap">PT Bhakti Usaha Jaya</span>
             </a>
         </div>
 
-<hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent mb-5" />
+        <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent mb-5" />
 
         <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
             {{-- OWNER --}}
@@ -100,14 +100,14 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
                                         width="512" height="512" x="0" y="0"
-                                        viewBox="0 0 400 400" style="enable-background:new 0 0 512 512"
+                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
                                         xml:space="preserve" class="">
                                         <g>
+                                            <path d="M356.625 95.709h95.652L356.625.563z" fill="#fff"
+                                                data-original="#fff" class=""></path>
                                             <path
-                                                d="M270 310h90V0H40v400h230v-90zM100 80h200v30H100V80zm0 60h200v30H100v-30zm0 60h200v30H100v-30z"
-                                                fill="#ffffff" data-original="#000000" class=""></path>
-                                            <path d="M300 340v59.999L360 340z" fill="#ffffff" data-original="#000000"
-                                                class=""></path>
+                                                d="M326.625 125.709V0H59.667v512h392.667V125.709zM145.704 343.667v-30h220.591v30zm163.357 49v30H202.939v-30zm57.235-158v30H145.704v-30zm-220.592-49v-30H256v30z"
+                                                fill="#fff" data-original="#fff" class=""></path>
                                         </g>
                                     </svg>
                                 @else
@@ -118,10 +118,10 @@
                                         xml:space="preserve" class="">
                                         <g>
                                             <path
-                                                d="M51.2 0v512h332.799l76.801-76.8V0H51.2zM384 457.693V435.2h22.493L384 457.693zm38.4-60.893h-76.8v76.8h-256V38.4h332.8v358.4z"
+                                                d="M362.058 0H59.667v512h392.667V89.762zm-5.766 36.572L414.048 94h-57.756zM422.333 482H89.667V30h236.625v94h96.042v358z"
                                                 fill="#000000" data-original="#000000" class=""></path>
                                             <path
-                                                d="M128 102.4h256v38.4H128zM128 179.2h256v38.4H128zM128 256h256v38.4H128z"
+                                                d="M202.939 376h106.122v30H202.939zM145.704 297h220.591v30H145.704zM145.704 218h220.591v30H145.704zM145.704 139H256v30H145.704z"
                                                 fill="#000000" data-original="#000000" class=""></path>
                                         </g>
                                     </svg>
@@ -225,31 +225,62 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
                                         width="512" height="512" x="0" y="0"
-                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
                                         xml:space="preserve" class="">
                                         <g>
-                                            <path d="M95.274 59.883h89.825v29.942H95.274z" fill="#ffffff"
-                                                data-original="#000000" class=""></path>
                                             <path
-                                                d="M401.756 0H280.64l-59.883 119.766H95.273v1.895c-25.799 6.664-44.912 30.136-44.912 57.988v272.468c0 33.02 26.864 59.883 59.883 59.883h291.513c33.019 0 59.883-26.864 59.883-59.883V59.883C461.639 26.864 434.776 0 401.756 0zm-74.853 74.854h59.883v44.912h-82.339l22.456-44.912zm70.728 351.474-21.692 20.638-52.545-55.231H191.298L135.8 447.233l-21.172-21.172 55.498-55.498V260.704l-55.498-55.498 21.172-21.172 55.498 55.498h132.096l52.545-55.231 21.692 20.638-52.846 55.547v110.295l52.846 55.547z"
-                                                fill="#ffffff" data-original="#000000" class=""></path>
-                                            <path d="M200.069 269.474h114.776v92.32H200.069z" fill="#ffffff"
-                                                data-original="#000000" class=""></path>
+                                                d="M428.5 467h-345C71.074 467 61 477.074 61 489.5S71.074 512 83.5 512h345c12.426 0 22.5-10.074 22.5-22.5S440.926 467 428.5 467zM83.5 112h345c12.426 0 22.5-10.074 22.5-22.5S440.926 67 428.5 67h-345C71.074 67 61 77.074 61 89.5S71.074 112 83.5 112zM428.5 267h-345C71.074 267 61 277.074 61 289.5S71.074 312 83.5 312h345c12.426 0 22.5-10.074 22.5-22.5S440.926 267 428.5 267zM198.604 6.868A14.997 14.997 0 0 0 186 0h-50c-8.284 0-15 6.716-15 15v22h97.044zM91 142h330v95H91zM91 342h330v95H91z"
+                                                fill="#fff" data-original="#fff" class=""></path>
                                         </g>
                                     </svg>
                                 @else
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
                                         width="512" height="512" x="0" y="0"
-                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+                                        viewBox="0 0 682.667 682.667" style="enable-background:new 0 0 512 512"
                                         xml:space="preserve" class="">
                                         <g>
-                                            <path
-                                                d="M401.756 0H280.64l-59.883 119.766h-35.659V59.883H95.273v61.778c-25.799 6.664-44.912 30.136-44.912 57.988v272.468c0 33.02 26.864 59.883 59.883 59.883h291.513c33.02 0 59.883-26.864 59.883-59.883V59.883C461.639 26.864 434.776 0 401.756 0zM125.214 89.825h29.942v29.941h-29.942V89.825zm306.485 362.292h-.001c0 16.51-13.432 29.942-29.942 29.942H110.244c-16.51 0-29.941-13.432-29.941-29.942V179.649c0-16.51 13.432-29.942 29.941-29.942h129.019l59.883-119.766h102.612c16.51 0 29.942 13.432 29.942 29.942v392.234z"
-                                                fill="#000000" data-original="#000000" class=""></path>
-                                            <path
-                                                d="m317.651 59.883-44.912 89.825h129.019V59.883h-84.107zm54.164 59.883h-50.63l14.971-29.941h35.659v29.941zM344.786 370.781V260.486l52.846-55.547-21.692-20.638-52.545 55.231H191.298L135.8 184.034l-21.172 21.172 55.498 55.498v109.859l-55.498 55.498 21.172 21.172 55.498-55.498h132.096l52.545 55.231 21.692-20.638-52.845-55.547zm-29.942-8.988H200.068v-92.32h114.776v92.32z"
-                                                fill="#000000" data-original="#000000" class=""></path>
+                                            <defs>
+                                                <clipPath id="a" clipPathUnits="userSpaceOnUse">
+                                                    <path d="M0 512h512V0H0Z" fill="#000000" data-original="#000000">
+                                                    </path>
+                                                </clipPath>
+                                            </defs>
+                                            <g clip-path="url(#a)" transform="matrix(1.33333 0 0 -1.33333 0 682.667)">
+                                                <path
+                                                    d="M0 0h-300c-16.568 0-30-13.432-30-30 0-16.568 13.432-30 30-30H0c16.568 0 30 13.432 30 30C30-13.432 16.568 0 0 0Z"
+                                                    style="stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                                    transform="translate(406 75)" fill="none" stroke="#000000"
+                                                    stroke-width="30" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity=""
+                                                    data-original="#000000" class=""></path>
+                                                <path
+                                                    d="M0 0h-300c-16.568 0-30 13.432-30 30 0 16.568 13.432 30 30 30H0c16.568 0 30-13.432 30-30C30 13.432 16.568 0 0 0Z"
+                                                    style="stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                                    transform="translate(406 375)" fill="none" stroke="#000000"
+                                                    stroke-width="30" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity=""
+                                                    data-original="#000000" class=""></path>
+                                                <path d="M406 255H106v120h300zM406 75H106v120h300z"
+                                                    style="stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                                    fill="none" stroke="#000000" stroke-width="30"
+                                                    stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                                                    stroke-dasharray="none" stroke-opacity="" data-original="#000000"
+                                                    class=""></path>
+                                                <path d="M0 0h-90v62h50z"
+                                                    style="stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                                    transform="translate(226 435)" fill="none" stroke="#000000"
+                                                    stroke-width="30" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity=""
+                                                    data-original="#000000" class=""></path>
+                                                <path
+                                                    d="M0 0h-300c-16.568 0-30-13.432-30-30 0-16.568 13.432-30 30-30H0c16.568 0 30 13.432 30 30C30-13.432 16.568 0 0 0Z"
+                                                    style="stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                                    transform="translate(406 255)" fill="none" stroke="#000000"
+                                                    stroke-width="30" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity=""
+                                                    data-original="#000000" class=""></path>
+                                            </g>
                                         </g>
                                     </svg>
                                 @endif
@@ -582,14 +613,14 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
                                         width="512" height="512" x="0" y="0"
-                                        viewBox="0 0 400 400" style="enable-background:new 0 0 512 512"
+                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
                                         xml:space="preserve" class="">
                                         <g>
+                                            <path d="M356.625 95.709h95.652L356.625.563z" fill="#fff"
+                                                data-original="#fff" class=""></path>
                                             <path
-                                                d="M270 310h90V0H40v400h230v-90zM100 80h200v30H100V80zm0 60h200v30H100v-30zm0 60h200v30H100v-30z"
-                                                fill="#ffffff" data-original="#000000" class=""></path>
-                                            <path d="M300 340v59.999L360 340z" fill="#ffffff" data-original="#000000"
-                                                class=""></path>
+                                                d="M326.625 125.709V0H59.667v512h392.667V125.709zM145.704 343.667v-30h220.591v30zm163.357 49v30H202.939v-30zm57.235-158v30H145.704v-30zm-220.592-49v-30H256v30z"
+                                                fill="#fff" data-original="#fff" class=""></path>
                                         </g>
                                     </svg>
                                 @else
@@ -600,10 +631,10 @@
                                         xml:space="preserve" class="">
                                         <g>
                                             <path
-                                                d="M51.2 0v512h332.799l76.801-76.8V0H51.2zM384 457.693V435.2h22.493L384 457.693zm38.4-60.893h-76.8v76.8h-256V38.4h332.8v358.4z"
+                                                d="M362.058 0H59.667v512h392.667V89.762zm-5.766 36.572L414.048 94h-57.756zM422.333 482H89.667V30h236.625v94h96.042v358z"
                                                 fill="#000000" data-original="#000000" class=""></path>
                                             <path
-                                                d="M128 102.4h256v38.4H128zM128 179.2h256v38.4H128zM128 256h256v38.4H128z"
+                                                d="M202.939 376h106.122v30H202.939zM145.704 297h220.591v30H145.704zM145.704 218h220.591v30H145.704zM145.704 139H256v30H145.704z"
                                                 fill="#000000" data-original="#000000" class=""></path>
                                         </g>
                                     </svg>
@@ -710,28 +741,59 @@
                                         viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
                                         xml:space="preserve" class="">
                                         <g>
-                                            <path d="M95.274 59.883h89.825v29.942H95.274z" fill="#ffffff"
-                                                data-original="#000000" class=""></path>
                                             <path
-                                                d="M401.756 0H280.64l-59.883 119.766H95.273v1.895c-25.799 6.664-44.912 30.136-44.912 57.988v272.468c0 33.02 26.864 59.883 59.883 59.883h291.513c33.019 0 59.883-26.864 59.883-59.883V59.883C461.639 26.864 434.776 0 401.756 0zm-74.853 74.854h59.883v44.912h-82.339l22.456-44.912zm70.728 351.474-21.692 20.638-52.545-55.231H191.298L135.8 447.233l-21.172-21.172 55.498-55.498V260.704l-55.498-55.498 21.172-21.172 55.498 55.498h132.096l52.545-55.231 21.692 20.638-52.846 55.547v110.295l52.846 55.547z"
-                                                fill="#ffffff" data-original="#000000" class=""></path>
-                                            <path d="M200.069 269.474h114.776v92.32H200.069z" fill="#ffffff"
-                                                data-original="#000000" class=""></path>
+                                                d="M428.5 467h-345C71.074 467 61 477.074 61 489.5S71.074 512 83.5 512h345c12.426 0 22.5-10.074 22.5-22.5S440.926 467 428.5 467zM83.5 112h345c12.426 0 22.5-10.074 22.5-22.5S440.926 67 428.5 67h-345C71.074 67 61 77.074 61 89.5S71.074 112 83.5 112zM428.5 267h-345C71.074 267 61 277.074 61 289.5S71.074 312 83.5 312h345c12.426 0 22.5-10.074 22.5-22.5S440.926 267 428.5 267zM198.604 6.868A14.997 14.997 0 0 0 186 0h-50c-8.284 0-15 6.716-15 15v22h97.044zM91 142h330v95H91zM91 342h330v95H91z"
+                                                fill="#fff" data-original="#fff" class=""></path>
                                         </g>
                                     </svg>
                                 @else
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
                                         width="512" height="512" x="0" y="0"
-                                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512"
+                                        viewBox="0 0 682.667 682.667" style="enable-background:new 0 0 512 512"
                                         xml:space="preserve" class="">
                                         <g>
-                                            <path
-                                                d="M401.756 0H280.64l-59.883 119.766h-35.659V59.883H95.273v61.778c-25.799 6.664-44.912 30.136-44.912 57.988v272.468c0 33.02 26.864 59.883 59.883 59.883h291.513c33.02 0 59.883-26.864 59.883-59.883V59.883C461.639 26.864 434.776 0 401.756 0zM125.214 89.825h29.942v29.941h-29.942V89.825zm306.485 362.292h-.001c0 16.51-13.432 29.942-29.942 29.942H110.244c-16.51 0-29.941-13.432-29.941-29.942V179.649c0-16.51 13.432-29.942 29.941-29.942h129.019l59.883-119.766h102.612c16.51 0 29.942 13.432 29.942 29.942v392.234z"
-                                                fill="#000000" data-original="#000000" class=""></path>
-                                            <path
-                                                d="m317.651 59.883-44.912 89.825h129.019V59.883h-84.107zm54.164 59.883h-50.63l14.971-29.941h35.659v29.941zM344.786 370.781V260.486l52.846-55.547-21.692-20.638-52.545 55.231H191.298L135.8 184.034l-21.172 21.172 55.498 55.498v109.859l-55.498 55.498 21.172 21.172 55.498-55.498h132.096l52.545 55.231 21.692-20.638-52.845-55.547zm-29.942-8.988H200.068v-92.32h114.776v92.32z"
-                                                fill="#000000" data-original="#000000" class=""></path>
+                                            <defs>
+                                                <clipPath id="a" clipPathUnits="userSpaceOnUse">
+                                                    <path d="M0 512h512V0H0Z" fill="#000000" data-original="#000000">
+                                                    </path>
+                                                </clipPath>
+                                            </defs>
+                                            <g clip-path="url(#a)" transform="matrix(1.33333 0 0 -1.33333 0 682.667)">
+                                                <path
+                                                    d="M0 0h-300c-16.568 0-30-13.432-30-30 0-16.568 13.432-30 30-30H0c16.568 0 30 13.432 30 30C30-13.432 16.568 0 0 0Z"
+                                                    style="stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                                    transform="translate(406 75)" fill="none" stroke="#000000"
+                                                    stroke-width="30" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity=""
+                                                    data-original="#000000" class=""></path>
+                                                <path
+                                                    d="M0 0h-300c-16.568 0-30 13.432-30 30 0 16.568 13.432 30 30 30H0c16.568 0 30-13.432 30-30C30 13.432 16.568 0 0 0Z"
+                                                    style="stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                                    transform="translate(406 375)" fill="none" stroke="#000000"
+                                                    stroke-width="30" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity=""
+                                                    data-original="#000000" class=""></path>
+                                                <path d="M406 255H106v120h300zM406 75H106v120h300z"
+                                                    style="stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                                    fill="none" stroke="#000000" stroke-width="30"
+                                                    stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"
+                                                    stroke-dasharray="none" stroke-opacity="" data-original="#000000"
+                                                    class=""></path>
+                                                <path d="M0 0h-90v62h50z"
+                                                    style="stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                                    transform="translate(226 435)" fill="none" stroke="#000000"
+                                                    stroke-width="30" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity=""
+                                                    data-original="#000000" class=""></path>
+                                                <path
+                                                    d="M0 0h-300c-16.568 0-30-13.432-30-30 0-16.568 13.432-30 30-30H0c16.568 0 30 13.432 30 30C30-13.432 16.568 0 0 0Z"
+                                                    style="stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                                                    transform="translate(406 255)" fill="none" stroke="#000000"
+                                                    stroke-width="30" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-miterlimit="10" stroke-dasharray="none" stroke-opacity=""
+                                                    data-original="#000000" class=""></path>
+                                            </g>
                                         </g>
                                     </svg>
                                 @endif
